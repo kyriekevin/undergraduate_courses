@@ -1,0 +1,27 @@
+label: bug errorCode wrongError
+consequence：error
+module: shared memory	
+age: 2013-02-23
+title: mm: make do_mmap_pgoff return populate as a size in bytes, not as a bool
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=41badc15cbad0350de34408c1b0c690f9df76d4b
+lines: -2/+2
+category: ipc/shm.c
+
+do_mmap_pgoff() rounds up the desired size to the next PAGE_SIZE
+multiple, however there was no equivalent code in mm_populate(), which
+caused issues.
+
+This could be fixed by introduced the same rounding in mm_populate(),
+however I think it's preferable to make do_mmap_pgoff() return populate
+as a size rather than as a boolean, so we don't have to duplicate the
+size rounding logic in mm_populate().
+
+Signed-off-by: Michel Lespinasse <walken@google.com>
+Acked-by: Rik van Riel <riel@redhat.com>
+Tested-by: Andy Lutomirski <luto@amacapital.net>
+Cc: Greg Ungerer <gregungerer@westnet.com.au>
+Cc: David Howells <dhowells@redhat.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

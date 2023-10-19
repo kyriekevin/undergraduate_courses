@@ -1,0 +1,8 @@
+label: performance access optimization
+module: other	
+age: 2014-12-10
+title: Merge branch 'nsfs' into for-next
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=707c5960f102f8cdafb9406047b158abc71b391f
+lines: -18/+19
+category: ipc/msgutil.c ipc/namespace.c 
+

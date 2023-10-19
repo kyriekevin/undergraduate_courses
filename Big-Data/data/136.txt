@@ -1,0 +1,22 @@
+label: feature
+module: message	other	
+age: 2018-04-02
+title: ipc: add msgrcv syscall/compat_syscall wrappers
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=078faac9e8b6c8124bc012bbf97cca59caf6d4ea
+lines: -7/+24
+category: ipc/msg.c ipc/syscall.c ipc/util.h 
+
+Provide ksys_msgrcv() and compat_ksys_msgrcv() wrappers to avoid in-kernel
+calls to these syscalls. The ksys_ prefix denotes that these functions are
+meant as a drop-in replacement for the syscalls. In particular, they use
+the same calling convention as sys_msgrcv() and compat_sys_msgrcv().
+
+This patch is part of a series which removes in-kernel calls to syscalls.
+On this basis, the syscall entry path can be streamlined. For details, see
+http://lkml.kernel.org/r/20180325162527.GA17492@light.dominikbrodowski.net
+
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Dominik Brodowski <linux@dominikbrodowski.net>
+
+

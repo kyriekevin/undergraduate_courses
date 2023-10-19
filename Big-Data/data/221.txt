@@ -1,0 +1,20 @@
+label: feature
+module: shared memory	
+age: 2017-07-12
+title: ipc/shm: avoid ipc_rcu_alloc()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3e0c24042e5aa55eee817caeca67246df69931e1
+lines: -4/+14
+category: ipc/shm.c
+
+Instead of using ipc_rcu_alloc() which only performs the refcount bump,
+open code it.  This also allows for shmid_kernel structure layout to be
+randomized in the future.
+
+Link: http://lkml.kernel.org/r/20170525185107.12869-11-manfred@colorfullife.com
+Signed-off-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

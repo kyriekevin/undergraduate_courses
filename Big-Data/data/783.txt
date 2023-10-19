@@ -1,0 +1,21 @@
+label: bug semantic generic
+consequence：wrong
+module: shared memory	
+age: 2007-06-16
+title: Restore shmid as inode# to fix /proc/pid/maps ABI breakage
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=30475cc12a50816f290828fb7e3cd7036cd622df
+lines: -0/+5
+category: ipc/shm.c
+
+shmid used to be stored as inode# for shared memory segments. Some of
+the proc-ps tools use this from /proc/pid/maps.  Recent cleanups
+to newseg() changed it.  This patch sets inode number back to shared
+memory id to fix breakage.
+
+Signed-off-by: Badari Pulavarty <pbadari@us.ibm.com>
+Cc: "Albert Cahalan" <acahalan@gmail.com>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

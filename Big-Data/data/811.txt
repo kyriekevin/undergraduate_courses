@@ -1,0 +1,14 @@
+label: reliability corruption defense
+module: message queue	
+age: 2006-10-03
+title: Michal Wronski: update contact info
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f66e928b96b717c6bb0cefba338d687dd86e6a9b
+lines: -1/+1
+category: ipc/mqueue.c
+
+My email has changed.
+
+Signed-Off-By: Michal Wronski <michal.wronski@gmail.com>
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+
+

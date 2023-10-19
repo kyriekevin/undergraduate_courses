@@ -1,0 +1,25 @@
+label: reliability debug
+module: other	
+age: 2007-02-12
+title: [PATCH] ipc: save the ipc namespace while reading proc files
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=bc1fc6d88c646ea071de34250552051a63000d70
+lines: -13/+45
+category: ipc/util.c
+
+The problem we were assuming that current->nsproxy->ipc_ns would never
+change while someone has our file in /proc/sysvipc/ file open.  Given that
+this can change with both unshare and by passing the file descriptor to
+another process that assumption is occasionally wrong.
+
+Therefore this patch causes /proc/sysvipc/* to cache the namespace and
+increment it's count when we open the file and to decrement the count when
+we close the file, ensuring consistent operation with no surprises.
+
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+Cc: Serge E. Hallyn <serue@us.ibm.com>
+Cc: Herbert Poetzl <herbert@13thfloor.at>
+Cc: Kirill Korotaev <dev@sw.ru>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

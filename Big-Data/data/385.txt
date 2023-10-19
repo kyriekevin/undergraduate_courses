@@ -1,0 +1,19 @@
+label: bug semantic generic
+consequence：wrong
+module: other	 
+age: 2013-11-13
+title: ipc/util.c: remove unnecessary work pending test
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=206fa940977260ede421151aae067e2509356116
+lines: -3/+1
+category: ipc/util.c
+
+Remove unnecessary work pending test before calling schedule_work().  It
+has been tested in queue_work_on() already.  No functional changed.
+
+Signed-off-by: Xie XiuQi <xiexiuqi@huawei.com>
+Cc: Tejun Heo <tj@kernel.org>
+Reviewed-by: Tejun Heo <tj@kernel.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

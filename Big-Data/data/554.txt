@@ -1,0 +1,16 @@
+label: bug semantic generic
+consequence：wrong
+module: message queue	
+age: 2012-01-03
+title: switch ->create() to umode_t
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4acdaf27ebe2034c342f3be57ef49aed1ad885ef
+lines: -2/+2
+category: ipc/mqueue.c
+
+vfs_create() ignores everything outside of 16bit subset of its
+mode argument; switching it to umode_t is obviously equivalent
+and it's the only caller of the method
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

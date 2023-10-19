@@ -1,0 +1,16 @@
+label: performance synchronization
+module: other	
+age: 2009-04-13
+title: namespaces: move get_mq() inside #ifdef CONFIG_SYSCTL
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f26ec5baa67524b00311b8ec4626efc0a95925e1
+lines: -1/+1
+category: ipc/mq_sysctl.c
+
+| ipc/mq_sysctl.c:26: warning: 'get_mq' defined but not used
+
+Signed-off-by: Geert Uytterhoeven <Geert.Uytterhoeven@sonycom.com>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

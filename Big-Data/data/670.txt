@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	semaphore	shared memory	
+age: 2009-01-14
+title: [CVE-2009-0029] System call wrappers part 25
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d5460c9974a321a194aded4a8c4daaac68ea8171
+lines: -11/+12
+category: ipc/mqueue.c ipc/sem.c ipc/shm.c 
+
+Signed-off-by: Heiko Carstens <heiko.carstens@de.ibm.com>
+
+

@@ -1,0 +1,22 @@
+label: performance store optimization
+module: other	
+age: 2008-04-29
+title: ipc: invoke the ipcns notifier chain as a work item
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=424450c1dbe72b6e2637e91108417d7d9580c4c3
+lines: -1/+14
+category: ipc/util.c
+
+Make the memory hotplug chain's mutex held for a shorter time: when memory is
+offlined or onlined a work item is added to the global workqueue.  When the
+work item is run, it notifies the ipcns notifier chain with the
+IPCNS_MEMCHANGED event.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Yasunori Goto <y-goto@jp.fujitsu.com>
+Cc: Matt Helsley <matthltc@us.ibm.com>
+Cc: Mingming Cao <cmm@us.ibm.com>
+Cc: Pierre Peiffer <pierre.peiffer@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

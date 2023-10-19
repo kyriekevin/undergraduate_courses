@@ -1,0 +1,17 @@
+label: performance other
+module: other	
+age: 2013-05-02
+title: ipc_schedule_free() can do vfree() directly now
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=600fe9751aeb6f6b72de84076a05c5b8c04152c0
+lines: -87/+16
+category: ipc/util.c
+
+Commit 32fcfd40715e ("make vfree() safe to call from interrupt
+contexts") made it safe to do vfree directly from the RCU callback,
+which allows us to simplify ipc/util.c a lot by getting rid of the
+differences between vmalloc/kmalloc memory.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,22 @@
+label: feature
+module: shared memory	
+age: 2009-01-06
+title: ipc: clean up ipc/shm.c
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e8148f7588064e45080bf1120883380a2efe5c9b
+lines: -10/+5
+category: ipc/shm.c
+
+Use the macro shm_ids().
+
+Remove useless check for a userspace pointer, because copy_to_user()
+will check it.
+
+Some style cleanups.
+
+Signed-off-by: WANG Cong <wangcong@zeuux.org>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,19 @@
+label: performance synchronization
+module: other	
+age: 2017-07-12
+title: ipc/util: drop ipc_rcu_alloc()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c3f6fb6fe4e638a58eae558cb209c463cd46c2fc
+lines: -24/+0
+category: ipc/util.c ipc/util.h 
+
+No callers remain for ipc_rcu_alloc().  Drop the function.
+
+[manfred@colorfullife.com: Rediff because the memset was temporarily inside ipc_rcu_free()]
+Link: http://lkml.kernel.org/r/20170525185107.12869-13-manfred@colorfullife.com
+Signed-off-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Kees Cook <keescook@chromium.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

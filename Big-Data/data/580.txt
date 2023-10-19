@@ -1,0 +1,23 @@
+label: feature
+module: other	
+age: 2011-03-23
+title: userns: add a user namespace owner of ipc ns
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b515498f5bb5f38fc0e390b4ff7d00b6077de127
+lines: -2/+8
+category: ipc/msgutil.c ipc/namespace.c 
+
+Changelog:
+	Feb 15: Don't set new ipc->user_ns if we didn't create a new
+		ipc_ns.
+	Feb 23: Move extern declaration to ipc_namespace.h, and group
+		fwd declarations at top.
+
+Signed-off-by: Serge E. Hallyn <serge.hallyn@canonical.com>
+Acked-by: "Eric W. Biederman" <ebiederm@xmission.com>
+Acked-by: Daniel Lezcano <daniel.lezcano@free.fr>
+Acked-by: David Howells <dhowells@redhat.com>
+Cc: James Morris <jmorris@namei.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

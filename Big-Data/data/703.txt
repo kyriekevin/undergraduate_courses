@@ -1,0 +1,18 @@
+label: reliability robust
+module: message queue	
+age: 2008-07-25
+title: ipc: use simple_read_from_buffer()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f1a43f93f0f3bab418800eaccb9e2e3b5427e173
+lines: -18/+7
+category: ipc/mqueue.c
+
+Also this patch kills unneccesary trailing NULL character.
+
+Signed-off-by: Akinobu Mita <akinobu.mita@gmail.com>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

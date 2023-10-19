@@ -1,0 +1,22 @@
+label: reliability robust
+module: other	
+age: 2007-02-11
+title: [PATCH] Numerous fixes to kernel-doc info in source files.
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=72fd4a35a824331d7a0f4168d7576502d95d34b3
+lines: -11/+10
+category: ipc/util.c
+
+A variety of (mostly) innocuous fixes to the embedded kernel-doc content in
+source files, including:
+
+  * make multi-line initial descriptions single line
+  * denote some function names, constants and structs as such
+  * change erroneous opening '/*' to '/**' in a few places
+  * reword some text for clarity
+
+Signed-off-by: Robert P. J. Day <rpjday@mindspring.com>
+Cc: "Randy.Dunlap" <rdunlap@xenotime.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

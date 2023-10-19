@@ -1,0 +1,23 @@
+label: bug memory nullPointer
+consequence: crash
+module: message queue	
+age: 2011-07-26
+title: ipc/mqueue.c: refactor failure handling
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=04715206c0c2fd4ec5ca77fa51e3a5b41ce71492
+lines: -56/+57
+category: ipc/mqueue.c
+
+If new_inode fails to allocate an inode we need only to return with
+NULL.  But now we test the opposite and have all the work in a nested
+block.  So do the opposite to save one indentation level (and remove
+unnecessary line breaks).
+
+This is only a preparation/cleanup for the next patch where we fix up
+return values from mqueue_get_inode.
+
+Signed-off-by: Jiri Slaby <jslaby@suse.cz>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

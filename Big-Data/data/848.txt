@@ -1,0 +1,25 @@
+label: feature
+module: message queue	
+age: 2006-01-14
+title: [PATCH] Fix double decrement of mqueue_mnt->mnt_count in sys_mq_open
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7c7dce9209161eb260cdf9e9172f72c3a02379e6
+lines: -26/+33
+category: ipc/mqueue.c
+
+Fixed the refcounting on failure exits in sys_mq_open() and
+cleaned the logics up.  Rules are actually pretty simple - dentry_open()
+expects vfsmount and dentry to be pinned down and it either transfers
+them into created struct file or drops them.  Old code had been very
+confused in that area - if dentry_open() had failed either in do_open()
+or do_create(), we ended up dentry and mqueue_mnt dropped twice, once
+by dentry_open() cleanup and then by sys_mq_open().
+
+Fix consists of making the rules for do_create() and do_open()
+same as for dentry_open() and updating the sys_mq_open() accordingly;
+that actually leads to more straightforward code and less work on
+normal path.
+
+Signed-off-by: Al Viro <aviro@redhat.com>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

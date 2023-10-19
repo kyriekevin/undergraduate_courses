@@ -1,0 +1,19 @@
+label: performance speed optimization
+module: compatibility	
+age: 2010-10-27
+title: ipc: initialize structure memory to zero for compat functions
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=03145beb455cf5c20a761e8451e30b8a74ba58d9
+lines: -0/+11
+category: ipc/compat.c ipc/compat_mq.c 
+
+This takes care of leaking uninitialized kernel stack memory to
+userspace from non-zeroed fields in structs in compat ipc functions.
+
+Signed-off-by: Dan Rosenberg <drosenberg@vsecurity.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: <stable@kernel.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

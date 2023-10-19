@@ -1,0 +1,14 @@
+label: performance access optimization
+module: semaphore	
+age: 2009-01-06
+title: ipc: do not goto to the next line
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e953ac2195659940d0d042f7ac962700a6a0f0e3
+lines: -1/+0
+category: ipc/sem.c
+
+Signed-off-by: Denis V. Lunev <den@openvz.org>
+Reviewed-by: WANG Cong <wangcong@zeuux.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,16 @@
+label: reliability corruption defense
+module: compatibility	
+age: 2012-03-29
+title: Merge git://git.kernel.org/pub/scm/linux/kernel/git/cmetcalf/linux-tile
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=50483c3268918ee51a56d1baa39b9149d2d0d521
+lines: -6/+64
+category: ipc/compat.c
+
+Pull arch/tile (really asm-generic) update from Chris Metcalf:
+ "These are a couple of asm-generic changes that apply to tile."
+
+* git://git.kernel.org/pub/scm/linux/kernel/git/cmetcalf/linux-tile:
+  compat: use sys_sendfile64() implementation for sendfile syscall
+  [PATCH v3] ipc: provide generic compat versions of IPC syscalls
+
+

@@ -1,0 +1,24 @@
+label: bug semantic logic
+consequence：wrong
+module: semaphore	
+age: 2016-12-14
+title: ipc/sem: do not call wake_sem_queue_do() prematurely ... as this call should ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=248e7357cf8ec50bdaca68dce7c488ce843b6b93
+lines: -7/+12
+category: ipc/sem.c
+
+obviously be paired with its _prepare()
+
+counterpart.  At least whenever possible, as there is no harm in calling
+it bogusly as we do now in a few places.  Immediate error semop(2) paths
+that are far from ever having the task block can be simplified and avoid
+a few unnecessary loads on their way out of the call as it is not deeply
+nested.
+
+Link: http://lkml.kernel.org/r/1474225896-10066-2-git-send-email-dave@stgolabs.net
+Signed-off-by: Davidlohr Bueso <dbueso@suse.de>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

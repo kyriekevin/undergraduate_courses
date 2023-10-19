@@ -1,0 +1,21 @@
+label: feature
+module: shared memory	
+age: 2013-09-11
+title: ipc,shm: make shmctl_nolock lockless
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c97cb9ccab8c85428ec21eff690642ad2ce1fa8a
+lines: -7/+12
+category: ipc/shm.c
+
+While the INFO cmd doesn't take the ipc lock, the STAT commands do acquire
+it unnecessarily.  We can do the permissions and security checks only
+holding the rcu lock.
+
+[akpm@linux-foundation.org: coding-style fixes]
+Signed-off-by: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Tested-by: Sedat Dilek <sedat.dilek@gmail.com>
+Cc: Rik van Riel <riel@redhat.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,72 @@
+label: bug semantic generic
+consequence：error
+module: message queue	
+age: 2012-10-02
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=aab174f0df5d72d31caccf281af5f614fa254578
+lines: -39/+39
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull vfs update from Al Viro:
+
+ - big one - consolidation of descriptor-related logics; almost all of
+   that is moved to fs/file.c
+
+   (BTW, I'm seriously tempted to rename the result to fd.c.  As it is,
+   we have a situation when file_table.c is about handling of struct
+   file and file.c is about handling of descriptor tables; the reasons
+   are historical - file_table.c used to be about a static array of
+   struct file we used to have way back).
+
+   A lot of stray ends got cleaned up and converted to saner primitives,
+   disgusting mess in android/binder.c is still disgusting, but at least
+   doesn't poke so much in descriptor table guts anymore.  A bunch of
+   relatively minor races got fixed in process, plus an ext4 struct file
+   leak.
+
+ - related thing - fget_light() partially unuglified; see fdget() in
+   there (and yes, it generates the code as good as we used to have).
+
+ - also related - bits of Cyrill's procfs stuff that got entangled into
+   that work; _not_ all of it, just the initial move to fs/proc/fd.c and
+   switch of fdinfo to seq_file.
+
+ - Alex's fs/coredump.c spiltoff - the same story, had been easier to
+   take that commit than mess with conflicts.  The rest is a separate
+   pile, this was just a mechanical code movement.
+
+ - a few misc patches all over the place.  Not all for this cycle,
+   there'll be more (and quite a few currently sit in akpm's tree)."
+
+Fix up trivial conflicts in the android binder driver, and some fairly
+simple conflicts due to two different changes to the sock_alloc_file()
+interface ("take descriptor handling from sock_alloc_file() to callers"
+vs "net: Providing protocol type via system.sockprotoname xattr of
+/proc/PID/fd entries" adding a dentry name to the socket)
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (72 commits)
+  MAX_LFS_FILESIZE should be a loff_t
+  compat: fs: Generic compat_sys_sendfile implementation
+  fs: push rcu_barrier() from deactivate_locked_super() to filesystems
+  btrfs: reada_extent doesn't need kref for refcount
+  coredump: move core dump functionality into its own file
+  coredump: prevent double-free on an error path in core dumper
+  usb/gadget: fix misannotations
+  fcntl: fix misannotations
+  ceph: don't abuse d_delete() on failure exits
+  hypfs: ->d_parent is never NULL or negative
+  vfs: delete surplus inode NULL check
+  switch simple cases of fget_light to fdget
+  new helpers: fdget()/fdput()
+  switch o2hb_region_dev_write() to fget_light()
+  proc_map_files_readdir(): don't bother with grabbing files
+  make get_file() return its argument
+  vhost_set_vring(): turn pollstart/pollstop into bool
+  switch prctl_set_mm_exe_file() to fget_light()
+  switch xfs_find_handle() to fget_light()
+  switch xfs_swapext() to fget_light()
+  ...
+
+

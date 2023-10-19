@@ -1,0 +1,24 @@
+label: feature
+module: semaphore	
+age: 2008-04-29
+title: IPC/semaphores: move the rwmutex handling inside semctl_down
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=522bb2a2b420a0c1d0fcd037aa4e1bb9e2bca447
+lines: -11/+13
+category: ipc/sem.c
+
+semctl_down is called with the rwmutex (the one which protects the list of
+ipcs) taken in write mode.
+
+This patch moves this rwmutex taken in write-mode inside semctl_down.
+
+This has the advantages of reducing a little bit the window during which this
+rwmutex is taken, clarifying sys_semctl, and finally of having a coherent
+behaviour with [shm|msg]ctl_down
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

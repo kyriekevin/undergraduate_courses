@@ -1,0 +1,16 @@
+label: performance store optimization
+module: semaphore	
+age: 2009-12-16
+title: ipc: remove unreachable code in sem.c
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e5cc9c7b1a3e7ae4d700d9fce168fb597bcfe9b6
+lines: -2/+1
+category: ipc/sem.c
+
+This line is unreachable, remove it.
+
+[akpm@linux-foundation.org: remove unneeded initialisation of `err']
+Signed-off-by: WANG Cong <amwang@redhat.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

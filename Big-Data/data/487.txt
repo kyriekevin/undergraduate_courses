@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	shared memory	
+age: 2013-02-22
+title: new helper: file_inode(file)
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=496ad9aa8ef448058e36ca7a787c61f2e63f0f54
+lines: -12/+12
+category: ipc/mqueue.c ipc/shm.c 
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

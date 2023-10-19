@@ -1,0 +1,14 @@
+label: performance store optimization
+module: message queue	
+age: 2008-07-26
+title: [PATCH] kill nameidata passing to permission(), rename to inode_permission()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f419a2e3b64def707e1384ee38abb77f99af5f6d
+lines: -1/+1
+category: ipc/mqueue.c
+
+Incidentally, the name that gives hundreds of false positives on grep
+is not a good idea...
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,14 @@
+label: maintenance
+module: other	
+age: 2006-10-03
+title: fix file specification in comments
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f30c2269544bffc7bf1b0d7c0abe5be1be83b8cb
+lines: -1/+1
+category: ipc/msgutil.c
+
+Many files include the filename at the beginning, serveral used a wrong one.
+
+Signed-off-by: Uwe Zeisberger <Uwe_Zeisberger@digi.com>
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+
+

@@ -1,0 +1,26 @@
+label: reliability debug
+module: other	
+age: 2005-09-07
+title: [PATCH] ipc: add generic struct ipc_ids seq_file iteration
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ae7817745eef3b4ed3c2e36cb403e0c50f17d4e4
+lines: -0/+164
+category: ipc/util.c ipc/util.h 
+
+The following two patches convert /proc/sysvipc/* to use seq_file.
+
+This gives us the following:
+
+ - Self-consistent IPC records in proc.
+ - O(n) reading of the files themselves.
+
+This patch:
+
+Add a generic method for ipc types to be displayed using seq_file.  This
+patch abstracts out seq_file iterating over struct ipc_ids into ipc/util.c
+
+Signed-off-by: Mike Waychison <mikew@google.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

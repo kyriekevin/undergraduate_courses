@@ -1,0 +1,39 @@
+label: performance other
+module: message queue	
+age: 2007-05-07
+title: slab allocators: Remove SLAB_DEBUG_INITIAL flag
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=50953fe9e00ebbeffa032a565ab2f08312d51a87
+lines: -2/+1
+category: ipc/mqueue.c
+
+I have never seen a use of SLAB_DEBUG_INITIAL.  It is only supported by
+SLAB.
+
+I think its purpose was to have a callback after an object has been freed
+to verify that the state is the constructor state again?  The callback is
+performed before each freeing of an object.
+
+I would think that it is much easier to check the object state manually
+before the free.  That also places the check near the code object
+manipulation of the object.
+
+Also the SLAB_DEBUG_INITIAL callback is only performed if the kernel was
+compiled with SLAB debugging on.  If there would be code in a constructor
+handling SLAB_DEBUG_INITIAL then it would have to be conditional on
+SLAB_DEBUG otherwise it would just be dead code.  But there is no such code
+in the kernel.  I think SLUB_DEBUG_INITIAL is too problematic to make real
+use of, difficult to understand and there are easier ways to accomplish the
+same effect (i.e.  add debug code before kfree).
+
+There is a related flag SLAB_CTOR_VERIFY that is frequently checked to be
+clear in fs inode caches.  Remove the pointless checks (they would even be
+pointless without removeal of SLAB_DEBUG_INITIAL) from the fs constructors.
+
+This is the last slab flag that SLUB did not support.  Remove the check for
+unimplemented flags from SLUB.
+
+Signed-off-by: Christoph Lameter <clameter@sgi.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

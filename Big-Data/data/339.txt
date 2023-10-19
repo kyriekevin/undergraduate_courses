@@ -1,0 +1,59 @@
+label: bug semantic generic
+consequence：wrong
+module: other	
+age: 2014-08-09
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=77e40aae766ccbbbb0324cb92ab22e6e998375d7
+lines: -3/+3
+category: ipc/namespace.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull namespace updates from Eric Biederman:
+ "This is a bunch of small changes built against 3.16-rc6.  The most
+  significant change for users is the first patch which makes setns
+  drmatically faster by removing unneded rcu handling.
+
+  The next chunk of changes are so that "mount -o remount,.." will not
+  allow the user namespace root to drop flags on a mount set by the
+  system wide root.  Aks this forces read-only mounts to stay read-only,
+  no-dev mounts to stay no-dev, no-suid mounts to stay no-suid, no-exec
+  mounts to stay no exec and it prevents unprivileged users from messing
+  with a mounts atime settings.  I have included my test case as the
+  last patch in this series so people performing backports can verify
+  this change works correctly.
+
+  The next change fixes a bug in NFS that was discovered while auditing
+  nsproxy users for the first optimization.  Today you can oops the
+  kernel by reading /proc/fs/nfsfs/{servers,volumes} if you are clever
+  with pid namespaces.  I rebased and fixed the build of the
+  !CONFIG_NFS_FS case yesterday when a build bot caught my typo.  Given
+  that no one to my knowledge bases anything on my tree fixing the typo
+  in place seems more responsible that requiring a typo-fix to be
+  backported as well.
+
+  The last change is a small semantic cleanup introducing
+  /proc/thread-self and pointing /proc/mounts and /proc/net at it.  This
+  prevents several kinds of problemantic corner cases.  It is a
+  user-visible change so it has a minute chance of causing regressions
+  so the change to /proc/mounts and /proc/net are individual one line
+  commits that can be trivially reverted.  Unfortunately I lost and
+  could not find the email of the original reporter so he is not
+  credited.  From at least one perspective this change to /proc/net is a
+  refgression fix to allow pthread /proc/net uses that were broken by
+  the introduction of the network namespace"
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace:
+  proc: Point /proc/mounts at /proc/thread-self/mounts instead of /proc/self/mounts
+  proc: Point /proc/net at /proc/thread-self/net instead of /proc/self/net
+  proc: Implement /proc/thread-self to point at the directory of the current thread
+  proc: Have net show up under /proc/<tgid>/task/<tid>
+  NFS: Fix /proc/fs/nfsfs/servers and /proc/fs/nfsfs/volumes
+  mnt: Add tests for unprivileged remount cases that have found to be faulty
+  mnt: Change the default remount atime from relatime to the existing value
+  mnt: Correct permission checks in do_remount
+  mnt: Move the test for MNT_LOCK_READONLY from change_mount_flags into do_remount
+  mnt: Only change user settable mount flags in remount
+  namespaces: Use task_lock and not rcu to protect nsproxy
+
+

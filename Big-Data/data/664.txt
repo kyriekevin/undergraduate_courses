@@ -1,0 +1,36 @@
+label: feature
+module: shared memory	
+age: 2009-02-10
+title: Do not account for the address space used by hugetlbfs using VM_ACCOUNT
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=5a6fe125950676015f5108fb71b2a67441755003
+lines: -3/+5
+category: ipc/shm.c
+
+When overcommit is disabled, the core VM accounts for pages used by anonymous
+shared, private mappings and special mappings. It keeps track of VMAs that
+should be accounted for with VM_ACCOUNT and VMAs that never had a reserve
+with VM_NORESERVE.
+
+Overcommit for hugetlbfs is much riskier than overcommit for base pages
+due to contiguity requirements. It avoids overcommiting on both shared and
+private mappings using reservation counters that are checked and updated
+during mmap(). This ensures (within limits) that hugepages exist in the
+future when faults occurs or it is too easy to applications to be SIGKILLed.
+
+As hugetlbfs makes its own reservations of a different unit to the base page
+size, VM_ACCOUNT should never be set. Even if the units were correct, we would
+double account for the usage in the core VM and hugetlbfs. VM_NORESERVE may
+be set because an application can request no reserves be made for hugetlbfs
+at the risk of getting killed later.
+
+With commit fc8744adc870a8d4366908221508bb113d8b72ee, VM_NORESERVE and
+VM_ACCOUNT are getting unconditionally set for hugetlbfs-backed mappings. This
+breaks the accounting for both the core VM and hugetlbfs, can trigger an
+OOM storm when hugepage pools are too small lockups and corrupted counters
+otherwise are used. This patch brings hugetlbfs more in line with how the
+core VM treats VM_NORESERVE but prevents VM_ACCOUNT being set.
+
+Signed-off-by: Mel Gorman <mel@csn.ul.ie>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

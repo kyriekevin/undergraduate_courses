@@ -1,0 +1,106 @@
+label: maintenance
+module: other	
+age: 2019-05-07
+title: Merge git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=80f232121b69cc69a31ccb2b38c1665d770b0710
+lines: -1/+0
+category: ipc/util.c
+
+Pull networking updates from David Miller:
+ "Highlights:
+
+   1) Support AES128-CCM ciphers in kTLS, from Vakul Garg.
+
+   2) Add fib_sync_mem to control the amount of dirty memory we allow to
+      queue up between synchronize RCU calls, from David Ahern.
+
+   3) Make flow classifier more lockless, from Vlad Buslov.
+
+   4) Add PHY downshift support to aquantia driver, from Heiner
+      Kallweit.
+
+   5) Add SKB cache for TCP rx and tx, from Eric Dumazet. This reduces
+      contention on SLAB spinlocks in heavy RPC workloads.
+
+   6) Partial GSO offload support in XFRM, from Boris Pismenny.
+
+   7) Add fast link down support to ethtool, from Heiner Kallweit.
+
+   8) Use siphash for IP ID generator, from Eric Dumazet.
+
+   9) Pull nexthops even further out from ipv4/ipv6 routes and FIB
+      entries, from David Ahern.
+
+  10) Move skb->xmit_more into a per-cpu variable, from Florian
+      Westphal.
+
+  11) Improve eBPF verifier speed and increase maximum program size,
+      from Alexei Starovoitov.
+
+  12) Eliminate per-bucket spinlocks in rhashtable, and instead use bit
+      spinlocks. From Neil Brown.
+
+  13) Allow tunneling with GUE encap in ipvs, from Jacky Hu.
+
+  14) Improve link partner cap detection in generic PHY code, from
+      Heiner Kallweit.
+
+  15) Add layer 2 encap support to bpf_skb_adjust_room(), from Alan
+      Maguire.
+
+  16) Remove SKB list implementation assumptions in SCTP, your's truly.
+
+  17) Various cleanups, optimizations, and simplifications in r8169
+      driver. From Heiner Kallweit.
+
+  18) Add memory accounting on TX and RX path of SCTP, from Xin Long.
+
+  19) Switch PHY drivers over to use dynamic featue detection, from
+      Heiner Kallweit.
+
+  20) Support flow steering without masking in dpaa2-eth, from Ioana
+      Ciocoi.
+
+  21) Implement ndo_get_devlink_port in netdevsim driver, from Jiri
+      Pirko.
+
+  22) Increase the strict parsing of current and future netlink
+      attributes, also export such policies to userspace. From Johannes
+      Berg.
+
+  23) Allow DSA tag drivers to be modular, from Andrew Lunn.
+
+  24) Remove legacy DSA probing support, also from Andrew Lunn.
+
+  25) Allow ll_temac driver to be used on non-x86 platforms, from Esben
+      Haabendal.
+
+  26) Add a generic tracepoint for TX queue timeouts to ease debugging,
+      from Cong Wang.
+
+  27) More indirect call optimizations, from Paolo Abeni"
+
+* git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next: (1763 commits)
+  cxgb4: Fix error path in cxgb4_init_module
+  net: phy: improve pause mode reporting in phy_print_status
+  dt-bindings: net: Fix a typo in the phy-mode list for ethernet bindings
+  net: macb: Change interrupt and napi enable order in open
+  net: ll_temac: Improve error message on error IRQ
+  net/sched: remove block pointer from common offload structure
+  net: ethernet: support of_get_mac_address new ERR_PTR error
+  net: usb: smsc: fix warning reported by kbuild test robot
+  staging: octeon-ethernet: Fix of_get_mac_address ERR_PTR check
+  net: dsa: support of_get_mac_address new ERR_PTR error
+  net: dsa: sja1105: Fix status initialization in sja1105_get_ethtool_stats
+  vrf: sit mtu should not be updated when vrf netdev is the link
+  net: dsa: Fix error cleanup path in dsa_init_module
+  l2tp: Fix possible NULL pointer dereference
+  taprio: add null check on sched_nest to avoid potential null pointer dereference
+  net: mvpp2: cls: fix less than zero check on a u32 variable
+  net_sched: sch_fq: handle non connected flows
+  net_sched: sch_fq: do not assume EDT packets are ordered
+  net: hns3: use devm_kcalloc when allocating desc_cb
+  net: hns3: some cleanup for struct hns3_enet_ring
+  ...
+
+

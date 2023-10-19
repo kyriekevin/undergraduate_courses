@@ -1,0 +1,16 @@
+label: feature
+module: other	
+age: 2007-10-19
+title: ipc: inline ipc_buildid()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=28028313134e9f11e49f74a4beaa47c91e5ebf06
+lines: -6/+5
+category: ipc/util.c ipc/util.h 
+
+This is a trivial patch that changes the ipc_buildid() routine into a static
+inline.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

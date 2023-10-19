@@ -1,0 +1,15 @@
+label: performance access optimization
+module: message	
+age: 2013-01-04
+title: ipc: add more comments to message copying related code
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3fcfe78658695b424314ddb76abc8d58b4fc98e6
+lines: -0/+8
+category: ipc/msg.c
+
+Signed-off-by: Stanislav Kinsbursky <skinsbursky@parallels.com>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: James Morris <jmorris@namei.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

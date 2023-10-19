@@ -1,0 +1,16 @@
+label: feature
+module: message queue	
+age: 2009-12-16
+title: Untangling ima mess, part 2: deal with counters
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b65a9cfc2c38eebc33533280b8ad5841caee8b6e
+lines: -2/+0
+category: ipc/mqueue.c
+
+* do ima_get_count() in __dentry_open()
+* stop doing that in followups
+* move ima_path_check() to right after nameidata_to_filp()
+* don't bump counters on it
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

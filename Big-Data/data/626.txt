@@ -1,0 +1,26 @@
+label: feature
+module: semaphore	
+age: 2009-12-16
+title: ipc/sem.c: sem optimise undo list search
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=bf17bb717759d50a2733a7a8157a7c4a25d93abc
+lines: -6/+20
+category: ipc/sem.c
+
+Around a month ago, there was some discussion about an improvement of the
+sysv sem algorithm: Most (at least: some important) users only use simple
+semaphore operations, therefore it's worthwile to optimize this use case.
+
+This patch:
+
+Move last looked up sem_undo struct to the head of the task's undo list.
+Attempt to move common entries to the front of the list so search time is
+reduced.  This reduces lookup_undo on oprofile of problematic SAP workload
+by 30% (see patch 4 for a description of SAP workload).
+
+Signed-off-by: Nick Piggin <npiggin@suse.de>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

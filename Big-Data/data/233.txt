@@ -1,0 +1,15 @@
+label: feature
+module: other	message queue	
+age: 2017-07-04
+title: mqueue: move compat syscalls to native ones
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0d0606060baefdb13d3d80dba1b4c816b0676e16
+lines: -228/+262
+category: ipc/Makefile ipc/mqueue.c 
+
+... and stop messing with compat_alloc_user_space() and friends
+
+[braino fix from Colin King folded in]
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

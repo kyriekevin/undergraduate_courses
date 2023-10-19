@@ -1,0 +1,23 @@
+label: bug memory doublefree
+consequence：wrong
+module: message queue	
+age: 2010-05-11
+title: mqueue: fix kernel BUG caused by double free() on mq_open()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a3ed2a15719219769bb095b28009c1d654a419e8
+lines: -1/+1
+category: ipc/mqueue.c
+
+In case of aborting because we reach the maximum amount of memory which
+can be allocated to message queues per user (RLIMIT_MSGQUEUE), we would
+try to free the message area twice when bailing out: first by the error
+handling code itself, and then later when cleaning up the inode through
+delete_inode().
+
+Signed-off-by: André Goddard Rosa <andre.goddard@gmail.com>
+Cc: Alexey Dobriyan <adobriyan@gmail.com>
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Cc: <stable@kernel.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

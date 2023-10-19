@@ -1,0 +1,17 @@
+label: reliability annotation
+module: other	
+age: 2013-05-01
+title: ipc: separate msg allocation from userspace copy
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=be5f4b335f6e05df1b5c24b7e7d79ff52d7b8dbc
+lines: -14/+38
+category: ipc/msgutil.c
+
+Separating msg allocation enables single-block vmalloc
+allocation instead.
+
+Signed-off-by: Peter Hurley <peter@hurleysoftware.com>
+Acked-by: Stanislav Kinsbursky <skinsbursky@parallels.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

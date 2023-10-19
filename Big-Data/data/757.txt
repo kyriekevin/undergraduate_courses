@@ -1,0 +1,25 @@
+label: feature
+module: message	semaphore	shared memory	other	
+age: 2007-10-19
+title: fix idr_find() locking
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3e148c79938aa39035669c1cfa3ff60722134535
+lines: -70/+198
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+This is a patch that fixes the way idr_find() used to be called in ipc_lock():
+in all the paths that don't imply an update of the ipcs idr, it was called
+without the idr tree being locked.
+
+The changes are:
+  . in ipc_ids, the mutex has been changed into a reader/writer semaphore.
+  . ipc_lock() now takes the mutex as a reader during the idr_find().
+  . a new routine ipc_lock_down() has been defined: it doesn't take the
+    mutex, assuming that it is being held by the caller. This is the routine
+    that is now called in all the update paths.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Acked-by: Jarek Poplawski <jarkao2@o2.pl>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,16 @@
+label: feature
+module: message queue	
+age: 2005-05-01
+title: [PATCH] use smp_mb/wmb/rmb where possible
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d59dd4620fb8d6422555a9e2b82a707718e68327
+lines: -2/+2
+category: ipc/mqueue.c
+
+Replace a number of memory barriers with smp_ variants.  This means we won't
+take the unnecessary hit on UP machines.
+
+Signed-off-by: Anton Blanchard <anton@samba.org>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

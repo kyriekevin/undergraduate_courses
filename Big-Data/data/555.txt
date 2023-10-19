@@ -1,0 +1,18 @@
+label: bug semantic generic
+consequence：wrong
+module: message queue	
+age: 2012-01-03
+title: vfs: fix the stupidity with i_dentry in inode destructors
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6b520e0565422966cdf1c3759bd73df77b0f248c
+lines: -1/+0
+category: ipc/mqueue.c
+
+Seeing that just about every destructor got that INIT_LIST_HEAD() copied into
+it, there is no point whatsoever keeping this INIT_LIST_HEAD in inode_init_once();
+the cost of taking it into inode_init_always() will be negligible for pipes
+and sockets and negative for everything else.  Not to mention the removal of
+boilerplate code from ->destroy_inode() instances...
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

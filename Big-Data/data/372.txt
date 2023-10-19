@@ -1,0 +1,18 @@
+label: performance access optimization
+module: other	
+age: 2014-01-27
+title: ipc: simplify sysvipc_proc_open() return
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8dc5cd04f97b5d6cad64df1e7dc5c49110b4d5e3
+lines: -5/+4
+category: ipc/util.c
+
+Get rid of silly/useless label jumping.
+
+Signed-off-by: Davidlohr Bueso <davidlohr@hp.com>
+Cc: Aswin Chandramouleeswaran <aswin@hp.com>
+Cc: Rik van Riel <riel@redhat.com>
+Acked-by: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

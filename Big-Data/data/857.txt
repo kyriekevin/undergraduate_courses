@@ -1,0 +1,21 @@
+label: bug memory bufOverflow
+consequence：wrong
+module: shared memory	
+age: 2005-11-07
+title: [PATCH] SHM_NORESERVE flags for shmget()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=bf8f972d3a1daf969cf44f64cc36d53bfd76441f
+lines: -1/+9
+category: ipc/shm.c
+
+Add SHM_NORESERVE functionality similar to MAP_NORESERVE for shared memory
+segments.
+
+This is mainly to avoid abuse of OVERCOMMIT_ALWAYS and this flag is ignored
+for OVERCOMMIT_NEVER.
+
+Signed-off-by: Badari Pulavarty <pbadari@us.ibm.com>
+Cc: Hugh Dickins <hugh@veritas.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

@@ -1,0 +1,15 @@
+label: reliability debug
+module: message queue	
+age: 2009-01-04
+title: sanitize audit_mq_getsetattr()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7392906ea915b9a2c14dea32b3604b4e178f82f7
+lines: -5/+1
+category: ipc/mqueue.c
+
+* get rid of allocations
+* make it return void
+* don't duplicate parts of audit_dummy_context()
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

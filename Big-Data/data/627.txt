@@ -1,0 +1,24 @@
+label: performance speed optimization
+module: message	semaphore	shared memory	
+age: 2009-12-16
+title: ipc ns: fix memory leak (idr)
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7d6feeb287c61aafa88f06345387b1188edf4b86
+lines: -0/+3
+category: ipc/msg.c ipc/sem.c ipc/shm.c 
+
+We have apparently had a memory leak since
+7ca7e564e049d8b350ec9d958ff25eaa24226352 "ipc: store ipcs into IDRs" in
+2007.  The idr of which 3 exist for each ipc namespace is never freed.
+
+This patch simply frees them when the ipcns is freed.  I don't believe any
+idr_remove() are done from rcu (and could therefore be delayed until after
+this idr_destroy()), so the patch should be safe.  Some quick testing
+showed no harm, and the memory leak fixed.
+
+Caught by kmemleak.
+
+Signed-off-by: Serge E. Hallyn <serue@us.ibm.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

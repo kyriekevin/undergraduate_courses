@@ -1,0 +1,22 @@
+label: reliability debug
+module: semaphore	
+age: 2016-06-14
+title: locking/spinlock: Update spin_unlock_wait() users
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=be3e7844980352756de4261b276ee2ba5be7a26b
+lines: -1/+0
+category: ipc/sem.c
+
+With the modified semantics of spin_unlock_wait() a number of
+explicit barriers can be removed. Also update the comment for the
+do_exit() usecase, as that was somewhat stale/obscure.
+
+Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Paul E. McKenney <paulmck@linux.vnet.ibm.com>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Ingo Molnar <mingo@kernel.org>
+
+

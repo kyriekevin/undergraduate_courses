@@ -1,0 +1,14 @@
+label: performance synchronization
+module: message queue	
+age: 2010-06-04
+title: mqueue doesn't need make_bad_inode()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0abbb609ac511fc226b8b1082613193c8ecf8324
+lines: -1/+0
+category: ipc/mqueue.c
+
+It never hashes them anyway and does final iput() immediately
+afterwards.  With ->drop_inode() being generic_delete_inode()...
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

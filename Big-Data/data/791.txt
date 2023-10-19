@@ -1,0 +1,15 @@
+label: reliability corruption defense
+module: message queue	
+age: 2007-03-06
+title: [PATCH] mqueue: nested locking annotation
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7a434814c7a6500b08bf4419ba8712b152d08d08
+lines: -1/+2
+category: ipc/mqueue.c
+
+Fix http://bugzilla.kernel.org/show_bug.cgi?id=8130
+
+Signed-off-by: Peter Zijlstra <a.p.zijlstra@chello.nl>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

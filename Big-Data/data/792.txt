@@ -1,0 +1,27 @@
+label: reliability error enhancement
+module: shared memory	
+age: 2007-03-01
+title: [PATCH] Fix get_unmapped_area and fsync for hugetlb shm segments
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=516dffdcd8827a40532798602830dfcfc672294c
+lines: -6/+26
+category: ipc/shm.c
+
+This patch provides the following hugetlb-related fixes to the recent stacked
+shm files changes:
+ - Update is_file_hugepages() so it will reconize hugetlb shm segments.
+ - get_unmapped_area must be called with the nested file struct to handle
+   the sfd->file->f_ops->get_unmapped_area == NULL case.
+ - The fsync f_op must be wrapped since it is specified in the hugetlbfs
+   f_ops.
+
+This is based on proposed fixes from Eric Biederman that were debugged and
+tested by me.  Without it, attempting to use hugetlb shared memory segments
+on powerpc (and likely ia64) will kill your box.
+
+Signed-off-by: Adam Litke <agl@us.ibm.com>
+Cc: Eric Biederman <ebiederm@xmission.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Acked-by: William Irwin <bill.irwin@oracle.com>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

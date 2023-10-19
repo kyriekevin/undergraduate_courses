@@ -1,0 +1,22 @@
+label: performance store optimization
+module: other	
+age: 2016-09-22
+title: kernel: add a helper to get an owning user namespace for a namespace
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=bcac25a58bfc6bd79191ac5d7afb49bea96da8c9
+lines: -0/+6
+category: ipc/namespace.c
+
+Return -EPERM if an owning user namespace is outside of a process
+current user namespace.
+
+v2: In a first version ns_get_owner returned ENOENT for init_user_ns.
+    This special cases was removed from this version. There is nothing
+    outside of init_user_ns, so we can return EPERM.
+v3: rename ns->get_owner() to ns->owner(). get_* usually means that it
+grabs a reference.
+
+Acked-by: Serge Hallyn <serge@hallyn.com>
+Signed-off-by: Andrei Vagin <avagin@openvz.org>
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+
+

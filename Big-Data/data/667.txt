@@ -1,0 +1,28 @@
+label: maintenance
+module: shared memory	
+age: 2009-02-05
+title: shm: fix shmctl(SHM_INFO) lockup with !CONFIG_SHMEM
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a68e61e8ff2d46327a37b69056998b47745db6fa
+lines: -0/+4
+category: ipc/shm.c
+
+shm_get_stat() assumes that the inode is a "struct shmem_inode_info",
+which is incorrect for !CONFIG_SHMEM (see fs/ramfs/inode.c:
+ramfs_get_inode() vs.  mm/shmem.c: shmem_get_inode()).
+
+This bad assumption can cause shmctl(SHM_INFO) to lockup when
+shm_get_stat() tries to spin_lock(&info->lock).  Users of !CONFIG_SHMEM
+may encounter this lockup simply by invoking the 'ipcs' command.
+
+Reported by Jiri Olsa back in February 2008:
+http://lkml.org/lkml/2008/2/29/74
+
+Signed-off-by: Tony Battersby <tonyb@cybernetics.com>
+Cc: Jiri Kosina <jkosina@suse.cz>
+Reported-by: Jiri Olsa <olsajiri@gmail.com>
+Cc: Hugh Dickins <hugh@veritas.com>
+Cc: <stable@kernel.org>		[2.6.everything]
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

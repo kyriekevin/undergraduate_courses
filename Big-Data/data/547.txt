@@ -1,0 +1,14 @@
+label: reliability debug
+module: other	
+age: 2012-02-14
+title: security: trim security.h
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4040153087478993cbf0809f444400a3c808074c
+lines: -0/+2
+category: ipc/msgutil.c
+
+Trim security.h
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+Signed-off-by: James Morris <jmorris@namei.org>
+
+

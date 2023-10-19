@@ -1,0 +1,26 @@
+label: feature
+module: semaphore	
+age: 2013-09-30
+title: ipc/sem.c: optimize sem_lock()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6d07b68ce16ae9535955ba2059dedba5309c3ca1
+lines: -0/+8
+category: ipc/sem.c
+
+Operations that need access to the whole array must guarantee that there
+are no simple operations ongoing.  Right now this is achieved by
+spin_unlock_wait(sem->lock) on all semaphores.
+
+If complex_count is nonzero, then this spin_unlock_wait() is not
+necessary, because it was already performed in the past by the thread
+that increased complex_count and even though sem_perm.lock was dropped
+inbetween, no simple operation could have started, because simple
+operations cannot start when complex_count is non-zero.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Mike Galbraith <bitbucket@online.de>
+Cc: Rik van Riel <riel@redhat.com>
+Reviewed-by: Davidlohr Bueso <davidlohr@hp.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

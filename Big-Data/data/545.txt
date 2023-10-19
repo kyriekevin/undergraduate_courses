@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2012-03-20
+title: switch open-coded instances of d_make_root() to new helper
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=48fde701aff662559b38d9a609574068f22d00fe
+lines: -17/+7
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

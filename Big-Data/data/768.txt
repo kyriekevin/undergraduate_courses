@@ -1,0 +1,46 @@
+label: reliability corruption defense
+module: shared memory	
+age: 2007-10-17
+title: r/o bind mounts: filesystem helpers for custom 'struct file's
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ce8d2cdf3d2b73e346c82e6f0a46da331df6364c
+lines: -8/+5
+category: ipc/shm.c
+
+Why do we need r/o bind mounts?
+
+This feature allows a read-only view into a read-write filesystem.  In the
+process of doing that, it also provides infrastructure for keeping track of
+the number of writers to any given mount.
+
+This has a number of uses.  It allows chroots to have parts of filesystems
+writable.  It will be useful for containers in the future because users may
+have root inside a container, but should not be allowed to write to
+somefilesystems.  This also replaces patches that vserver has had out of the
+tree for several years.
+
+It allows security enhancement by making sure that parts of your filesystem
+read-only (such as when you don't trust your FTP server), when you don't want
+to have entire new filesystems mounted, or when you want atime selectively
+updated.  I've been using the following script to test that the feature is
+working as desired.  It takes a directory and makes a regular bind and a r/o
+bind mount of it.  It then performs some normal filesystem operations on the
+three directories, including ones that are expected to fail, like creating a
+file on the r/o mount.
+
+This patch:
+
+Some filesystems forego the vfs and may_open() and create their own 'struct
+file's.
+
+This patch creates a couple of helper functions which can be used by these
+filesystems, and will provide a unified place which the r/o bind mount code
+may patch.
+
+Also, rename an existing, static-scope init_file() to a less generic name.
+
+Signed-off-by: Dave Hansen <haveblue@us.ibm.com>
+Cc: Christoph Hellwig <hch@lst.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

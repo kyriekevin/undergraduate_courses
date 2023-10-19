@@ -1,0 +1,49 @@
+label: performance access optimization
+module: semaphore	
+age: 2021-09-09
+title: Merge tag 'for-linus' of git://git.armlinux.org.uk/~rmk/linux-arm
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=35776f10513c0d523c5dd2f1b415f642497779e2
+lines: -33/+52
+category: ipc/sem.c
+
+Pull ARM development updates from Russell King:
+
+ - Rename "mod_init" and "mod_exit" so that initcall debug output is
+   actually useful (Randy Dunlap)
+
+ - Update maintainers entries for linux-arm-kernel to indicate it is
+   moderated for non-subscribers (Randy Dunlap)
+
+ - Move install rules to arch/arm/Makefile (Masahiro Yamada)
+
+ - Drop unnecessary ARCH_NR_GPIOS definition (Linus Walleij)
+
+ - Don't warn about atags_to_fdt() stack size (David Heidelberg)
+
+ - Speed up unaligned copy_{from,to}_kernel_nofault (Arnd Bergmann)
+
+ - Get rid of set_fs() usage (Arnd Bergmann)
+
+ - Remove checks for GCC prior to v4.6 (Geert Uytterhoeven)
+
+* tag 'for-linus' of git://git.armlinux.org.uk/~rmk/linux-arm:
+  ARM: 9118/1: div64: Remove always-true __div64_const32_is_OK() duplicate
+  ARM: 9117/1: asm-generic: div64: Remove always-true __div64_const32_is_OK()
+  ARM: 9116/1: unified: Remove check for gcc < 4
+  ARM: 9110/1: oabi-compat: fix oabi epoll sparse warning
+  ARM: 9113/1: uaccess: remove set_fs() implementation
+  ARM: 9112/1: uaccess: add __{get,put}_kernel_nofault
+  ARM: 9111/1: oabi-compat: rework fcntl64() emulation
+  ARM: 9114/1: oabi-compat: rework sys_semtimedop emulation
+  ARM: 9108/1: oabi-compat: rework epoll_wait/epoll_pwait emulation
+  ARM: 9107/1: syscall: always store thread_info->abi_syscall
+  ARM: 9109/1: oabi-compat: add epoll_pwait handler
+  ARM: 9106/1: traps: use get_kernel_nofault instead of set_fs()
+  ARM: 9115/1: mm/maccess: fix unaligned copy_{from,to}_kernel_nofault
+  ARM: 9105/1: atags_to_fdt: don't warn about stack size
+  ARM: 9103/1: Drop ARCH_NR_GPIOS definition
+  ARM: 9102/1: move theinstall rules to arch/arm/Makefile
+  ARM: 9100/1: MAINTAINERS: mark all linux-arm-kernel@infradead list as moderated
+  ARM: 9099/1: crypto: rename 'mod_init' & 'mod_exit' functions to be module-specific
+
+

@@ -1,0 +1,21 @@
+label: performance other
+module: semaphore	
+age: 2014-06-06
+title: ipc/sem.c: remove code duplication
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2f2ed41dcaec34f2d6f224aa84efcc5a9dd8d5c3
+lines: -56/+51
+category: ipc/sem.c
+
+count_semzcnt and count_semncnt are more of less identical.  The patch
+creates a single function that either counts the number of tasks waiting
+for zero or waiting due to a decrease operation.
+
+Compared to the initial version, the BUG_ONs were removed.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Cc: Michael Kerrisk <mtk.manpages@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

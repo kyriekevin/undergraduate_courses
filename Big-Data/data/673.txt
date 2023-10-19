@@ -1,0 +1,16 @@
+label: reliability debug
+module: message queue	
+age: 2009-01-14
+title: [CVE-2009-0029] Convert all system calls to return a long
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2ed7c03ec17779afb4fcfa3b8c61df61bd4879ba
+lines: -1/+1
+category: ipc/mqueue.c
+
+Convert all system calls to return a long. This should be a NOP since all
+converted types should have the same size anyway.
+With the exception of sys_exit_group which returned void. But that doesn't
+matter since the system call doesn't return.
+
+Signed-off-by: Heiko Carstens <heiko.carstens@de.ibm.com>
+
+

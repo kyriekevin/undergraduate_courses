@@ -1,0 +1,17 @@
+label: bug semantic logic
+consequence：hang
+module: other	
+age: 2012-04-07
+title: userns: Use cred->user_ns instead of cred->user->user_ns
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c4a4d603796c727b9555867571f89483be9c565e
+lines: -1/+1
+category: ipc/namespace.c
+
+Optimize performance and prepare for the removal of the user_ns reference
+from user_struct.  Remove the slow long walk through cred->user->user_ns and
+instead go straight to cred->user_ns.
+
+Acked-by: Serge Hallyn <serge.hallyn@canonical.com>
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+
+

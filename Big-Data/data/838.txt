@@ -1,0 +1,20 @@
+label: feature
+module: compatibility	message queue	message	semaphore	shared memory	other	
+age: 2006-03-26
+title: [PATCH] sem2mutex: ipc, id.sem
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=5f921ae96f1529a55966f25cd5c70fab11d38be7
+lines: -56/+65
+category: ipc/compat.c ipc/mqueue.c ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+Semaphore to mutex conversion.
+
+The conversion was generated via scripts, and the result was validated
+automatically via a script as well.
+
+Signed-off-by: Ingo Molnar <mingo@elte.hu>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Lee Schermerhorn <lee.schermerhorn@hp.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

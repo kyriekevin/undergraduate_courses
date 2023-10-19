@@ -1,0 +1,63 @@
+label: reliability robust
+module: message queue	
+age: 2018-01-30
+title: Merge branch 'misc.poll' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=168fe32a072a4b8dc81a3aebf0e5e588d38e2955
+lines: -2/+2
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull poll annotations from Al Viro:
+ "This introduces a __bitwise type for POLL### bitmap, and propagates
+  the annotations through the tree. Most of that stuff is as simple as
+  'make ->poll() instances return __poll_t and do the same to local
+  variables used to hold the future return value'.
+
+  Some of the obvious brainos found in process are fixed (e.g. POLLIN
+  misspelled as POLL_IN). At that point the amount of sparse warnings is
+  low and most of them are for genuine bugs - e.g. ->poll() instance
+  deciding to return -EINVAL instead of a bitmap. I hadn't touched those
+  in this series - it's large enough as it is.
+
+  Another problem it has caught was eventpoll() ABI mess; select.c and
+  eventpoll.c assumed that corresponding POLL### and EPOLL### were
+  equal. That's true for some, but not all of them - EPOLL### are
+  arch-independent, but POLL### are not.
+
+  The last commit in this series separates userland POLL### values from
+  the (now arch-independent) kernel-side ones, converting between them
+  in the few places where they are copied to/from userland. AFAICS, this
+  is the least disruptive fix preserving poll(2) ABI and making epoll()
+  work on all architectures.
+
+  As it is, it's simply broken on sparc - try to give it EPOLLWRNORM and
+  it will trigger only on what would've triggered EPOLLWRBAND on other
+  architectures. EPOLLWRBAND and EPOLLRDHUP, OTOH, are never triggered
+  at all on sparc. With this patch they should work consistently on all
+  architectures"
+
+* 'misc.poll' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (37 commits)
+  make kernel-side POLL... arch-independent
+  eventpoll: no need to mask the result of epi_item_poll() again
+  eventpoll: constify struct epoll_event pointers
+  debugging printk in sg_poll() uses %x to print POLL... bitmap
+  annotate poll(2) guts
+  9p: untangle ->poll() mess
+  ->si_band gets POLL... bitmap stored into a user-visible long field
+  ring_buffer_poll_wait() return value used as return value of ->poll()
+  the rest of drivers/*: annotate ->poll() instances
+  media: annotate ->poll() instances
+  fs: annotate ->poll() instances
+  ipc, kernel, mm: annotate ->poll() instances
+  net: annotate ->poll() instances
+  apparmor: annotate ->poll() instances
+  tomoyo: annotate ->poll() instances
+  sound: annotate ->poll() instances
+  acpi: annotate ->poll() instances
+  crypto: annotate ->poll() instances
+  block: annotate ->poll() instances
+  x86: annotate ->poll() instances
+  ...
+
+

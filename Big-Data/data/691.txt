@@ -1,0 +1,20 @@
+label: feature
+module: message queue	
+age: 2008-11-14
+title: CRED: Pass credentials through dentry_open()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=745ca2475a6ac596e3d8d37c2759c0fbe2586227
+lines: -4/+7
+category: ipc/mqueue.c
+
+Pass credentials through dentry_open() so that the COW creds patch can have
+SELinux's flush_unauthorized_files() pass the appropriate creds back to itself
+when it opens its null chardev.
+
+The security_dentry_open() call also now takes a creds pointer, as does the
+dentry_open hook in struct security_operations.
+
+Signed-off-by: David Howells <dhowells@redhat.com>
+Acked-by: James Morris <jmorris@namei.org>
+Signed-off-by: James Morris <jmorris@namei.org>
+
+

@@ -1,0 +1,24 @@
+label: bug semantic config
+consequence：wrong
+module: message queue	
+age: 2012-05-31
+title: ipc/mqueue: enforce hard limits
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=02967ea08ede0f8cc7e0526aedffdae65a099b07
+lines: -3/+5
+category: ipc/mqueue.c
+
+In two places we don't enforce the hard limits for CAP_SYS_RESOURCE apps.
+In preparation for making more reasonable hard limits, start enforcing
+them even on CAP_SYS_RESOURCE.
+
+Signed-off-by: Doug Ledford <dledford@redhat.com>
+Cc: Serge E. Hallyn <serue@us.ibm.com>
+Cc: Amerigo Wang <amwang@redhat.com>
+Cc: Joe Korty <joe.korty@ccur.com>
+Cc: Jiri Slaby <jslaby@suse.cz>
+Acked-by: KOSAKI Motohiro <kosaki.motohiro@jp.fujitsu.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

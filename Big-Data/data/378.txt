@@ -1,0 +1,27 @@
+label: performance store optimization
+module: message	semaphore	shared memory	other	
+age: 2014-01-27
+title: ipc: introduce ipc_valid_object() helper to sort out IPC_RMID races
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0f3d2b0135f4bdbfe47a99753923a64efd373d11
+lines: -19/+41
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.h 
+
+After the locking semantics for the SysV IPC API got improved, a couple
+of IPC_RMID race windows were opened because we ended up dropping the
+'kern_ipc_perm.deleted' check performed way down in ipc_lock().  The
+spotted races got sorted out by re-introducing the old test within the
+racy critical sections.
+
+This patch introduces ipc_valid_object() to consolidate the way we cope
+with IPC_RMID races by using the same abstraction across the API
+implementation.
+
+Signed-off-by: Rafael Aquini <aquini@redhat.com>
+Acked-by: Rik van Riel <riel@redhat.com>
+Acked-by: Greg Thelen <gthelen@google.com>
+Reviewed-by: Davidlohr Bueso <davidlohr@hp.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

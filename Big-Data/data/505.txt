@@ -1,0 +1,19 @@
+label: feature
+module: message queue	
+age: 2012-10-12
+title: audit: make audit_inode take struct filename
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=adb5c2473d3f91526c79db972aafb20a56d3fbb3
+lines: -2/+2
+category: ipc/mqueue.c
+
+Keep a pointer to the audit_names "slot" in struct filename.
+
+Have all of the audit_inode callers pass a struct filename ponter to
+audit_inode instead of a string pointer. If the aname field is already
+populated, then we can skip walking the list altogether and just use it
+directly.
+
+Signed-off-by: Jeff Layton <jlayton@redhat.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,24 @@
+label: feature
+module: other	
+age: 2009-06-21
+title: ipc: unbreak 32-bit shmctl/semctl/msgctl
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=232086b19964d0e13359d30d74b11ca31b0751cb
+lines: -0/+1
+category: ipc/util.h
+
+31a985f "ipc: use __ARCH_WANT_IPC_PARSE_VERSION in ipc/util.h" would
+choose the implementation of ipc_parse_version() based on a symbol
+defined in <asm/unistd.h>.
+
+But it failed to also include this header and thus broke
+IPC_64-passing 32-bit userspace because the flag wasn't masked out
+properly anymore and the command not understood.
+
+Include <linux/unistd.h> to give the architecture a chance to ask for
+the no-no-op ipc_parse_version().
+
+Signed-off-by: Johannes Weiner <hannes@cmpxchg.org>
+Acked-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

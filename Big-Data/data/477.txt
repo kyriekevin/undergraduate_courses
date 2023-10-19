@@ -1,0 +1,14 @@
+label: reliability debug
+module: compatibility	semaphore	other	
+age: 2013-03-05
+title: get rid of union semop in sys_semctl(2) arguments
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e1fd1f490fa4213bd3060efa823a39d299538f72
+lines: -53/+88
+category: ipc/compat.c ipc/sem.c ipc/syscall.c 
+
+just have the bugger take unsigned long and deal with SETVAL
+case (when we use an int member in the union) explicitly.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

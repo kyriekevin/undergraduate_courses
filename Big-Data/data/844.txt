@@ -1,0 +1,32 @@
+label: reliability debug
+module: message	semaphore	shared memory	
+age: 2006-03-20
+title: [PATCH] Capture selinux subject/object context information.
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8c8570fb8feef2bc166bee75a85748b25cda22d9
+lines: -7/+7
+category: ipc/msg.c ipc/sem.c ipc/shm.c 
+
+This patch extends existing audit records with subject/object context
+information. Audit records associated with filesystem inodes, ipc, and
+tasks now contain SELinux label information in the field "subj" if the
+item is performing the action, or in "obj" if the item is the receiver
+of an action.
+
+These labels are collected via hooks in SELinux and appended to the
+appropriate record in the audit code.
+
+This additional information is required for Common Criteria Labeled
+Security Protection Profile (LSPP).
+
+[AV: fixed kmalloc flags use]
+[folded leak fixes]
+[folded cleanup from akpm (kfree(NULL)]
+[folded audit_inode_context() leak fix]
+[folded akpm's fix for audit_ipc_perm() definition in case of !CONFIG_AUDIT]
+
+Signed-off-by: Dustin Kirkland <dustin.kirkland@us.ibm.com>
+Signed-off-by: David Woodhouse <dwmw2@infradead.org>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

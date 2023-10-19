@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2018-01-05
+title: mqueue: switch to vfs_mkobj(), quit abusing ->d_fsdata
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=eecec19d9e705cb670a387d18973feeffd412970
+lines: -8/+11
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,18 @@
+label: reliability robust
+module: shared memory	
+age: 2011-05-26
+title: mm: don't access vm_flags as 'int'
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ca16d140af91febe25daeb9e032bf8bd46b8c31f
+lines: -1/+1
+category: ipc/shm.c
+
+The type of vma->vm_flags is 'unsigned long'. Neither 'int' nor
+'unsigned int'. This patch fixes such misuse.
+
+Signed-off-by: KOSAKI Motohiro <kosaki.motohiro@jp.fujitsu.com>
+[ Changed to use a typedef - we'll extend it to cover more cases
+  later, since there has been discussion about making it a 64-bit
+  type..                      - Linus ]
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

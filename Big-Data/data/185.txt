@@ -1,0 +1,35 @@
+label: feature
+module: compatibility	message queue	message	semaphore	shared memory	other	
+age: 2017-09-14
+title: Merge branch 'work.ipc' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=cc73fee0bae2d66594d1fa2df92bbd783aa98e04
+lines: -1120/+1011
+category: ipc/compat.c ipc/mqueue.c ipc/msg.c ipc/sem.c ipc/shm.c ipc/syscall.c ipc/util.h 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull ipc compat cleanup and 64-bit time_t from Al Viro:
+ "IPC copyin/copyout sanitizing, including 64bit time_t work from Deepa
+  Dinamani"
+
+* 'work.ipc' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs:
+  utimes: Make utimes y2038 safe
+  ipc: shm: Make shmid_kernel timestamps y2038 safe
+  ipc: sem: Make sem_array timestamps y2038 safe
+  ipc: msg: Make msg_queue timestamps y2038 safe
+  ipc: mqueue: Replace timespec with timespec64
+  ipc: Make sys_semtimedop() y2038 safe
+  get rid of SYSVIPC_COMPAT on ia64
+  semtimedop(): move compat to native
+  shmat(2): move compat to native
+  msgrcv(2), msgsnd(2): move compat to native
+  ipc(2): move compat to native
+  ipc: make use of compat ipc_perm helpers
+  semctl(): move compat to native
+  semctl(): separate all layout-dependent copyin/copyout
+  msgctl(): move compat to native
+  msgctl(): split the actual work from copyin/copyout
+  ipc: move compat shmctl to native
+  shmctl: split the work from copyin/copyout
+
+

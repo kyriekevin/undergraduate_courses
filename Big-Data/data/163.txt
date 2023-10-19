@@ -1,0 +1,31 @@
+label: feature
+module: message queue	
+age: 2018-01-30
+title: Merge branch 'work.mqueue' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8b0fdf631cf6a31f60a9ed3e1c0f37a9715de807
+lines: -130/+111
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull mqueue/bpf vfs cleanups from Al Viro:
+ "mqueue and bpf go through rather painful and similar contortions to
+  create objects in their dentry trees. Provide a primitive for doing
+  that without abusing ->mknod(), switch bpf and mqueue to it.
+
+  Another mqueue-related thing that has ended up in that branch is
+  on-demand creation of internal mount (based upon the work of Giuseppe
+  Scrivano)"
+
+* 'work.mqueue' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs:
+  mqueue: switch to on-demand creation of internal mount
+  tidy do_mq_open() up a bit
+  mqueue: clean prepare_open() up
+  do_mq_open(): move all work prior to dentry_open() into a helper
+  mqueue: fold mq_attr_ok() into mqueue_get_inode()
+  move dentry_open() calls up into do_mq_open()
+  mqueue: switch to vfs_mkobj(), quit abusing ->d_fsdata
+  bpf_obj_do_pin(): switch to vfs_mkobj(), quit abusing ->mknod()
+  new primitive: vfs_mkobj()
+
+

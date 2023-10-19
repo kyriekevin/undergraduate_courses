@@ -1,0 +1,19 @@
+label: feature
+module: semaphore	
+age: 2018-03-22
+title: sem/security: Pass kern_ipc_perm not sem_array into the sem security hooks
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=aefad9593ec5ad4aae5346253a8b646364cd7317
+lines: -11/+8
+category: ipc/sem.c
+
+All of the implementations of security hooks that take sem_array only
+access sem_perm the struct kern_ipc_perm member.  This means the
+dependencies of the sem security hooks can be simplified by passing
+the kern_ipc_perm member of sem_array.
+
+Making this change will allow struct sem and struct sem_array
+to become private to ipc/sem.c.
+
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

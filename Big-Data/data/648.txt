@@ -1,0 +1,8 @@
+label: performance access optimization
+module: shared memory	
+age: 2009-06-11
+title: Merge branch 'next' into for-linus
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=73fbad283cfbbcf02939bdbda31fc4a30e729cca
+lines: -2/+1
+category: ipc/shm.c
+

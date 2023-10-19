@@ -1,0 +1,30 @@
+label: maintenance
+module: message queue	shared memory	
+age: 2021-06-28
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c54b245d011855ea91c5beff07f1db74143ce614
+lines: -32/+34
+category: ipc/mqueue.c ipc/shm.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull user namespace rlimit handling update from Eric Biederman:
+ "This is the work mainly by Alexey Gladkov to limit rlimits to the
+  rlimits of the user that created a user namespace, and to allow users
+  to have stricter limits on the resources created within a user
+  namespace."
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace:
+  cred: add missing return error code when set_cred_ucounts() failed
+  ucounts: Silence warning in dec_rlimit_ucounts
+  ucounts: Set ucount_max to the largest positive value the type can hold
+  kselftests: Add test to check for rlimit changes in different user namespaces
+  Reimplement RLIMIT_MEMLOCK on top of ucounts
+  Reimplement RLIMIT_SIGPENDING on top of ucounts
+  Reimplement RLIMIT_MSGQUEUE on top of ucounts
+  Reimplement RLIMIT_NPROC on top of ucounts
+  Use atomic_t for ucounts reference counting
+  Add a reference to ucounts for each cred
+  Increase size of ucounts to atomic_long_t
+
+

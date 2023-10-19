@@ -1,0 +1,19 @@
+label: maintenance
+module: semaphore	
+age: 2005-06-23
+title: [PATCH] ipcsem: remove superflous decrease variable from sys_semtimedop
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b78755abcdf1d7667c51580a3783e16e981ed926
+lines: -6/+3
+category: ipc/sem.c
+
+Patrick noticed that the initial scan of the semaphore operations logs
+decrease and increase operations seperately, but then both cases are or'ed
+together and decrease is never used.  The attached patch removes the
+decrease parameter - it shrinks sys_semtimedop() by 56 bytes.
+
+Signed-Of-By: Manfred Spraul <manfred@colorfullife.com>
+
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

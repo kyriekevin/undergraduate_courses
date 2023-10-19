@@ -1,0 +1,20 @@
+label: feature
+module: message queue	message	semaphore	shared memory	other	
+age: 2006-01-11
+title: [PATCH] move capable() to capability.h
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c59ede7b78db329949d9cdcd7064e22d357560ef
+lines: -0/+5
+category: ipc/mqueue.c ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c 
+
+- Move capable() from sched.h to capability.h;
+
+- Use <linux/capability.h> where capable() is used
+	(in include/, block/, ipc/, kernel/, a few drivers/,
+	mm/, security/, & sound/;
+	many more drivers/ to go)
+
+Signed-off-by: Randy Dunlap <rdunlap@xenotime.net>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

@@ -1,0 +1,21 @@
+label: performance store optimization
+module: message	other	
+age: 2008-04-29
+title: ipc: scale msgmni to the number of ipc namespaces
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4d89dc6ab2711258bfd12c72d753f3ad56b244e2
+lines: -3/+13
+category: ipc/msg.c ipc/namespace.c ipc/util.c 
+
+Since all the namespaces see the same amount of memory (the total one) this
+patch introduces a new variable that counts the ipc namespaces and divides
+msg_ctlmni by this counter.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Yasunori Goto <y-goto@jp.fujitsu.com>
+Cc: Matt Helsley <matthltc@us.ibm.com>
+Cc: Mingming Cao <cmm@us.ibm.com>
+Cc: Pierre Peiffer <pierre.peiffer@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

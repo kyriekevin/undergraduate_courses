@@ -1,0 +1,16 @@
+label: bug semantic logic
+consequence：crash
+module: message queue	
+age: 2016-06-23
+title: ipc/mqueue: The mqueue filesystem should never contain executables
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3ee690143c3c99f6c0e83f08ff17556890bc6027
+lines: -0/+1
+category: ipc/mqueue.c
+
+Set SB_I_NOEXEC on mqueuefs to ensure small implementation mistakes
+do not result in executable on mqueuefs by accident.
+
+Acked-by: Seth Forshee <seth.forshee@canonical.com>
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

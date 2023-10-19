@@ -1,0 +1,16 @@
+label: performance synchronization
+module: other	
+age: 2007-10-19
+title: ipc: introduce the ipcid_to_idx macro
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ce621f5ba52f30dd59aef4fb50276faee04ef9cf
+lines: -2/+4
+category: ipc/util.c ipc/util.h 
+
+This is a trivial patch that changes all the (id % SEQ_MULTIPLIER) into a call
+to the ipcid_to_idx(id) macro.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

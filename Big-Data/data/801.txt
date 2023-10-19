@@ -1,0 +1,16 @@
+label: performance synchronization
+module: shared memory	
+age: 2007-01-23
+title: [PATCH] correct sys_shmget allocation check
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f66d45e99eb7ca91822c3e3f6d7a98843c9626cb
+lines: -1/+1
+category: ipc/shm.c
+
+As written, sys_shmget will return ENOSPC when one page is still
+available for allocation. This patch corrects the test.
+
+Signed-off-by: Guy Streeter <guy.streeter+lkml@gmail.com>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+--
+
+

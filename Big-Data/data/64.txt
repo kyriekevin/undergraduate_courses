@@ -1,0 +1,23 @@
+label: maintenance
+module: message queue	
+age: 2019-09-18
+title: Merge branch 'work.mount-base' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e170eb27715fc9253ae031297d0638a3ef51b5da
+lines: -2/+1
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull vfs mount API infrastructure updates from Al Viro:
+ "Infrastructure bits of mount API conversions.
+
+  The rest is more of per-filesystem updates and that will happen
+  in separate pull requests"
+
+* 'work.mount-base' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs:
+  mtd: Provide fs_context-aware mount_mtd() replacement
+  vfs: Create fs_context-aware mount_bdev() replacement
+  new helper: get_tree_keyed()
+  vfs: set fs_context::user_ns for reconfigure
+
+

@@ -1,0 +1,18 @@
+label: performance other
+module: semaphore	
+age: 2008-04-29
+title: IPC/semaphores: remove one unused parameter from semctl_down()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=21a4826a7c49bddebbe8d83d232f6416f1697ff0
+lines: -3/+3
+category: ipc/sem.c
+
+semctl_down() takes one unused parameter: semnum.  This patch proposes to get
+rid of it.
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

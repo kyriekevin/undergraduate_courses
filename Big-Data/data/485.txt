@@ -1,0 +1,31 @@
+label: bug memory doubleFree
+consequence：crash
+module: shared memory	
+age: 2013-02-23
+title: mm: introduce mm_populate() for populating new vmas
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=bebeb3d68b24bb4132d452c5707fe321208bcbcd
+lines: -5/+7
+category: ipc/shm.c
+
+When creating new mappings using the MAP_POPULATE / MAP_LOCKED flags (or
+with MCL_FUTURE in effect), we want to populate the pages within the
+newly created vmas.  This may take a while as we may have to read pages
+from disk, so ideally we want to do this outside of the write-locked
+mmap_sem region.
+
+This change introduces mm_populate(), which is used to defer populating
+such mappings until after the mmap_sem write lock has been released.
+This is implemented as a generalization of the former do_mlock_pages(),
+which accomplished the same task but was using during mlock() /
+mlockall().
+
+Signed-off-by: Michel Lespinasse <walken@google.com>
+Reported-by: Andy Lutomirski <luto@amacapital.net>
+Acked-by: Rik van Riel <riel@redhat.com>
+Tested-by: Andy Lutomirski <luto@amacapital.net>
+Cc: Greg Ungerer <gregungerer@westnet.com.au>
+Cc: David Howells <dhowells@redhat.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

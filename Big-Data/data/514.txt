@@ -1,0 +1,14 @@
+label: feature
+module: message queue	
+age: 2012-08-18
+title: mqueue: lift mnt_want_write() outside ->i_mutex, clean up a bit
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=312b90fbed0e07f61d2f060789440a83df6bba23
+lines: -33/+28
+category: ipc/mqueue.c
+
+the way it abuses ->d_fsdata still needs to be killed, but that's
+a separate story.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

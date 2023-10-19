@@ -1,0 +1,14 @@
+label: feature
+module: other	
+age: 2014-12-04
+title: common object embedded into various struct ....ns
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=435d5f4bb2ccba3b791d9ef61d2590e30b8e806e
+lines: -5/+5
+category: ipc/msgutil.c ipc/namespace.c 
+
+for now - just move corresponding ->proc_inum instances over there
+
+Acked-by: "Eric W. Biederman" <ebiederm@xmission.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

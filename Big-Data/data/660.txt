@@ -1,0 +1,14 @@
+label: maintenance
+module: message queue	
+age: 2009-03-31
+title: New helper - current_umask()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ce3b0f8d5c2203301fc87f3aaaed73e5819e2a48
+lines: -1/+1
+category: ipc/mqueue.c
+
+current->fs->umask is what most of fs_struct users are doing.
+Put that into a helper function.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

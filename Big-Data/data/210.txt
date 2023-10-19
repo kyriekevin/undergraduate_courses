@@ -1,0 +1,11 @@
+label: performance access optimization
+module: shared memory	
+age: 2017-07-15
+title: shmctl: split the work from copyin/copyout
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9ba720c18622b250c0abeccbcea1b03531a92277
+lines: -175/+172
+category: ipc/shm.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

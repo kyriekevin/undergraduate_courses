@@ -1,0 +1,26 @@
+label: reliability debug
+module: message queue	
+age: 2009-01-05
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=520c85346666d4d9a6fcaaa8450542302dc28b91
+lines: -1/+0
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs-2.6
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs-2.6:
+  inotify: fix type errors in interfaces
+  fix breakage in reiserfs_new_inode()
+  fix the treatment of jfs special inodes
+  vfs: remove duplicate code in get_fs_type()
+  add a vfs_fsync helper
+  sys_execve and sys_uselib do not call into fsnotify
+  zero i_uid/i_gid on inode allocation
+  inode->i_op is never NULL
+  ntfs: don't NULL i_op
+  isofs check for NULL ->i_op in root directory is dead code
+  affs: do not zero ->i_op
+  kill suid bit only for regular files
+  vfs: lseek(fd, 0, SEEK_CUR) race condition
+
+

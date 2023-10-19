@@ -1,0 +1,11 @@
+label: performance access optimization
+module: compatibility	semaphore	other	
+age: 2017-07-15
+title: semctl(): move compat to native
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c0ebccb6fa1e2c9c3377fa8136e6d8bc006fca64
+lines: -197/+133
+category: ipc/compat.c ipc/sem.c ipc/util.h 
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

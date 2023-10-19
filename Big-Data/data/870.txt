@@ -1,0 +1,16 @@
+label: performance access optimization
+module: message queue	
+age: 2005-05-01
+title: [PATCH] convert that currently tests _NSIG directly to use valid_signal()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7ed20e1ad521b5f5df61bf6559ae60738e393741
+lines: -2/+2
+category: ipc/mqueue.c
+
+Convert most of the current code that uses _NSIG directly to instead use
+valid_signal().  This avoids gcc -W warnings and off-by-one errors.
+
+Signed-off-by: Jesper Juhl <juhl-lkml@dif.dk>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

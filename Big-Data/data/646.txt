@@ -1,0 +1,35 @@
+label: bug semantic generic
+consequence：wrong
+module: shared memory	
+age: 2009-06-11
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3296ca27f50ecbd71db1d808c7a72d311027f919
+lines: -2/+1
+category: ipc/shm.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/jmorris/security-testing-2.6
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/jmorris/security-testing-2.6: (44 commits)
+  nommu: Provide mmap_min_addr definition.
+  TOMOYO: Add description of lists and structures.
+  TOMOYO: Remove unused field.
+  integrity: ima audit dentry_open failure
+  TOMOYO: Remove unused parameter.
+  security: use mmap_min_addr indepedently of security models
+  TOMOYO: Simplify policy reader.
+  TOMOYO: Remove redundant markers.
+  SELinux: define audit permissions for audit tree netlink messages
+  TOMOYO: Remove unused mutex.
+  tomoyo: avoid get+put of task_struct
+  smack: Remove redundant initialization.
+  integrity: nfsd imbalance bug fix
+  rootplug: Remove redundant initialization.
+  smack: do not beyond ARRAY_SIZE of data
+  integrity: move ima_counts_get
+  integrity: path_check update
+  IMA: Add __init notation to ima functions
+  IMA: Minimal IMA policy and boot param for TCB IMA policy
+  selinux: remove obsolete read buffer limit from sel_read_bool
+  ...
+
+

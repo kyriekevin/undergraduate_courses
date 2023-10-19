@@ -1,0 +1,22 @@
+label: reliability error enhancement
+module: shared memory	
+age: 2009-09-14
+title: fix undefined reference to user_shm_unlock
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2195d2818c37bdf263865f1e9effccdd9fc5f9d4
+lines: -1/+1
+category: ipc/shm.c
+
+My 353d5c30c666580347515da609dd74a2b8e9b828 "mm: fix hugetlb bug due to
+user_shm_unlock call" broke the CONFIG_SYSVIPC !CONFIG_MMU build of both
+2.6.31 and 2.6.30.6: "undefined reference to `user_shm_unlock'".
+
+gcc didn't understand my comment! so couldn't figure out to optimize
+away user_shm_unlock() from the error path in the hugetlb-less case, as
+it does elsewhere.  Help it to do so, in a language it understands.
+
+Reported-by: Mike Frysinger <vapier@gentoo.org>
+Signed-off-by: Hugh Dickins <hugh.dickins@tiscali.co.uk>
+Cc: stable@kernel.org
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

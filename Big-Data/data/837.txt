@@ -1,0 +1,30 @@
+label: reliability debug
+module: semaphore	
+age: 2006-03-26
+title: Merge git://git.kernel.org/pub/scm/linux/kernel/git/bunk/trivial
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9ae21d1bb376436285cd5346d3e4b3655d6dd1b9
+lines: -4/+2
+category: ipc/sem.c
+
+* git://git.kernel.org/pub/scm/linux/kernel/git/bunk/trivial:
+  drivers/char/ftape/lowlevel/fdc-io.c: Correct a comment
+  Kconfig help: MTD_JEDECPROBE already supports Intel
+  Remove ugly debugging stuff
+  do_mounts.c: Minor ROOT_DEV comment cleanup
+  BUG_ON() Conversion in drivers/s390/block/dasd_devmap.c
+  BUG_ON() Conversion in mm/mempool.c
+  BUG_ON() Conversion in mm/memory.c
+  BUG_ON() Conversion in kernel/fork.c
+  BUG_ON() Conversion in ipc/sem.c
+  BUG_ON() Conversion in fs/ext2/
+  BUG_ON() Conversion in fs/hfs/
+  BUG_ON() Conversion in fs/dcache.c
+  BUG_ON() Conversion in fs/buffer.c
+  BUG_ON() Conversion in input/serio/hp_sdc_mlc.c
+  BUG_ON() Conversion in md/dm-table.c
+  BUG_ON() Conversion in md/dm-path-selector.c
+  BUG_ON() Conversion in drivers/isdn
+  BUG_ON() Conversion in drivers/char
+  BUG_ON() Conversion in drivers/mtd/
+
+

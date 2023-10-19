@@ -1,0 +1,19 @@
+label: bug semantic state
+consequence：wrong
+module: other	
+age: 2014-01-27
+title: ipc: remove useless return statement
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=95d4eb2822d5d67fb14197d90d3e4d4146671cfb
+lines: -4/+0
+category: ipc/util.c
+
+Only found in ipc_rmid().
+
+Signed-off-by: Davidlohr Bueso <davidlohr@hp.com>
+Cc: Aswin Chandramouleeswaran <aswin@hp.com>
+Cc: Rik van Riel <riel@redhat.com>
+Acked-by: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

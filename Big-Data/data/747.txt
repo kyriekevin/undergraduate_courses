@@ -1,0 +1,39 @@
+label: bug semantic generic
+consequence：wrong
+module: other	message	semaphore	shared memory	
+age: 2008-02-08
+title: namespaces: move the IPC namespace under IPC_NS option
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ae5e1b22f17983da929a0d0178896269e19da186
+lines: -60/+87
+category: ipc/Makefile ipc/ipc_sysctl.c ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+Currently the IPC namespace management code is spread over the ipc/*.c files.
+I moved this code into ipc/namespace.c file which is compiled out when needed.
+
+The linux/ipc_namespace.h file is used to store the prototypes of the
+functions in namespace.c and the stubs for NAMESPACES=n case.  This is done
+so, because the stub for copy_ipc_namespace requires the knowledge of the
+CLONE_NEWIPC flag, which is in sched.h.  But the linux/ipc.h file itself in
+included into many many .c files via the sys.h->sem.h sequence so adding the
+sched.h into it will make all these .c depend on sched.h which is not that
+good.  On the other hand the knowledge about the namespaces stuff is required
+in 4 .c files only.
+
+Besides, this patch compiles out some auxiliary functions from ipc/sem.c,
+msg.c and shm.c files.  It turned out that moving these functions into
+namespaces.c is not that easy because they use many other calls and macros
+from the original file.  Moving them would make this patch complicated.  On
+the other hand all these functions can be consolidated, so I will send a
+separate patch doing this a bit later.
+
+Signed-off-by: Pavel Emelyanov <xemul@openvz.org>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Cc: Cedric Le Goater <clg@fr.ibm.com>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: Herbert Poetzl <herbert@13thfloor.at>
+Cc: Kirill Korotaev <dev@sw.ru>
+Cc: Sukadev Bhattiprolu <sukadev@us.ibm.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

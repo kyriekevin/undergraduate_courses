@@ -1,0 +1,28 @@
+label: bug memory resourceLeak
+consequence：leak
+module: message	semaphore	shared memory	other	
+age: 2006-11-03
+title: [PATCH] Fix ipc entries removal
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c7e12b838989b0e432c7a1cdf1e6c6fd936007f6
+lines: -1/+16
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+Fix two issuses related to ipc_ids->entries freeing.
+
+1. When freeing ipc namespace we need to free entries allocated
+   with ipc_init_ids().
+
+2. When removing old entries in grow_ary() ipc_rcu_putref()
+   may be called on entries set to &ids->nullentry earlier in
+   ipc_init_ids().
+   This is almost impossible without namespaces, but with
+   them this situation becomes possible.
+
+Found during OpenVZ testing after obvious leaks in beancounters.
+
+Signed-off-by: Pavel Emelianov <xemul@openvz.org>
+Cc: Kirill Korotaev <dev@openvz.org>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

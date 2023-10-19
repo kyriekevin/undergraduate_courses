@@ -1,0 +1,18 @@
+label: performance access optimization
+module: shared memory	
+age: 2010-10-30
+title: ipc: shm: fix information leak to userland
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3af54c9bd9e6f14f896aac1bb0e8405ae0bc7a44
+lines: -0/+1
+category: ipc/shm.c
+
+The shmid_ds structure is copied to userland with shm_unused{,2,3}
+fields unitialized.  It leads to leaking of contents of kernel stack
+memory.
+
+Signed-off-by: Vasiliy Kulikov <segooon@gmail.com>
+Acked-by: Al Viro <viro@ZenIV.linux.org.uk>
+Cc: stable@kernel.org
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

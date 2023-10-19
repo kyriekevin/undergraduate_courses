@@ -1,0 +1,22 @@
+label: performance access optimization
+module: semaphore	
+age: 2016-12-14
+title: ipc/sem: simplify wait-wake loop
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b5fa01a22e4ba9e3ca6de7cb94c3d21e42da449c
+lines: -56/+52
+category: ipc/sem.c
+
+Instead of using the reverse goto, we can simplify the flow and make it
+more language natural by just doing do-while instead.  One would hope
+this is the standard way (or obviously just with a while bucle) that we
+do wait/wakeup handling in the kernel.  The exact same logic is kept,
+just more indented.
+
+[akpm@linux-foundation.org: coding-style fixes]
+Link: http://lkml.kernel.org/r/1478708774-28826-2-git-send-email-dave@stgolabs.net
+Signed-off-by: Davidlohr Bueso <dbueso@suse.de>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,11 @@
+label: performance access optimization
+module: compatibility	message	
+age: 2017-07-15
+title: msgrcv(2), msgsnd(2): move compat to native
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9b1404c24a357332cb2a6df7c4337e943a4545fd
+lines: -39/+43
+category: ipc/compat.c ipc/msg.c 
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,53 @@
+label: maintenance
+module: message queue	other	
+age: 2009-04-07
+title: namespaces: ipc namespaces: implement support for posix msqueues
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7eafd7c74c3f2e67c27621b987b28397110d643f
+lines: -43/+124
+category: ipc/mqueue.c ipc/msgutil.c ipc/namespace.c ipc/util.h 
+
+Implement multiple mounts of the mqueue file system, and link it to usage
+of CLONE_NEWIPC.
+
+Each ipc ns has a corresponding mqueuefs superblock.  When a user does
+clone(CLONE_NEWIPC) or unshare(CLONE_NEWIPC), the unshare will cause an
+internal mount of a new mqueuefs sb linked to the new ipc ns.
+
+When a user does 'mount -t mqueue mqueue /dev/mqueue', he mounts the
+mqueuefs superblock.
+
+Posix message queues can be worked with both through the mq_* system calls
+(see mq_overview(7)), and through the VFS through the mqueue mount.  Any
+usage of mq_open() and friends will work with the acting task's ipc
+namespace.  Any actions through the VFS will work with the mqueuefs in
+which the file was created.  So if a user doesn't remount mqueuefs after
+unshare(CLONE_NEWIPC), mq_open("/ab") will not be reflected in "ls
+/dev/mqueue".
+
+If task a mounts mqueue for ipc_ns:1, then clones task b with a new ipcns,
+ipcns:2, and then task a is the last task in ipc_ns:1 to exit, then (1)
+ipc_ns:1 will be freed, (2) it's superblock will live on until task b
+umounts the corresponding mqueuefs, and vfs actions will continue to
+succeed, but (3) sb->s_fs_info will be NULL for the sb corresponding to
+the deceased ipc_ns:1.
+
+To make this happen, we must protect the ipc reference count when
+
+a) a task exits and drops its ipcns->count, since it might be dropping
+   it to 0 and freeing the ipcns
+
+b) a task accesses the ipcns through its mqueuefs interface, since it
+   bumps the ipcns refcount and might race with the last task in the ipcns
+   exiting.
+
+So the kref is changed to an atomic_t so we can use
+atomic_dec_and_lock(&ns->count,mq_lock), and every access to the ipcns
+through ns = mqueuefs_sb->s_fs_info is protected by the same lock.
+
+Signed-off-by: Cedric Le Goater <clg@fr.ibm.com>
+Signed-off-by: Serge E. Hallyn <serue@us.ibm.com>
+Cc: Alexey Dobriyan <adobriyan@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

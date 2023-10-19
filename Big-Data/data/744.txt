@@ -1,0 +1,33 @@
+label: feature
+module: message	other	semaphore	shared memory	
+age: 2008-02-08
+title: IPC: make struct ipc_ids static in ipc_namespace
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ed2ddbf88c0ddeeae4c78bb306a116dfd867c55c
+lines: -102/+23
+category: ipc/msg.c ipc/namespace.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+Each ipc_namespace contains a table of 3 pointers to struct ipc_ids (3 for
+msg, sem and shm, structure used to store all ipcs) These 'struct ipc_ids'
+are dynamically allocated for each icp_namespace as the ipc_namespace
+itself (for the init namespace, they are initialized with pointers to
+static variables instead)
+
+It is so for historical reason: in fact, before the use of idr to store the
+ipcs, the ipcs were stored in tables of variable length, depending of the
+maximum number of ipc allowed.  Now, these 'struct ipc_ids' have a fixed
+size.  As they are allocated in any cases for each new ipc_namespace, there
+is no gain of memory in having them allocated separately of the struct
+ipc_namespace.
+
+This patch proposes to make this table static in the struct ipc_namespace.
+Thus, we can allocate all in once and get rid of all the code needed to
+allocate and free these ipc_ids separately.
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Acked-by: Cedric Le Goater <clg@fr.ibm.com>
+Cc: Pavel Emelyanov <xemul@openvz.org>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

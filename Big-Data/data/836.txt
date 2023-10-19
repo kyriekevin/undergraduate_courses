@@ -1,0 +1,15 @@
+label: reliability error enhancement
+module: message queue	
+age: 2006-03-26
+title: [PATCH] one ipc/sem.c->mutex.c converstion too many..
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=64bc0430ee78c03c5c4ce549e217bb74bff7ea5d
+lines: -1/+1
+category: ipc/mqueue.c
+
+Ingo's sem2mutex patch incorrectly replaced one reference to ipc/sem.c
+with ipc/mutex.c in a comment.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

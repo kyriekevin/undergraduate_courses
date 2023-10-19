@@ -1,0 +1,21 @@
+label: performance speed optimization
+module: other	
+age: 2009-09-23
+title: seq_file: constify seq_operations
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=88e9d34c727883d7d6f02cf1475b3ec98b8480c7
+lines: -1/+1
+category: ipc/util.c
+
+Make all seq_operations structs const, to help mitigate against
+revectoring user-triggerable function pointers.
+
+This is derived from the grsecurity patch, although generated from scratch
+because it's simpler than extracting the changes from there.
+
+Signed-off-by: James Morris <jmorris@namei.org>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Acked-by: Casey Schaufler <casey@schaufler-ca.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

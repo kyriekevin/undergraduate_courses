@@ -1,0 +1,14 @@
+label: reliability error enhancement
+module: shared memory	
+age: 2009-12-16
+title: switch alloc_file() to passing struct path
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2c48b9c45579a9b5e3e74694eebf3d2451f3dbd3
+lines: -5/+5
+category: ipc/shm.c
+
+... and have the caller grab both mnt and dentry; kill
+leak in infiniband, while we are at it.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

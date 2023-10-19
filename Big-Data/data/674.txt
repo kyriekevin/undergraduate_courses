@@ -1,0 +1,21 @@
+label: performance store optimization
+module: shared memory	
+age: 2009-01-09
+title: Merge git://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-2.6-nommu
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c40f6f8bbc4cbd2902671aacd587400ddca62627
+lines: -0/+12
+category: ipc/shm.c
+
+* git://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-2.6-nommu:
+  NOMMU: Support XIP on initramfs
+  NOMMU: Teach kobjsize() about VMA regions.
+  FLAT: Don't attempt to expand the userspace stack to fill the space allocated
+  FDPIC: Don't attempt to expand the userspace stack to fill the space allocated
+  NOMMU: Improve procfs output using per-MM VMAs
+  NOMMU: Make mmap allocation page trimming behaviour configurable.
+  NOMMU: Make VMAs per MM as for MMU-mode linux
+  NOMMU: Delete askedalloc and realalloc variables
+  NOMMU: Rename ARM's struct vm_region
+  NOMMU: Fix cleanup handling in ramfs_nommu_get_umapped_area()
+
+

@@ -1,0 +1,17 @@
+label: performance speed optimization
+module: message queue	shared memory	
+age: 2008-11-14
+title: CRED: Wrap current->cred and a few other accessors
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=86a264abe542cfececb4df129bc45a0338d8cdb9
+lines: -3/+3
+category: ipc/mqueue.c ipc/shm.c 
+
+Wrap current->cred and a few other accessors to hide their actual
+implementation.
+
+Signed-off-by: David Howells <dhowells@redhat.com>
+Acked-by: James Morris <jmorris@namei.org>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Signed-off-by: James Morris <jmorris@namei.org>
+
+

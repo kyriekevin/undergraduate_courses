@@ -1,0 +1,52 @@
+label: feature
+module: other	
+age: 2010-03-12
+title: Add generic sys_ipc wrapper
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=baed7fc9b580bd3fb8252ff1d9b36eaf1f86b670
+lines: -1/+100
+category: ipc/Makefile 
+
+Add a generic implementation of the ipc demultiplexer syscall.  Except for
+s390 and sparc64 all implementations of the sys_ipc are nearly identical.
+
+There are slight differences in the types of the parameters, where mips
+and powerpc as the only 64-bit architectures with sys_ipc use unsigned
+long for the "third" argument as it gets casted to a pointer later, while
+it traditionally is an "int" like most other paramters.  frv goes even
+further and uses unsigned long for all parameters execept for "ptr" which
+is a pointer type everywhere.  The change from int to unsigned long for
+"third" and back to "int" for the others on frv should be fine due to the
+in-register calling conventions for syscalls (we already had a similar
+issue with the generic sys_ptrace), but I'd prefer to have the arch
+maintainers looks over this in details.
+
+Except for that h8300, m68k and m68knommu lack an impplementation of the
+semtimedop sub call which this patch adds, and various architectures have
+gets used - at least on i386 it seems superflous as the compat code on
+x86-64 and ia64 doesn't even bother to implement it.
+
+[akpm@linux-foundation.org: add sys_ipc to sys_ni.c]
+Signed-off-by: Christoph Hellwig <hch@lst.de>
+Cc: Ralf Baechle <ralf@linux-mips.org>
+Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc: Paul Mundt <lethal@linux-sh.org>
+Cc: Jeff Dike <jdike@addtoit.com>
+Cc: Hirokazu Takata <takata@linux-m32r.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Ingo Molnar <mingo@elte.hu>
+Reviewed-by: H. Peter Anvin <hpa@zytor.com>
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Heiko Carstens <heiko.carstens@de.ibm.com>
+Cc: Martin Schwidefsky <schwidefsky@de.ibm.com>
+Cc: "Luck, Tony" <tony.luck@intel.com>
+Cc: James Morris <jmorris@namei.org>
+Cc: Andreas Schwab <schwab@linux-m68k.org>
+Acked-by: Jesper Nilsson <jesper.nilsson@axis.com>
+Acked-by: Russell King <rmk+kernel@arm.linux.org.uk>
+Acked-by: David Howells <dhowells@redhat.com>
+Acked-by: Kyle McMartin <kyle@mcmartin.ca>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

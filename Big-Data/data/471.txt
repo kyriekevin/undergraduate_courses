@@ -1,0 +1,21 @@
+label: bug memory danglingPt
+consequence：corruption
+module: message	
+age: 2013-04-02
+title: ipc: set msg back to -EAGAIN if copy wasn't performed
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2dc958fa2fe6987e7ab106bd97029a09a82fcd8d
+lines: -0/+1
+category: ipc/msg.c
+
+Make sure that msg pointer is set back to error value in case of
+MSG_COPY flag is set and desired message to copy wasn't found.  This
+garantees that msg is either a error pointer or a copy address.
+
+Otherwise the last message in queue will be freed without unlinking from
+the queue (which leads to memory corruption) and the dummy allocated
+copy won't be released.
+
+Signed-off-by: Stanislav Kinsbursky <skinsbursky@parallels.com>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

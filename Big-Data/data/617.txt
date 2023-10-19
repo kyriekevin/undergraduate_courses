@@ -1,0 +1,17 @@
+label: reliability corruption defense
+module: shared memory	
+age: 2009-12-16
+title: Untangling ima mess, part 1: alloc_file()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0552f879d45cecc35d8e372a591fc5ed863bca58
+lines: -2/+0
+category: ipc/shm.c
+
+There are 2 groups of alloc_file() callers:
+	* ones that are followed by ima_counts_get
+	* ones giving non-regular files
+So let's pull that ima_counts_get() into alloc_file();
+it's a no-op in case of non-regular files.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

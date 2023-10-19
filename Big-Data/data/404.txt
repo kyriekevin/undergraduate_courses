@@ -1,0 +1,20 @@
+label: feature
+module: shared memory	
+age: 2013-09-11
+title: ipc,shm: cleanup do_shmat pasta
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f42569b1388b1408b574a5e93a23a663647d4181
+lines: -14/+12
+category: ipc/shm.c
+
+Clean up some of the messy do_shmat() spaghetti code, getting rid of
+out_free and out_put_dentry labels.  This makes shortening the critical
+region of this function in the next patch a little easier to do and read.
+
+Signed-off-by: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Tested-by: Sedat Dilek <sedat.dilek@gmail.com>
+Cc: Rik van Riel <riel@redhat.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

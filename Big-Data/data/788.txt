@@ -1,0 +1,17 @@
+label: maintenance
+module: compatibility	
+age: 2007-05-08
+title: Cap shmmax at INT_MAX in compat shminfo
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=af7c693f146069a1f44739acef9abf1bc27f7247
+lines: -0/+4
+category: ipc/compat.c
+
+The value of shmmax may be larger than will fit in the struct used by
+the 32bit compat version of sys_shmctl. This change mirrors what the
+normal sys_shmctl does when called with the old IPC_INFO command.
+
+Signed-off-by: Guy Streeter <streeter@redhat.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

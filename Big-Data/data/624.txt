@@ -1,0 +1,28 @@
+label: feature
+module: semaphore	
+age: 2009-12-16
+title: ipc/sem.c: sem preempt improve
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d4212093dca95c1f52197017d969cc66d5d962aa
+lines: -15/+23
+category: ipc/sem.c
+
+The strange sysv semaphore wakeup scheme has a kind of busy-wait lock
+involved, which could deadlock if preemption is enabled during the "lock".
+
+It is an implementation detail (due to a spinlock being held) that this is
+actually the case.  However if "spinlocks" are made preemptible, or if the
+sem lock is changed to a sleeping lock for example, then the wakeup would
+become buggy.  So this might be a bugfix for -rt kernels.
+
+Imagine waker being preempted by wakee and never clearing IN_WAKEUP -- if
+wakee has higher RT priority then there is a priority inversion deadlock.
+Even if there is not a priority inversion to cause a deadlock, then there
+is still time wasted spinning.
+
+Signed-off-by: Nick Piggin <npiggin@suse.de>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

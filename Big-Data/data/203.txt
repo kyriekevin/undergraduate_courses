@@ -1,0 +1,11 @@
+label: performance access optimization
+module: compatibility	other	
+age: 2017-07-15
+title: ipc(2): move compat to native
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=20bc2a3aff5a88a666e81182fd277ea2a521fd3d
+lines: -95/+93
+category: ipc/compat.c ipc/syscall.c 
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,27 @@
+label: maintenance
+module: semaphore	
+age: 2011-07-25
+title: ipc/sem.c: fix race with concurrent semtimedop() timeouts and IPC_RMID
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d694ad62bf539dbb20a0899ac2a954555f9e4a83
+lines: -2/+11
+category: ipc/sem.c
+
+If a semaphore array is removed and in parallel a sleeping task is woken
+up (signal or timeout, does not matter), then the woken up task does not
+wait until wake_up_sem_queue_do() is completed.  This will cause crashes,
+because wake_up_sem_queue_do() will read from a stale pointer.
+
+The fix is simple: Regardless of anything, always call get_queue_result().
+This function waits until wake_up_sem_queue_do() has finished it's task.
+
+Addresses https://bugzilla.kernel.org/show_bug.cgi?id=27142
+
+Reported-by: Yuriy Yevtukhov <yuriy@ucoz.com>
+Reported-by: Harald Laabs <kernel@dasr.de>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Acked-by: Eric Dumazet <eric.dumazet@gmail.com>
+Cc: <stable@kernel.org>		[2.6.35+]
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

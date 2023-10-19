@@ -1,0 +1,12 @@
+label: performance access optimization
+module: message queue	
+age: 2008-06-05
+title: netlink: Remove nonblock parameter from netlink_attachskb
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9457afee85e0dfc2b5075a391d6f34463b4c2b90
+lines: -1/+1
+category: ipc/mqueue.c
+
+Signed-off-by: Denis V. Lunev <den@openvz.org>
+Signed-off-by: David S. Miller <davem@davemloft.net>
+
+

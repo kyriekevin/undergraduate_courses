@@ -1,0 +1,31 @@
+label: maintenance
+module: message queue	
+age: 2013-03-28
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2c3de1c2d7d68c6ba4c1ecd82c68285f34d9609e
+lines: -2/+10
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull userns fixes from Eric W Biederman:
+ "The bulk of the changes are fixing the worst consequences of the user
+  namespace design oversight in not considering what happens when one
+  namespace starts off as a clone of another namespace, as happens with
+  the mount namespace.
+
+  The rest of the changes are just plain bug fixes.
+
+  Many thanks to Andy Lutomirski for pointing out many of these issues."
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace:
+  userns: Restrict when proc and sysfs can be mounted
+  ipc: Restrict mounting the mqueue filesystem
+  vfs: Carefully propogate mounts across user namespaces
+  vfs: Add a mount flag to lock read only bind mounts
+  userns:  Don't allow creation if the user is chrooted
+  yama:  Better permission check for ptraceme
+  pid: Handle the exit of a multi-threaded init.
+  scm: Require CAP_SYS_ADMIN over the current pidns to spoof pids.
+
+

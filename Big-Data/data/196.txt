@@ -1,0 +1,20 @@
+label: reliability error enhancement
+module: semaphore	
+age: 2017-09-03
+title: ipc: Make sys_semtimedop() y2038 safe
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3ef56dc2678258b7211b1870d034c1666becb2bd
+lines: -6/+6
+category: ipc/sem.c
+
+struct timespec is not y2038 safe on 32 bit machines.
+Replace timespec with y2038 safe struct timespec64.
+
+Note that the patch only changes the internals without
+modifying the syscall interface. This will be part
+of a separate series.
+
+Signed-off-by: Deepa Dinamani <deepa.kernel@gmail.com>
+Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,29 @@
+label: feature
+module: semaphore	
+age: 2009-12-16
+title: ipc/sem.c: optimize single semop operations
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=636c6be823870d829b37fc96655bb8820a6a9be9
+lines: -11/+40
+category: ipc/sem.c
+
+sysv sem has the concept of semaphore arrays that consist out of multiple
+semaphores.  Atomic operations that affect multiple semaphores are
+supported.
+
+The patch optimizes single semaphore operation calls that affect only one
+semaphore: It's not necessary to scan all pending operations, it is
+sufficient to scan the per-semaphore list.
+
+The idea is from Nick Piggin version of an ipc sem improvement, the
+implementation is different: The code tries to keep as much common code as
+possible.
+
+As the result, the patch is simpler, but optimizes fewer cases.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Nick Piggin <npiggin@suse.de>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

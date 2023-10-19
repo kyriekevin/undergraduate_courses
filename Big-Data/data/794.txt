@@ -1,0 +1,49 @@
+label: reliability robust
+module: shared memory	
+age: 2007-02-20
+title: [PATCH] shm: make sysv ipc shared memory use stacked files
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=bc56bba8f31bd99f350a5ebfd43d50f411b620c7
+lines: -85/+155
+category: ipc/shm.c
+
+The current ipc shared memory code runs into several problems because it
+does not quite use files like the rest of the kernel.  With the option of
+backing ipc shared memory with either hugetlbfs or ordinary shared memory
+the problems got worse.  With the added support for ipc namespaces things
+behaved so unexpected that we now have several bad namespace reference
+counting bugs when using what appears at first glance to be a reasonable
+idiom.
+
+So to attack these problems and hopefully make the code more maintainable
+this patch simply uses the files provided by other parts of the kernel and
+builds it's own files out of them.  The shm files are allocated in do_shmat
+and freed when their reference count drops to zero with their last unmap.
+The file and vm operations that we don't want to implement or we don't
+implement completely we just delegate to the operations of our backing
+file.
+
+This means that we now get an accurate shm_nattch count for we have a
+hugetlbfs inode for backing store, and the shm accounting of last attach
+and last detach time work as well.
+
+This means that getting a reference to the ipc namespace when we create the
+file and dropping the referenece in the release method is now safe and
+correct.
+
+This means we no longer need a special case for clearing VM_MAYWRITE
+as our file descriptor now only has write permissions when we have
+requested write access when calling shmat.  Although VM_SHARED is now
+cleared as well which I believe is harmless and is mostly likely a
+minor bug fix.
+
+By using the same set of operations for both the hugetlb case and regular
+shared memory case shmdt is not simplified and made slightly more correct
+as now the test "vma->vm_ops == &shm_vm_ops" is 100% accurate in spotting
+all shared memory regions generated from sysvipc shared memory.
+
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+Cc: Michal Piotrowski <michal.k.k.piotrowski@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

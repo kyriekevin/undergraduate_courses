@@ -1,0 +1,132 @@
+label: reliability error enhancement
+module: message queue	other	
+age: 2016-07-29
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a867d7349e94b6409b08629886a819f802377e91
+lines: -13/+12
+category: ipc/mqueue.c ipc/namespace.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull userns vfs updates from Eric Biederman:
+ "This tree contains some very long awaited work on generalizing the
+  user namespace support for mounting filesystems to include filesystems
+  with a backing store.  The real world target is fuse but the goal is
+  to update the vfs to allow any filesystem to be supported.  This
+  patchset is based on a lot of code review and testing to approach that
+  goal.
+
+  While looking at what is needed to support the fuse filesystem it
+  became clear that there were things like xattrs for security modules
+  that needed special treatment.  That the resolution of those concerns
+  would not be fuse specific.  That sorting out these general issues
+  made most sense at the generic level, where the right people could be
+  drawn into the conversation, and the issues could be solved for
+  everyone.
+
+  At a high level what this patchset does a couple of simple things:
+
+   - Add a user namespace owner (s_user_ns) to struct super_block.
+
+   - Teach the vfs to handle filesystem uids and gids not mapping into
+     to kuids and kgids and being reported as INVALID_UID and
+     INVALID_GID in vfs data structures.
+
+  By assigning a user namespace owner filesystems that are mounted with
+  only user namespace privilege can be detected.  This allows security
+  modules and the like to know which mounts may not be trusted.  This
+  also allows the set of uids and gids that are communicated to the
+  filesystem to be capped at the set of kuids and kgids that are in the
+  owning user namespace of the filesystem.
+
+  One of the crazier corner casees this handles is the case of inodes
+  whose i_uid or i_gid are not mapped into the vfs.  Most of the code
+  simply doesn't care but it is easy to confuse the inode writeback path
+  so no operation that could cause an inode write-back is permitted for
+  such inodes (aka only reads are allowed).
+
+  This set of changes starts out by cleaning up the code paths involved
+  in user namespace permirted mounts.  Then when things are clean enough
+  adds code that cleanly sets s_user_ns.  Then additional restrictions
+  are added that are possible now that the filesystem superblock
+  contains owner information.
+
+  These changes should not affect anyone in practice, but there are some
+  parts of these restrictions that are changes in behavior.
+
+   - Andy's restriction on suid executables that does not honor the
+     suid bit when the path is from another mount namespace (think
+     /proc/[pid]/fd/) or when the filesystem was mounted by a less
+     privileged user.
+
+   - The replacement of the user namespace implicit setting of MNT_NODEV
+     with implicitly setting SB_I_NODEV on the filesystem superblock
+     instead.
+
+     Using SB_I_NODEV is a stronger form that happens to make this state
+     user invisible.  The user visibility can be managed but it caused
+     problems when it was introduced from applications reasonably
+     expecting mount flags to be what they were set to.
+
+  There is a little bit of work remaining before it is safe to support
+  mounting filesystems with backing store in user namespaces, beyond
+  what is in this set of changes.
+
+   - Verifying the mounter has permission to read/write the block device
+     during mount.
+
+   - Teaching the integrity modules IMA and EVM to handle filesystems
+     mounted with only user namespace root and to reduce trust in their
+     security xattrs accordingly.
+
+   - Capturing the mounters credentials and using that for permission
+     checks in d_automount and the like.  (Given that overlayfs already
+     does this, and we need the work in d_automount it make sense to
+     generalize this case).
+
+  Furthermore there are a few changes that are on the wishlist:
+
+   - Get all filesystems supporting posix acls using the generic posix
+     acls so that posix_acl_fix_xattr_from_user and
+     posix_acl_fix_xattr_to_user may be removed.  [Maintainability]
+
+   - Reducing the permission checks in places such as remount to allow
+     the superblock owner to perform them.
+
+   - Allowing the superblock owner to chown files with unmapped uids and
+     gids to something that is mapped so the files may be treated
+     normally.
+
+  I am not considering even obvious relaxations of permission checks
+  until it is clear there are no more corner cases that need to be
+  locked down and handled generically.
+
+  Many thanks to Seth Forshee who kept this code alive, and putting up
+  with me rewriting substantial portions of what he did to handle more
+  corner cases, and for his diligent testing and reviewing of my
+  changes"
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace: (30 commits)
+  fs: Call d_automount with the filesystems creds
+  fs: Update i_[ug]id_(read|write) to translate relative to s_user_ns
+  evm: Translate user/group ids relative to s_user_ns when computing HMAC
+  dquot: For now explicitly don't support filesystems outside of init_user_ns
+  quota: Handle quota data stored in s_user_ns in quota_setxquota
+  quota: Ensure qids map to the filesystem
+  vfs: Don't create inodes with a uid or gid unknown to the vfs
+  vfs: Don't modify inodes with a uid or gid unknown to the vfs
+  cred: Reject inodes with invalid ids in set_create_file_as()
+  fs: Check for invalid i_uid in may_follow_link()
+  vfs: Verify acls are valid within superblock's s_user_ns.
+  userns: Handle -1 in k[ug]id_has_mapping when !CONFIG_USER_NS
+  fs: Refuse uid/gid changes which don't map into s_user_ns
+  selinux: Add support for unprivileged mounts from user namespaces
+  Smack: Handle labels consistently in untrusted mounts
+  Smack: Add support for unprivileged mounts from user namespaces
+  fs: Treat foreign mounts as nosuid
+  fs: Limit file caps to the user namespace of the super block
+  userns: Remove the now unnecessary FS_USERNS_DEV_MOUNT flag
+  userns: Remove implicit MNT_NODEV fragility.
+  ...
+
+

@@ -1,0 +1,28 @@
+label: reliability debug
+module: shared memory	
+age: 2006-01-06
+title: [PATCH] NOMMU: Make SYSV IPC SHM use ramfs facilities on NOMMU
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b0e15190ead07056ab0c3844a499ff35e66d27cc
+lines: -5/+13
+category: ipc/shm.c
+
+The attached patch makes the SYSV IPC shared memory facilities use the new
+ramfs facilities on a no-MMU kernel.
+
+The following changes are made:
+
+ (1) There are now shmem_mmap() and shmem_get_unmapped_area() functions to
+     allow the IPC SHM facilities to commune with the tiny-shmem and shmem
+     code.
+
+ (2) ramfs files now need resizing using do_truncate() rather than by modifying
+     the inode size directly (see shmem_file_setup()). This causes ramfs to
+     attempt to bind a block of pages of sufficient size to the inode.
+
+ (3) CONFIG_SYSVIPC is no longer contingent on CONFIG_MMU.
+
+Signed-off-by: David Howells <dhowells@redhat.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

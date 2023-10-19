@@ -1,0 +1,31 @@
+label: feature
+module: semaphore	
+age: 2009-12-16
+title: ipc/sem.c: optimize single sops when semval is zero
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d987f8b213f2cdcc52b2ca9ee67161516e4d256a
+lines: -0/+11
+category: ipc/sem.c
+
+If multiple simple decrements on the same semaphore are pending, then the
+current code scans all decrement operations, even if the semaphore value
+is already 0.
+
+The patch optimizes that: if the semaphore value is 0, then there is no
+need to scan the q->alter entries.
+
+Note that this is a common case: It happens if 100 decrements by one are
+pending and now an increment by one increases the semaphore value from 0
+to 1.  Without this patch, all 100 entries are scanned.  With the patch,
+only one entry is scanned, then woken up.  Then the new rule triggers and
+the scanning is aborted, without looking at the remaining 99 tasks.
+
+With this patch, single sop increment/decrement by 1 are now O(1).
+(same as with Nick's patch)
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Nick Piggin <npiggin@suse.de>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

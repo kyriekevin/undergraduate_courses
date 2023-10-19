@@ -1,0 +1,22 @@
+label: performance store optimization
+module: message	semaphore	shared memory	other	
+age: 2008-04-29
+title: IPC: use ipc_buildid() directly from ipc_addid()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=48dea404ed01869313f1908cca8a15774dcd8ee5
+lines: -13/+2
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c 
+
+By continuing to consolidate a little the IPC code, each id can be built
+directly in ipc_addid() instead of having it built from each callers of
+ipc_addid()
+
+And I also remove shm_addid() in order to have, as much as possible, the
+same code for shm/sem/msg.
+
+[akpm@linux-foundation.org: coding-style fixes]
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

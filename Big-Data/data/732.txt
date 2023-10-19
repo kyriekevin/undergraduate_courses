@@ -1,0 +1,32 @@
+label: performance store optimization
+module: other	message	
+age: 2008-04-29
+title: ipc: recompute msgmni on memory add / remove
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b6b337ad1c1d6fe11b09b35d75464b84b3e11f07
+lines: -2/+120
+category: ipc/Makefile ipc/msg.c ipc/namespace.c ipc/util.c ipc/util.h 
+
+Introduce the registration of a callback routine that recomputes msg_ctlmni
+upon memory add / remove.
+
+A single notifier block is registered in the hotplug memory chain for all the
+ipc namespaces.
+
+Since the ipc namespaces are not linked together, they have their own
+notification chain: one notifier_block is defined per ipc namespace.
+
+Each time an ipc namespace is created (removed) it registers (unregisters) its
+notifier block in (from) the ipcns chain.  The callback routine registered in
+the memory chain invokes the ipcns notifier chain with the IPCNS_LOWMEM event.
+ Each callback routine registered in the ipcns namespace, in turn, recomputes
+msgmni for the owning namespace.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Yasunori Goto <y-goto@jp.fujitsu.com>
+Cc: Matt Helsley <matthltc@us.ibm.com>
+Cc: Mingming Cao <cmm@us.ibm.com>
+Cc: Pierre Peiffer <pierre.peiffer@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

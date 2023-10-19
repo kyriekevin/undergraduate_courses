@@ -1,0 +1,27 @@
+label: bug semantic generic
+consequence：wrong
+module: message queue	
+age: 2009-04-02
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8fe74cf053de7ad2124a894996f84fa890a81093
+lines: -1/+1
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs-2.6
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs-2.6:
+  Remove two unneeded exports and make two symbols static in fs/mpage.c
+  Cleanup after commit 585d3bc06f4ca57f975a5a1f698f65a45ea66225
+  Trim includes of fdtable.h
+  Don't crap into descriptor table in binfmt_som
+  Trim includes in binfmt_elf
+  Don't mess with descriptor table in load_elf_binary()
+  Get rid of indirect include of fs_struct.h
+  New helper - current_umask()
+  check_unsafe_exec() doesn't care about signal handlers sharing
+  New locking/refcounting for fs_struct
+  Take fs_struct handling to new file (fs/fs_struct.c)
+  Get rid of bumping fs_struct refcount in pivot_root(2)
+  Kill unsharing fs_struct in __set_personality()
+
+

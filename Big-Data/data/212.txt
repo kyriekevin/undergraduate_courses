@@ -1,0 +1,20 @@
+label: feature
+module: semaphore	
+age: 2017-07-12
+title: ipc/sem: drop __sem_free()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e2029dfeef7b09f08ac8572e8be3d4c624d1f79a
+lines: -7/+2
+category: ipc/sem.c
+
+The remaining users of __sem_free() can simply call kvfree() instead for
+better readability.
+
+[manfred@colorfullife.com: Rediff to keep rcu protection for security_sem_alloc()]
+Link: http://lkml.kernel.org/r/20170525185107.12869-20-manfred@colorfullife.com
+Signed-off-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

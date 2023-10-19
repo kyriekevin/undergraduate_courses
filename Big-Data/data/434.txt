@@ -1,0 +1,34 @@
+label: feature
+module: semaphore	
+age: 2013-05-26
+title: ipc/sem.c: Fix missing wakeups in do_smart_update_queue()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ab465df9dda42a997f7537c875127eeb6a88158c
+lines: -5/+22
+category: ipc/sem.c
+
+do_smart_update_queue() is called when an operation (semop,
+semctl(SETVAL), semctl(SETALL), ...) modified the array.  It must check
+which of the sleeping tasks can proceed.
+
+do_smart_update_queue() missed a few wakeups:
+ - if a sleeping complex op was completed, then all per-semaphore queues
+   must be scanned - not only those that were modified by *sops
+ - if a sleeping simple op proceeded, then the global queue must be
+   scanned again
+
+And:
+ - the test for "|sops == NULL) before scanning the global queue is not
+   required: If the global queue is empty, then it doesn't need to be
+   scanned - regardless of the reason for calling do_smart_update_queue()
+
+The patch is not optimized, i.e.  even completing a wait-for-zero
+operation causes a rescan.  This is done to keep the patch as simple as
+possible.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Acked-by: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Cc: Rik van Riel <riel@redhat.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

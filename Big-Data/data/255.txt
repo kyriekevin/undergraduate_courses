@@ -1,0 +1,11 @@
+label: performance access optimization
+module: shared memory	
+age: 2017-02-20
+title: mm: use helper for calling f_op->mmap()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f74ac01520c9f6d89bbc3c6931a72f757b742f86
+lines: -1/+1
+category: ipc/shm.c
+
+Signed-off-by: Miklos Szeredi <mszeredi@redhat.com>
+
+

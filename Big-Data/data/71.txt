@@ -1,0 +1,14 @@
+label: reliability annotation
+module: message queue	
+age: 2019-05-25
+title: mqueue: set ->user_ns before ->get_tree()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=709a643da8b8c5fc823e1870d8227ca0eeb51311
+lines: -4/+5
+category: ipc/mqueue.c
+
+... so that we could lift the capability checks into ->get_tree()
+caller
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

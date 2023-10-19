@@ -1,0 +1,30 @@
+label: bug errorCode missError
+consequence：error
+module: message queue	
+age: 2011-07-26
+title: ipc/mqueue.c: fix mq_open() return value
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d40dcdb0172a1ba853464983a059fb45e0aaf61a
+lines: -5/+7
+category: ipc/mqueue.c
+
+We return ENOMEM from mqueue_get_inode even when we have enough memory.
+Namely in case the system rlimit of mqueue was reached.  This error
+propagates to mq_queue and user sees the error unexpectedly.  So fix
+this up to properly return EMFILE as described in the manpage:
+
+	EMFILE The process already has the maximum number of files and
+	       message queues open.
+
+instead of:
+
+	ENOMEM Insufficient memory.
+
+With the previous patch we just switch to ERR_PTR/PTR_ERR/IS_ERR error
+handling here.
+
+Signed-off-by: Jiri Slaby <jslaby@suse.cz>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

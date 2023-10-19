@@ -1,0 +1,60 @@
+label: maintenance
+module: message queue	
+age: 2013-02-25
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=94f2f14234178f118545a0be60a6371ddeb229b7
+lines: -0/+1
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull user namespace and namespace infrastructure changes from Eric W Biederman:
+ "This set of changes starts with a few small enhnacements to the user
+  namespace.  reboot support, allowing more arbitrary mappings, and
+  support for mounting devpts, ramfs, tmpfs, and mqueuefs as just the
+  user namespace root.
+
+  I do my best to document that if you care about limiting your
+  unprivileged users that when you have the user namespace support
+  enabled you will need to enable memory control groups.
+
+  There is a minor bug fix to prevent overflowing the stack if someone
+  creates way too many user namespaces.
+
+  The bulk of the changes are a continuation of the kuid/kgid push down
+  work through the filesystems.  These changes make using uids and gids
+  typesafe which ensures that these filesystems are safe to use when
+  multiple user namespaces are in use.  The filesystems converted for
+  3.9 are ceph, 9p, afs, ocfs2, gfs2, ncpfs, nfs, nfsd, and cifs.  The
+  changes for these filesystems were a little more involved so I split
+  the changes into smaller hopefully obviously correct changes.
+
+  XFS is the only filesystem that remains.  I was hoping I could get
+  that in this release so that user namespace support would be enabled
+  with an allyesconfig or an allmodconfig but it looks like the xfs
+  changes need another couple of days before it they are ready."
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace: (93 commits)
+  cifs: Enable building with user namespaces enabled.
+  cifs: Convert struct cifs_ses to use a kuid_t and a kgid_t
+  cifs: Convert struct cifs_sb_info to use kuids and kgids
+  cifs: Modify struct smb_vol to use kuids and kgids
+  cifs: Convert struct cifsFileInfo to use a kuid
+  cifs: Convert struct cifs_fattr to use kuid and kgids
+  cifs: Convert struct tcon_link to use a kuid.
+  cifs: Modify struct cifs_unix_set_info_args to hold a kuid_t and a kgid_t
+  cifs: Convert from a kuid before printing current_fsuid
+  cifs: Use kuids and kgids SID to uid/gid mapping
+  cifs: Pass GLOBAL_ROOT_UID and GLOBAL_ROOT_GID to keyring_alloc
+  cifs: Use BUILD_BUG_ON to validate uids and gids are the same size
+  cifs: Override unmappable incoming uids and gids
+  nfsd: Enable building with user namespaces enabled.
+  nfsd: Properly compare and initialize kuids and kgids
+  nfsd: Store ex_anon_uid and ex_anon_gid as kuids and kgids
+  nfsd: Modify nfsd4_cb_sec to use kuids and kgids
+  nfsd: Handle kuids and kgids in the nfs4acl to posix_acl conversion
+  nfsd: Convert nfsxdr to use kuids and kgids
+  nfsd: Convert nfs3xdr to use kuids and kgids
+  ...
+
+

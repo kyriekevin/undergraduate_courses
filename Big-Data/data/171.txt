@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2018-01-05
+title: move dentry_open() calls up into do_mq_open()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=af4a5372e4166e8f13cb5cd36d936a0f56bc8418
+lines: -24/+20
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

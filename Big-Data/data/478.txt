@@ -1,0 +1,11 @@
+label: performance access optimization
+module: compatibility	
+age: 2013-03-03
+title: get rid of compat_sys_semctl() and friends in case of ARCH_WANT_OLD_COMPAT_IPC
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0e65a81b105a3f646793d46740ad90fa5c067986
+lines: -92/+66
+category: ipc/compat.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,15 @@
+label: performance store optimization
+module: shared memory	
+age: 2008-06-10
+title: shm: Remove silly double assignment
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c592713b3e124ce0719e6af4bc2520424c49cbae
+lines: -2/+0
+category: ipc/shm.c
+
+Found a silly double assignment of err is do_shmat.  Silly, but good to
+clean up the useless code.
+
+Signed-off-by: Neil Horman <nhorman@tuxdriver.com>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

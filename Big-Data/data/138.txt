@@ -1,0 +1,22 @@
+label: feature
+module: shared memory	other	
+age: 2018-04-02
+title: ipc: add shmctl syscall/compat_syscall wrappers
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c84d0791dfa7fe8f051082c09a558eb3e2d01931
+lines: -4/+16
+category: ipc/shm.c ipc/syscall.c ipc/util.h 
+
+Provide ksys_shmctl() and compat_ksys_shmctl() wrappers to avoid in-kernel
+calls to these syscalls. The ksys_ prefix denotes that these functions are
+meant as a drop-in replacement for the syscalls. In particular, they use
+the same calling convention as sys_shmctl() and compat_sys_shmctl().
+
+This patch is part of a series which removes in-kernel calls to syscalls.
+On this basis, the syscall entry path can be streamlined. For details, see
+http://lkml.kernel.org/r/20180325162527.GA17492@light.dominikbrodowski.net
+
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Dominik Brodowski <linux@dominikbrodowski.net>
+
+

@@ -1,0 +1,43 @@
+label: maintenance
+module: other	
+age: 2013-05-01
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=20b4fb485227404329e41ad15588afad3df23050
+lines: -3/+3
+category: ipc/msgutil.c ipc/namespace.c ipc/util.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull VFS updates from Al Viro,
+
+Misc cleanups all over the place, mainly wrt /proc interfaces (switch
+create_proc_entry to proc_create(), get rid of the deprecated
+create_proc_read_entry() in favor of using proc_create_data() and
+seq_file etc).
+
+7kloc removed.
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (204 commits)
+  don't bother with deferred freeing of fdtables
+  proc: Move non-public stuff from linux/proc_fs.h to fs/proc/internal.h
+  proc: Make the PROC_I() and PDE() macros internal to procfs
+  proc: Supply a function to remove a proc entry by PDE
+  take cgroup_open() and cpuset_open() to fs/proc/base.c
+  ppc: Clean up scanlog
+  ppc: Clean up rtas_flash driver somewhat
+  hostap: proc: Use remove_proc_subtree()
+  drm: proc: Use remove_proc_subtree()
+  drm: proc: Use minor->index to label things, not PDE->name
+  drm: Constify drm_proc_list[]
+  zoran: Don't print proc_dir_entry data in debug
+  reiserfs: Don't access the proc_dir_entry in r_open(), r_start() r_show()
+  proc: Supply an accessor for getting the data from a PDE's parent
+  airo: Use remove_proc_subtree()
+  rtl8192u: Don't need to save device proc dir PDE
+  rtl8187se: Use a dir under /proc/net/r8180/
+  proc: Add proc_mkdir_data()
+  proc: Move some bits from linux/proc_fs.h to linux/{of.h,signal.h,tty.h}
+  proc: Move PDE_NET() to fs/proc/proc_net.c
+  ...
+
+

@@ -1,0 +1,17 @@
+label: reliability error enhancement
+module: semaphore	
+age: 2005-12-24
+title: [PATCH] add missing memory barriers to ipc/sem.c
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6003a93e7bf6c02f33c02976ff364785d4273295
+lines: -0/+2
+category: ipc/sem.c
+
+Two smp_wmb() statements are missing in the sysv sem code: This could
+cause stack corruptions.
+
+The attached patch adds them.
+
+Signed-Off-By: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

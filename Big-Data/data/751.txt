@@ -1,0 +1,21 @@
+label: bug concurrency deadlock
+consequence：deadlock
+module: message queue	
+age: 2007-11-07
+title: [NETLINK]: Fix unicast timeouts
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c3d8d1e30cace31fed6186a4b8c6b1401836d89c
+lines: -2/+4
+category: ipc/mqueue.c
+
+Commit ed6dcf4a in the history.git tree broke netlink_unicast timeouts
+by moving the schedule_timeout() call to a new function that doesn't
+propagate the remaining timeout back to the caller. This means on each
+retry we start with the full timeout again.
+
+ipc/mqueue.c seems to actually want to wait indefinitely so this
+behaviour is retained.
+
+Signed-off-by: Patrick McHardy <kaber@trash.net>
+Signed-off-by: David S. Miller <davem@davemloft.net>
+
+

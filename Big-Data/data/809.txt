@@ -1,0 +1,26 @@
+label: reliability corruption defense
+module: message	
+age: 2006-11-04
+title: Revert unintentional "volatile" changes in ipc/msg.c
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=80491eb90c750fcd7d13830062f27ae9b7cc5f75
+lines: -1/+1
+category: ipc/msg.c
+
+Commit 5a06a363ef48444186f18095ae1b932dddbbfa89 ("[PATCH] ipc/msg.c:
+clean up coding style") breaks fakeroot on Alpha (variously hangs or
+oopses), according to a report by Falk Hueffner.
+
+The fact that the code seems to rely on compiler access ordering through
+the use of "volatile" is a pretty certain sign that the code has locking
+problems, and we should fix those properly and then remove the whole
+"volatile" entirely.
+
+But in the meantime, the movement of "volatile" was unintentional, and
+should be reverted.
+
+Cc: Falk Hueffner <falk@debian.org>
+Cc: Andrew Morton <akpm@osdl.org>
+Acked-by: Ingo Molnar <mingo@elte.hu>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

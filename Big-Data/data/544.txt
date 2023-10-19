@@ -1,0 +1,38 @@
+label: maintenance
+module: message queue	
+age: 2012-03-21
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e2a0883e4071237d09b604a342c28b96b44a04b3
+lines: -17/+7
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull vfs pile 1 from Al Viro:
+ "This is _not_ all; in particular, Miklos' and Jan's stuff is not there
+  yet."
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (64 commits)
+  ext4: initialization of ext4_li_mtx needs to be done earlier
+  debugfs-related mode_t whack-a-mole
+  hfsplus: add an ioctl to bless files
+  hfsplus: change finder_info to u32
+  hfsplus: initialise userflags
+  qnx4: new helper - try_extent()
+  qnx4: get rid of qnx4_bread/qnx4_getblk
+  take removal of PF_FORKNOEXEC to flush_old_exec()
+  trim includes in inode.c
+  um: uml_dup_mmap() relies on ->mmap_sem being held, but activate_mm() doesn't hold it
+  um: embed ->stub_pages[] into mmu_context
+  gadgetfs: list_for_each_safe() misuse
+  ocfs2: fix leaks on failure exits in module_init
+  ecryptfs: make register_filesystem() the last potential failure exit
+  ntfs: forgets to unregister sysctls on register_filesystem() failure
+  logfs: missing cleanup on register_filesystem() failure
+  jfs: mising cleanup on register_filesystem() failure
+  make configfs_pin_fs() return root dentry on success
+  configfs: configfs_create_dir() has parent dentry in dentry->d_parent
+  configfs: sanitize configfs_create()
+  ...
+
+

@@ -1,0 +1,11 @@
+label: performance access optimization
+module: shared memory	
+age: 2017-02-20
+title: vfs: use helper for calling f_op->fsync()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0eb8af4916a540c362a2950e5ab54eca32eb7d58
+lines: -1/+1
+category: ipc/shm.c
+
+Signed-off-by: Miklos Szeredi <mszeredi@redhat.com>
+
+

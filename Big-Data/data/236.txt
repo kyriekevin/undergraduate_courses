@@ -1,0 +1,30 @@
+label: bug semantic I/OTiming
+consequence：wrong
+module: other	
+age: 2017-05-05
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e579dde654fc2c6b0d3e4b77a9a4b2d2405c510e
+lines: -2/+0
+category: ipc/util.h
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull namespace updates from Eric Biederman:
+ "This is a set of small fixes that were mostly stumbled over during
+  more significant development. This proc fix and the fix to
+  posix-timers are the most significant of the lot.
+
+  There is a lot of good development going on but unfortunately it
+  didn't quite make the merge window"
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace:
+  proc: Fix unbalanced hard link numbers
+  signal: Make kill_proc_info static
+  rlimit: Properly call security_task_setrlimit
+  signal: Remove unused definition of sig_user_definied
+  ia64: Remove unused IA64_TASK_SIGHAND_OFFSET and IA64_SIGHAND_SIGLOCK_OFFSET
+  ipc: Remove unused declaration of recompute_msgmni
+  posix-timers: Correct sanity check in posix_cpu_nsleep
+  sysctl: Remove dead register_sysctl_root
+
+

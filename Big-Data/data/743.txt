@@ -1,0 +1,27 @@
+label: reliability error enhancement
+module: message	other	semaphore	shared memory	
+age: 2008-02-08
+title: IPC: consolidate sem_exit_ns(), msg_exit_ns() and shm_exit_ns()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=01b8b07a5d77d22e609267dcae74d15e3e9c5f13
+lines: -66/+46
+category: ipc/msg.c ipc/namespace.c ipc/sem.c ipc/shm.c 
+
+sem_exit_ns(), msg_exit_ns() and shm_exit_ns() are all called when an
+ipc_namespace is released to free all ipcs of each type.  But in fact, they
+do the same thing: they loop around all ipcs to free them individually by
+calling a specific routine.
+
+This patch proposes to consolidate this by introducing a common function,
+free_ipcs(), that do the job.  The specific routine to call on each
+individual ipcs is passed as parameter.  For this, these ipc-specific
+'free' routines are reworked to take a generic 'struct ipc_perm' as
+parameter.
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Cc: Cedric Le Goater <clg@fr.ibm.com>
+Cc: Pavel Emelyanov <xemul@openvz.org>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

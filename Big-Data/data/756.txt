@@ -1,0 +1,16 @@
+label: reliability error enhancement
+module: message	semaphore	shared memory	other	
+age: 2007-10-19
+title: ipc: remove unneeded parameters
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1b531f213661657d6e1c55cf5c97f649d630c227
+lines: -17/+12
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.h 
+
+Remvoe the unneeded parameters from ipc_checkid() and ipc_buildid()
+interfaces.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

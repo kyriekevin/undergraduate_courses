@@ -1,0 +1,18 @@
+label: maintenance
+module: message	semaphore	other	
+age: 2006-01-15
+title: correct email address of Manfred Spraul
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=624dffcbcf87b9c501b13256416a82487be962bc
+lines: -4/+4
+category: ipc/msg.c ipc/sem.c ipc/util.c ipc/util.h 
+
+I  tried to send the forcedeth maintainer an email, but it came back with:
+
+"The mail address manfreds@colorfullife.com is not read anymore.
+Please resent your mail to manfred@ instead of manfreds@."
+
+This patch fixes this.
+
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+
+

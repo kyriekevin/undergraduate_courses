@@ -1,0 +1,52 @@
+label: reliability robust
+module: other	
+age: 2013-11-13
+title: Merge branch 'akpm' (patches from Andrew Morton)
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=5cbb3d216e2041700231bcfc383ee5f8b7fc8b74
+lines: -15/+13
+category: ipc/msgutil.c ipc/util.c ipc/util.h 
+
+Merge first patch-bomb from Andrew Morton:
+ "Quite a lot of other stuff is banked up awaiting further
+  next->mainline merging, but this batch contains:
+
+   - Lots of random misc patches
+   - OCFS2
+   - Most of MM
+   - backlight updates
+   - lib/ updates
+   - printk updates
+   - checkpatch updates
+   - epoll tweaking
+   - rtc updates
+   - hfs
+   - hfsplus
+   - documentation
+   - procfs
+   - update gcov to gcc-4.7 format
+   - IPC"
+
+* emailed patches from Andrew Morton <akpm@linux-foundation.org>: (269 commits)
+  ipc, msg: fix message length check for negative values
+  ipc/util.c: remove unnecessary work pending test
+  devpts: plug the memory leak in kill_sb
+  ./Makefile: export initial ramdisk compression config option
+  init/Kconfig: add option to disable kernel compression
+  drivers: w1: make w1_slave::flags long to avoid memory corruption
+  drivers/w1/masters/ds1wm.cuse dev_get_platdata()
+  drivers/memstick/core/ms_block.c: fix unreachable state in h_msb_read_page()
+  drivers/memstick/core/mspro_block.c: fix attributes array allocation
+  drivers/pps/clients/pps-gpio.c: remove redundant of_match_ptr
+  kernel/panic.c: reduce 1 byte usage for print tainted buffer
+  gcov: reuse kbasename helper
+  kernel/gcov/fs.c: use pr_warn()
+  kernel/module.c: use pr_foo()
+  gcov: compile specific gcov implementation based on gcc version
+  gcov: add support for gcc 4.7 gcov format
+  gcov: move gcov structs definitions to a gcc version specific file
+  kernel/taskstats.c: return -ENOMEM when alloc memory fails in add_del_listener()
+  kernel/taskstats.c: add nla_nest_cancel() for failure processing between nla_nest_start() and nla_nest_end()
+  kernel/sysctl_binary.c: use scnprintf() instead of snprintf()
+  ...
+
+

@@ -1,0 +1,18 @@
+label: feature
+module: shared memory	
+age: 2009-05-22
+title: integrity: path_check update
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b9fc745db833bbf74b4988493b8cd902a84c9415
+lines: -2/+2
+category: ipc/shm.c
+
+- Add support in ima_path_check() for integrity checking without
+incrementing the counts. (Required for nfsd.)
+- rename and export opencount_get to ima_counts_get
+- replace ima_shm_check calls with ima_counts_get
+- export ima_path_check
+
+Signed-off-by: Mimi Zohar <zohar@us.ibm.com>
+Signed-off-by: James Morris <jmorris@namei.org>
+
+

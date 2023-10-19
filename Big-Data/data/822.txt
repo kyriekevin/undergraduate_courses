@@ -1,0 +1,23 @@
+label: performance access optimization
+module: message queue	
+age: 2006-09-27
+title: [PATCH] Really ignore kmem_cache_destroy return value
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1a1d92c10dd24bbdc28b3d6e2d03ec199dd3a65b
+lines: -4/+1
+category: ipc/mqueue.c
+
+* Rougly half of callers already do it by not checking return value
+* Code in drivers/acpi/osl.c does the following to be sure:
+
+	(void)kmem_cache_destroy(cache);
+
+* Those who check it printk something, however, slab_error already printed
+  the name of failed cache.
+* XFS BUGs on failed kmem_cache_destroy which is not the decision
+  low-level filesystem driver should make. Converted to ignore.
+
+Signed-off-by: Alexey Dobriyan <adobriyan@gmail.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2018-01-05
+title: do_mq_open(): move all work prior to dentry_open() into a helper
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=066cc813e94a344ae4482af310d324739955c3b5
+lines: -46/+31
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

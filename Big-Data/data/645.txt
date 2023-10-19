@@ -1,0 +1,20 @@
+label: feature
+module: other	
+age: 2009-06-18
+title: ipc: use __ARCH_WANT_IPC_PARSE_VERSION in ipc/util.h
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=31a985fbb18c1600955124a1efd2343efa867549
+lines: -1/+1
+category: ipc/util.h
+
+The definition of ipc_parse_version depends on
+__ARCH_WANT_IPC_PARSE_VERSION, but the header file declares it
+conditionally based on the architecture.
+
+Use the macro consistently to make it easier to add new architectures.
+
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,16 @@
+label: reliability corruption defense
+module: compatibility	
+age: 2007-07-06
+title: fix logic error in ipc compat semctl()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d57d973101e87b2e30ccfa899fe36c4b2e32d217
+lines: -1/+1
+category: ipc/compat.c
+
+When calling a semctl(IPC_STAT) without IPC_64 the check if the memory is
+unevaluated.  This patch fixes this.
+
+Signed-off-by: Alexander Graf <agraf@suse.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

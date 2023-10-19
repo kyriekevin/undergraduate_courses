@@ -1,0 +1,29 @@
+label: feature
+module: shared memory	
+age: 2007-06-16
+title: shm: fix the filename of hugetlb sysv shared memory
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9d66586f7723b73c5925c7c7819c260484627851
+lines: -3/+3
+category: ipc/shm.c
+
+Some user space tools need to identify SYSV shared memory when examining
+/proc/<pid>/maps.  To do so they look for a block device with major zero, a
+dentry named SYSV<sysv key>, and having the minor of the internal sysv
+shared memory kernel mount.
+
+To help these tools and to make it easier for people just browsing
+/proc/<pid>/maps this patch modifies hugetlb sysv shared memory to use the
+SYSV<key> dentry naming convention.
+
+User space tools will still have to be aware that hugetlb sysv shared
+memory lives on a different internal kernel mount and so has a different
+block device minor number from the rest of sysv shared memory.
+
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+Cc: "Serge E. Hallyn" <serge@hallyn.com>
+Cc: Albert Cahalan <acahalan@gmail.com>
+Cc: Badari Pulavarty <pbadari@us.ibm.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

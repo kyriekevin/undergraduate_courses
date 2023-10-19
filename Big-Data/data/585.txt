@@ -1,0 +1,52 @@
+label: bug semantic config
+consequence：wrong
+module: shared memory	
+age: 2010-10-27
+title: ipc/shm.c: add RSS and swap size information to /proc/sysvipc/shm
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b795218075a1e1183169abb66a90dcdcf30367f9
+lines: -21/+42
+category: ipc/shm.c
+
+The kernel currently provides no functionality to analyze the RSS and swap
+space usage of each individual sysvipc shared memory segment.
+
+This patch adds this info for each existing shm segment by extending the
+output of /proc/sysvipc/shm by two columns for RSS and swap.
+
+Since shmctl(SHM_INFO) already provides a similiar calculation (it
+currently sums up all RSS/swap info for all segments), I did split out a
+static function which is now used by the /proc/sysvipc/shm output and
+shmctl(SHM_INFO).
+
+SAP products (esp.  the SAP Netweaver ABAP Kernel) uses lots of big shared
+memory segments (we often have Linux systems with >= 16GB shm usage).
+Sometimes we get customer reports about "slow" system responses and while
+looking into their configurations we often find massive swapping activity
+on the system.  With this patch it's now easy to see from the command line
+if and which shm segments gets swapped out (and how much) and can more
+easily give recommendations for system tuning.  Without the patch it's
+currently not possible to do such shm analysis at all.
+
+Also...
+
+Add some spaces in front of the "size" field for 64bit kernels to get the
+columns correct if you cat the contents of the file.  In
+sysvipc_shm_proc_show() the kernel prints the size value in "SPEC_SIZE"
+format, which is defined like this:
+
+#if BITS_PER_LONG <= 32
+#define SIZE_SPEC "%10lu"
+#else
+#define SIZE_SPEC "%21lu"
+#endif
+
+So, if the header is not adjusted, the columns are not correctly aligned.
+I actually tested this on 32- and 64-bit and it seems correct now.
+
+Signed-off-by: Helge Deller <deller@gmx.de>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Acked-by: Hugh Dickins <hughd@google.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,13 @@
+label: feature
+module: message queue	
+age: 2007-10-21
+title: [PATCH] pass dentry to audit_inode()/audit_inode_child()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=5a190ae69766da9a34bf31200c5cea4c0667cf94
+lines: -4/+4
+category: ipc/mqueue.c
+
+makes caller simpler *and* allows to scan ancestors
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

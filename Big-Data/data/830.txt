@@ -1,0 +1,39 @@
+label: feature
+module: message	semaphore	shared memory	other	
+age: 2006-05-01
+title: [PATCH] Rework of IPC auditing
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=073115d6b29c7910feaa08241c6484637f5ca958
+lines: -6/+42
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c 
+
+1) The audit_ipc_perms() function has been split into two different
+functions:
+        - audit_ipc_obj()
+        - audit_ipc_set_perm()
+
+There's a key shift here...  The audit_ipc_obj() collects the uid, gid,
+mode, and SElinux context label of the current ipc object.  This
+audit_ipc_obj() hook is now found in several places.  Most notably, it
+is hooked in ipcperms(), which is called in various places around the
+ipc code permforming a MAC check.  Additionally there are several places
+where *checkid() is used to validate that an operation is being
+performed on a valid object while not necessarily having a nearby
+ipcperms() call.  In these locations, audit_ipc_obj() is called to
+ensure that the information is captured by the audit system.
+
+The audit_set_new_perm() function is called any time the permissions on
+the ipc object changes.  In this case, the NEW permissions are recorded
+(and note that an audit_ipc_obj() call exists just a few lines before
+each instance).
+
+2) Support for an AUDIT_IPC_SET_PERM audit message type.  This allows
+for separate auxiliary audit records for normal operations on an IPC
+object and permissions changes.  Note that the same struct
+audit_aux_data_ipcctl is used and populated, however there are separate
+audit_log_format statements based on the type of the message.  Finally,
+the AUDIT_IPC block of code in audit_free_aux() was extended to handle
+aux messages of this new type.  No more mem leaks I hope ;-)
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

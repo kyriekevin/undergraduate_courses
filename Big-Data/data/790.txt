@@ -1,0 +1,19 @@
+label: maintenance
+module: other	
+age: 2007-03-27
+title: [PATCH] ipcns: fix !CONFIG_IPC_NS behavior
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a28d193cbf01375974683c13e99a52ef489e5eb0
+lines: -0/+7
+category: ipc/util.c
+
+When CONFIG_IPC_NS=n, clone(CLONE_NEWIPC) claims success, but did not actually
+clone a new IPC namespace.
+
+Fix this to return -EINVAL so the caller knows his request was denied.
+
+Signed-off-by: Serge E. Hallyn <serue@us.ibm.com>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

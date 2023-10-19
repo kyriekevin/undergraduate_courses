@@ -1,0 +1,22 @@
+label: feature
+module: message	semaphore	shared memory	other	
+age: 2007-10-19
+title: IPC: fix error case when idr-cache is empty in ipcget()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=283bb7fada7e33a759d8fc9bd7a44532e4ad420e
+lines: -11/+18
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c 
+
+With the use of idr to store the ipc, the case where the idr cache is
+empty, when idr_get_new is called (this may happen even if we call
+idr_pre_get() before), is not well handled: it lets
+semget()/shmget()/msgget() return ENOSPC when this cache is empty, what 1.
+does not reflect the facts and 2.  does not conform to the man(s).
+
+This patch fixes this by retrying the whole process of allocation in this case.
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

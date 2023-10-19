@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2019-05-01
+title: mqueue: switch to ->free_inode()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=015d7956183b3943a1e101fa9911e1b5333bdc4b
+lines: -8/+2
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

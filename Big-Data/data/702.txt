@@ -1,0 +1,53 @@
+label: performance other
+module: other	
+age: 2008-07-25
+title: ipc: do not use a negative value to re-enable msgmni automatic recomputing
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9eefe520c814f6f62c5d36a2ddcd3fb99dfdb30e
+lines: -18/+74
+category: ipc/ipc_sysctl.c ipc/ipcns_notifier.c 
+
+This patch proposes an alternative to the "magical
+positive-versus-negative number trick" Andrew complained about last week
+in http://lkml.org/lkml/2008/6/24/418.
+
+This had been introduced with the patches that scale msgmni to the amount
+of lowmem.  With these patches, msgmni has a registered notification
+routine that recomputes msgmni value upon memory add/remove or ipc
+namespace creation/ removal.
+
+When msgmni is changed from user space (i.e.  value written to the proc
+file), that notification routine is unregistered, and the way to make it
+registered back is to write a negative value into the proc file.  This is
+the "magical positive-versus-negative number trick".
+
+To fix this, a new proc file is introduced: /proc/sys/kernel/auto_msgmni.
+This file acts as ON/OFF for msgmni automatic recomputing.
+
+With this patch, the process is the following:
+1) kernel boots in "automatic recomputing mode"
+   /proc/sys/kernel/msgmni contains the value that has been computed (depends
+                           on lowmem)
+   /proc/sys/kernel/automatic_msgmni contains "1"
+
+2) echo <val> > /proc/sys/kernel/msgmni
+   . sets msg_ctlmni to <val>
+   . de-activates automatic recomputing (i.e. if, say, some memory is added
+     msgmni won't be recomputed anymore)
+   . /proc/sys/kernel/automatic_msgmni now contains "0"
+
+3) echo "0" > /proc/sys/kernel/automatic_msgmni
+   . de-activates msgmni automatic recomputing
+     this has the same effect as 2) except that msg_ctlmni's value stays
+     blocked at its current value)
+
+3) echo "1" > /proc/sys/kernel/automatic_msgmni
+   . recomputes msgmni's value based on the current available memory size
+     and number of ipc namespaces
+   . re-activates automatic recomputing for msgmni.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Solofo Ramangalahy <Solofo.Ramangalahy@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

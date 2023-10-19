@@ -1,0 +1,8 @@
+label: performance access optimization
+module: message queue	
+age: 2005-11-07
+title: Merge master.kernel.org:/pub/scm/linux/kernel/git/bunk/trivial
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=5b2f7ffcb734d3046144dfbd5ac6d76254a9e522
+lines: -1/+1
+category: ipc/mqueue.c
+

@@ -1,0 +1,16 @@
+label: performance other
+module: message	
+age: 2006-10-02
+title: [PATCH] IPC namespace - msg
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1e78693738b71da037d0df340f38e919e8227c2b
+lines: -51/+106
+category: ipc/msg.c
+
+IPC namespace support for IPC msg code.
+
+Signed-off-by: Pavel Emelianiov <xemul@openvz.org>
+Signed-off-by: Kirill Korotaev <dev@openvz.org>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

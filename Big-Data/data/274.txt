@@ -1,0 +1,28 @@
+label: reliability robust
+module: message queue	
+age: 2016-10-10
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=101105b1717f536ca741f940033996302d4ef191
+lines: -9/+9
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull more vfs updates from Al Viro:
+ ">rename2() work from Miklos + current_time() from Deepa"
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs:
+  fs: Replace current_fs_time() with current_time()
+  fs: Replace CURRENT_TIME_SEC with current_time() for inode timestamps
+  fs: Replace CURRENT_TIME with current_time() for inode timestamps
+  fs: proc: Delete inode time initializations in proc_alloc_inode()
+  vfs: Add current_time() api
+  vfs: add note about i_op->rename changes to porting
+  fs: rename "rename2" i_op to "rename"
+  vfs: remove unused i_op->rename
+  fs: make remaining filesystems use .rename2
+  libfs: support RENAME_NOREPLACE in simple_rename()
+  fs: support RENAME_NOREPLACE for local filesystems
+  ncpfs: fix unused variable warning
+
+

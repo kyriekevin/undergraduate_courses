@@ -1,0 +1,51 @@
+label: maintenance
+module: other	
+age: 2006-12-13
+title: [PATCH] getting rid of all casts of k[cmz]alloc() calls
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=5cbded585d129d0226cb48ac4202b253c781be26
+lines: -2/+2
+category: ipc/msgutil.c
+
+Run this:
+
+	#!/bin/sh
+	for f in $(grep -Erl "\([^\)]*\) *k[cmz]alloc" *) ; do
+	  echo "De-casting $f..."
+	  perl -pi -e "s/ ?= ?\([^\)]*\) *(k[cmz]alloc) *\(/ = \1\(/" $f
+	done
+
+And then go through and reinstate those cases where code is casting pointers
+to non-pointers.
+
+And then drop a few hunks which conflicted with outstanding work.
+
+Cc: Russell King <rmk@arm.linux.org.uk>, Ian Molton <spyro@f2s.com>
+Cc: Mikael Starvik <starvik@axis.com>
+Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: Roman Zippel <zippel@linux-m68k.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Ralf Baechle <ralf@linux-mips.org>
+Cc: Paul Mackerras <paulus@samba.org>
+Cc: Kyle McMartin <kyle@mcmartin.ca>
+Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc: Martin Schwidefsky <schwidefsky@de.ibm.com>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Jeff Dike <jdike@addtoit.com>
+Cc: Greg KH <greg@kroah.com>
+Cc: Jens Axboe <jens.axboe@oracle.com>
+Cc: Paul Fulghum <paulkf@microgate.com>
+Cc: Alan Cox <alan@lxorguk.ukuu.org.uk>
+Cc: Karsten Keil <kkeil@suse.de>
+Cc: Mauro Carvalho Chehab <mchehab@infradead.org>
+Cc: Jeff Garzik <jeff@garzik.org>
+Cc: James Bottomley <James.Bottomley@steeleye.com>
+Cc: Ian Kent <raven@themaw.net>
+Cc: Steven French <sfrench@us.ibm.com>
+Cc: David Woodhouse <dwmw2@infradead.org>
+Cc: Neil Brown <neilb@cse.unsw.edu.au>
+Cc: Jaroslav Kysela <perex@suse.cz>
+Cc: Takashi Iwai <tiwai@suse.de>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

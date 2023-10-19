@@ -1,0 +1,11 @@
+label: performance access optimization
+module: other	
+age: 2014-12-04
+title: copy address of proc_ns_ops into ns_common
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=33c429405a2c8d9e42afb9fee88a63cfb2de1e98
+lines: -0/+4
+category: ipc/msgutil.c ipc/namespace.c 
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

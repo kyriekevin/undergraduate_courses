@@ -1,0 +1,26 @@
+label: bug semantic logic
+consequence：wrong
+module: message	
+age: 2008-04-29
+title: IPC/message queues: introduce msgctl_down
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a0d092fc2df845a43cc4847836818f49331d0a5c
+lines: -73/+89
+category: ipc/msg.c
+
+Currently, sys_msgctl is not easy to read.
+
+This patch tries to improve that by introducing the msgctl_down function to
+handle all commands requiring the rwmutex to be taken in write mode (ie
+IPC_SET and IPC_RMID for now).  It is the equivalent function of semctl_down
+for message queues.
+
+This greatly changes the readability of sys_msgctl and also harmonizes the way
+these commands are handled among all IPCs.
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,16 @@
+label: reliability corruption defense
+module: message queue	
+age: 2005-09-27
+title: [PATCH] Make POSIX message queue sys_mq_open() honor umask
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=59175839783287d3b03f18460bb3539c69300837
+lines: -0/+1
+category: ipc/mqueue.c
+
+We ignored umask when creating new queues via mq_open (when creating
+with open() on mqueue fs it is ok of course).  According to the
+specification this a bug.  This trivial patch fixes this.
+
+Signed-off-by: Krzysztof Benedyczak <golbi@mat.uni.torun.pl>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

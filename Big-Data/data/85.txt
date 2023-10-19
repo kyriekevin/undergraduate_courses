@@ -1,0 +1,34 @@
+label: reliability annotation
+module: message queue	other	
+age: 2019-02-28
+title: ipc: Convert mqueue fs to fs_context
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=935c6912b198f60a812b7dada21027b5aac7c461
+lines: -23/+73
+category: ipc/mqueue.c ipc/namespace.c 
+
+Convert the mqueue filesystem to use the filesystem context stuff.
+
+Notes:
+
+ (1) The relevant ipc namespace is selected in when the context is
+     initialised (and it defaults to the current task's ipc namespace).
+     The caller can override this before calling vfs_get_tree().
+
+ (2) Rather than simply calling kern_mount_data(), mq_init_ns() and
+     mq_internal_mount() create a context, adjust it and then do the rest
+     of the mount procedure.
+
+ (3) The lazy mqueue mounting on creation of a new namespace is retained
+     from a previous patch, but the avoidance of sget() if no superblock
+     yet exists is reverted and the superblock is again keyed on the
+     namespace pointer.
+
+     Yes, there was a performance gain in not searching the superblock
+     hash, but it's only paid once per ipc namespace - and only if someone
+     uses mqueue within that namespace, so I'm not sure it's worth it,
+     especially as calling sget() allows avoidance of recursion.
+
+Signed-off-by: David Howells <dhowells@redhat.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

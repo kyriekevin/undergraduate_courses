@@ -1,0 +1,18 @@
+label: reliability debug
+module: semaphore	shared memory	
+age: 2017-11-17
+title: sysvipc: duplicate lock comments wrt ipc_addid()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=39c96a1b96a5991b1c9e79b85a8d74ef93b36026
+lines: -0/+2
+category: ipc/sem.c ipc/shm.c 
+
+The comment in msgqueues when using ipc_addid() is quite useful imo.
+Duplicate it for shm and semaphores.
+
+Link: http://lkml.kernel.org/r/20170831172049.14576-3-dave@stgolabs.net
+Signed-off-by: Davidlohr Bueso <dbueso@suse.de>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

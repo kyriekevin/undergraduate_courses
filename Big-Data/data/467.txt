@@ -1,0 +1,14 @@
+label: performance access optimization
+module: other	
+age: 2013-05-01
+title: ipc: clamp with min()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3d8fa456d5ed22ce8db085a89a037b87568b2b64
+lines: -22/+8
+category: ipc/msgutil.c
+
+Signed-off-by: Peter Hurley <peter@hurleysoftware.com>
+Acked-by: Stanislav Kinsbursky <skinsbursky@parallels.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

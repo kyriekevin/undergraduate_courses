@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2012-01-03
+title: mqueue: propagate umode_t
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1b9d5ff7644ddf2723c9205f4726c95ec01bf033
+lines: -1/+1
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

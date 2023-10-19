@@ -1,0 +1,17 @@
+label: feature
+module: other	
+age: 2013-08-30
+title: userns:  Kill nsown_capable it makes the wrong thing easy
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c7b96acf1456ef127fef461fcfedb54b81fecfbb
+lines: -1/+1
+category: ipc/namespace.c
+
+nsown_capable is a special case of ns_capable essentially for just CAP_SETUID and
+CAP_SETGID.  For the existing users it doesn't noticably simplify things and
+from the suggested patches I have seen it encourages people to do the wrong
+thing.  So remove nsown_capable.
+
+Acked-by: Serge Hallyn <serge.hallyn@canonical.com>
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

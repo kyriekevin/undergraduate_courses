@@ -1,0 +1,39 @@
+label: reliability corruption defense
+module: message queue	
+age: 2019-07-19
+title: Merge branch 'work.mount0' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=933a90bf4f3505f8ec83bda21a3c7d70d7c2b426
+lines: -4/+5
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull vfs mount updates from Al Viro:
+ "The first part of mount updates.
+
+  Convert filesystems to use the new mount API"
+
+* 'work.mount0' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (63 commits)
+  mnt_init(): call shmem_init() unconditionally
+  constify ksys_mount() string arguments
+  don't bother with registering rootfs
+  init_rootfs(): don't bother with init_ramfs_fs()
+  vfs: Convert smackfs to use the new mount API
+  vfs: Convert selinuxfs to use the new mount API
+  vfs: Convert securityfs to use the new mount API
+  vfs: Convert apparmorfs to use the new mount API
+  vfs: Convert openpromfs to use the new mount API
+  vfs: Convert xenfs to use the new mount API
+  vfs: Convert gadgetfs to use the new mount API
+  vfs: Convert oprofilefs to use the new mount API
+  vfs: Convert ibmasmfs to use the new mount API
+  vfs: Convert qib_fs/ipathfs to use the new mount API
+  vfs: Convert efivarfs to use the new mount API
+  vfs: Convert configfs to use the new mount API
+  vfs: Convert binfmt_misc to use the new mount API
+  convenience helper: get_tree_single()
+  convenience helper get_tree_nodev()
+  vfs: Kill sget_userns()
+  ...
+
+

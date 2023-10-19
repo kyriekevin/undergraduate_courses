@@ -1,0 +1,23 @@
+label: performance store optimization
+module: other	
+age: 2008-04-29
+title: ipc: do not recompute msgmni anymore if explicitly set by user
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=91cfb2b4b57816de0c96de417b3238249f0b125f
+lines: -2/+41
+category: ipc/ipc_sysctl.c
+
+Make msgmni not recomputed anymore upon ipc namespace creation / removal or
+memory add/remove, as soon as it has been set from userland.
+
+As soon as msgmni is explicitly set via procfs or sysctl(), the associated
+callback routine is unregistered from the ipc namespace notifier chain.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Yasunori Goto <y-goto@jp.fujitsu.com>
+Cc: Matt Helsley <matthltc@us.ibm.com>
+Cc: Mingming Cao <cmm@us.ibm.com>
+Cc: Pierre Peiffer <pierre.peiffer@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

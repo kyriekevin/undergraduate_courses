@@ -1,0 +1,18 @@
+label: maintenance
+module: compatibility	
+age: 2005-07-07
+title: [PATCH] put_compat_shminfo() warning fix
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=214a627cb401284f87cca7e1510a0f4284f1a17c
+lines: -0/+1
+category: ipc/compat.c
+
+GCC 4 complains because the function put_compat_shminfo() can't get to its
+return statement if there is no error...  If the function does not return
+-EFAULT, it doesn't return anything at all.  Looks like a typo.
+
+Signed-off-by: Jesse Millan <jessem@cs.pdx.edu>
+Signed-off-by: Domen Puncer <domen@coderock.org>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

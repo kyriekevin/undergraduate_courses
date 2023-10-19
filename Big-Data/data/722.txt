@@ -1,0 +1,25 @@
+label: reliability robust
+module: message	semaphore	shared memory	
+age: 2008-04-29
+title: IPC: get rid of the use *_setbuf structure.
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=016d7132f246a05e6e34ccba157fa278a96c45ae
+lines: -86/+46
+category: ipc/msg.c ipc/sem.c ipc/shm.c 
+
+All IPCs make use of an intermetiate *_setbuf structure to handle the IPC_SET
+command.  This is not really needed and, moreover, it complicates a little bit
+the code.
+
+This patch gets rid of the use of it and uses directly the semid64_ds/
+msgid64_ds/shmid64_ds structure.
+
+In addition of removing one struture declaration, it also simplifies and
+improves a little bit the common 64-bits path.
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,45 @@
+label: feature
+module: message queue	
+age: 2013-11-13
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9bc9ccd7db1c9f043f75380b5a5b94912046a60e
+lines: -1/+1
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull vfs updates from Al Viro:
+ "All kinds of stuff this time around; some more notable parts:
+
+   - RCU'd vfsmounts handling
+   - new primitives for coredump handling
+   - files_lock is gone
+   - Bruce's delegations handling series
+   - exportfs fixes
+
+  plus misc stuff all over the place"
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (101 commits)
+  ecryptfs: ->f_op is never NULL
+  locks: break delegations on any attribute modification
+  locks: break delegations on link
+  locks: break delegations on rename
+  locks: helper functions for delegation breaking
+  locks: break delegations on unlink
+  namei: minor vfs_unlink cleanup
+  locks: implement delegations
+  locks: introduce new FL_DELEG lock flag
+  vfs: take i_mutex on renamed file
+  vfs: rename I_MUTEX_QUOTA now that it's not used for quotas
+  vfs: don't use PARENT/CHILD lock classes for non-directories
+  vfs: pull ext4's double-i_mutex-locking into common code
+  exportfs: fix quadratic behavior in filehandle lookup
+  exportfs: better variable name
+  exportfs: move most of reconnect_path to helper function
+  exportfs: eliminate unused "noprogress" counter
+  exportfs: stop retrying once we race with rename/remove
+  exportfs: clear DISCONNECTED on all parents sooner
+  exportfs: more detailed comment for path_reconnect
+  ...
+
+

@@ -1,0 +1,42 @@
+label: performance store optimization
+module: message	semaphore	shared memory	other	
+age: 2021-07-02
+title: Merge branch 'akpm' (patches from Andrew)
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=71bd9341011f626d692aabe024f099820f02c497
+lines: -21/+63
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+Merge more updates from Andrew Morton:
+ "190 patches.
+
+  Subsystems affected by this patch series: mm (hugetlb, userfaultfd,
+  vmscan, kconfig, proc, z3fold, zbud, ras, mempolicy, memblock,
+  migration, thp, nommu, kconfig, madvise, memory-hotplug, zswap,
+  zsmalloc, zram, cleanups, kfence, and hmm), procfs, sysctl, misc,
+  core-kernel, lib, lz4, checkpatch, init, kprobes, nilfs2, hfs,
+  signals, exec, kcov, selftests, compress/decompress, and ipc"
+
+* emailed patches from Andrew Morton <akpm@linux-foundation.org>: (190 commits)
+  ipc/util.c: use binary search for max_idx
+  ipc/sem.c: use READ_ONCE()/WRITE_ONCE() for use_global_lock
+  ipc: use kmalloc for msg_queue and shmid_kernel
+  ipc sem: use kvmalloc for sem_undo allocation
+  lib/decompressors: remove set but not used variabled 'level'
+  selftests/vm/pkeys: exercise x86 XSAVE init state
+  selftests/vm/pkeys: refill shadow register after implicit kernel write
+  selftests/vm/pkeys: handle negative sys_pkey_alloc() return code
+  selftests/vm/pkeys: fix alloc_random_pkey() to make it really, really random
+  kcov: add __no_sanitize_coverage to fix noinstr for all architectures
+  exec: remove checks in __register_bimfmt()
+  x86: signal: don't do sas_ss_reset() until we are certain that sigframe won't be abandoned
+  hfsplus: report create_date to kstat.btime
+  hfsplus: remove unnecessary oom message
+  nilfs2: remove redundant continue statement in a while-loop
+  kprobes: remove duplicated strong free_insn_page in x86 and s390
+  init: print out unknown kernel parameters
+  checkpatch: do not complain about positive return values starting with EPOLL
+  checkpatch: improve the indented label test
+  checkpatch: scripts/spdxcheck.py now requires python3
+  ...
+
+

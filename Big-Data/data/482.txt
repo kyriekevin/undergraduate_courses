@@ -1,0 +1,47 @@
+label: reliability error enhancement
+module: message queue	shared memory	
+age: 2013-02-26
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d895cb1af15c04c522a25c79cc429076987c089b
+lines: -13/+14
+category: ipc/mqueue.c ipc/shm.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull vfs pile (part one) from Al Viro:
+ "Assorted stuff - cleaning namei.c up a bit, fixing ->d_name/->d_parent
+  locking violations, etc.
+
+  The most visible changes here are death of FS_REVAL_DOT (replaced with
+  "has ->d_weak_revalidate()") and a new helper getting from struct file
+  to inode.  Some bits of preparation to xattr method interface changes.
+
+  Misc patches by various people sent this cycle *and* ocfs2 fixes from
+  several cycles ago that should've been upstream right then.
+
+  PS: the next vfs pile will be xattr stuff."
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (46 commits)
+  saner proc_get_inode() calling conventions
+  proc: avoid extra pde_put() in proc_fill_super()
+  fs: change return values from -EACCES to -EPERM
+  fs/exec.c: make bprm_mm_init() static
+  ocfs2/dlm: use GFP_ATOMIC inside a spin_lock
+  ocfs2: fix possible use-after-free with AIO
+  ocfs2: Fix oops in ocfs2_fast_symlink_readpage() code path
+  get_empty_filp()/alloc_file() leave both ->f_pos and ->f_version zero
+  target: writev() on single-element vector is pointless
+  export kernel_write(), convert open-coded instances
+  fs: encode_fh: return FILEID_INVALID if invalid fid_type
+  kill f_vfsmnt
+  vfs: kill FS_REVAL_DOT by adding a d_weak_revalidate dentry op
+  nfsd: handle vfs_getattr errors in acl protocol
+  switch vfs_getattr() to struct path
+  default SET_PERSONALITY() in linux/elf.h
+  ceph: prepopulate inodes only when request is aborted
+  d_hash_and_lookup(): export, switch open-coded instances
+  9p: switch v9fs_set_create_acl() to inode+fid, do it before d_instantiate()
+  9p: split dropping the acls from v9fs_set_create_acl()
+  ...
+
+

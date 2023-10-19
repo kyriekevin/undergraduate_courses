@@ -1,0 +1,28 @@
+label: performance store optimization
+module: other	
+age: 2008-04-29
+title: ipc: recompute msgmni on ipc namespace creation/removal
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e2c284d8a87f95df9b47c6a13168a844ca7c03e9
+lines: -2/+15
+category: ipc/Makefile ipc/ipcns_notifier.c ipc/namespace.c 
+
+Introduce a notification mechanism that aims at recomputing msgmni each time
+an ipc namespace is created or removed.
+
+The ipc namespace notifier chain already defined for memory hotplug management
+is used for that purpose too.
+
+Each time a new ipc namespace is allocated or an existing ipc namespace is
+removed, the ipcns notifier chain is notified.  The callback routine for each
+registered ipc namespace is then activated in order to recompute msgmni for
+that namespace.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Yasunori Goto <y-goto@jp.fujitsu.com>
+Cc: Matt Helsley <matthltc@us.ibm.com>
+Cc: Mingming Cao <cmm@us.ibm.com>
+Cc: Pierre Peiffer <pierre.peiffer@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,16 @@
+label: reliability annotation
+module: compatibility	message	semaphore	shared memory	
+age: 2014-06-06
+title: ipc, kernel: use Linux headers
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7153e402731c3e72331633d1ac15a654768aecac
+lines: -5/+5
+category: ipc/compat.c ipc/compat_mq.c ipc/msg.c ipc/sem.c ipc/shm.c 
+
+Use #include <linux/uaccess.h> instead of <asm/uaccess.h>
+Use #include <linux/types.h> instead of <asm/types.h>
+
+Signed-off-by: Paul McQuade <paulmcquad@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

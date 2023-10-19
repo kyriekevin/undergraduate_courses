@@ -1,0 +1,20 @@
+label: bug errorCode wrongError
+consequence：error
+module: message	semaphore	shared memory	other	
+age: 2015-04-15
+title: ipc: remove use of seq_printf return value
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7f032d6ef6154868a2a5d5f6b2c3f8587292196c
+lines: -50/+58
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c 
+
+The seq_printf return value, because it's frequently misused,
+will eventually be converted to void.
+
+See: commit 1f33c41c03da ("seq_file: Rename seq_overflow() to
+     seq_has_overflowed() and make public")
+
+Signed-off-by: Joe Perches <joe@perches.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

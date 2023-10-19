@@ -1,0 +1,64 @@
+label: bug semantic config
+consequence：wrong
+module: shared memory	
+age: 2009-09-22
+title: hugetlbfs: allow the creation of files suitable for MAP_PRIVATE on the vfs ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6bfde05bf5c9682e255c6a2c669dc80f91af6296
+lines: -1/+1
+category: ipc/shm.c
+
+internal mount
+
+This patchset adds a flag to mmap that allows the user to request that an
+anonymous mapping be backed with huge pages.  This mapping will borrow
+functionality from the huge page shm code to create a file on the kernel
+internal mount and use it to approximate an anonymous mapping.  The
+MAP_HUGETLB flag is a modifier to MAP_ANONYMOUS and will not work without
+both flags being preset.
+
+A new flag is necessary because there is no other way to hook into huge
+pages without creating a file on a hugetlbfs mount which wouldn't be
+MAP_ANONYMOUS.
+
+To userspace, this mapping will behave just like an anonymous mapping
+because the file is not accessible outside of the kernel.
+
+This patchset is meant to simplify the programming model.  Presently there
+is a large chunk of boiler platecode, contained in libhugetlbfs, required
+to create private, hugepage backed mappings.  This patch set would allow
+use of hugepages without linking to libhugetlbfs or having hugetblfs
+mounted.
+
+Unification of the VM code would provide these same benefits, but it has
+been resisted each time that it has been suggested for several reasons: it
+would break PAGE_SIZE assumptions across the kernel, it makes page-table
+abstractions really expensive, and it does not provide any benefit on
+architectures that do not support huge pages, incurring fast path
+penalties without providing any benefit on these architectures.
+
+This patch:
+
+There are two means of creating mappings backed by huge pages:
+
+        1. mmap() a file created on hugetlbfs
+        2. Use shm which creates a file on an internal mount which essentially
+           maps it MAP_SHARED
+
+The internal mount is only used for shared mappings but there is very
+little that stops it being used for private mappings. This patch extends
+hugetlbfs_file_setup() to deal with the creation of files that will be
+mapped MAP_PRIVATE on the internal hugetlbfs mount. This extended API is
+used in a subsequent patch to implement the MAP_HUGETLB mmap() flag.
+
+Signed-off-by: Eric Munson <ebmunson@us.ibm.com>
+Acked-by: David Rientjes <rientjes@google.com>
+Cc: Mel Gorman <mel@csn.ul.ie>
+Cc: Adam Litke <agl@us.ibm.com>
+Cc: David Gibson <david@gibson.dropbear.id.au>
+Cc: Lee Schermerhorn <lee.schermerhorn@hp.com>
+Cc: Nick Piggin <nickpiggin@yahoo.com.au>
+Cc: Hugh Dickins <hugh.dickins@tiscali.co.uk>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

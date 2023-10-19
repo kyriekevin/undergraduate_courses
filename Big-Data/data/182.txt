@@ -1,0 +1,12 @@
+label: performance access optimization
+module: message	semaphore	shared memory	other	
+age: 2017-10-11
+title: fix address space warnings in ipc/
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6aa211e8ce6916d8a0df88b4fbc790e9c78f5d9d
+lines: -7/+7
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/syscall.c 
+
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,29 @@
+label: bug memory resourceLeak
+consequence：wrong
+module: shared memory	
+age: 2009-02-06
+title: Integrity: IMA file free imbalance
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1df9f0a73178718969ae47d813b8e7aab2cf073c
+lines: -0/+3
+category: ipc/shm.c
+
+The number of calls to ima_path_check()/ima_file_free()
+should be balanced.  An extra call to fput(), indicates
+the file could have been accessed without first being
+measured.
+
+Although f_count is incremented/decremented in places other
+than fget/fput, like fget_light/fput_light and get_file, the
+current task must already hold a file refcnt.  The call to
+__fput() is delayed until the refcnt becomes 0, resulting
+in ima_file_free() flagging any changes.
+
+- add hook to increment opencount for IPC shared memory(SYSV),
+  shmat files, and /dev/zero
+- moved NULL iint test in opencount_get()
+
+Signed-off-by: Mimi Zohar <zohar@us.ibm.com>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Signed-off-by: James Morris <jmorris@namei.org>
+
+

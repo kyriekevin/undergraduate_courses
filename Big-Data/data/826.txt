@@ -1,0 +1,16 @@
+label: bug semantic generic
+consequence：wrong
+module: shared memory	
+age: 2006-06-23
+title: [PATCH] remove unused o_flags from do_shmat
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=185606fc6a120dbebffa6d06a559c20ec2b20034
+lines: -3/+0
+category: ipc/shm.c
+
+Remove the unused variable o_flags from do_shmat.
+
+Signed-off-by: Hugh Dickins <hugh@veritas.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

@@ -1,0 +1,31 @@
+label: performance store optimization
+module: message queue	
+age: 2010-05-19
+title: Merge branch 'timers-for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=164d44fd92e79d5bce54d0d62df9f856f7b23925
+lines: -49/+25
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/tip/linux-2.6-tip
+
+* 'timers-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/linux-2.6-tip:
+  clocksource: Add clocksource_register_hz/khz interface
+  posix-cpu-timers: Optimize run_posix_cpu_timers()
+  time: Remove xtime_cache
+  mqueue: Convert message queue timeout to use hrtimers
+  hrtimers: Provide schedule_hrtimeout for CLOCK_REALTIME
+  timers: Introduce the concept of timer slack for legacy timers
+  ntp: Remove tickadj
+  ntp: Make time_adjust static
+  time: Add xtime, wall_to_monotonic to feature-removal-schedule
+  timer: Try to survive timer callback preempt_count leak
+  timer: Split out timer function call
+  timer: Print function name for timer callbacks modifying preemption count
+  time: Clean up warp_clock()
+  cpu-timers: Avoid iterating over all threads in fastpath_timer_check()
+  cpu-timers: Change SIGEV_NONE timer implementation
+  cpu-timers: Return correct previous timer reload value
+  cpu-timers: Cleanup arm_timer()
+  cpu-timers: Simplify RLIMIT_CPU handling
+
+

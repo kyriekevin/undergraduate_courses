@@ -1,0 +1,24 @@
+label: bug memory bufOverflow
+consequence：corruption
+module: shared memory	
+age: 2014-06-06
+title: ipc/shm.c: check for integer overflow during shmget.
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1376327ce1f790070ec7128b285e2d8965e760a5
+lines: -0/+3
+category: ipc/shm.c
+
+SHMMAX is the upper limit for the size of a shared memory segment, counted
+in bytes.  The actual allocation is that size, rounded up to the next full
+page.
+
+Add a check that prevents the creation of segments where the rounded up
+size causes an integer overflow.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Acked-by: Davidlohr Bueso <davidlohr@hp.com>
+Acked-by: KOSAKI Motohiro <kosaki.motohiro@jp.fujitsu.com>
+Acked-by: Michael Kerrisk <mtk.manpages@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

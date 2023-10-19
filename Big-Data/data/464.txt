@@ -1,0 +1,14 @@
+label: performance access optimization
+module: other	
+age: 2013-05-01
+title: ipc: set EFAULT as default error in load_msg()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2b3097a294b6daaf390010de14ca50bfccbc6fb6
+lines: -7/+3
+category: ipc/msgutil.c
+
+Signed-off-by: Peter Hurley <peter@hurleysoftware.com>
+Acked-by: Stanislav Kinsbursky <skinsbursky@parallels.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

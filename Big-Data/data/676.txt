@@ -1,0 +1,68 @@
+label: reliability annotation
+module: shared memory	
+age: 2009-01-08
+title: NOMMU: Make VMAs per MM as for MMU-mode linux
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8feae13110d60cc6287afabc2887366b0eb226c2
+lines: -0/+12
+category: ipc/shm.c
+
+Make VMAs per mm_struct as for MMU-mode linux.  This solves two problems:
+
+ (1) In SYSV SHM where nattch for a segment does not reflect the number of
+     shmat's (and forks) done.
+
+ (2) In mmap() where the VMA's vm_mm is set to point to the parent mm by an
+     exec'ing process when VM_EXECUTABLE is specified, regardless of the fact
+     that a VMA might be shared and already have its vm_mm assigned to another
+     process or a dead process.
+
+A new struct (vm_region) is introduced to track a mapped region and to remember
+the circumstances under which it may be shared and the vm_list_struct structure
+is discarded as it's no longer required.
+
+This patch makes the following additional changes:
+
+ (1) Regions are now allocated with alloc_pages() rather than kmalloc() and
+     with no recourse to __GFP_COMP, so the pages are not composite.  Instead,
+     each page has a reference on it held by the region.  Anything else that is
+     interested in such a page will have to get a reference on it to retain it.
+     When the pages are released due to unmapping, each page is passed to
+     put_page() and will be freed when the page usage count reaches zero.
+
+ (2) Excess pages are trimmed after an allocation as the allocation must be
+     made as a power-of-2 quantity of pages.
+
+ (3) VMAs are added to the parent MM's R/B tree and mmap lists.  As an MM may
+     end up with overlapping VMAs within the tree, the VMA struct address is
+     appended to the sort key.
+
+ (4) Non-anonymous VMAs are now added to the backing inode's prio list.
+
+ (5) Holes may be punched in anonymous VMAs with munmap(), releasing parts of
+     the backing region.  The VMA and region structs will be split if
+     necessary.
+
+ (6) sys_shmdt() only releases one attachment to a SYSV IPC shared memory
+     segment instead of all the attachments at that addresss.  Multiple
+     shmat()'s return the same address under NOMMU-mode instead of different
+     virtual addresses as under MMU-mode.
+
+ (7) Core dumping for ELF-FDPIC requires fewer exceptions for NOMMU-mode.
+
+ (8) /proc/maps is now the global list of mapped regions, and may list bits
+     that aren't actually mapped anywhere.
+
+ (9) /proc/meminfo gains a line (tagged "MmapCopy") that indicates the amount
+     of RAM currently allocated by mmap to hold mappable regions that can't be
+     mapped directly.  These are copies of the backing device or file if not
+     anonymous.
+
+These changes make NOMMU mode more similar to MMU mode.  The downside is that
+NOMMU mode requires some extra memory to track things over NOMMU without this
+patch (VMAs are no longer shared, and there are now region structs).
+
+Signed-off-by: David Howells <dhowells@redhat.com>
+Tested-by: Mike Frysinger <vapier.adi@gmail.com>
+Acked-by: Paul Mundt <lethal@linux-sh.org>
+
+

@@ -1,0 +1,16 @@
+label: reliability debug
+module: other	message queue	
+age: 2014-04-07
+title: ipc: use device_initcall
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6d08a2567c0b9103c3ff946df17ad4be9a917e2f
+lines: -3/+3
+category: ipc/ipc_sysctl.c ipc/mqueue.c ipc/util.c 
+
+... since __initcall is now deprecated.
+
+Signed-off-by: Davidlohr Bueso <davidlohr@hp.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

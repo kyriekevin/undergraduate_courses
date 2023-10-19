@@ -1,0 +1,16 @@
+label: maintenance
+module: message queue	
+age: 2014-11-19
+title: new helper: audit_file()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9f45f5bf302daad6835ce64701fb3c286a2cc6af
+lines: -2/+2
+category: ipc/mqueue.c
+
+... for situations when we don't have any candidate in pathnames - basically,
+in descriptor-based syscalls.
+
+[Folded the build fix for !CONFIG_AUDITSYSCALL configs from Chen Gang]
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

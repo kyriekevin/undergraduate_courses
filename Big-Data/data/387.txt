@@ -1,0 +1,23 @@
+label: reliability corruption defense
+module: other	
+age: 2013-11-03
+title: ipc, msg: forbid negative values for "msg{max,mnb,mni}"
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9bf76ca325d5e9208eb343f7bd4cc666f703ed30
+lines: -8/+12
+category: ipc/ipc_sysctl.c
+
+Negative message lengths make no sense -- so don't do negative queue
+lenghts or identifier counts. Prevent them from getting negative.
+
+Also change the underlying data types to be unsigned to avoid hairy
+surprises with sign extensions in cases where those variables get
+evaluated in unsigned expressions with bigger data types, e.g size_t.
+
+In case a user still wants to have "unlimited" sizes she could just use
+INT_MAX instead.
+
+Signed-off-by: Mathias Krause <minipli@googlemail.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

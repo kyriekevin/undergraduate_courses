@@ -1,0 +1,19 @@
+label: maintenance
+module: message	semaphore	shared memory	other	
+age: 2012-09-06
+title: userns: Convert ipc to use kuid and kgid where appropriate
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1efdb69b0bb41dec8ee3e2cac0a0f167837d0919
+lines: -33/+50
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+- Store the ipc owner and creator with a kuid
+- Store the ipc group and the crators group with a kgid.
+- Add error handling to ipc_update_perms, allowing it to
+  fail if the uids and gids can not be converted to kuids
+  or kgids.
+- Modify the proc files to display the ipc creator and
+  owner in the user namespace of the opener of the proc file.
+
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+
+

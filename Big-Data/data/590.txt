@@ -1,0 +1,29 @@
+label: reliability corruption defense
+module: semaphore	
+age: 2010-10-01
+title: sys_semctl: fix kernel stack leakage
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=982f7c2b2e6a28f8f266e075d92e19c0dd4c6e56
+lines: -0/+2
+category: ipc/sem.c
+
+The semctl syscall has several code paths that lead to the leakage of
+uninitialized kernel stack memory (namely the IPC_INFO, SEM_INFO,
+IPC_STAT, and SEM_STAT commands) during the use of the older, obsolete
+version of the semid_ds struct.
+
+The copy_semid_to_user() function declares a semid_ds struct on the stack
+and copies it back to the user without initializing or zeroing the
+"sem_base", "sem_pending", "sem_pending_last", and "undo" pointers,
+allowing the leakage of 16 bytes of kernel stack memory.
+
+The code is still reachable on 32-bit systems - when calling semctl()
+newer glibc's automatically OR the IPC command with the IPC_64 flag, but
+invoking the syscall directly allows users to use the older versions of
+the struct.
+
+Signed-off-by: Dan Rosenberg <dan.j.rosenberg@gmail.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

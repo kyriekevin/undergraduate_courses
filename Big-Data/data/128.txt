@@ -1,0 +1,21 @@
+label: reliability corruption defense
+module: shared memory	
+age: 2018-04-11
+title: ipc/shm.c: shm_split(): remove unneeded test for NULL shm_file_data.vm_ops
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a61fc2cbdf6a753b7000dd216c62285a68755147
+lines: -1/+1
+category: ipc/shm.c
+
+This was added by the recent "ipc/shm.c: add split function to
+shm_vm_ops", but it is not necessary.
+
+Reviewed-by: Mike Kravetz <mike.kravetz@oracle.com>
+Cc: Laurent Dufour <ldufour@linux.vnet.ibm.com>
+Cc: Dan Williams <dan.j.williams@intel.com>
+Cc: Michal Hocko <mhocko@suse.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

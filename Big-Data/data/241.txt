@@ -1,0 +1,11 @@
+label: maintenance
+module: shared memory	
+age: 2017-03-02
+title: Merge remote-tracking branch 'ovl/for-viro' into for-linus
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=653a7746fa2f5369985f5368ffc162b6510db6c8
+lines: -2/+2
+category: ipc/shm.c
+
+Overlayfs-related series from Miklos and Amir
+
+

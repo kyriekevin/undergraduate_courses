@@ -1,0 +1,15 @@
+label: feature
+module: shared memory	
+age: 2006-04-02
+title: BUG_ON() Conversion in ipc/shm.c
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9ba025f10885758975fbbc2292a5b9e7cb8026a8
+lines: -8/+7
+category: ipc/shm.c
+
+this changes if() BUG(); constructs to BUG_ON() which is
+cleaner, contains unlikely() and can better optimized away.
+
+Signed-off-by: Eric Sesterhenn <snakebyte@gmx.de>
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+
+

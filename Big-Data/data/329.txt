@@ -1,0 +1,11 @@
+label: performance access optimization
+module: other	
+age: 2014-12-04
+title: switch the rest of proc_ns_operations to working with &...->ns
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3c0411846118a578de3a979faf2da3ab5fb81179
+lines: -6/+9
+category: ipc/namespace.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

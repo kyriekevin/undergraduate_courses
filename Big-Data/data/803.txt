@@ -1,0 +1,13 @@
+label: performance access optimization
+module: message queue	shared memory	
+age: 2006-12-08
+title: [PATCH] struct path: convert ipc
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6d63079adde80bb549528371e6407f88e9d27bc3
+lines: -16/+16
+category: ipc/mqueue.c ipc/shm.c 
+
+Signed-off-by: Josef Sipek <jsipek@fsl.cs.sunysb.edu>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

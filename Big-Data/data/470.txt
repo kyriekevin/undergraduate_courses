@@ -1,0 +1,18 @@
+label: bug semantic I/OTiming
+consequence：wrong
+module: other	
+age: 2013-04-09
+title: procfs: new helper - PDE_DATA(inode)
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d9dda78bad879595d8c4220a067fc029d6484a16
+lines: -1/+1
+category: ipc/util.c
+
+The only part of proc_dir_entry the code outside of fs/proc
+really cares about is PDE(inode)->data.  Provide a helper
+for that; static inline for now, eventually will be moved
+to fs/proc, along with the knowledge of struct proc_dir_entry
+layout.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,13 @@
+label: performance access optimization
+module: semaphore	
+age: 2008-10-16
+title: ipc/sem.c: make free_un() static
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6d97e2345a03bcf15471fc7e93560fc71e0c11d8
+lines: -1/+1
+category: ipc/sem.c
+
+Signed-off-by: Adrian Bunk <bunk@kernel.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

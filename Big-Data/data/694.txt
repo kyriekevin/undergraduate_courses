@@ -1,0 +1,23 @@
+label: feature
+module: message queue	shared memory	other	
+age: 2008-11-14
+title: CRED: Wrap task credential accesses in the SYSV IPC subsystem
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=414c0708d0d60eccf8345c405ac81cf32c43e901
+lines: -10/+19
+category: ipc/mqueue.c ipc/shm.c ipc/util.c 
+
+Wrap access to task credentials so that they can be separated more easily from
+the task_struct during the introduction of COW creds.
+
+Change most current->(|e|s|fs)[ug]id to current_(|e|s|fs)[ug]id().
+
+Change some task->e?[ug]id to task_e?[ug]id().  In some places it makes more
+sense to use RCU directly rather than a convenient wrapper; these will be
+addressed by later patches.
+
+Signed-off-by: David Howells <dhowells@redhat.com>
+Reviewed-by: James Morris <jmorris@namei.org>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Signed-off-by: James Morris <jmorris@namei.org>
+
+

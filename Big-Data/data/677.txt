@@ -1,0 +1,22 @@
+label: performance other
+module: other	
+age: 2009-01-06
+title: ipc/ipc_sysctl.c: move the definition of ipc_auto_callback()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4c2c3b4aaf3c10a636490438e9648a314ce414f9
+lines: -23/+23
+category: ipc/ipc_sysctl.c
+
+proc_ipcauto_dointvec_minmax() is the only user of ipc_auto_callback(),
+since the former function is protected by CONFIG_PROC_FS, so should be the
+latter one.
+
+Just move its definition down.
+
+Signed-off-by: WANG Cong <wangcong@zeuux.org>
+Cc: Eric Biederman <ebiederm@xmision.com>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Alexey Dobriyan <adobriyan@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

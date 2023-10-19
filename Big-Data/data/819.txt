@@ -1,0 +1,18 @@
+label: reliability error enhancement
+module: message queue	
+age: 2006-10-01
+title: [PATCH] r/o bind mount prepwork: inc_nlink() helper
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d8c76e6f45c111c32a4b3e50a2adc9210737b0d8
+lines: -1/+1
+category: ipc/mqueue.c
+
+This is mostly included for parity with dec_nlink(), where we will have some
+more hooks.  This one should stay pretty darn straightforward for now.
+
+Signed-off-by: Dave Hansen <haveblue@us.ibm.com>
+Acked-by: Christoph Hellwig <hch@lst.de>
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

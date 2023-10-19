@@ -1,0 +1,60 @@
+label: feature
+module: message queue	
+age: 2014-12-10
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=cbfe0de303a55ed96d8831c2d5f56f8131cd6612
+lines: -2/+2
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull VFS changes from Al Viro:
+ "First pile out of several (there _definitely_ will be more).  Stuff in
+  this one:
+
+   - unification of d_splice_alias()/d_materialize_unique()
+
+   - iov_iter rewrite
+
+   - killing a bunch of ->f_path.dentry users (and f_dentry macro).
+
+     Getting that completed will make life much simpler for
+     unionmount/overlayfs, since then we'll be able to limit the places
+     sensitive to file _dentry_ to reasonably few.  Which allows to have
+     file_inode(file) pointing to inode in a covered layer, with dentry
+     pointing to (negative) dentry in union one.
+
+     Still not complete, but much closer now.
+
+   - crapectomy in lustre (dead code removal, mostly)
+
+   - "let's make seq_printf return nothing" preparations
+
+   - assorted cleanups and fixes
+
+  There _definitely_ will be more piles"
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (63 commits)
+  copy_from_iter_nocache()
+  new helper: iov_iter_kvec()
+  csum_and_copy_..._iter()
+  iov_iter.c: handle ITER_KVEC directly
+  iov_iter.c: convert copy_to_iter() to iterate_and_advance
+  iov_iter.c: convert copy_from_iter() to iterate_and_advance
+  iov_iter.c: get rid of bvec_copy_page_{to,from}_iter()
+  iov_iter.c: convert iov_iter_zero() to iterate_and_advance
+  iov_iter.c: convert iov_iter_get_pages_alloc() to iterate_all_kinds
+  iov_iter.c: convert iov_iter_get_pages() to iterate_all_kinds
+  iov_iter.c: convert iov_iter_npages() to iterate_all_kinds
+  iov_iter.c: iterate_and_advance
+  iov_iter.c: macros for iterating over iov_iter
+  kill f_dentry macro
+  dcache: fix kmemcheck warning in switch_names
+  new helper: audit_file()
+  nfsd_vfs_write(): use file_inode()
+  ncpfs: use file_inode()
+  kill f_dentry uses
+  lockd: get rid of ->f_path.dentry->d_sb
+  ...
+
+

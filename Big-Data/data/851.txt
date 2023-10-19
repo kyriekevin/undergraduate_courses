@@ -1,0 +1,15 @@
+label: feature
+module: shared memory	
+age: 2006-01-08
+title: [PATCH] ipc: expand shm_flags
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b33291c0bcecfa44baa905964eec4b8815dcbcdf
+lines: -12/+10
+category: ipc/shm.c
+
+Unobfsucate this struct member
+
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

@@ -1,0 +1,36 @@
+label: reliability debug
+module: message	semaphore	shared memory	
+age: 2006-03-25
+title: Merge branch 'audit.b3' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1b9a3917366028cc451a98dd22e3bcd537d4e5c1
+lines: -7/+7
+category: ipc/msg.c ipc/sem.c ipc/shm.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/audit-current
+
+* 'audit.b3' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/audit-current: (22 commits)
+  [PATCH] fix audit_init failure path
+  [PATCH] EXPORT_SYMBOL patch for audit_log, audit_log_start, audit_log_end and audit_format
+  [PATCH] sem2mutex: audit_netlink_sem
+  [PATCH] simplify audit_free() locking
+  [PATCH] Fix audit operators
+  [PATCH] promiscuous mode
+  [PATCH] Add tty to syscall audit records
+  [PATCH] add/remove rule update
+  [PATCH] audit string fields interface + consumer
+  [PATCH] SE Linux audit events
+  [PATCH] Minor cosmetic cleanups to the code moved into auditfilter.c
+  [PATCH] Fix audit record filtering with !CONFIG_AUDITSYSCALL
+  [PATCH] Fix IA64 success/failure indication in syscall auditing.
+  [PATCH] Miscellaneous bug and warning fixes
+  [PATCH] Capture selinux subject/object context information.
+  [PATCH] Exclude messages by message type
+  [PATCH] Collect more inode information during syscall processing.
+  [PATCH] Pass dentry, not just name, in fsnotify creation hooks.
+  [PATCH] Define new range of userspace messages.
+  [PATCH] Filter rule comparators
+  ...
+
+Fixed trivial conflict in security/selinux/hooks.c
+
+

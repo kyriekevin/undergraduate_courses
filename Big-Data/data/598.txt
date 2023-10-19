@@ -1,0 +1,59 @@
+label: feature
+module: semaphore	
+age: 2010-05-27
+title: ipc/sem.c: optimize update_queue() for bulk wakeup calls
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=fd5db42254518fbf241dc454e918598fbe494fa2
+lines: -13/+97
+category: ipc/sem.c
+
+The following series of patches tries to fix the spinlock contention
+reported by Chris Mason - his benchmark exposes problems of the current
+code:
+
+- In the worst case, the algorithm used by update_queue() is O(N^2).
+  Bulk wake-up calls can enter this worst case.  The patch series fix
+  that.
+
+  Note that the benchmark app doesn't expose the problem, it just should
+  be fixed: Real world apps might do the wake-ups in another order than
+  perfect FIFO.
+
+- The part of the code that runs within the semaphore array spinlock is
+  significantly larger than necessary.
+
+  The patch series fixes that.  This change is responsible for the main
+  improvement.
+
+- The cacheline with the spinlock is also used for a variable that is
+  read in the hot path (sem_base) and for a variable that is unnecessarily
+  written to multiple times (sem_otime).  The last step of the series
+  cacheline-aligns the spinlock.
+
+This patch:
+
+The SysV semaphore code allows to perform multiple operations on all
+semaphores in the array as atomic operations.  After a modification,
+update_queue() checks which of the waiting tasks can complete.
+
+The algorithm that is used to identify the tasks is O(N^2) in the worst
+case.  For some cases, it is simple to avoid the O(N^2).
+
+The patch adds a detection logic for some cases, especially for the case
+of an array where all sleeping tasks are single sembuf operations and a
+multi-sembuf operation is used to wake up multiple tasks.
+
+A big database application uses that approach.
+
+The patch fixes wakeup due to semctl(,,SETALL,) - the initial version of
+the patch breaks that.
+
+[akpm@linux-foundation.org: make do_smart_update() static]
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Chris Mason <chris.mason@oracle.com>
+Cc: Zach Brown <zach.brown@oracle.com>
+Cc: Jens Axboe <jens.axboe@oracle.com>
+Cc: Nick Piggin <npiggin@suse.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

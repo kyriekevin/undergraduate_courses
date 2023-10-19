@@ -1,0 +1,22 @@
+label: feature
+module: shared memory	other	
+age: 2008-07-25
+title: ipc: get rid of ipc_lock_down()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=00c2bf85d8febfcfddde63822043462b026134ff
+lines: -75/+4
+category: ipc/shm.c ipc/util.c ipc/util.h 
+
+Remove the ipc_lock_down() routines: they used to call idr_find() locklessly
+(given that the ipc ids lock was already held), so they are not needed
+anymore.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Acked-by: "Paul E. McKenney" <paulmck@us.ibm.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: Jim Houston <jim.houston@comcast.net>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Acked-by: Rik van Riel <riel@redhat.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

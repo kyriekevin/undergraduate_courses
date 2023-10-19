@@ -1,0 +1,25 @@
+label: performance speed optimization
+module: semaphore	
+age: 2013-07-09
+title: ipc/sem.c: rename try_atomic_semop() to perform_atomic_semop(), docu update
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=758a6ba39ef6df4cdc615e5edd7bd86eab81a5f7
+lines: -11/+21
+category: ipc/sem.c
+
+Cleanup: Some minor points that I noticed while writing the previous
+patches
+
+1) The name try_atomic_semop() is misleading: The function performs the
+   operation (if it is possible).
+
+2) Some documentation updates.
+
+No real code change, a rename and documentation changes.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Rik van Riel <riel@redhat.com>
+Cc: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

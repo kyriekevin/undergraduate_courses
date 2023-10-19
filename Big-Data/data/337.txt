@@ -1,0 +1,37 @@
+label: maintenance
+module: other	
+age: 2014-10-07
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=28596c9722289b2f98fa83a2e4351eb0a031b953
+lines: -3/+3
+category: ipc/util.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/jikos/trivial
+
+Pull "trivial tree" updates from Jiri Kosina:
+ "Usual pile from trivial tree everyone is so eagerly waiting for"
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/jikos/trivial: (39 commits)
+  Remove MN10300_PROC_MN2WS0038
+  mei: fix comments
+  treewide: Fix typos in Kconfig
+  kprobes: update jprobe_example.c for do_fork() change
+  Documentation: change "&" to "and" in Documentation/applying-patches.txt
+  Documentation: remove obsolete pcmcia-cs from Changes
+  Documentation: update links in Changes
+  Documentation: Docbook: Fix generated DocBook/kernel-api.xml
+  score: Remove GENERIC_HAS_IOMAP
+  gpio: fix 'CONFIG_GPIO_IRQCHIP' comments
+  tty: doc: Fix grammar in serial/tty
+  dma-debug: modify check_for_stack output
+  treewide: fix errors in printk
+  genirq: fix reference in devm_request_threaded_irq comment
+  treewide: fix synchronize_rcu() in comments
+  checkstack.pl: port to AArch64
+  doc: queue-sysfs: minor fixes
+  init/do_mounts: better syntax description
+  MIPS: fix comment spelling
+  powerpc/simpleboot: fix comment
+  ...
+
+

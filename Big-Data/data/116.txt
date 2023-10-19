@@ -1,0 +1,26 @@
+label: reliability corruption defense
+module: shared memory	
+age: 2018-06-15
+title: ipc: use new return type vm_fault_t
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=14f28f5776927be30717986f86b765d49eec392c
+lines: -1/+1
+category: ipc/shm.c
+
+Use new return type vm_fault_t for fault handler.  For now, this is just
+documenting that the function returns a VM_FAULT value rather than an
+errno.  Once all instances are converted, vm_fault_t will become a
+distinct type.
+
+Commit 1c8f422059ae ("mm: change return type to vm_fault_t")
+
+Link: http://lkml.kernel.org/r/20180425043413.GA21467@jordon-HP-15-Notebook-PC
+Signed-off-by: Souptick Joarder <jrdr.linux@gmail.com>
+Reviewed-by: Matthew Wilcox <mawilcox@microsoft.com>
+Reviewed-by: Andrew Morton <akpm@linux-foundation.org>
+Acked-by: Davidlohr Bueso <dbueso@suse.de>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: Eric W. Biederman <ebiederm@xmission.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

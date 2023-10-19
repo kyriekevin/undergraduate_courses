@@ -1,0 +1,14 @@
+label: reliability robust
+module: other	
+age: 2014-12-04
+title: make proc_ns_operations work with struct ns_common * instead of void *
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=64964528b24ea390824f0e5ce9d34b8d39b28cde
+lines: -9/+3
+category: ipc/namespace.c
+
+We can do that now.  And kill ->inum(), while we are at it - all instances
+are identical.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,15 @@
+label: performance speed optimization
+module: message queue	
+age: 2009-03-26
+title: Merge branch 'bkl-removal' of git://git.lwn.net/linux-2.6
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8e9d2089723d08d51e66c5eea49253d76e27941e
+lines: -0/+2
+category: ipc/mqueue.c
+
+* 'bkl-removal' of git://git.lwn.net/linux-2.6:
+  Rationalize fasync return values
+  Move FASYNC bit handling to f_op->fasync()
+  Use f_lock to protect f_flags
+  Rename struct file->f_ep_lock
+
+

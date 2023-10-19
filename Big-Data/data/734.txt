@@ -1,0 +1,71 @@
+label: performance store optimization
+module: message	
+age: 2008-04-29
+title: ipc: scale msgmni to the amount of lowmem
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f7bf3df8be72d98afa84f5ff183e14c1ba1e560d
+lines: -1/+36
+category: ipc/msg.c
+
+On large systems we'd like to allow a larger number of message queues.  In
+some cases up to 32K.  However simply setting MSGMNI to a larger value may
+cause problems for smaller systems.
+
+The first patch of this series introduces a default maximum number of message
+queue ids that scales with the amount of lowmem.
+
+Since msgmni is per namespace and there is no amount of memory dedicated to
+each namespace so far, the second patch of this series scales msgmni to the
+number of ipc namespaces too.
+
+Since msgmni depends on the amount of memory, it becomes necessary to
+recompute it upon memory add/remove.  In the 4th patch, memory hotplug
+management is added: a notifier block is registered into the memory hotplug
+notifier chain for the ipc subsystem.  Since the ipc namespaces are not linked
+together, they have their own notification chain: one notifier_block is
+defined per ipc namespace.  Each time an ipc namespace is created (removed) it
+registers (unregisters) its notifier block in (from) the ipcns chain.  The
+callback routine registered in the memory chain invokes the ipcns notifier
+chain with the IPCNS_MEMCHANGE event.  Each callback routine registered in the
+ipcns namespace, in turn, recomputes msgmni for the owning namespace.
+
+The 5th patch makes it possible to keep the memory hotplug notifier chain's
+lock for a lesser amount of time: instead of directly notifying the ipcns
+notifier chain upon memory add/remove, a work item is added to the global
+workqueue.  When activated, this work item is the one who notifies the ipcns
+notifier chain.
+
+Since msgmni depends on the number of ipc namespaces, it becomes necessary to
+recompute it upon ipc namespace creation / removal.  The 6th patch uses the
+ipc namespace notifier chain for that purpose: that chain is notified each
+time an ipc namespace is created or removed.  This makes it possible to
+recompute msgmni for all the namespaces each time one of them is created or
+removed.
+
+When msgmni is explicitely set from userspace, we should avoid recomputing it
+upon memory add/remove or ipcns creation/removal.  This is what the 7th patch
+does: it simply unregisters the ipcns callback routine as soon as msgmni has
+been changed from procfs or sysctl().
+
+Even if msgmni is set by hand, it should be possible to make it back
+automatically recomputed upon memory add/remove or ipcns creation/removal.
+This what is achieved in patch 8: if set to a negative value, msgmni is added
+back to the ipcns notifier chain, making it automatically recomputed again.
+
+This patch:
+
+Compute msg_ctlmni to make it scale with the amount of lowmem.  msg_ctlmni is
+now set to make the message queues occupy 1/32 of the available lowmem.
+
+Some cleaning has also been done for the MSGPOOL constant: the msgctl man page
+says it's not used, but it also defines it as a size in bytes (the code
+expresses it in Kbytes).
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Yasunori Goto <y-goto@jp.fujitsu.com>
+Cc: Matt Helsley <matthltc@us.ibm.com>
+Cc: Mingming Cao <cmm@us.ibm.com>
+Cc: Pierre Peiffer <pierre.peiffer@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

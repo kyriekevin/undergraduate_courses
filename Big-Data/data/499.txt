@@ -1,0 +1,81 @@
+label: maintenance
+module: other	
+age: 2012-12-17
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6a2b60b17b3e48a418695a94bd2420f6ab32e519
+lines: -7/+27
+category: ipc/msgutil.c ipc/namespace.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull user namespace changes from Eric Biederman:
+ "While small this set of changes is very significant with respect to
+  containers in general and user namespaces in particular.  The user
+  space interface is now complete.
+
+  This set of changes adds support for unprivileged users to create user
+  namespaces and as a user namespace root to create other namespaces.
+  The tyranny of supporting suid root preventing unprivileged users from
+  using cool new kernel features is broken.
+
+  This set of changes completes the work on setns, adding support for
+  the pid, user, mount namespaces.
+
+  This set of changes includes a bunch of basic pid namespace
+  cleanups/simplifications.  Of particular significance is the rework of
+  the pid namespace cleanup so it no longer requires sending out
+  tendrils into all kinds of unexpected cleanup paths for operation.  At
+  least one case of broken error handling is fixed by this cleanup.
+
+  The files under /proc/<pid>/ns/ have been converted from regular files
+  to magic symlinks which prevents incorrect caching by the VFS,
+  ensuring the files always refer to the namespace the process is
+  currently using and ensuring that the ptrace_mayaccess permission
+  checks are always applied.
+
+  The files under /proc/<pid>/ns/ have been given stable inode numbers
+  so it is now possible to see if different processes share the same
+  namespaces.
+
+  Through the David Miller's net tree are changes to relax many of the
+  permission checks in the networking stack to allowing the user
+  namespace root to usefully use the networking stack.  Similar changes
+  for the mount namespace and the pid namespace are coming through my
+  tree.
+
+  Two small changes to add user namespace support were commited here adn
+  in David Miller's -net tree so that I could complete the work on the
+  /proc/<pid>/ns/ files in this tree.
+
+  Work remains to make it safe to build user namespaces and 9p, afs,
+  ceph, cifs, coda, gfs2, ncpfs, nfs, nfsd, ocfs2, and xfs so the
+  Kconfig guard remains in place preventing that user namespaces from
+  being built when any of those filesystems are enabled.
+
+  Future design work remains to allow root users outside of the initial
+  user namespace to mount more than just /proc and /sys."
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace: (38 commits)
+  proc: Usable inode numbers for the namespace file descriptors.
+  proc: Fix the namespace inode permission checks.
+  proc: Generalize proc inode allocation
+  userns: Allow unprivilged mounts of proc and sysfs
+  userns: For /proc/self/{uid,gid}_map derive the lower userns from the struct file
+  procfs: Print task uids and gids in the userns that opened the proc file
+  userns: Implement unshare of the user namespace
+  userns: Implent proc namespace operations
+  userns: Kill task_user_ns
+  userns: Make create_new_namespaces take a user_ns parameter
+  userns: Allow unprivileged use of setns.
+  userns: Allow unprivileged users to create new namespaces
+  userns: Allow setting a userns mapping to your current uid.
+  userns: Allow chown and setgid preservation
+  userns: Allow unprivileged users to create user namespaces.
+  userns: Ignore suid and sgid on binaries if the uid or gid can not be mapped
+  userns: fix return value on mntns_install() failure
+  vfs: Allow unprivileged manipulation of the mount namespace.
+  vfs: Only support slave subtrees across different user namespaces
+  vfs: Add a user namespace reference from struct mnt_namespace
+  ...
+
+

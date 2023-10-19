@@ -1,0 +1,25 @@
+label: bug memory bufOverflow
+consequence：leak
+module: shared memory	
+age: 2014-06-06
+title: ipc/shm.c: check for overflows of shm_tot
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=09c6eb1f651dad601f02435bbd79734954960c42
+lines: -1/+2
+category: ipc/shm.c
+
+shm_tot counts the total number of pages used by shm segments.
+
+If SHMALL is ULONG_MAX (or nearly ULONG_MAX), then the number can
+overflow.  Subsequent calls to shmctl(,SHM_INFO,) would return wrong
+values for shm_tot.
+
+The patch adds a detection for overflows.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Acked-by: Davidlohr Bueso <davidlohr@hp.com>
+Acked-by: KOSAKI Motohiro <kosaki.motohiro@jp.fujitsu.com>
+Acked-by: Michael Kerrisk <mtk.manpages@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

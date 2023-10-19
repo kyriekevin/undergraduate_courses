@@ -1,0 +1,21 @@
+label: performance access optimization
+module: message	semaphore	shared memory	other	
+age: 2007-07-16
+title: remove CONFIG_UTS_NS and CONFIG_IPC_NS
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7d69a1f4a72b18876c99c697692b78339d491568
+lines: -25/+6
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+CONFIG_UTS_NS and CONFIG_IPC_NS have very little value as they only
+deactivate the unshare of the uts and ipc namespaces and do not improve
+performance.
+
+Signed-off-by: Cedric Le Goater <clg@fr.ibm.com>
+Acked-by: "Serge E. Hallyn" <serue@us.ibm.com>
+Cc: Eric W. Biederman <ebiederm@xmission.com>
+Cc: Herbert Poetzl <herbert@13thfloor.at>
+Cc: Pavel Emelianov <xemul@openvz.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

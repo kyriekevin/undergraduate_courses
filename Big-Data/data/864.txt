@@ -1,0 +1,27 @@
+label: reliability error enhancement
+module: compatibility	
+age: 2005-09-07
+title: [PATCH] compat: be more consistent about [ug]id_t
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=202e5979af4d91c7ca05892641131dee22653259
+lines: -6/+6
+category: ipc/compat.c
+
+When I first wrote the compat layer patches, I was somewhat cavalier about
+the definition of compat_uid_t and compat_gid_t (or maybe I just
+misunderstood :-)).  This patch makes the compat types much more consistent
+with the types we are being compatible with and hopefully will fix a few
+bugs along the way.
+
+	compat type		type in compat arch
+	__compat_[ug]id_t	__kernel_[ug]id_t
+	__compat_[ug]id32_t	__kernel_[ug]id32_t
+	compat_[ug]id_t		[ug]id_t
+
+The difference is that compat_uid_t is always 32 bits (for the archs we
+care about) but __compat_uid_t may be 16 bits on some.
+
+Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

@@ -1,0 +1,19 @@
+label: bug semantic generic
+consequence：wrong
+module: message queue	
+age: 2009-06-29
+title: integrity: ima mq_open imbalance msg fix
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=46690f3718d95e9bb712b6f2b5c869f8494521de
+lines: -0/+2
+category: ipc/mqueue.c
+
+This patch fixes an imbalance message as reported by Sanchin Sant.
+As we don't need to measure the message queue, just increment the
+counters.
+
+Reported-by: Sanchin Sant <sanchinp@in.ibm.com>
+Signed-off-by: Mimi Zohar <zohar@us.ibm.com>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Signed-off-by: James Morris <jmorris@namei.org>
+
+

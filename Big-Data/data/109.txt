@@ -1,0 +1,18 @@
+label: reliability annotation
+module: shared memory	
+age: 2018-08-05
+title: Merge ra.kernel.org:/pub/scm/linux/kernel/git/davem/net
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c1c8626fcebed467184ffd8de0ab5c9f9d9c3594
+lines: -0/+12
+category: ipc/shm.c
+
+Lots of overlapping changes, mostly trivial in nature.
+
+The mlxsw conflict was resolving using the example
+resolution at:
+
+https://github.com/jpirko/linux_mlxsw/blob/combined_queue/drivers/net/ethernet/mellanox/mlxsw/core_acl_flex_actions.c
+
+Signed-off-by: David S. Miller <davem@davemloft.net>
+
+

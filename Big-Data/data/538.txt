@@ -1,0 +1,14 @@
+label: performance speed optimization
+module: message queue	
+age: 2012-05-03
+title: userns: Replace user_ns_map_uid and user_ns_map_gid with from_kuid and from_kgid
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=76b6db010297d4928ab7b7e7c78dd982f413f0a4
+lines: -2/+1
+category: ipc/mqueue.c
+
+These function are no longer needed replace them with their more useful equivalents.
+
+Acked-by: Serge Hallyn <serge.hallyn@canonical.com>
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+
+

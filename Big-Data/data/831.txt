@@ -1,0 +1,20 @@
+label: bug semantic logic
+consequence：error
+module: other	
+age: 2006-04-17
+title: [PATCH] IPC: access to unmapped vmalloc area in grow_ary()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a9a5cd5d2a57fb76dbae2115450f777b69beccf7
+lines: -2/+1
+category: ipc/util.c
+
+grow_ary() should not copy struct ipc_id_ary (it copies new->p, not
+new). Due to this, memcpy() src pointer could hit unmapped vmalloc page
+when near page boundary.
+
+Found during OpenVZ stress testing
+
+Signed-off-by: Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>
+Signed-off-by: Kirill Korotaev <dev@openvz.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

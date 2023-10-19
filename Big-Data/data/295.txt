@@ -1,0 +1,26 @@
+label: reliability error enhancement
+module: message queue	
+age: 2016-01-23
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=cc673757e24d018d64ff8038e28835db1e2902c4
+lines: -4/+4
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull final vfs updates from Al Viro:
+
+ - The ->i_mutex wrappers (with small prereq in lustre)
+
+ - a fix for too early freeing of symlink bodies on shmem (they need to
+   be RCU-delayed) (-stable fodder)
+
+ - followup to dedupe stuff merged this cycle
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs:
+  vfs: abort dedupe loop if fatal signals are pending
+  make sure that freeing shmem fast symlinks is RCU-delayed
+  wrappers for ->i_mutex access
+  lustre: remove unused declaration
+
+

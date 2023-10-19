@@ -1,0 +1,20 @@
+label: maintenance
+module: message queue	
+age: 2010-03-03
+title: mqueue: remove unneeded info->messages initialization
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c8308b1c91056b09e96d40dbde4880ea685c377e
+lines: -8/+5
+category: ipc/mqueue.c
+
+... and abort earlier if we couldn't allocate the message pointers array,
+avoiding the u->mq_bytes accounting logic.
+
+It reduces code size:
+   text    data     bss     dec     hex filename
+   9949      72      16   10037    2735 ipc/mqueue-BEFORE.o
+   9941      72      16   10029    272d ipc/mqueue-AFTER.o
+
+Signed-off-by: André Goddard Rosa <andre.goddard@gmail.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

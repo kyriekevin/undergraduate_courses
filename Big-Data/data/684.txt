@@ -1,0 +1,20 @@
+label: reliability robust
+module: message queue	
+age: 2009-01-04
+title: sanitize AUDIT_MQ_SENDRECV
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c32c8af43b9adde8d6f938d8e6328c13b8de79ac
+lines: -24/+30
+category: ipc/mqueue.c
+
+* logging the original value of *msg_prio in mq_timedreceive(2)
+  is insane - the argument is write-only (i.e. syscall always
+  ignores the original value and only overwrites it).
+* merge __audit_mq_timed{send,receive}
+* don't do copy_from_user() twice
+* don't mess with allocations in auditsc part
+* ... and don't bother checking !audit_enabled and !context in there -
+  we'd already checked for audit_dummy_context().
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

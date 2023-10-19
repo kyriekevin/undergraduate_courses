@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2009-01-14
+title: [CVE-2009-0029] System call wrappers part 26
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c4ea37c26a691ad0b7e86aa5884aab27830e95c9
+lines: -11/+11
+category: ipc/mqueue.c
+
+Signed-off-by: Heiko Carstens <heiko.carstens@de.ibm.com>
+
+

@@ -1,0 +1,15 @@
+label: reliability debug
+module: compatibility	
+age: 2014-03-06
+title: ipc/compat: convert to COMPAT_SYSCALL_DEFINE with changing parameter types
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8eee9093cdbeb2aa89d67dc1a3fd118acabaea52
+lines: -8/+8
+category: ipc/compat_mq.c
+
+In order to allow the COMPAT_SYSCALL_DEFINE macro generate code that
+performs proper zero and sign extension convert all 64 bit parameters
+to their corresponding 32 bit compat counterparts.
+
+Signed-off-by: Heiko Carstens <heiko.carstens@de.ibm.com>
+
+

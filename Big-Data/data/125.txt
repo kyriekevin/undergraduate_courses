@@ -1,0 +1,19 @@
+label: reliability debug
+module: message	semaphore	shared memory	
+age: 2018-04-20
+title: y2038: ipc: Report long times to user space
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c2ab975c30f0c3d3efcd69c1f1b2baa831c9374f
+lines: -9/+33
+category: ipc/msg.c ipc/sem.c ipc/shm.c 
+
+The shmid64_ds/semid64_ds/msqid64_ds data structures have been extended
+to contain extra fields for storing the upper bits of the time stamps,
+this patch does the other half of the job and and fills the new fields on
+32-bit architectures as well as 32-bit tasks running on a 64-bit kernel
+in compat mode.
+
+There should be no change for native 64-bit tasks.
+
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+
+

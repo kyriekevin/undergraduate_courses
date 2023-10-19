@@ -1,0 +1,22 @@
+label: feature
+module: message	semaphore	shared memory	other	
+age: 2013-07-09
+title: ipc: move locking out of ipcctl_pre_down_nolock
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7b4cc5d8411bd4e9d61d8714f53859740cf830c2
+lines: -39/+56
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c 
+
+This function currently acquires both the rw_mutex and the rcu lock on
+successful lookups, leaving the callers to explicitly unlock them,
+creating another two level locking situation.
+
+Make the callers (including those that still use ipcctl_pre_down())
+explicitly lock and unlock the rwsem and rcu lock.
+
+Signed-off-by: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Cc: Andi Kleen <andi@firstfloor.org>
+Cc: Rik van Riel <riel@redhat.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

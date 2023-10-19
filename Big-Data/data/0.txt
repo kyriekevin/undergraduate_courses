@@ -1,0 +1,37 @@
+label: maintenance
+module: message queue	
+age: 2022-03-22
+title: fs: allocate inode by using alloc_inode_sb()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=fd60b28842df833477c42da6a6d63d0d114a5fcc
+lines: -1/+1
+category: ipc/mqueue.c
+
+The inode allocation is supposed to use alloc_inode_sb(), so convert
+kmem_cache_alloc() of all filesystems to alloc_inode_sb().
+
+Link: https://lkml.kernel.org/r/20220228122126.37293-5-songmuchun@bytedance.com
+Signed-off-by: Muchun Song <songmuchun@bytedance.com>
+Acked-by: Theodore Ts'o <tytso@mit.edu>		[ext4]
+Acked-by: Roman Gushchin <roman.gushchin@linux.dev>
+Cc: Alex Shi <alexs@kernel.org>
+Cc: Anna Schumaker <Anna.Schumaker@Netapp.com>
+Cc: Chao Yu <chao@kernel.org>
+Cc: Dave Chinner <david@fromorbit.com>
+Cc: Fam Zheng <fam.zheng@bytedance.com>
+Cc: Jaegeuk Kim <jaegeuk@kernel.org>
+Cc: Johannes Weiner <hannes@cmpxchg.org>
+Cc: Kari Argillander <kari.argillander@gmail.com>
+Cc: Matthew Wilcox (Oracle) <willy@infradead.org>
+Cc: Michal Hocko <mhocko@kernel.org>
+Cc: Qi Zheng <zhengqi.arch@bytedance.com>
+Cc: Shakeel Butt <shakeelb@google.com>
+Cc: Trond Myklebust <trond.myklebust@hammerspace.com>
+Cc: Vladimir Davydov <vdavydov.dev@gmail.com>
+Cc: Vlastimil Babka <vbabka@suse.cz>
+Cc: Wei Yang <richard.weiyang@gmail.com>
+Cc: Xiongchun Duan <duanxiongchun@bytedance.com>
+Cc: Yang Shi <shy828301@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

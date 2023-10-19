@@ -1,0 +1,32 @@
+label: bug memory danglingPt
+consequence：leak
+module: message queue	
+age: 2017-07-09
+title: mqueue: fix a use-after-free in sys_mq_notify()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f991af3daabaecff34684fd51fac80319d1baad1
+lines: -1/+3
+category: ipc/mqueue.c
+
+The retry logic for netlink_attachskb() inside sys_mq_notify()
+is nasty and vulnerable:
+
+1) The sock refcnt is already released when retry is needed
+2) The fd is controllable by user-space because we already
+   release the file refcnt
+
+so we when retry but the fd has been just closed by user-space
+during this small window, we end up calling netlink_detachskb()
+on the error path which releases the sock again, later when
+the user-space closes this socket a use-after-free could be
+triggered.
+
+Setting 'sock' to NULL here should be sufficient to fix it.
+
+Reported-by: GeneBlue <geneblue.mail@gmail.com>
+Signed-off-by: Cong Wang <xiyou.wangcong@gmail.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: stable@kernel.org
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

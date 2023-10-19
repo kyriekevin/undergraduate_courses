@@ -1,0 +1,35 @@
+label: reliability corruption defense
+module: shared memory	
+age: 2017-03-02
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=94e877d0fb43bec0540d6a37d49cb4f7f05a5348
+lines: -2/+2
+category: ipc/shm.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull vfs pile two from Al Viro:
+
+ - orangefs fix
+
+ - series of fs/namei.c cleanups from me
+
+ - VFS stuff coming from overlayfs tree
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs:
+  orangefs: Use RCU for destroy_inode
+  vfs: use helper for calling f_op->fsync()
+  mm: use helper for calling f_op->mmap()
+  vfs: use helpers for calling f_op->{read,write}_iter()
+  vfs: pass type instead of fn to do_{loop,iter}_readv_writev()
+  vfs: extract common parts of {compat_,}do_readv_writev()
+  vfs: wrap write f_ops with file_{start,end}_write()
+  vfs: deny copy_file_range() for non regular files
+  vfs: deny fallocate() on directory
+  vfs: create vfs helper vfs_tmpfile()
+  namei.c: split unlazy_walk()
+  namei.c: fold the check for DCACHE_OP_REVALIDATE into d_revalidate()
+  lookup_fast(): clean up the logics around the fallback to non-rcu mode
+  namei: fold unlazy_link() into its sole caller
+
+

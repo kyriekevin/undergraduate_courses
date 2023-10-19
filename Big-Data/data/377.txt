@@ -1,0 +1,20 @@
+label: feature
+module: semaphore	other	
+age: 2014-01-27
+title: ipc: change kern_ipc_perm.deleted type to bool
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=72a8ff2f9245128c254387c58f948f1f0152ea46
+lines: -5/+5
+category: ipc/sem.c ipc/util.c ipc/util.h 
+
+struct kern_ipc_perm.deleted is meant to be used as a boolean toggle, and
+the changes introduced by this patch are just to make the case explicit.
+
+Signed-off-by: Rafael Aquini <aquini@redhat.com>
+Reviewed-by: Rik van Riel <riel@redhat.com>
+Cc: Greg Thelen <gthelen@google.com>
+Acked-by: Davidlohr Bueso <davidlohr@hp.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

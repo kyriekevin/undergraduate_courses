@@ -1,0 +1,28 @@
+label: performance access optimization
+module: message queue	
+age: 2007-10-17
+title: Slab API: remove useless ctor parameter and reorder parameters
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4ba9b9d0ba0a49d91fa6417c7510ee36f48cf957
+lines: -1/+1
+category: ipc/mqueue.c
+
+Slab constructors currently have a flags parameter that is never used.  And
+the order of the arguments is opposite to other slab functions.  The object
+pointer is placed before the kmem_cache pointer.
+
+Convert
+
+        ctor(void *object, struct kmem_cache *s, unsigned long flags)
+
+to
+
+        ctor(struct kmem_cache *s, void *object)
+
+throughout the kernel
+
+[akpm@linux-foundation.org: coupla fixes]
+Signed-off-by: Christoph Lameter <clameter@sgi.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

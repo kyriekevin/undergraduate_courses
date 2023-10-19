@@ -1,0 +1,11 @@
+label: performance access optimization
+module: shared memory	
+age: 2008-10-21
+title: [PATCH] introduce fmode_t, do annotations
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=aeb5d727062a0238a2f96c9c380fbd2be4640c6f
+lines: -1/+1
+category: ipc/shm.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,17 @@
+label: feature
+module: semaphore	shared memory	
+age: 2020-08-23
+title: treewide: Use fallthrough pseudo-keyword
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=df561f6688fef775baa341a0f5d960becd248b11
+lines: -4/+4
+category: ipc/sem.c ipc/shm.c 
+
+Replace the existing /* fall through */ comments and its variants with
+the new pseudo-keyword macro fallthrough[1]. Also, remove unnecessary
+fall-through markings when it is the case.
+
+[1] https://www.kernel.org/doc/html/v5.7/process/deprecated.html?highlight=fallthrough#implicit-switch-case-fall-through
+
+Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+
+

@@ -1,0 +1,22 @@
+label: reliability error enhancement
+module: other	
+age: 2014-10-14
+title: ipc/util.c: use __seq_open_private() instead of seq_open()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d66a0520cb46fb4f86b070e5f1926f6e53f23b38
+lines: -16/+4
+category: ipc/util.c
+
+Using __seq_open_private() removes boilerplate code from
+sysvipc_proc_open().
+
+The resultant code is shorter and easier to follow.
+
+However, please note that __seq_open_private() call kzalloc() rather than
+kmalloc() which may affect timing due to the memory initialisation
+overhead.
+
+Signed-off-by: Rob Jones <rob.jones@codethink.co.uk>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

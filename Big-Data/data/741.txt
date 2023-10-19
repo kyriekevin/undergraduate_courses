@@ -1,0 +1,24 @@
+label: performance other
+module: message queue	
+age: 2008-02-08
+title: Pidns: fix badly converted mqueues pid handling
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=56496c1d83dfae0c74e2f43adb45d2d95e16c0d5
+lines: -1/+1
+category: ipc/mqueue.c
+
+When sending the pid namespaces patches I wrongly converted the tsk->tgid into
+task_pid_vnr(tsk) in mqueue-s (the git id of this patch is
+b488893a390edfe027bae7a46e9af8083e740668).
+
+The proper behavior is to get the task_tgid_vnr(tsk).
+
+This seem to be the only mistake of that kind.
+
+Signed-off-by: Pavel Emelyanov <xemul@openvz.org>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: Oleg Nesterov <oleg@tv-sign.ru>
+Cc: Balbir Singh <balbir@in.ibm.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

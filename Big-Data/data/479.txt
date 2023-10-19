@@ -1,0 +1,11 @@
+label: performance access optimization
+module: compatibility	
+age: 2013-03-03
+title: merge compat sys_ipc instances
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=56e41d3c5aa84d679eebdb3cb8a70b03c5fbd6c3
+lines: -0/+44
+category: ipc/compat.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

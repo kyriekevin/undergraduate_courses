@@ -1,0 +1,22 @@
+label: reliability annotation
+module: message	
+age: 2013-01-04
+title: ipc: simplify free_copy() call
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=85398aa8de1d68f44ff1b5d0ed9ceb2b0c51ce49
+lines: -6/+8
+category: ipc/msg.c
+
+Passing and checking of msgflg to free_copy() is redundant.  This patch
+sets copy to NULL on declaration instead and checks for non-NULL in
+free_copy().
+
+Note: in case of copy allocation failure, error is returned immediately.
+So no need to check for IS_ERR() in free_copy().
+
+Signed-off-by: Stanislav Kinsbursky <skinsbursky@parallels.com>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: James Morris <jmorris@namei.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

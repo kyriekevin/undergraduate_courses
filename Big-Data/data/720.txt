@@ -1,0 +1,26 @@
+label: performance store optimization
+module: message	semaphore	shared memory	other	
+age: 2008-04-29
+title: IPC: consolidate all xxxctl_down() functions
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a5f75e7f256f75759ec3d6dbef0ba932f1b397d2
+lines: -119/+66
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+semctl_down(), msgctl_down() and shmctl_down() are used to handle the same set
+of commands for each kind of IPC.  They all start to do the same job (they
+retrieve the ipc and do some permission checks) before handling the commands
+on their own.
+
+This patch proposes to consolidate this by moving these same pieces of code
+into one common function called ipcctl_pre_down().
+
+It simplifies a little these xxxctl_down() functions and increases a little
+the maintainability.
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

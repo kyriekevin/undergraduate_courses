@@ -1,0 +1,24 @@
+label: bug semantic generic
+consequence：error
+module: message	other	
+age: 2010-05-25
+title: kernel-wide: replace USHORT_MAX, SHORT_MAX and SHORT_MIN with USHRT_MAX, ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4be929be34f9bdeffa40d815d32d7d60d2c7f03b
+lines: -8/+8
+category: ipc/msg.c ipc/util.c 
+
+SHRT_MAX and SHRT_MIN
+
+- C99 knows about USHRT_MAX/SHRT_MAX/SHRT_MIN, not
+  USHORT_MAX/SHORT_MAX/SHORT_MIN.
+
+- Make SHRT_MIN of type s16, not int, for consistency.
+
+[akpm@linux-foundation.org: fix drivers/dma/timb_dma.c]
+[akpm@linux-foundation.org: fix security/keys/keyring.c]
+Signed-off-by: Alexey Dobriyan <adobriyan@gmail.com>
+Acked-by: WANG Cong <xiyou.wangcong@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

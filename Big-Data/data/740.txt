@@ -1,0 +1,52 @@
+label: bug memory danglingPt
+consequence：leak
+module: shared memory	
+age: 2008-03-10
+title: mempolicy: fix reference counting bugs
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=69682d852f5c94ee94e21174b3e8b719626c98db
+lines: -2/+3
+category: ipc/shm.c
+
+Address 3 known bugs in the current memory policy reference counting method.
+I have a series of patches to rework the reference counting to reduce overhead
+in the allocation path.  However, that series will require testing in -mm once
+I repost it.
+
+1) alloc_page_vma() does not release the extra reference taken for
+   vma/shared mempolicy when the mode == MPOL_INTERLEAVE.  This can result in
+   leaking mempolicy structures.  This is probably occurring, but not being
+   noticed.
+
+   Fix:  add the conditional release of the reference.
+
+2) hugezonelist unconditionally releases a reference on the mempolicy when
+   mode == MPOL_INTERLEAVE.  This can result in decrementing the reference
+   count for system default policy [should have no ill effect] or premature
+   freeing of task policy.  If this occurred, the next allocation using task
+   mempolicy would use the freed structure and probably BUG out.
+
+   Fix:  add the necessary check to the release.
+
+3) The current reference counting method assumes that vma 'get_policy()'
+   methods automatically add an extra reference a non-NULL returned mempolicy.
+    This is true for shmem_get_policy() used by tmpfs mappings, including
+   regular page shm segments.  However, SHM_HUGETLB shm's, backed by
+   hugetlbfs, just use the vma policy without the extra reference.  This
+   results in freeing of the vma policy on the first allocation, with reuse of
+   the freed mempolicy structure on subsequent allocations.
+
+   Fix: Rather than add another condition to the conditional reference
+   release, which occur in the allocation path, just add a reference when
+   returning the vma policy in shm_get_policy() to match the assumptions.
+
+Signed-off-by: Lee Schermerhorn <lee.schermerhorn@hp.com>
+Cc: Greg KH <greg@kroah.com>
+Cc: Andi Kleen <ak@suse.de>
+Cc: Christoph Lameter <clameter@sgi.com>
+Cc: Mel Gorman <mel@csn.ul.ie>
+Cc: David Rientjes <rientjes@google.com>
+Cc: <eric.whitney@hp.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

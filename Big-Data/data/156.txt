@@ -1,0 +1,16 @@
+label: feature
+module: semaphore	
+age: 2018-03-22
+title: sem: Move struct sem and struct sem_array into ipc/sem.c
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1a5c1349d105df5196ad9025e271b02a4dc05aee
+lines: -0/+34
+category: ipc/sem.c
+
+All of the users are now in ipc/sem.c so make the definitions
+local to that file to make code maintenance easier.  AKA
+to prevent rebuilding the entire kernel when one of these
+files is changed.
+
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

@@ -1,0 +1,18 @@
+label: feature
+module: message queue	semaphore	other	
+age: 2018-04-20
+title: y2038: ipc: Use __kernel_timespec
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=21fc538d817ce671f1a28a03996c715247c2ac89
+lines: -6/+6
+category: ipc/mqueue.c ipc/sem.c ipc/util.h 
+
+This is a preparatation for changing over __kernel_timespec to 64-bit
+times, which involves assigning new system call numbers for mq_timedsend(),
+mq_timedreceive() and semtimedop() for compatibility with future y2038
+proof user space.
+
+The existing ABIs will remain available through compat code.
+
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+
+

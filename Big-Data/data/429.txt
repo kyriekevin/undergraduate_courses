@@ -1,0 +1,15 @@
+label: performance access optimization
+module: message	semaphore	shared memory	other	
+age: 2013-07-09
+title: ipc: close open coded spin lock calls
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=cf9d5d78d05bca96df7618dfc3a5ee4414dcae58
+lines: -12/+12
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.h 
+
+Signed-off-by: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Cc: Andi Kleen <andi@firstfloor.org>
+Cc: Rik van Riel <riel@redhat.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

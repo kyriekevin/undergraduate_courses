@@ -1,0 +1,15 @@
+label: reliability robust
+module: other	
+age: 2009-01-04
+title: sanitize audit_ipc_set_perm()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e816f370cbadd2afea9f1a42f232d0636137d563
+lines: -7/+2
+category: ipc/util.c
+
+* get rid of allocations
+* make it return void
+* simplify callers
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

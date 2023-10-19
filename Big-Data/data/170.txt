@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2018-01-05
+title: mqueue: fold mq_attr_ok() into mqueue_get_inode()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=05c1b29038acb05a52dc113ae2ab646f9a92bbfd
+lines: -50/+21
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

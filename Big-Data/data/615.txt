@@ -1,0 +1,37 @@
+label: bug concurrency deadlock
+consequence：deadlock
+module: message queue	shared memory	
+age: 2009-12-16
+title: Merge branch 'master' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=bac5e54c29f352d962a2447d22735316b347b9f1
+lines: -9/+5
+category: ipc/mqueue.c ipc/shm.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs-2.6
+
+* 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs-2.6: (38 commits)
+  direct I/O fallback sync simplification
+  ocfs: stop using do_sync_mapping_range
+  cleanup blockdev_direct_IO locking
+  make generic_acl slightly more generic
+  sanitize xattr handler prototypes
+  libfs: move EXPORT_SYMBOL for d_alloc_name
+  vfs: force reval of target when following LAST_BIND symlinks (try #7)
+  ima: limit imbalance msg
+  Untangling ima mess, part 3: kill dead code in ima
+  Untangling ima mess, part 2: deal with counters
+  Untangling ima mess, part 1: alloc_file()
+  O_TRUNC open shouldn't fail after file truncation
+  ima: call ima_inode_free ima_inode_free
+  IMA: clean up the IMA counts updating code
+  ima: only insert at inode creation time
+  ima: valid return code from ima_inode_alloc
+  fs: move get_empty_filp() deffinition to internal.h
+  Sanitize exec_permission_lite()
+  Kill cached_lookup() and real_lookup()
+  Kill path_lookup_open()
+  ...
+
+Trivial conflicts in fs/direct-io.c
+
+

@@ -1,0 +1,19 @@
+label: maintenance
+module: message queue	
+age: 2006-10-02
+title: [PATCH] update mq_notify to use a struct pid
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a03fcb730b4fe7da14ca4405f23dbde717b1d2b9
+lines: -12/+15
+category: ipc/mqueue.c
+
+Message queues can signal a process waiting for a message.
+
+This patch replaces the pid_t value with a struct pid to avoid pid wrap
+around problems.
+
+Signed-off-by: Cedric Le Goater <clg@fr.ibm.com>
+Acked-by: Eric Biederman <ebiederm@xmission.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

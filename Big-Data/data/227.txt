@@ -1,0 +1,21 @@
+label: feature
+module: semaphore	other	
+age: 2017-07-12
+title: ipc: drop non-RCU allocation
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f8dbe8d290637ac3f68600e30d092393fe9b40a5
+lines: -33/+6
+category: ipc/sem.c ipc/util.c ipc/util.h 
+
+The only users of ipc_alloc() were ipc_rcu_alloc() and the on-heap
+sem_io fall-back memory.  Better to just open-code these to make things
+easier to read.
+
+[manfred@colorfullife.com: Rediff due to inclusion of memset() into ipc_rcu_alloc()]
+Link: http://lkml.kernel.org/r/20170525185107.12869-5-manfred@colorfullife.com
+Signed-off-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

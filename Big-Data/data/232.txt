@@ -1,0 +1,14 @@
+label: maintenance
+module: shared memory	
+age: 2017-07-05
+title: fs: remove call_fsync helper function
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0f41074a65757b46acbdd4293f0de8a70b147406
+lines: -1/+1
+category: ipc/shm.c
+
+Reviewed-by: Christoph Hellwig <hch@lst.de>
+Reviewed-by: Jan Kara <jack@suse.cz>
+Reviewed-by: Carlos Maiolino <cmaiolino@redhat.com>
+Signed-off-by: Jeff Layton <jlayton@redhat.com>
+
+

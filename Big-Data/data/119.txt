@@ -1,0 +1,47 @@
+label: maintenance
+module: message queue	message	semaphore	shared memory	other	
+age: 2018-06-04
+title: Merge branch 'timers-2038-for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ba252f16e4433e7599fec986e77722e6d0eed186
+lines: -65/+99
+category: ipc/mqueue.c ipc/msg.c ipc/sem.c ipc/shm.c ipc/syscall.c ipc/util.h 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+
+Pull time/Y2038 updates from Thomas Gleixner:
+
+ - Consolidate SySV IPC UAPI headers
+
+ - Convert SySV IPC to the new COMPAT_32BIT_TIME mechanism
+
+ - Cleanup the core interfaces and standardize on the ktime_get_* naming
+   convention.
+
+ - Convert the X86 platform ops to timespec64
+
+ - Remove the ugly temporary timespec64 hack
+
+* 'timers-2038-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip: (22 commits)
+  x86: Convert x86_platform_ops to timespec64
+  timekeeping: Add more coarse clocktai/boottime interfaces
+  timekeeping: Add ktime_get_coarse_with_offset
+  timekeeping: Standardize on ktime_get_*() naming
+  timekeeping: Clean up ktime_get_real_ts64
+  timekeeping: Remove timespec64 hack
+  y2038: ipc: Redirect ipc(SEMTIMEDOP, ...) to compat_ksys_semtimedop
+  y2038: ipc: Enable COMPAT_32BIT_TIME
+  y2038: ipc: Use __kernel_timespec
+  y2038: ipc: Report long times to user space
+  y2038: ipc: Use ktime_get_real_seconds consistently
+  y2038: xtensa: Extend sysvipc data structures
+  y2038: powerpc: Extend sysvipc data structures
+  y2038: sparc: Extend sysvipc data structures
+  y2038: parisc: Extend sysvipc data structures
+  y2038: mips: Extend sysvipc data structures
+  y2038: arm64: Extend sysvipc compat data structures
+  y2038: s390: Remove unneeded ipc uapi header files
+  y2038: ia64: Remove unneeded ipc uapi header files
+  y2038: alpha: Remove unneeded ipc uapi header files
+  ...
+
+

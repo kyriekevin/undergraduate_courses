@@ -1,0 +1,38 @@
+label: maintenance
+module: semaphore	
+age: 2008-04-29
+title: ipc: sysvsem: implement sys_unshare(CLONE_SYSVSEM)
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9edff4ab1f8d82675277a04e359d0ed8bf14a7b7
+lines: -0/+1
+category: ipc/sem.c
+
+sys_unshare(CLONE_NEWIPC) doesn't handle the undo lists properly, this can
+cause a kernel memory corruption.  CLONE_NEWIPC must detach from the existing
+undo lists.
+
+Fix, part 1: add support for sys_unshare(CLONE_SYSVSEM)
+
+The original reason to not support it was the potential (inevitable?)
+confusion due to the fact that sys_unshare(CLONE_SYSVSEM) has the
+inverse meaning of clone(CLONE_SYSVSEM).
+
+Our two most reasonable options then appear to be (1) fully support
+CLONE_SYSVSEM, or (2) continue to refuse explicit CLONE_SYSVSEM,
+but always do it anyway on unshare(CLONE_SYSVSEM).  This patch does
+(1).
+
+Changelog:
+	Apr 16: SEH: switch to Manfred's alternative patch which
+		removes the unshare_semundo() function which
+		always refused CLONE_SYSVSEM.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Serge E. Hallyn <serue@us.ibm.com>
+Acked-by: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: Pavel Emelyanov <xemul@openvz.org>
+Cc: Michael Kerrisk <mtk.manpages@googlemail.com>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

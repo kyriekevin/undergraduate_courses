@@ -1,0 +1,19 @@
+label: bug errorCode missError
+consequence：wrong
+module: message	
+age: 2013-01-04
+title: ipc: convert prepare_copy() from macro to function
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b30efe2775ee0a1d911514292579770b214d31c3
+lines: -2/+9
+category: ipc/msg.c
+
+This code works if CONFIG_CHECKPOINT_RESTORE is disabled.
+
+[akpm@linux-foundation.org: remove __maybe_unused]
+Signed-off-by: Stanislav Kinsbursky <skinsbursky@parallels.com>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: James Morris <jmorris@namei.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

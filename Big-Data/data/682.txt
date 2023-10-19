@@ -1,0 +1,17 @@
+label: bug memory uninitRead
+consequence：error
+module: message queue	
+age: 2009-01-05
+title: zero i_uid/i_gid on inode allocation
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=56ff5efad96182f4d3cb3dc6b07396762c658f16
+lines: -1/+0
+category: ipc/mqueue.c
+
+... and don't bother in callers.  Don't bother with zeroing i_blocks,
+while we are at it - it's already been zeroed.
+
+i_mode is not worth the effort; it has no common default value.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

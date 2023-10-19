@@ -1,0 +1,22 @@
+label: reliability robust
+module: message queue	
+age: 2016-06-23
+title: vfs: Generalize filesystem nodev handling.
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a2982cc922c3068783eb9a1f77a5626a1ec36a1f
+lines: -1/+1
+category: ipc/mqueue.c
+
+Introduce a function may_open_dev that tests MNT_NODEV and a new
+superblock flab SB_I_NODEV.  Use this new function in all of the
+places where MNT_NODEV was previously tested.
+
+Add the new SB_I_NODEV s_iflag to proc, sysfs, and mqueuefs as those
+filesystems should never support device nodes, and a simple superblock
+flags makes that very hard to get wrong.  With SB_I_NODEV set if any
+device nodes somehow manage to show up on on a filesystem those
+device nodes will be unopenable.
+
+Acked-by: Seth Forshee <seth.forshee@canonical.com>
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

@@ -1,0 +1,112 @@
+label: maintenance
+module: other	
+age: 2020-06-03
+title: Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=cb8e59cc87201af93dfbb6c3dccc8fcad72a09c2
+lines: -7/+7
+category: ipc/ipc_sysctl.c ipc/mq_sysctl.c 
+
+Pull networking updates from David Miller:
+
+ 1) Allow setting bluetooth L2CAP modes via socket option, from Luiz
+    Augusto von Dentz.
+
+ 2) Add GSO partial support to igc, from Sasha Neftin.
+
+ 3) Several cleanups and improvements to r8169 from Heiner Kallweit.
+
+ 4) Add IF_OPER_TESTING link state and use it when ethtool triggers a
+    device self-test. From Andrew Lunn.
+
+ 5) Start moving away from custom driver versions, use the globally
+    defined kernel version instead, from Leon Romanovsky.
+
+ 6) Support GRO vis gro_cells in DSA layer, from Alexander Lobakin.
+
+ 7) Allow hard IRQ deferral during NAPI, from Eric Dumazet.
+
+ 8) Add sriov and vf support to hinic, from Luo bin.
+
+ 9) Support Media Redundancy Protocol (MRP) in the bridging code, from
+    Horatiu Vultur.
+
+10) Support netmap in the nft_nat code, from Pablo Neira Ayuso.
+
+11) Allow UDPv6 encapsulation of ESP in the ipsec code, from Sabrina
+    Dubroca. Also add ipv6 support for espintcp.
+
+12) Lots of ReST conversions of the networking documentation, from Mauro
+    Carvalho Chehab.
+
+13) Support configuration of ethtool rxnfc flows in bcmgenet driver,
+    from Doug Berger.
+
+14) Allow to dump cgroup id and filter by it in inet_diag code, from
+    Dmitry Yakunin.
+
+15) Add infrastructure to export netlink attribute policies to
+    userspace, from Johannes Berg.
+
+16) Several optimizations to sch_fq scheduler, from Eric Dumazet.
+
+17) Fallback to the default qdisc if qdisc init fails because otherwise
+    a packet scheduler init failure will make a device inoperative. From
+    Jesper Dangaard Brouer.
+
+18) Several RISCV bpf jit optimizations, from Luke Nelson.
+
+19) Correct the return type of the ->ndo_start_xmit() method in several
+    drivers, it's netdev_tx_t but many drivers were using
+    'int'. From Yunjian Wang.
+
+20) Add an ethtool interface for PHY master/slave config, from Oleksij
+    Rempel.
+
+21) Add BPF iterators, from Yonghang Song.
+
+22) Add cable test infrastructure, including ethool interfaces, from
+    Andrew Lunn. Marvell PHY driver is the first to support this
+    facility.
+
+23) Remove zero-length arrays all over, from Gustavo A. R. Silva.
+
+24) Calculate and maintain an explicit frame size in XDP, from Jesper
+    Dangaard Brouer.
+
+25) Add CAP_BPF, from Alexei Starovoitov.
+
+26) Support terse dumps in the packet scheduler, from Vlad Buslov.
+
+27) Support XDP_TX bulking in dpaa2 driver, from Ioana Ciornei.
+
+28) Add devm_register_netdev(), from Bartosz Golaszewski.
+
+29) Minimize qdisc resets, from Cong Wang.
+
+30) Get rid of kernel_getsockopt and kernel_setsockopt in order to
+    eliminate set_fs/get_fs calls. From Christoph Hellwig.
+
+* git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next: (2517 commits)
+  selftests: net: ip_defrag: ignore EPERM
+  net_failover: fixed rollback in net_failover_open()
+  Revert "tipc: Fix potential tipc_aead refcnt leak in tipc_crypto_rcv"
+  Revert "tipc: Fix potential tipc_node refcnt leak in tipc_rcv"
+  vmxnet3: allow rx flow hash ops only when rss is enabled
+  hinic: add set_channels ethtool_ops support
+  selftests/bpf: Add a default $(CXX) value
+  tools/bpf: Don't use $(COMPILE.c)
+  bpf, selftests: Use bpf_probe_read_kernel
+  s390/bpf: Use bcr 0,%0 as tail call nop filler
+  s390/bpf: Maintain 8-byte stack alignment
+  selftests/bpf: Fix verifier test
+  selftests/bpf: Fix sample_cnt shared between two threads
+  bpf, selftests: Adapt cls_redirect to call csum_level helper
+  bpf: Add csum_level helper for fixing up csum levels
+  bpf: Fix up bpf_skb_adjust_room helper's skb csum setting
+  sfc: add missing annotation for efx_ef10_try_update_nic_stats_vf()
+  crypto/chtls: IPv6 support for inline TLS
+  Crypto/chcr: Fixes a coccinile check error
+  Crypto/chcr: Fixes compilations warnings
+  ...
+
+

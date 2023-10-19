@@ -1,0 +1,21 @@
+label: feature
+module: shared memory	
+age: 2009-04-02
+title: ipc: make shm_get_stat() more robust
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e562aebc6ccd4385cbbf24debe88ab4bb500c5b4
+lines: -2/+4
+category: ipc/shm.c
+
+shm_get_stat() assumes idr_find(&shm_ids(ns).ipcs_idr) returns "struct
+shmid_kernel *"; all other callers assume that it returns "struct
+kern_ipc_perm *".  This works because "struct kern_ipc_perm" is currently
+the first member of "struct shmid_kernel", but it would be better to use
+container_of() to prevent future breakage.
+
+Signed-off-by: Tony Battersby <tonyb@cybernetics.com>
+Cc: Jiri Olsa <olsajiri@gmail.com>
+Cc: Jiri Kosina <jkosina@suse.cz>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

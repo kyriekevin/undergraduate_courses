@@ -1,0 +1,12 @@
+label: performance access optimization
+module: semaphore	
+age: 2006-12-07
+title: [PATCH] kernel core: replace kmalloc+memset with kzalloc
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4668edc334ee90cf50c382c3e423cfc510b5a126
+lines: -2/+1
+category: ipc/sem.c
+
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

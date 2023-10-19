@@ -1,0 +1,20 @@
+label: reliability debug
+module: message queue	
+age: 2006-01-09
+title: [PATCH] mutex subsystem, semaphore to mutex: VFS, ->i_sem
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1b1dcc1b57a49136f118a0f16367256ff9994a69
+lines: -4/+4
+category: ipc/mqueue.c
+
+This patch converts the inode semaphore to a mutex. I have tested it on
+XFS and compiled as much as one can consider on an ia64. Anyway your
+luck with it might be different.
+
+Modified-by: Ingo Molnar <mingo@elte.hu>
+
+(finished the conversion)
+
+Signed-off-by: Jes Sorensen <jes@sgi.com>
+Signed-off-by: Ingo Molnar <mingo@elte.hu>
+
+

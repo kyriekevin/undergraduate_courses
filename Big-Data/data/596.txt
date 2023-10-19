@@ -1,0 +1,47 @@
+label: bug concurrency wrongLock
+consequence：hang
+module: semaphore	
+age: 2010-05-27
+title: ipc/sem.c: update description of the implementation
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c5cf6359ad1d322c16e159011247341849cc0d3a
+lines: -50/+53
+category: ipc/sem.c
+
+ipc/sem.c begins with a 15 year old description about bugs in the initial
+implementation in Linux-1.0.  The patch replaces that with a top level
+description of the current code.
+
+A TODO could be derived from this text:
+
+The opengroup man page for semop() does not mandate FIFO.  Thus there is
+no need for a semaphore array list of pending operations.
+
+If
+
+- this list is removed
+- the per-semaphore array spinlock is removed (possible if there is no
+  list to protect)
+- sem_otime is moved into the semaphores and calculated on demand during
+  semctl()
+
+then the array would be read-mostly - which would significantly improve
+scaling for applications that use semaphore arrays with lots of entries.
+
+The price would be expensive semctl() calls:
+
+	for(i=0;i<sma->sem_nsems;i++) spin_lock(sma->sem_lock);
+	<do stuff>
+	for(i=0;i<sma->sem_nsems;i++) spin_unlock(sma->sem_lock);
+
+I'm not sure if the complexity is worth the effort, thus here is the
+documentation of the current behavior first.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Chris Mason <chris.mason@oracle.com>
+Cc: Zach Brown <zach.brown@oracle.com>
+Cc: Jens Axboe <jens.axboe@oracle.com>
+Cc: Nick Piggin <npiggin@suse.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

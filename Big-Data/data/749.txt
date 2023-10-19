@@ -1,0 +1,32 @@
+label: feature
+module: message	semaphore	shared memory	
+age: 2008-02-06
+title: IPC: fix error check in all new xxx_lock() and xxx_exit_ns() functions
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b1ed88b47f5e18c6efb8041275c16eeead5377df
+lines: -9/+45
+category: ipc/msg.c ipc/sem.c ipc/shm.c 
+
+In the new implementation of the [sem|shm|msg]_lock[_check]() routines, we
+use the return value of ipc_lock() in container_of() without any check.
+But ipc_lock may return a errcode.  The use of this errcode in
+container_of() may alter this errcode, and we don't want this.
+
+And in xxx_exit_ns, the pointer return by idr_find is of type 'struct
+kern_ipc_per'...
+
+Today, the code will work as is because the member used in these
+container_of() is the first member of its container (offset == 0), the
+errcode isn't changed then.  But in the general case, we can't count on
+this assumption and this may lead later to a real bug if we don't correct
+this.
+
+Again, the proposed solution is simple and correct.  But, as pointed by
+Nadia, with this solution, the same check will be done several times (in
+all sub-callers...), what is not very funny/optimal...
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

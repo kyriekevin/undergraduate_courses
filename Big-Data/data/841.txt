@@ -1,0 +1,15 @@
+label: feature
+module: message	
+age: 2006-03-24
+title: BUG_ON() Conversion in ipc/msg.c
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8cd5283b897f56004631944dd2888e9a7b843f89
+lines: -2/+1
+category: ipc/msg.c
+
+this changes if() BUG(); constructs to BUG_ON() which is
+cleaner, contains unlikely() and can better optimized away.
+
+Signed-off-by: Eric Sesterhenn <snakebyte@gmx.de>
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+
+

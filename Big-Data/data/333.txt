@@ -1,0 +1,21 @@
+label: maintenance
+module: compatibility	
+age: 2014-10-14
+title: ipc: resolve shadow warnings
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0d5e75802c842ecc7c4778422c2d49609a889f3a
+lines: -46/+46
+category: ipc/compat.c
+
+Resolve some shadow warnings produced in W=2 builds by changing the name
+of some parameters and local variables.  Change instances of "s64"
+because that clashes with the well-known typedef.  Also change a local
+variable with the name "up" because that clashes with the name of of the
+"up" function for semaphores.  These are hazards so eliminate the
+hazards by renaming them.
+
+Signed-off-by: Mark Rustad <mark.d.rustad@intel.com>
+Signed-off-by: Jeff Kirsher <jeffrey.t.kirsher@intel.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

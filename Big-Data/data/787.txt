@@ -1,0 +1,44 @@
+label: reliability corruption defense
+module: other	
+age: 2007-05-08
+title: Merge sys_clone()/sys_unshare() nsproxy and namespace handling
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e3222c4ecc649c4ae568e61dda9349482401b501
+lines: -43/+10
+category: ipc/util.c
+
+sys_clone() and sys_unshare() both makes copies of nsproxy and its associated
+namespaces.  But they have different code paths.
+
+This patch merges all the nsproxy and its associated namespace copy/clone
+handling (as much as possible).  Posted on container list earlier for
+feedback.
+
+- Create a new nsproxy and its associated namespaces and pass it back to
+  caller to attach it to right process.
+
+- Changed all copy_*_ns() routines to return a new copy of namespace
+  instead of attaching it to task->nsproxy.
+
+- Moved the CAP_SYS_ADMIN checks out of copy_*_ns() routines.
+
+- Removed unnessary !ns checks from copy_*_ns() and added BUG_ON()
+  just incase.
+
+- Get rid of all individual unshare_*_ns() routines and make use of
+  copy_*_ns() instead.
+
+[akpm@osdl.org: cleanups, warning fix]
+[clg@fr.ibm.com: remove dup_namespaces() declaration]
+[serue@us.ibm.com: fix CONFIG_IPC_NS=n, clone(CLONE_NEWIPC) retval]
+[akpm@linux-foundation.org: fix build with CONFIG_SYSVIPC=n]
+Signed-off-by: Badari Pulavarty <pbadari@us.ibm.com>
+Signed-off-by: Serge Hallyn <serue@us.ibm.com>
+Cc: Cedric Le Goater <clg@fr.ibm.com>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: <containers@lists.osdl.org>
+Signed-off-by: Cedric Le Goater <clg@fr.ibm.com>
+Cc: Oleg Nesterov <oleg@tv-sign.ru>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

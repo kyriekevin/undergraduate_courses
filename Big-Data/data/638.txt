@@ -1,0 +1,37 @@
+label: performance other
+module: shared memory	
+age: 2009-08-24
+title: mm: fix hugetlb bug due to user_shm_unlock call
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=353d5c30c666580347515da609dd74a2b8e9b828
+lines: -3/+5
+category: ipc/shm.c
+
+2.6.30's commit 8a0bdec194c21c8fdef840989d0d7b742bb5d4bc removed
+user_shm_lock() calls in hugetlb_file_setup() but left the
+user_shm_unlock call in shm_destroy().
+
+In detail:
+Assume that can_do_hugetlb_shm() returns true and hence user_shm_lock()
+is not called in hugetlb_file_setup(). However, user_shm_unlock() is
+called in any case in shm_destroy() and in the following
+atomic_dec_and_lock(&up->__count) in free_uid() is executed and if
+up->__count gets zero, also cleanup_user_struct() is scheduled.
+
+Note that sched_destroy_user() is empty if CONFIG_USER_SCHED is not set.
+However, the ref counter up->__count gets unexpectedly non-positive and
+the corresponding structs are freed even though there are live
+references to them, resulting in a kernel oops after a lots of
+shmget(SHM_HUGETLB)/shmctl(IPC_RMID) cycles and CONFIG_USER_SCHED set.
+
+Hugh changed Stefan's suggested patch: can_do_hugetlb_shm() at the
+time of shm_destroy() may give a different answer from at the time
+of hugetlb_file_setup().  And fixed newseg()'s no_id error path,
+which has missed user_shm_unlock() ever since it came in 2.6.9.
+
+Reported-by: Stefan Huber <shuber2@gmail.com>
+Signed-off-by: Hugh Dickins <hugh.dickins@tiscali.co.uk>
+Tested-by: Stefan Huber <shuber2@gmail.com>
+Cc: stable@kernel.org
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

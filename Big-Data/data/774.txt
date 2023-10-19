@@ -1,0 +1,17 @@
+label: performance speed optimization
+module: shared memory	
+age: 2007-07-31
+title: NOMMU: Fix SYSV IPC SHM
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2e92a3baee64112fd210a930276bad165b0bd576
+lines: -0/+2
+category: ipc/shm.c
+
+Fix the SYSV IPC SHM to work with the changes applied by the new fault handler
+patches when CONFIG_MMU=n.
+
+Signed-off-by: David Howells <dhowells@redhat.com>
+Cc: Nick Piggin <nickpiggin@yahoo.com.au>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

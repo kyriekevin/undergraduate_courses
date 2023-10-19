@@ -1,0 +1,18 @@
+label: bug semantic generic
+consequence：wrong
+module: shared memory	
+age: 2017-05-08
+title: ipc/shm: some shmat cleanups
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f0cb88026f51a0d8c952cf5e09e1933ef10b50b4
+lines: -9/+7
+category: ipc/shm.c
+
+Clean up early flag and address some minutia.
+
+Link: http://lkml.kernel.org/r/1486673582-6979-3-git-send-email-dave@stgolabs.net
+Signed-off-by: Davidlohr Bueso <dbueso@suse.de>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

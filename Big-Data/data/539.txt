@@ -1,0 +1,15 @@
+label: maintenance
+module: message queue	
+age: 2012-04-07
+title: mqueue: Explicitly capture the user namespace to send the notification to.
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6f9ac6d93a0916de09d11b0a247ade8f4347728b
+lines: -1/+8
+category: ipc/mqueue.c
+
+Stop relying on user->user_ns which is going away and instead capture
+the user_namespace of the process we are supposed to notify.
+
+Acked-by: Serge Hallyn <serge.hallyn@canonical.com>
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+
+

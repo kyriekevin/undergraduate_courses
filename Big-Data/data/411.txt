@@ -1,0 +1,39 @@
+label: maintenance
+module: other	
+age: 2013-09-07
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c7c4591db64dbd1e504bc4e2806d7ef290a3c81b
+lines: -1/+1
+category: ipc/namespace.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull namespace changes from Eric Biederman:
+ "This is an assorted mishmash of small cleanups, enhancements and bug
+  fixes.
+
+  The major theme is user namespace mount restrictions.  nsown_capable
+  is killed as it encourages not thinking about details that need to be
+  considered.  A very hard to hit pid namespace exiting bug was finally
+  tracked and fixed.  A couple of cleanups to the basic namespace
+  infrastructure.
+
+  Finally there is an enhancement that makes per user namespace
+  capabilities usable as capabilities, and an enhancement that allows
+  the per userns root to nice other processes in the user namespace"
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace:
+  userns:  Kill nsown_capable it makes the wrong thing easy
+  capabilities: allow nice if we are privileged
+  pidns: Don't have unshare(CLONE_NEWPID) imply CLONE_THREAD
+  userns: Allow PR_CAPBSET_DROP in a user namespace.
+  namespaces: Simplify copy_namespaces so it is clear what is going on.
+  pidns: Fix hang in zap_pid_ns_processes by sending a potentially extra wakeup
+  sysfs: Restrict mounting sysfs
+  userns: Better restrictions on when proc and sysfs can be mounted
+  vfs: Don't copy mount bind mounts of /proc/<pid>/ns/mnt between namespaces
+  kernel/nsproxy.c: Improving a snippet of code.
+  proc: Restrict mounting the proc filesystem
+  vfs: Lock in place mounts from more privileged users
+
+

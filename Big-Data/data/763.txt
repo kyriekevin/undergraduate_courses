@@ -1,0 +1,16 @@
+label: feature
+module: shared memory	other	
+age: 2007-10-19
+title: ipc: remove the ipc_get() routine
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=637c36634029e4e7c81112796dafc32d56355b4a
+lines: -23/+13
+category: ipc/shm.c ipc/util.c ipc/util.h 
+
+This is a trivial patch that removes the ipc_get() routine: it is replaced
+by a call to idr_find().
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

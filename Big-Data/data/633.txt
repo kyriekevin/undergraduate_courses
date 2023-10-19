@@ -1,0 +1,29 @@
+label: bug semantic generic
+consequence：wrong
+module: other	
+age: 2009-09-24
+title: sysctl: remove "struct file *" argument of ->proc_handler
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8d65af789f3e2cf4cfbdbf71a0f7a61ebcd41d38
+lines: -12/+12
+category: ipc/ipc_sysctl.c ipc/mq_sysctl.c 
+
+It's unused.
+
+It isn't needed -- read or write flag is already passed and sysctl
+shouldn't care about the rest.
+
+It _was_ used in two places at arch/frv for some reason.
+
+Signed-off-by: Alexey Dobriyan <adobriyan@gmail.com>
+Cc: David Howells <dhowells@redhat.com>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Cc: Ralf Baechle <ralf@linux-mips.org>
+Cc: Martin Schwidefsky <schwidefsky@de.ibm.com>
+Cc: Ingo Molnar <mingo@elte.hu>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: James Morris <jmorris@namei.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

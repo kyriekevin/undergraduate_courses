@@ -1,0 +1,17 @@
+label: feature
+module: semaphore	
+age: 2021-05-07
+title: ipc/sem.c: spelling fix
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7497835f7e8dae01c4850ce7204f6a8a7f58f2e5
+lines: -1/+1
+category: ipc/sem.c
+
+s/purpuse/purpose/
+
+Link: https://lkml.kernel.org/r/20210319221432.26631-1-unixbhaskar@gmail.com
+Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Acked-by: Randy Dunlap <rdunlap@infradead.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

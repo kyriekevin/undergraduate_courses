@@ -1,0 +1,31 @@
+label: feature
+module: message queue	
+age: 2008-04-19
+title: [PATCH] r/o bind mounts: elevate write count for open()s
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4a3fd211ccfc08a88edc824300e25a87785c6a5f
+lines: -2/+14
+category: ipc/mqueue.c
+
+This is the first really tricky patch in the series.  It elevates the writer
+count on a mount each time a non-special file is opened for write.
+
+We used to do this in may_open(), but Miklos pointed out that __dentry_open()
+is used as well to create filps.  This will cover even those cases, while a
+call in may_open() would not have.
+
+There is also an elevated count around the vfs_create() call in open_namei().
+See the comments for more details, but we need this to fix a 'create, remount,
+fail r/w open()' race.
+
+Some filesystems forego the use of normal vfs calls to create
+struct files.   Make sure that these users elevate the mnt
+writer count because they will get __fput(), and we need
+to make sure they're balanced.
+
+Acked-by: Al Viro <viro@ZenIV.linux.org.uk>
+Signed-off-by: Christoph Hellwig <hch@lst.de>
+Signed-off-by: Dave Hansen <haveblue@us.ibm.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

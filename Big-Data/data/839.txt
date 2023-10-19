@@ -1,0 +1,15 @@
+label: feature
+module: semaphore	
+age: 2006-03-26
+title: BUG_ON() Conversion in ipc/sem.c
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=27315c96a4c3d5f24a902111dae537cdc28302e4
+lines: -4/+2
+category: ipc/sem.c
+
+this changes if() BUG(); constructs to BUG_ON() which is
+cleaner, contains unlikely() and can better optimized away.
+
+Signed-off-by: Eric Sesterhenn <snakebyte@gmx.de>
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+
+

@@ -1,0 +1,21 @@
+label: feature
+module: other	
+age: 2008-07-25
+title: ipc: call idr_find() without locking in ipc_lock()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=983bfb7db303cfde56ae5bbf4e0f2f46e38c9576
+lines: -9/+0
+category: ipc/util.c
+
+Call idr_find() locklessly from ipc_lock(), since the idr tree is now RCU
+protected.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Acked-by: "Paul E. McKenney" <paulmck@us.ibm.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: Jim Houston <jim.houston@comcast.net>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Acked-by: Rik van Riel <riel@redhat.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

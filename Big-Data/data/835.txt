@@ -1,0 +1,15 @@
+label: feature
+module: message queue	
+age: 2006-03-28
+title: [PATCH] mqueue comment typo fix
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7b7a317cf863559b49b548a8b97b2f4bdf1e149e
+lines: -1/+1
+category: ipc/mqueue.c
+
+(akpm: I don't do comment typos patches.  This one snuck through by accident)
+
+Signed-off-by: Serge Hallyn <serue@us.ibm.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

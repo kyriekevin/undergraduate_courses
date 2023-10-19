@@ -1,0 +1,34 @@
+label: performance other
+module: message queue	
+age: 2007-05-17
+title: Remove SLAB_CTOR_CONSTRUCTOR
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a35afb830f8d71ec211531aeb9a621b09a2efb39
+lines: -2/+1
+category: ipc/mqueue.c
+
+SLAB_CTOR_CONSTRUCTOR is always specified. No point in checking it.
+
+Signed-off-by: Christoph Lameter <clameter@sgi.com>
+Cc: David Howells <dhowells@redhat.com>
+Cc: Jens Axboe <jens.axboe@oracle.com>
+Cc: Steven French <sfrench@us.ibm.com>
+Cc: Michael Halcrow <mhalcrow@us.ibm.com>
+Cc: OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>
+Cc: Miklos Szeredi <miklos@szeredi.hu>
+Cc: Steven Whitehouse <swhiteho@redhat.com>
+Cc: Roman Zippel <zippel@linux-m68k.org>
+Cc: David Woodhouse <dwmw2@infradead.org>
+Cc: Dave Kleikamp <shaggy@austin.ibm.com>
+Cc: Trond Myklebust <trond.myklebust@fys.uio.no>
+Cc: "J. Bruce Fields" <bfields@fieldses.org>
+Cc: Anton Altaparmakov <aia21@cantab.net>
+Cc: Mark Fasheh <mark.fasheh@oracle.com>
+Cc: Paul Mackerras <paulus@samba.org>
+Cc: Christoph Hellwig <hch@lst.de>
+Cc: Jan Kara <jack@ucw.cz>
+Cc: David Chinner <dgc@sgi.com>
+Cc: "David S. Miller" <davem@davemloft.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

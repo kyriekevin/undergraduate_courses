@@ -1,0 +1,29 @@
+label: performance other
+module: message	
+age: 2020-06-08
+title: ipc/msg: add missing annotation for freeque()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4b78e2013a374f379457ceba7dc860d9fc28156b
+lines: -0/+2
+category: ipc/msg.c
+
+Sparse reports a warning at freeque()
+
+warning: context imbalance in freeque() - unexpected unlock
+
+The root cause is the missing annotation at freeque()
+
+Add the missing __releases(RCU) annotation
+Add the missing __releases(&msq->q_perm) annotation
+
+Signed-off-by: Jules Irenge <jbi.octave@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Reviewed-by: Andrew Morton <akpm@linux-foundation.org>
+Cc: Boqun Feng <boqun.feng@gmail.com>
+Cc: Lu Shuaibing <shuaibinglu@126.com>
+Cc: Nathan Chancellor <natechancellor@gmail.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Link: http://lkml.kernel.org/r/20200403160505.2832-2-jbi.octave@gmail.com
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

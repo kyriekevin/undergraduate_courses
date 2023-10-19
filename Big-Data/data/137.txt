@@ -1,0 +1,22 @@
+label: feature
+module: message	other	
+age: 2018-04-02
+title: ipc: add msgctl syscall/compat_syscall wrappers
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e340db56483b6e10bd5e5f281071876808801a41
+lines: -4/+17
+category: ipc/msg.c ipc/syscall.c ipc/util.h 
+
+Provide ksys_msgctl() and compat_ksys_msgctl() wrappers to avoid in-kernel
+calls to these syscalls. The ksys_ prefix denotes that these functions are
+meant as a drop-in replacement for the syscalls. In particular, they use
+the same calling convention as sys_msgctl() and compat_sys_msgctl().
+
+This patch is part of a series which removes in-kernel calls to syscalls.
+On this basis, the syscall entry path can be streamlined. For details, see
+http://lkml.kernel.org/r/20180325162527.GA17492@light.dominikbrodowski.net
+
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Dominik Brodowski <linux@dominikbrodowski.net>
+
+

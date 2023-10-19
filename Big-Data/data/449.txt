@@ -1,0 +1,17 @@
+label: maintenance
+module: other	
+age: 2013-05-01
+title: proc: Split the namespace stuff out into linux/proc_ns.h
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0bb80f240520c4148b623161e7856858c021696d
+lines: -2/+2
+category: ipc/msgutil.c ipc/namespace.c 
+
+Split the proc namespace stuff out into linux/proc_ns.h.
+
+Signed-off-by: David Howells <dhowells@redhat.com>
+cc: netdev@vger.kernel.org
+cc: Serge E. Hallyn <serge.hallyn@ubuntu.com>
+cc: Eric W. Biederman <ebiederm@xmission.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

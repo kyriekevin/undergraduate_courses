@@ -1,0 +1,16 @@
+label: maintenance
+module: other	
+age: 2016-08-02
+title: ipc: delete "nr_ipc_ns"
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3bd080e4d8f2351ee3e143f0ec9307cc95ae6639
+lines: -4/+0
+category: ipc/msgutil.c ipc/namespace.c 
+
+Write-only variable.
+
+Link: http://lkml.kernel.org/r/20160708214356.GA6785@p183.telecom.by
+Signed-off-by: Alexey Dobriyan <adobriyan@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

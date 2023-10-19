@@ -1,0 +1,20 @@
+label: reliability error enhancement
+module: shared memory	
+age: 2017-07-12
+title: ipc/shm: do not use ipc_rcu_free()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=66470b18179f8839a62b4c20ffd3903a4025fe90
+lines: -2/+7
+category: ipc/shm.c
+
+Avoid using ipc_rcu_free, since it just re-finds the original structure
+pointer.  For the pre-list-init failure path, there is no RCU needed,
+since it was just allocated.  It can be directly freed.
+
+Link: http://lkml.kernel.org/r/20170525185107.12869-7-manfred@colorfullife.com
+Signed-off-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

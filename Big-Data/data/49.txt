@@ -1,0 +1,20 @@
+label: performance synchronization
+module: shared memory	
+age: 2020-04-07
+title: ipc/shm.c: make compat_ksys_shmctl() static
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1cd377baa91844b9f87a2b72eabf7ff783946b5e
+lines: -1/+1
+category: ipc/shm.c
+
+Fix the following sparse warning:
+
+ipc/shm.c:1335:6: warning: symbol 'compat_ksys_shmctl' was not declared.
+Should it be static?
+
+Reported-by: Hulk Robot <hulkci@huawei.com>
+Signed-off-by: Jason Yan <yanaijie@huawei.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Link: http://lkml.kernel.org/r/20200403063933.24785-1-yanaijie@huawei.com
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

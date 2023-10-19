@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message	shared memory	
+age: 2017-07-15
+title: ipc: make use of compat ipc_perm helpers
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=28327fae62b011216026b66299882c53b95b4500
+lines: -50/+8
+category: ipc/msg.c ipc/shm.c 
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

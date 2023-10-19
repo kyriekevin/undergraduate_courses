@@ -1,0 +1,16 @@
+label: performance synchronization
+module: message queue	
+age: 2006-03-22
+title: Remove superfluous NOTIFY_COOKIE_LEN define
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a609164f7c4eb82b97444871cb47f2f261696dd9
+lines: -1/+0
+category: ipc/mqueue.c
+
+NOTIFY_COOKIE_LEN is defined in mqueue.h as well as mqueue.c
+This patch removes redundant definition from mqueue.c
+
+Signed-off-by: Michal Wronski <Michal.Wronski@motorola.com>
+Signed-Off-By: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+
+

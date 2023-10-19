@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2010-10-29
+title: switch get_sb_ns() users
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ceefda6931806972ecf550bd8231dce4a4178953
+lines: -4/+4
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

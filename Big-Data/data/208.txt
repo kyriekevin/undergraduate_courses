@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message	
+age: 2017-07-15
+title: msgctl(): split the actual work from copyin/copyout
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=156d9ed1260ee566f2be09c13254b58247edfb29
+lines: -106/+96
+category: ipc/msg.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

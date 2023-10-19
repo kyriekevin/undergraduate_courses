@@ -1,0 +1,31 @@
+label: bug memory bufOverflow
+consequence：corruption
+module: shared memory	
+age: 2017-07-07
+title: Merge tag 'for-linus-v4.13-1' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=33198c165b7afd500f7b6b7680ef994296805ef0
+lines: -1/+1
+category: ipc/shm.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/jlayton/linux
+
+Pull Writeback error handling fixes from Jeff Layton:
+ "The main rationale for all of these changes is to tighten up writeback
+  error reporting to userland. There are many ways now that writeback
+  errors can be lost, such that fsync/fdatasync/msync return 0 when
+  writeback actually failed.
+
+  This pile contains a small set of cleanups and writeback error
+  handling fixes that I was able to break off from the main pile (#2).
+
+  Two of the patches in this pile are trivial. The exceptions are the
+  patch to fix up error handling in write_one_page, and the patch to
+  make JFS pay attention to write_one_page errors"
+
+* tag 'for-linus-v4.13-1' of git://git.kernel.org/pub/scm/linux/kernel/git/jlayton/linux:
+  fs: remove call_fsync helper function
+  mm: clean up error handling in write_one_page
+  JFS: do not ignore return code from write_one_page()
+  mm: drop "wait" parameter from write_one_page()
+
+

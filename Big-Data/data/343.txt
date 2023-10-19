@@ -1,0 +1,16 @@
+label: bug memory resourceLeak
+consequence：wrong
+module: other	
+age: 2014-06-06
+title: ipc: convert use of typedef ctl_table to struct ctl_table
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a5c5928b759d8c7382cccc7be36769a68046cc58
+lines: -13/+13
+category: ipc/ipc_sysctl.c ipc/mq_sysctl.c 
+
+This typedef is unnecessary and should just be removed.
+
+Signed-off-by: Joe Perches <joe@perches.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

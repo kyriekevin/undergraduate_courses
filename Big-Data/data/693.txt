@@ -1,0 +1,23 @@
+label: performance synchronization
+module: message queue	shared memory	
+age: 2008-11-14
+title: CRED: Separate task security context from task_struct
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b6dff3ec5e116e3af6f537d4caedcad6b9e5082a
+lines: -3/+3
+category: ipc/mqueue.c ipc/shm.c 
+
+Separate the task security context from task_struct.  At this point, the
+security data is temporarily embedded in the task_struct with two pointers
+pointing to it.
+
+Note that the Alpha arch is altered as it refers to (E)UID and (E)GID in
+entry.S via asm-offsets.
+
+With comment fixes Signed-off-by: Marc Dionne <marc.c.dionne@gmail.com>
+
+Signed-off-by: David Howells <dhowells@redhat.com>
+Acked-by: James Morris <jmorris@namei.org>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Signed-off-by: James Morris <jmorris@namei.org>
+
+

@@ -1,0 +1,25 @@
+label: feature
+module: semaphore	
+age: 2011-11-02
+title: ipc/sem.c: remove private structures from public header file
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e57940d719e9fc5223d133b631f8cb5232d6064e
+lines: -0/+46
+category: ipc/sem.c
+
+include/linux/sem.h contains several structures that are only used within
+ipc/sem.c.
+
+The patch moves them into ipc/sem.c - there is no need to expose the
+structures to the whole kernel.
+
+No functional changes, only whitespace cleanups and 80-char per line
+fixes.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Acked-by: Peter Zijlstra <a.p.zijlstra@chello.nl>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Mike Galbraith <efault@gmx.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,12 @@
+label: performance access optimization
+module: compatibility	message	semaphore	shared memory	other	
+age: 2006-06-30
+title: Remove obsolete #include <linux/config.h>
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6ab3d5624e172c553004ecc862bfeac16d9d68b7
+lines: -5/+0
+category: ipc/compat.c ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c 
+
+Signed-off-by: Jörn Engel <joern@wohnheim.fh-wedel.de>
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+
+

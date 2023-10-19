@@ -1,0 +1,23 @@
+label: feature
+module: message	semaphore	shared memory	other	
+age: 2014-06-06
+title: ipc: constify ipc_ops
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=eb66ec44f867834de054544b09b573de3a7ae456
+lines: -20/+19
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+There is no need to recreate the very same ipc_ops structure on every
+kernel entry for msgget/semget/shmget.  Just declare it static and be
+done with it.  While at it, constify it as we don't modify the structure
+at runtime.
+
+Found in the PaX patch, written by the PaX Team.
+
+Signed-off-by: Mathias Krause <minipli@googlemail.com>
+Cc: PaX Team <pageexec@freemail.hu>
+Cc: Davidlohr Bueso <davidlohr@hp.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

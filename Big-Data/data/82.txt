@@ -1,0 +1,56 @@
+label: reliability annotation
+module: message queue	other	
+age: 2019-03-12
+title: Merge branch 'work.mount' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7b47a9e7c8f672b6fb0b77fca11a63a8a77f5a91
+lines: -23/+73
+category: ipc/mqueue.c ipc/namespace.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull vfs mount infrastructure updates from Al Viro:
+ "The rest of core infrastructure; no new syscalls in that pile, but the
+  old parts are switched to new infrastructure. At that point
+  conversions of individual filesystems can happen independently; some
+  are done here (afs, cgroup, procfs, etc.), there's also a large series
+  outside of that pile dealing with NFS (quite a bit of option-parsing
+  stuff is getting used there - it's one of the most convoluted
+  filesystems in terms of mount-related logics), but NFS bits are the
+  next cycle fodder.
+
+  It got seriously simplified since the last cycle; documentation is
+  probably the weakest bit at the moment - I considered dropping the
+  commit introducing Documentation/filesystems/mount_api.txt (cutting
+  the size increase by quarter ;-), but decided that it would be better
+  to fix it up after -rc1 instead.
+
+  That pile allows to do followup work in independent branches, which
+  should make life much easier for the next cycle. fs/super.c size
+  increase is unpleasant; there's a followup series that allows to
+  shrink it considerably, but I decided to leave that until the next
+  cycle"
+
+* 'work.mount' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (41 commits)
+  afs: Use fs_context to pass parameters over automount
+  afs: Add fs_context support
+  vfs: Add some logging to the core users of the fs_context log
+  vfs: Implement logging through fs_context
+  vfs: Provide documentation for new mount API
+  vfs: Remove kern_mount_data()
+  hugetlbfs: Convert to fs_context
+  cpuset: Use fs_context
+  kernfs, sysfs, cgroup, intel_rdt: Support fs_context
+  cgroup: store a reference to cgroup_ns into cgroup_fs_context
+  cgroup1_get_tree(): separate "get cgroup_root to use" into a separate helper
+  cgroup_do_mount(): massage calling conventions
+  cgroup: stash cgroup_root reference into cgroup_fs_context
+  cgroup2: switch to option-by-option parsing
+  cgroup1: switch to option-by-option parsing
+  cgroup: take options parsing into ->parse_monolithic()
+  cgroup: fold cgroup1_mount() into cgroup1_get_tree()
+  cgroup: start switching to fs_context
+  ipc: Convert mqueue fs to fs_context
+  proc: Add fs_context support to procfs
+  ...
+
+

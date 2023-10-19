@@ -1,0 +1,19 @@
+label: performance store optimization
+module: message	semaphore	shared memory	other	
+age: 2007-10-19
+title: ipc: integrate ipc_checkid() into ipc_lock()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=023a53557ea0e987b002e9a844242ef0b0aa1eb3
+lines: -136/+152
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+This patch introduces a new ipc_lock_check() routine interface:
+   . each time ipc_checkid() is called, this is done after calling ipc_lock().
+     ipc_checkid() is now called from inside ipc_lock_check().
+
+[akpm@linux-foundation.org: build fix]
+[akpm@linux-foundation.org: fix RCU locking]
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

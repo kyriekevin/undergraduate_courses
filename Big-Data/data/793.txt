@@ -1,0 +1,16 @@
+label: feature
+module: shared memory	
+age: 2007-03-01
+title: [PATCH] make ipc/shm.c:shm_nopage() static
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=de01bad2f5dec2977143aa242e7eba71d11a4363
+lines: -2/+2
+category: ipc/shm.c
+
+shm_nopage() can become static.
+
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+Acked-by: Eric W. Biederman <ebiederm@xmission.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

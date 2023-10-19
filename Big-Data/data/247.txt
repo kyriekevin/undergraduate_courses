@@ -1,0 +1,26 @@
+label: maintenance
+module: message queue	message	semaphore	
+age: 2017-03-02
+title: sched/headers: Prepare for new header dependencies before moving code to ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=84f001e15737f8214b0f5f0f7dfec0fb1027938f
+lines: -0/+3
+category: ipc/mqueue.c ipc/msg.c ipc/sem.c 
+
+<linux/sched/wake_q.h>
+
+We are going to split <linux/sched/wake_q.h> out of <linux/sched.h>, which
+will have to be picked up from other headers and a couple of .c files.
+
+Create a trivial placeholder <linux/sched/wake_q.h> file that just
+maps to <linux/sched.h> to make this patch obviously correct and
+bisectable.
+
+Include the new header in the files that are going to need it.
+
+Acked-by: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Mike Galbraith <efault@gmx.de>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Signed-off-by: Ingo Molnar <mingo@kernel.org>
+
+

@@ -1,0 +1,23 @@
+label: reliability robust
+module: message queue	
+age: 2006-09-27
+title: [PATCH] inode-diet: Eliminate i_blksize from the inode structure
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ba52de123d454b57369f291348266d86f4b35070
+lines: -1/+0
+category: ipc/mqueue.c
+
+This eliminates the i_blksize field from struct inode.  Filesystems that want
+to provide a per-inode st_blksize can do so by providing their own getattr
+routine instead of using the generic_fillattr() function.
+
+Note that some filesystems were providing pretty much random (and incorrect)
+values for i_blksize.
+
+[bunk@stusta.de: cleanup]
+[akpm@osdl.org: generic_fillattr() fix]
+Signed-off-by: "Theodore Ts'o" <tytso@mit.edu>
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

@@ -1,0 +1,12 @@
+label: performance access optimization
+module: message queue	
+age: 2010-03-03
+title: mqueue: fix typo "failues" -> "failures"
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2329e392accdb1b277927e8d9cbf568ba3f3856d
+lines: -1/+1
+category: ipc/mqueue.c
+
+Signed-off-by: André Goddard Rosa <andre.goddard@gmail.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

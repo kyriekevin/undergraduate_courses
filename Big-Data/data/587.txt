@@ -1,0 +1,14 @@
+label: bug semantic generic
+consequence：wrong
+module: message queue	
+age: 2010-10-25
+title: new helper: ihold()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7de9c6ee3ecffd99e1628e81a5ea5468f7581a1f
+lines: -1/+1
+category: ipc/mqueue.c
+
+Clones an existing reference to inode; caller must already hold one.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

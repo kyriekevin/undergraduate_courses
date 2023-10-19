@@ -1,0 +1,52 @@
+label: feature
+module: other	
+age: 2020-12-14
+title: Merge tag 'fixes-v5.11' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f9b4240b074730f41c1ef8e0d695d10fb5bb1e27
+lines: -3/+3
+category: ipc/msgutil.c ipc/namespace.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/brauner/linux
+
+Pull misc fixes from Christian Brauner:
+ "This contains several fixes which felt worth being combined into a
+  single branch:
+
+   - Use put_nsproxy() instead of open-coding it switch_task_namespaces()
+
+   - Kirill's work to unify lifecycle management for all namespaces. The
+     lifetime counters are used identically for all namespaces types.
+     Namespaces may of course have additional unrelated counters and
+     these are not altered. This work allows us to unify the type of the
+     counters and reduces maintenance cost by moving the counter in one
+     place and indicating that basic lifetime management is identical
+     for all namespaces.
+
+   - Peilin's fix adding three byte padding to Dmitry's
+     PTRACE_GET_SYSCALL_INFO uapi struct to prevent an info leak.
+
+   - Two smal patches to convert from the /* fall through */ comment
+     annotation to the fallthrough keyword annotation which I had taken
+     into my branch and into -next before df561f6688fe ("treewide: Use
+     fallthrough pseudo-keyword") made it upstream which fixed this
+     tree-wide.
+
+     Since I didn't want to invalidate all testing for other commits I
+     didn't rebase and kept them"
+
+* tag 'fixes-v5.11' of git://git.kernel.org/pub/scm/linux/kernel/git/brauner/linux:
+  nsproxy: use put_nsproxy() in switch_task_namespaces()
+  sys: Convert to the new fallthrough notation
+  signal: Convert to the new fallthrough notation
+  time: Use generic ns_common::count
+  cgroup: Use generic ns_common::count
+  mnt: Use generic ns_common::count
+  user: Use generic ns_common::count
+  pid: Use generic ns_common::count
+  ipc: Use generic ns_common::count
+  uts: Use generic ns_common::count
+  net: Use generic ns_common::count
+  ns: Add a common refcount into ns_common
+  ptrace: Prevent kernel-infoleak in ptrace_get_syscall_info()
+
+

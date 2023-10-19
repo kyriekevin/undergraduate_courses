@@ -1,0 +1,15 @@
+label: reliability annotation
+module: message queue	
+age: 2012-07-14
+title: don't pass nameidata to ->create()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ebfc3b49a7ac25920cb5be5445f602e51d2ea559
+lines: -1/+1
+category: ipc/mqueue.c
+
+boolean "does it have to be exclusive?" flag is passed instead;
+Local filesystem should just ignore it - the object is guaranteed
+not to be there yet.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

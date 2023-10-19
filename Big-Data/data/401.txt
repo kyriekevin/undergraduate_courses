@@ -1,0 +1,19 @@
+label: feature
+module: message	
+age: 2013-09-11
+title: ipc,msg: drop msg_unlock
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4718787d1f626f45ddb239912bc07266b9880044
+lines: -3/+2
+category: ipc/msg.c
+
+There is only one user left, drop this function and just call
+ipc_unlock_object() and rcu_read_unlock().
+
+Signed-off-by: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Tested-by: Sedat Dilek <sedat.dilek@gmail.com>
+Cc: Rik van Riel <riel@redhat.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

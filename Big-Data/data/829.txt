@@ -1,0 +1,47 @@
+label: feature
+module: message	semaphore	shared memory	
+age: 2006-06-20
+title: [PATCH] update of IPC audit record cleanup
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ac03221a4fdda9bfdabf99bcd129847f20fc1d80
+lines: -8/+11
+category: ipc/msg.c ipc/sem.c ipc/shm.c 
+
+The following patch addresses most of the issues with the IPC_SET_PERM
+records as described in:
+https://www.redhat.com/archives/linux-audit/2006-May/msg00010.html
+and addresses the comments I received on the record field names.
+
+To summarize, I made the following changes:
+
+1. Changed sys_msgctl() and semctl_down() so that an IPC_SET_PERM
+   record is emitted in the failure case as well as the success case.
+   This matches the behavior in sys_shmctl().  I could simplify the
+   code in sys_msgctl() and semctl_down() slightly but it would mean
+   that in some error cases we could get an IPC_SET_PERM record
+   without an IPC record and that seemed odd.
+
+2. No change to the IPC record type, given no feedback on the backward
+   compatibility question.
+
+3. Removed the qbytes field from the IPC record.  It wasn't being
+   set and when audit_ipc_obj() is called from ipcperms(), the
+   information isn't available.  If we want the information in the IPC
+   record, more extensive changes will be necessary.  Since it only
+   applies to message queues and it isn't really permission related, it
+   doesn't seem worth it.
+
+4. Removed the obj field from the IPC_SET_PERM record.  This means that
+   the kern_ipc_perm argument is no longer needed.
+
+5. Removed the spaces and renamed the IPC_SET_PERM field names.  Replaced iuid and
+   igid fields with ouid and ogid in the IPC record.
+
+I tested this with the lspp.22 kernel on an x86_64 box.  I believe it
+applies cleanly on the latest kernel.
+
+-- ljk
+
+Signed-off-by: Linda Knippers <linda.knippers@hp.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

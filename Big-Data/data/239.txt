@@ -1,0 +1,56 @@
+label: maintenance
+module: message queue	message	other	semaphore	
+age: 2017-03-03
+title: Merge branch 'WIP.sched-core-for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1827adb11ad26b2290dc9fe2aaf54976b2439865
+lines: -1/+7
+category: ipc/mqueue.c ipc/msg.c ipc/namespace.c ipc/sem.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+
+Pull sched.h split-up from Ingo Molnar:
+ "The point of these changes is to significantly reduce the
+  <linux/sched.h> header footprint, to speed up the kernel build and to
+  have a cleaner header structure.
+
+  After these changes the new <linux/sched.h>'s typical preprocessed
+  size goes down from a previous ~0.68 MB (~22K lines) to ~0.45 MB (~15K
+  lines), which is around 40% faster to build on typical configs.
+
+  Not much changed from the last version (-v2) posted three weeks ago: I
+  eliminated quirks, backmerged fixes plus I rebased it to an upstream
+  SHA1 from yesterday that includes most changes queued up in -next plus
+  all sched.h changes that were pending from Andrew.
+
+  I've re-tested the series both on x86 and on cross-arch defconfigs,
+  and did a bisectability test at a number of random points.
+
+  I tried to test as many build configurations as possible, but some
+  build breakage is probably still left - but it should be mostly
+  limited to architectures that have no cross-compiler binaries
+  available on kernel.org, and non-default configurations"
+
+* 'WIP.sched-core-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip: (146 commits)
+  sched/headers: Clean up <linux/sched.h>
+  sched/headers: Remove #ifdefs from <linux/sched.h>
+  sched/headers: Remove the <linux/topology.h> include from <linux/sched.h>
+  sched/headers, hrtimer: Remove the <linux/wait.h> include from <linux/hrtimer.h>
+  sched/headers, x86/apic: Remove the <linux/pm.h> header inclusion from <asm/apic.h>
+  sched/headers, timers: Remove the <linux/sysctl.h> include from <linux/timer.h>
+  sched/headers: Remove <linux/magic.h> from <linux/sched/task_stack.h>
+  sched/headers: Remove <linux/sched.h> from <linux/sched/init.h>
+  sched/core: Remove unused prefetch_stack()
+  sched/headers: Remove <linux/rculist.h> from <linux/sched.h>
+  sched/headers: Remove the 'init_pid_ns' prototype from <linux/sched.h>
+  sched/headers: Remove <linux/signal.h> from <linux/sched.h>
+  sched/headers: Remove <linux/rwsem.h> from <linux/sched.h>
+  sched/headers: Remove the runqueue_is_locked() prototype
+  sched/headers: Remove <linux/sched.h> from <linux/sched/hotplug.h>
+  sched/headers: Remove <linux/sched.h> from <linux/sched/debug.h>
+  sched/headers: Remove <linux/sched.h> from <linux/sched/nohz.h>
+  sched/headers: Remove <linux/sched.h> from <linux/sched/stat.h>
+  sched/headers: Remove the <linux/gfp.h> include from <linux/sched.h>
+  sched/headers: Remove <linux/rtmutex.h> from <linux/sched.h>
+  ...
+
+

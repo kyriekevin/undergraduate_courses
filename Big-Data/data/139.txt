@@ -1,0 +1,22 @@
+label: feature
+module: shared memory	other	
+age: 2018-04-02
+title: ipc: add shmdt syscall wrapper
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=da1e2744341542e404c172bcf6a321f509408b14
+lines: -3/+9
+category: ipc/shm.c ipc/syscall.c ipc/util.h 
+
+Provide ksys_shmdt() wrapper to avoid in-kernel calls to this syscall.
+The ksys_ prefix denotes that this function is meant as a drop-in
+replacement for the syscall. In particular, it uses the same calling
+convention as sys_shmdt().
+
+This patch is part of a series which removes in-kernel calls to syscalls.
+On this basis, the syscall entry path can be streamlined. For details, see
+http://lkml.kernel.org/r/20180325162527.GA17492@light.dominikbrodowski.net
+
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Dominik Brodowski <linux@dominikbrodowski.net>
+
+

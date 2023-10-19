@@ -1,0 +1,23 @@
+label: feature
+module: semaphore	
+age: 2017-07-12
+title: ipc/sem.c: avoid ipc_rcu_putref for failed ipc_addid()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2ec55f8024db859d70f14c26e91ca044328dd50d
+lines: -5/+4
+category: ipc/sem.c
+
+Loosely based on a patch from Kees Cook <keescook@chromium.org>:
+ - id and retval can be merged
+ - if ipc_addid() fails, then use call_rcu() directly.
+
+The difference is that call_rcu is used for failed ipc_addid() calls, to
+continue to guaranteed an rcu delay for security_sem_free().
+
+Link: http://lkml.kernel.org/r/20170525185107.12869-14-manfred@colorfullife.com
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Kees Cook <keescook@chromium.org>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

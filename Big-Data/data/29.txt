@@ -1,0 +1,47 @@
+label: feature
+module: shared memory	
+age: 2020-12-15
+title: Merge branch 'akpm' (patches from Andrew)
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ac73e3dc8acd0a3be292755db30388c3580f5674
+lines: -4/+4
+category: ipc/shm.c
+
+Merge misc updates from Andrew Morton:
+
+ - a few random little subsystems
+
+ - almost all of the MM patches which are staged ahead of linux-next
+   material. I'll trickle to post-linux-next work in as the dependents
+   get merged up.
+
+Subsystems affected by this patch series: kthread, kbuild, ide, ntfs,
+ocfs2, arch, and mm (slab-generic, slab, slub, dax, debug, pagecache,
+gup, swap, shmem, memcg, pagemap, mremap, hmm, vmalloc, documentation,
+kasan, pagealloc, memory-failure, hugetlb, vmscan, z3fold, compaction,
+oom-kill, migration, cma, page-poison, userfaultfd, zswap, zsmalloc,
+uaccess, zram, and cleanups).
+
+* emailed patches from Andrew Morton <akpm@linux-foundation.org>: (200 commits)
+  mm: cleanup kstrto*() usage
+  mm: fix fall-through warnings for Clang
+  mm: slub: convert sysfs sprintf family to sysfs_emit/sysfs_emit_at
+  mm: shmem: convert shmem_enabled_show to use sysfs_emit_at
+  mm:backing-dev: use sysfs_emit in macro defining functions
+  mm: huge_memory: convert remaining use of sprintf to sysfs_emit and neatening
+  mm: use sysfs_emit for struct kobject * uses
+  mm: fix kernel-doc markups
+  zram: break the strict dependency from lzo
+  zram: add stat to gather incompressible pages since zram set up
+  zram: support page writeback
+  mm/process_vm_access: remove redundant initialization of iov_r
+  mm/zsmalloc.c: rework the list_add code in insert_zspage()
+  mm/zswap: move to use crypto_acomp API for hardware acceleration
+  mm/zswap: fix passing zero to 'PTR_ERR' warning
+  mm/zswap: make struct kernel_param_ops definitions const
+  userfaultfd/selftests: hint the test runner on required privilege
+  userfaultfd/selftests: fix retval check for userfaultfd_open()
+  userfaultfd/selftests: always dump something in modes
+  userfaultfd: selftests: make __{s,u}64 format specifiers portable
+  ...
+
+

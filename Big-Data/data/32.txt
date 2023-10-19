@@ -1,0 +1,30 @@
+label: bug memory nullPointer
+consequence：hang
+module: other	
+age: 2020-09-05
+title: ipc: adjust proc_ipc_sem_dointvec definition to match prototype
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=fff1662cc423be00c5a7dffc6cf2332161c882d6
+lines: -1/+1
+category: ipc/ipc_sysctl.c
+
+Commit 32927393dc1c ("sysctl: pass kernel pointers to ->proc_handler")
+changed ctl_table.proc_handler to take a kernel pointer.  Adjust the
+signature of proc_ipc_sem_dointvec to match ctl_table.proc_handler which
+fixes the following sparse error/warning:
+
+  ipc/ipc_sysctl.c:94:47: warning: incorrect type in argument 3 (different address spaces)
+  ipc/ipc_sysctl.c:94:47:    expected void *buffer
+  ipc/ipc_sysctl.c:94:47:    got void [noderef] __user *buffer
+  ipc/ipc_sysctl.c:194:35: warning: incorrect type in initializer (incompatible argument 3 (different address spaces))
+  ipc/ipc_sysctl.c:194:35:    expected int ( [usertype] *proc_handler )( ... )
+  ipc/ipc_sysctl.c:194:35:    got int ( * )( ... )
+
+Fixes: 32927393dc1c ("sysctl: pass kernel pointers to ->proc_handler")
+Signed-off-by: Tobias Klauser <tklauser@distanz.ch>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Cc: Christoph Hellwig <hch@lst.de>
+Cc: Alexander Viro <viro@zeniv.linux.org.uk>
+Link: https://lkml.kernel.org/r/20200825105846.5193-1-tklauser@distanz.ch
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

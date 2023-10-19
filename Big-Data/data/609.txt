@@ -1,0 +1,14 @@
+label: reliability debug
+module: message queue	
+age: 2010-03-03
+title: mqueue: only set error codes if they are really necessary
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8d8ffefaaf63f0468f17fbd1270165e739cf335e
+lines: -27/+50
+category: ipc/mqueue.c
+
+... postponing assignments until they're needed. Doesn't change code size.
+
+Signed-off-by: André Goddard Rosa <andre.goddard@gmail.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

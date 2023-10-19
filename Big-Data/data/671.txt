@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message	
+age: 2009-01-14
+title: [CVE-2009-0029] System call wrappers part 24
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e48fbb699f82ef1e80bd7126046394d2dc9ca7e6
+lines: -6/+6
+category: ipc/msg.c
+
+Signed-off-by: Heiko Carstens <heiko.carstens@de.ibm.com>
+
+

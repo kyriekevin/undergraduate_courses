@@ -1,0 +1,19 @@
+label: maintenance
+module: message queue	
+age: 2009-03-16
+title: Use f_lock to protect f_flags
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=db1dd4d376134eba0e08af523b61cc566a4ea1cd
+lines: -0/+2
+category: ipc/mqueue.c
+
+Traditionally, changes to struct file->f_flags have been done under BKL
+protection, or with no protection at all.  This patch causes all f_flags
+changes after file open/creation time to be done under protection of
+f_lock.  This allows the removal of some BKL usage and fixes a number of
+longstanding (if microscopic) races.
+
+Reviewed-by: Christoph Hellwig <hch@lst.de>
+Cc: Al Viro <viro@ZenIV.linux.org.uk>
+Signed-off-by: Jonathan Corbet <corbet@lwn.net>
+
+

@@ -1,0 +1,27 @@
+label: maintenance
+module: other	
+age: 2012-12-18
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a2faf2fc534f57ba26bc4d613795236ed4f5fb1c
+lines: -1/+2
+category: ipc/namespace.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull (again) user namespace infrastructure changes from Eric Biederman:
+ "Those bugs, those darn embarrasing bugs just want don't want to get
+  fixed.
+
+  Linus I just updated my mirror of your kernel.org tree and it appears
+  you successfully pulled everything except the last 4 commits that fix
+  those embarrasing bugs.
+
+  When you get a chance can you please repull my branch"
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace:
+  userns: Fix typo in description of the limitation of userns_install
+  userns: Add a more complete capability subset test to commit_creds
+  userns: Require CAP_SYS_ADMIN for most uses of setns.
+  Fix cap_capable to only allow owners in the parent user namespace to have caps.
+
+

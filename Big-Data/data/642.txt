@@ -1,0 +1,14 @@
+label: performance access optimization
+module: other	
+age: 2009-06-18
+title: ipcns: make free_ipc_ns() static
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b4188def441197d38f20e0935372780ed7c0e19d
+lines: -24/+24
+category: ipc/namespace.c
+
+Signed-off-by: Alexey Dobriyan <adobriyan@gmail.com>
+Reviewed-by: WANG Cong <xiyou.wangcong@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

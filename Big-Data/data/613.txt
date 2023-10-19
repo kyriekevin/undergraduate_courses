@@ -1,0 +1,14 @@
+label: reliability annotation
+module: message queue	
+age: 2010-03-03
+title: mqueue: fix mq_open() file descriptor leak on user-space processes
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4294a8eedb17bbc45e1e7447c2a4d05332943248
+lines: -2/+1
+category: ipc/mqueue.c
+
+We leak fd on lookup_one_len() failure
+
+Signed-off-by: André Goddard Rosa <andre.goddard@gmail.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

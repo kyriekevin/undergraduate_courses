@@ -1,0 +1,63 @@
+label: feature
+module: message	semaphore	shared memory	other	
+age: 2018-04-03
+title: Merge branch 'userns-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=17dec0a949153d9ac00760ba2f5b78cb583e995f
+lines: -80/+152
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull namespace updates from Eric Biederman:
+ "There was a lot of work this cycle fixing bugs that were discovered
+  after the merge window and getting everything ready where we can
+  reasonably support fully unprivileged fuse. The bug fixes you already
+  have and much of the unprivileged fuse work is coming in via other
+  trees.
+
+  Still left for fully unprivileged fuse is figuring out how to cleanly
+  handle .set_acl and .get_acl in the legacy case, and properly handling
+  of evm xattrs on unprivileged mounts.
+
+  Included in the tree is a cleanup from Alexely that replaced a linked
+  list with a statically allocated fix sized array for the pid caches,
+  which simplifies and speeds things up.
+
+  Then there is are some cleanups and fixes for the ipc namespace. The
+  motivation was that in reviewing other code it was discovered that
+  access ipc objects from different pid namespaces recorded pids in such
+  a way that when asked the wrong pids were returned. In the worst case
+  there has been a measured 30% performance impact for sysvipc
+  semaphores. Other test cases showed no measurable performance impact.
+  Manfred Spraul and Davidlohr Bueso who tend to work on sysvipc
+  performance both gave the nod that this is good enough.
+
+  Casey Schaufler and James Morris have given their approval to the LSM
+  side of the changes.
+
+  I simplified the types and the code dealing with sysvipc to pass just
+  kern_ipc_perm for all three types of ipc. Which reduced the header
+  dependencies throughout the kernel and simplified the lsm code.
+
+  Which let me work on the pid fixes without having to worry about
+  trivial changes causing complete kernel recompiles"
+
+* 'userns-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace:
+  ipc/shm: Fix pid freeing.
+  ipc/shm: fix up for struct file no longer being available in shm.h
+  ipc/smack: Tidy up from the change in type of the ipc security hooks
+  ipc: Directly call the security hook in ipc_ops.associate
+  ipc/sem: Fix semctl(..., GETPID, ...) between pid namespaces
+  ipc/msg: Fix msgctl(..., IPC_STAT, ...) between pid namespaces
+  ipc/shm: Fix shmctl(..., IPC_STAT, ...) between pid namespaces.
+  ipc/util: Helpers for making the sysvipc operations pid namespace aware
+  ipc: Move IPCMNI from include/ipc.h into ipc/util.h
+  msg: Move struct msg_queue into ipc/msg.c
+  shm: Move struct shmid_kernel into ipc/shm.c
+  sem: Move struct sem and struct sem_array into ipc/sem.c
+  msg/security: Pass kern_ipc_perm not msg_queue into the msg_queue security hooks
+  shm/security: Pass kern_ipc_perm not shmid_kernel into the shm security hooks
+  sem/security: Pass kern_ipc_perm not sem_array into the sem security hooks
+  pidns: simpler allocation of pid_* caches
+
+

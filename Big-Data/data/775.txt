@@ -1,0 +1,21 @@
+label: performance speed optimization
+module: message queue	
+age: 2007-07-20
+title: mm: Remove slab destructors from kmem_cache_create().
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=20c2df83d25c6a95affe6157a4c9cac4cf5ffaac
+lines: -1/+1
+category: ipc/mqueue.c
+
+Slab destructors were no longer supported after Christoph's
+c59def9f222d44bb7e2f0a559f2906191a0862d7 change. They've been
+BUGs for both slab and slub, and slob never supported them
+either.
+
+This rips out support for the dtor pointer from kmem_cache_create()
+completely and fixes up every single callsite in the kernel (there were
+about 224, not including the slab allocator definitions themselves,
+or the documentation references).
+
+Signed-off-by: Paul Mundt <lethal@linux-sh.org>
+
+

@@ -1,0 +1,12 @@
+label: performance access optimization
+module: other	
+age: 2011-05-10
+title: ns proc: Add support for the ipc namespace
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a00eaf11a223c63fbb212369d6db69ce4c55a2d1
+lines: -0/+37
+category: ipc/namespace.c
+
+Acked-by: Daniel Lezcano <daniel.lezcano@free.fr>
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+
+

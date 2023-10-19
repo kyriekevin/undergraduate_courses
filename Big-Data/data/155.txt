@@ -1,0 +1,15 @@
+label: feature
+module: shared memory	
+age: 2018-03-24
+title: shm: Move struct shmid_kernel into ipc/shm.c
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a2e102cd3cdd8b7a14e08716510707b15802073f
+lines: -0/+22
+category: ipc/shm.c
+
+All of the users are now in ipc/shm.c so make the definition local to
+that file to make code maintenance easier.  AKA to prevent rebuilding
+the entire kernel when struct shmid_kernel changes.
+
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

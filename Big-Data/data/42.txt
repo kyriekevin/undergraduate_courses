@@ -1,0 +1,60 @@
+label: performance synchronization
+module: other	
+age: 2020-06-03
+title: Merge tag 'threads-v5.8' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e7c93cbfe9cb4b0a47633099e78c455b1f79bbac
+lines: -4/+3
+category: ipc/namespace.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/brauner/linux
+
+Pull thread updates from Christian Brauner:
+ "We have been discussing using pidfds to attach to namespaces for quite
+  a while and the patches have in one form or another already existed
+  for about a year. But I wanted to wait to see how the general api
+  would be received and adopted.
+
+  This contains the changes to make it possible to use pidfds to attach
+  to the namespaces of a process, i.e. they can be passed as the first
+  argument to the setns() syscall.
+
+  When only a single namespace type is specified the semantics are
+  equivalent to passing an nsfd. That means setns(nsfd, CLONE_NEWNET)
+  equals setns(pidfd, CLONE_NEWNET).
+
+  However, when a pidfd is passed, multiple namespace flags can be
+  specified in the second setns() argument and setns() will attach the
+  caller to all the specified namespaces all at once or to none of them.
+
+  Specifying 0 is not valid together with a pidfd. Here are just two
+  obvious examples:
+
+    setns(pidfd, CLONE_NEWPID | CLONE_NEWNS | CLONE_NEWNET);
+    setns(pidfd, CLONE_NEWUSER);
+
+  Allowing to also attach subsets of namespaces supports various
+  use-cases where callers setns to a subset of namespaces to retain
+  privilege, perform an action and then re-attach another subset of
+  namespaces.
+
+  Apart from significantly reducing the number of syscalls needed to
+  attach to all currently supported namespaces (eight "open+setns"
+  sequences vs just a single "setns()"), this also allows atomic setns
+  to a set of namespaces, i.e. either attaching to all namespaces
+  succeeds or we fail without having changed anything.
+
+  This is centered around a new internal struct nsset which holds all
+  information necessary for a task to switch to a new set of namespaces
+  atomically. Fwiw, with this change a pidfd becomes the only token
+  needed to interact with a container. I'm expecting this to be
+  picked-up by util-linux for nsenter rather soon.
+
+  Associated with this change is a shiny new test-suite dedicated to
+  setns() (for pidfds and nsfds alike)"
+
+* tag 'threads-v5.8' of git://git.kernel.org/pub/scm/linux/kernel/git/brauner/linux:
+  selftests/pidfd: add pidfd setns tests
+  nsproxy: attach to namespaces via pidfds
+  nsproxy: add struct nsset
+
+

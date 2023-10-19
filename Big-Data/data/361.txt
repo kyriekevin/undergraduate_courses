@@ -1,0 +1,29 @@
+label: reliability corruption defense
+module: compatibility	
+age: 2014-04-02
+title: Merge branch 'x86-x32-for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7125764c5d1a5c72d522f1011b6cc8b8100b48fe
+lines: -25/+6
+category: ipc/compat.c ipc/compat_mq.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+
+Pull compat time conversion changes from Peter Anvin:
+ "Despite the branch name this is really neither an x86 nor an
+  x32-specific patchset, although it the implementation of the
+  discussions that followed the x32 security hole a few months ago.
+
+  This removes get/put_compat_timespec/val() and replaces them with
+  compat_get/put_timespec/val() which are savvy as to the current status
+  of COMPAT_USE_64BIT_TIME.
+
+  It removes several unused and/or incorrect/misleading functions (like
+  compat_put_timeval_convert which doesn't in fact do any conversion)
+  and also replaces several open-coded implementations what is now
+  called compat_convert_timespec() with that function"
+
+* 'x86-x32-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip:
+  compat: Fix sparse address space warnings
+  compat: Get rid of (get|put)_compat_time(val|spec)
+
+

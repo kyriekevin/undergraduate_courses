@@ -1,0 +1,25 @@
+label: maintenance
+module: message queue	shared memory	
+age: 2010-10-22
+title: Merge branch 'llseek' of git://git.kernel.org/pub/scm/linux/kernel/git/arnd/bkl
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=092e0e7e520a1fca03e13c9f2d157432a8657ff2
+lines: -0/+3
+category: ipc/mqueue.c ipc/shm.c 
+
+* 'llseek' of git://git.kernel.org/pub/scm/linux/kernel/git/arnd/bkl:
+  vfs: make no_llseek the default
+  vfs: don't use BKL in default_llseek
+  llseek: automatically add .llseek fop
+  libfs: use generic_file_llseek for simple_attr
+  mac80211: disallow seeks in minstrel debug code
+  lirc: make chardev nonseekable
+  viotape: use noop_llseek
+  raw: use explicit llseek file operations
+  ibmasmfs: use generic_file_llseek
+  spufs: use llseek in all file operations
+  arm/omap: use generic_file_llseek in iommu_debug
+  lkdtm: use generic_file_llseek in debugfs
+  net/wireless: use generic_file_llseek in debugfs
+  drm: use noop_llseek
+
+

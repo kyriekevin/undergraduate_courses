@@ -1,0 +1,34 @@
+label: maintenance
+module: message	
+age: 2009-12-09
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4ef58d4e2ad1fa2a3e5bbf41af2284671fca8cf8
+lines: -1/+1
+category: ipc/msg.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/jikos/trivial
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/jikos/trivial: (42 commits)
+  tree-wide: fix misspelling of "definition" in comments
+  reiserfs: fix misspelling of "journaled"
+  doc: Fix a typo in slub.txt.
+  inotify: remove superfluous return code check
+  hdlc: spelling fix in find_pvc() comment
+  doc: fix regulator docs cut-and-pasteism
+  mtd: Fix comment in Kconfig
+  doc: Fix IRQ chip docs
+  tree-wide: fix assorted typos all over the place
+  drivers/ata/libata-sff.c: comment spelling fixes
+  fix typos/grammos in Documentation/edac.txt
+  sysctl: add missing comments
+  fs/debugfs/inode.c: fix comment typos
+  sgivwfb: Make use of ARRAY_SIZE.
+  sky2: fix sky2_link_down copy/paste comment error
+  tree-wide: fix typos "couter" -> "counter"
+  tree-wide: fix typos "offest" -> "offset"
+  fix kerneldoc for set_irq_msi()
+  spidev: fix double "of of" in comment
+  comment typo fix: sybsystem -> subsystem
+  ...
+
+

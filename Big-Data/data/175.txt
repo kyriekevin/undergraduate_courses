@@ -1,0 +1,60 @@
+label: maintenance
+module: semaphore	shared memory	other	
+age: 2017-11-17
+title: Merge branch 'akpm' (patches from Andrew)
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=fa7f578076a8814caa5371e9f4949e408140766d
+lines: -50/+75
+category: ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+Merge more updates from Andrew Morton:
+
+ - a bit more MM
+
+ - procfs updates
+
+ - dynamic-debug fixes
+
+ - lib/ updates
+
+ - checkpatch
+
+ - epoll
+
+ - nilfs2
+
+ - signals
+
+ - rapidio
+
+ - PID management cleanup and optimization
+
+ - kcov updates
+
+ - sysvipc updates
+
+ - quite a few misc things all over the place
+
+* emailed patches from Andrew Morton <akpm@linux-foundation.org>: (94 commits)
+  EXPERT Kconfig menu: fix broken EXPERT menu
+  include/asm-generic/topology.h: remove unused parent_node() macro
+  arch/tile/include/asm/topology.h: remove unused parent_node() macro
+  arch/sparc/include/asm/topology_64.h: remove unused parent_node() macro
+  arch/sh/include/asm/topology.h: remove unused parent_node() macro
+  arch/ia64/include/asm/topology.h: remove unused parent_node() macro
+  drivers/pcmcia/sa1111_badge4.c: avoid unused function warning
+  mm: add infrastructure for get_user_pages_fast() benchmarking
+  sysvipc: make get_maxid O(1) again
+  sysvipc: properly name ipc_addid() limit parameter
+  sysvipc: duplicate lock comments wrt ipc_addid()
+  sysvipc: unteach ids->next_id for !CHECKPOINT_RESTORE
+  initramfs: use time64_t timestamps
+  drivers/watchdog: make use of devm_register_reboot_notifier()
+  kernel/reboot.c: add devm_register_reboot_notifier()
+  kcov: update documentation
+  Makefile: support flag -fsanitizer-coverage=trace-cmp
+  kcov: support comparison operands collection
+  kcov: remove pointless current != NULL check
+  kernel/panic.c: add TAINT_AUX
+  ...
+
+

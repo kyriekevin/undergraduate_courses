@@ -1,0 +1,50 @@
+label: reliability robust
+module: shared memory	
+age: 2018-08-13
+title: Merge branch 'work.open3' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a66b4cd1e7163adb327838a3c81faaf6a9330d5a
+lines: -24/+21
+category: ipc/shm.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull vfs open-related updates from Al Viro:
+
+ - "do we need fput() or put_filp()" rules are gone - it's always fput()
+   now. We keep track of that state where it belongs - in ->f_mode.
+
+ - int *opened mess killed - in finish_open(), in ->atomic_open()
+   instances and in fs/namei.c code around do_last()/lookup_open()/atomic_open().
+
+ - alloc_file() wrappers with saner calling conventions are introduced
+   (alloc_file_clone() and alloc_file_pseudo()); callers converted, with
+   much simplification.
+
+ - while we are at it, saner calling conventions for path_init() and
+   link_path_walk(), simplifying things inside fs/namei.c (both on
+   open-related paths and elsewhere).
+
+* 'work.open3' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (40 commits)
+  few more cleanups of link_path_walk() callers
+  allow link_path_walk() to take ERR_PTR()
+  make path_init() unconditionally paired with terminate_walk()
+  document alloc_file() changes
+  make alloc_file() static
+  do_shmat(): grab shp->shm_file earlier, switch to alloc_file_clone()
+  new helper: alloc_file_clone()
+  create_pipe_files(): switch the first allocation to alloc_file_pseudo()
+  anon_inode_getfile(): switch to alloc_file_pseudo()
+  hugetlb_file_setup(): switch to alloc_file_pseudo()
+  ocxlflash_getfile(): switch to alloc_file_pseudo()
+  cxl_getfile(): switch to alloc_file_pseudo()
+  ... and switch shmem_file_setup() to alloc_file_pseudo()
+  __shmem_file_setup(): reorder allocations
+  new wrapper: alloc_file_pseudo()
+  kill FILE_{CREATED,OPENED}
+  switch atomic_open() and lookup_open() to returning 0 in all success cases
+  document ->atomic_open() changes
+  ->atomic_open(): return 0 in all success cases
+  get rid of 'opened' in path_openat() and the helpers downstream
+  ...
+
+

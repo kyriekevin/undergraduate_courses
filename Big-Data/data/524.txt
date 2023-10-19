@@ -1,0 +1,14 @@
+label: bug semantic generic
+consequence：wrong
+module: shared memory	
+age: 2012-06-01
+title: switch aio and shm to do_mmap_pgoff(), make do_mmap() static
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e3fc629d7bb70848fbf479688a66d4e76dff46ac
+lines: -1/+1
+category: ipc/shm.c
+
+after all, 0 bytes and 0 pages is the same thing...
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

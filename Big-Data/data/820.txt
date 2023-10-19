@@ -1,0 +1,24 @@
+label: feature
+module: message queue	
+age: 2006-10-01
+title: [PATCH] r/o bind mounts: unlink: monitor i_nlink
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9a53c3a783c2fa9b969628e65695c11c3e51e673
+lines: -1/+1
+category: ipc/mqueue.c
+
+When a filesystem decrements i_nlink to zero, it means that a write must be
+performed in order to drop the inode from the filesystem.
+
+We're shortly going to have keep filesystems from being remounted r/o between
+the time that this i_nlink decrement and that write occurs.
+
+So, add a little helper function to do the decrements.  We'll tie into it in a
+bit to note when i_nlink hits zero.
+
+Signed-off-by: Dave Hansen <haveblue@us.ibm.com>
+Acked-by: Christoph Hellwig <hch@lst.de>
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

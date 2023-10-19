@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2018-01-05
+title: mqueue: clean prepare_open() up
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9b20d7fc5250f50660c4dd4bea52e54e373b678d
+lines: -18/+11
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

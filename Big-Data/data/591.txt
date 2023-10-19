@@ -1,0 +1,14 @@
+label: reliability annotation
+module: message queue	
+age: 2010-08-09
+title: switch mqueue to ->evict_inode()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6d8af64c1c5ad4fd119b371ae70c114ee1f443b1
+lines: -9/+7
+category: ipc/mqueue.c
+
+... and since the inodes are never hashed, we can use default ->drop_inode()
+just fine.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

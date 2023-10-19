@@ -1,0 +1,12 @@
+label: performance access optimization
+module: other	
+age: 2016-08-08
+title: ipcns: Add a  limit on the number of ipc namespaces
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=aba356616386e6e573a34c6d64ed12443686e5c8
+lines: -11/+34
+category: ipc/namespace.c
+
+Acked-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

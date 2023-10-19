@@ -1,0 +1,17 @@
+label: bug semantic generic
+consequence：wrong
+module: message queue	
+age: 2007-10-10
+title: [NET]: cleanup 3rd argument in netlink_sendskb
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7ee015e0fa3c856416e9477aac4b850ec6f09017
+lines: -3/+2
+category: ipc/mqueue.c
+
+netlink_sendskb does not use third argument. Clean it and save a couple of
+bytes.
+
+Signed-off-by: Denis V. Lunev <den@openvz.org>
+Acked-by: Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>
+Signed-off-by: David S. Miller <davem@davemloft.net>
+
+

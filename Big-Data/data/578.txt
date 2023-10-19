@@ -1,0 +1,21 @@
+label: maintenance
+module: other	
+age: 2011-03-25
+title: ipcns: fix use after free in free_ipc_ns()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=be4d250ab41e13f8f945be6896695e870b38ba31
+lines: -1/+1
+category: ipc/namespace.c
+
+commit b515498 ("userns: add a user namespace owner of ipc ns") added a
+user namespace owner of ipc ns, but it also introduced a use after free in
+free_ipc_ns().
+
+Signed-off-by: Xiaotian Feng <dfeng@redhat.com>
+Acked-by: "Serge E. Hallyn" <serge.hallyn@canonical.com>
+Acked-by: David Howells <dhowells@redhat.com>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: Daniel Lezcano <daniel.lezcano@free.fr>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

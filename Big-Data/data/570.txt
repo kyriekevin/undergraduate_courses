@@ -1,0 +1,38 @@
+label: performance store optimization
+module: shared memory	
+age: 2011-07-22
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=bbd9d6f7fbb0305c9a592bf05a32e87eb364a4ff
+lines: -2/+2
+category: ipc/shm.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs-2.6
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs-2.6: (107 commits)
+  vfs: use ERR_CAST for err-ptr tossing in lookup_instantiate_filp
+  isofs: Remove global fs lock
+  jffs2: fix IN_DELETE_SELF on overwriting rename() killing a directory
+  fix IN_DELETE_SELF on overwriting rename() on ramfs et.al.
+  mm/truncate.c: fix build for CONFIG_BLOCK not enabled
+  fs:update the NOTE of the file_operations structure
+  Remove dead code in dget_parent()
+  AFS: Fix silly characters in a comment
+  switch d_add_ci() to d_splice_alias() in "found negative" case as well
+  simplify gfs2_lookup()
+  jfs_lookup(): don't bother with . or ..
+  get rid of useless dget_parent() in btrfs rename() and link()
+  get rid of useless dget_parent() in fs/btrfs/ioctl.c
+  fs: push i_mutex and filemap_write_and_wait down into ->fsync() handlers
+  drivers: fix up various ->llseek() implementations
+  fs: handle SEEK_HOLE/SEEK_DATA properly in all fs's that define their own llseek
+  Ext4: handle SEEK_HOLE/SEEK_DATA generically
+  Btrfs: implement our own ->llseek
+  fs: add SEEK_HOLE and SEEK_DATA flags
+  reiserfs: make reiserfs default to barrier=flush
+  ...
+
+Fix up trivial conflicts in fs/xfs/linux-2.6/xfs_super.c due to the new
+shrinker callout for the inode cache, that clashed with the xfs code to
+start the periodic workers later.
+
+

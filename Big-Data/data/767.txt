@@ -1,0 +1,17 @@
+label: maintenance
+module: message queue	
+age: 2007-10-18
+title: sysctl mqueue: remove the binary sysctl numbers
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=97aeacf49239d7f829b8cbfaca05530c97ccb903
+lines: -10/+0
+category: ipc/mqueue.c
+
+Because of a conflict with FS_INODE_NR none of the binary sysctl numbers use
+by mqueue, were available to user space.  So just remove them.
+
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+Cc: Alexey Dobriyan <adobriyan@sw.ru>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

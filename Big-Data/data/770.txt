@@ -1,0 +1,15 @@
+label: feature
+module: shared memory	
+age: 2007-10-17
+title: ipc/shm.c: make 2 functions static
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d823e3e7541c39b4dfe9c79dbf052b4c39da2965
+lines: -2/+3
+category: ipc/shm.c
+
+This patch makes two needlessly global functions static.
+
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

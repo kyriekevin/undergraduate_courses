@@ -1,0 +1,8 @@
+label: performance access optimization
+module: shared memory	
+age: 2009-03-24
+title: Merge branch 'master' into next
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=703a3cd72817e99201cef84a8a7aecc60b2b3581
+lines: -3/+5
+category: ipc/shm.c
+

@@ -1,0 +1,20 @@
+label: performance store optimization
+module: message	
+age: 2009-12-04
+title: ipc: fix unused variable warning
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f1970c48ef06ece4e23765501976507ab52b0edd
+lines: -1/+1
+category: ipc/msg.c
+
+Commit a0d092f introduced the following warning:
+ipc/msg.c: In function ?msgctl_down?:
+ipc/msg.c:415: warning: ?msqid64? may be used uninitialized in this function
+
+The gcc warning in this case is actually bogus, as msqid64 is touched only
+iff cmd == IPC_SET, and in such case, copy_msqid_from_user() initializes
+it properly.
+
+Signed-off-by: Felipe Contreras <felipe.contreras@gmail.com>
+Signed-off-by: Jiri Kosina <jkosina@suse.cz>
+
+

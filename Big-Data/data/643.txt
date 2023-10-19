@@ -1,0 +1,20 @@
+label: performance access optimization
+module: other	
+age: 2009-06-18
+title: ipcns: extract create_ipc_ns()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=612ce478fac2729ad564ec3f5d3c551674b8e9c2
+lines: -7/+2
+category: ipc/namespace.c
+
+clone_ipc_ns() is misnamed, it doesn't clone anything and doesn't use
+passed parameter.  Rename it.
+
+create_ipc_ns() will be used by C/R to create fresh ipcns.
+
+Signed-off-by: Alexey Dobriyan <adobriyan@gmail.com>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Reviewed-by: WANG Cong <xiyou.wangcong@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

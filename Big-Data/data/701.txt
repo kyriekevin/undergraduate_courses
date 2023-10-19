@@ -1,0 +1,31 @@
+label: reliability debug
+module: message queue	
+age: 2008-07-26
+title: SL*B: drop kmem cache argument from constructor
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=51cc50685a4275c6a02653670af9f108a64e01cf
+lines: -1/+1
+category: ipc/mqueue.c
+
+Kmem cache passed to constructor is only needed for constructors that are
+themselves multiplexeres.  Nobody uses this "feature", nor does anybody uses
+passed kmem cache in non-trivial way, so pass only pointer to object.
+
+Non-trivial places are:
+	arch/powerpc/mm/init_64.c
+	arch/powerpc/mm/hugetlbpage.c
+
+This is flag day, yes.
+
+Signed-off-by: Alexey Dobriyan <adobriyan@gmail.com>
+Acked-by: Pekka Enberg <penberg@cs.helsinki.fi>
+Acked-by: Christoph Lameter <cl@linux-foundation.org>
+Cc: Jon Tollefson <kniht@linux.vnet.ibm.com>
+Cc: Nick Piggin <nickpiggin@yahoo.com.au>
+Cc: Matt Mackall <mpm@selenic.com>
+[akpm@linux-foundation.org: fix arch/powerpc/mm/hugetlbpage.c]
+[akpm@linux-foundation.org: fix mm/slab.c]
+[akpm@linux-foundation.org: fix ubifs]
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,23 @@
+label: performance store optimization
+module: shared memory	
+age: 2018-09-04
+title: ipc/shm: properly return EIDRM in shm_lock()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9c21dae291d1b7763b749dfaef3fb911286c0d98
+lines: -0/+1
+category: ipc/shm.c
+
+When getting rid of the general ipc_lock(), this was missed furthermore,
+making the comment around the ipc object validity check bogus.  Under
+EIDRM conditions, callers will in turn not see the error and continue
+with the operation.
+
+Link: http://lkml.kernel.org/r/20180824030920.GD3677@linux-r8p5
+Link: http://lkml.kernel.org/r/20180823024051.GC13343@shao2-debian
+Fixes: 82061c57ce9 ("ipc: drop ipc_lock()")
+Signed-off-by: Davidlohr Bueso <dbueso@suse.de>
+Reported-by: kernel test robot <rong.a.chen@intel.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

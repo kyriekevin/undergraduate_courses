@@ -1,0 +1,27 @@
+label: bug semantic logic
+consequence：wrong
+module: message queue	
+age: 2012-05-28
+title: Merge tag 'writeback' of git://git.kernel.org/pub/scm/linux/kernel/git/wfg/linux
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=90324cc1b11a211e37eabd8cb863e1a1561d6b1d
+lines: -1/+1
+category: ipc/mqueue.c
+
+Pull writeback tree from Wu Fengguang:
+ "Mainly from Jan Kara to avoid iput() in the flusher threads."
+
+* tag 'writeback' of git://git.kernel.org/pub/scm/linux/kernel/git/wfg/linux:
+  writeback: Avoid iput() from flusher thread
+  vfs: Rename end_writeback() to clear_inode()
+  vfs: Move waiting for inode writeback from end_writeback() to evict_inode()
+  writeback: Refactor writeback_single_inode()
+  writeback: Remove wb->list_lock from writeback_single_inode()
+  writeback: Separate inode requeueing after writeback
+  writeback: Move I_DIRTY_PAGES handling
+  writeback: Move requeueing when I_SYNC set to writeback_sb_inodes()
+  writeback: Move clearing of I_SYNC into inode_sync_complete()
+  writeback: initialize global_dirty_limit
+  fs: remove 8 bytes of padding from struct writeback_control on 64 bit builds
+  mm: page-writeback.c: local functions should not be exposed globally
+
+

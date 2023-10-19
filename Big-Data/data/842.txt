@@ -1,0 +1,31 @@
+label: maintenance
+module: shared memory	
+age: 2006-03-24
+title: [PATCH] shmdt: check address alignment
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=df1e2fb540368d0f9640045235f81923fa63acb7
+lines: -0/+3
+category: ipc/shm.c
+
+SUSv3 says the shmdt() function shall fail with EINVAL if the value of
+shmaddr is not the data segment start address of a shared memory segment:
+our sys_shmdt needs to reject a shmaddr which is not page-aligned.
+
+Does it have the potential to break existing apps?
+
+Hugh says
+
+  "sys_shmdt() just does the wrong (unexpected) thing with a misaligned
+  address: it'll fail on what you might expect it to succeed on, and only
+  succeed on what it should definitely fail on.
+
+  "That is, I think it behaves as if shmaddr gets rounded up, when the only
+  understandable behaviour would be if it rounded it down.
+
+  "Which does mean you'd have to be devious to see anything but EINVAL from
+  a misaligned shmaddr there, so it's not terribly important."
+
+Signed-off-by: Hugh Dickins <hugh@veritas.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

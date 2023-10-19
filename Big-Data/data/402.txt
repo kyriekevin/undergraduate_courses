@@ -1,0 +1,19 @@
+label: feature
+module: message	other	semaphore	shared memory	
+age: 2013-09-11
+title: ipc: rename ids->rw_mutex
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d9a605e40b1376eb02b067d7690580255a0df68f
+lines: -68/+68
+category: ipc/msg.c ipc/namespace.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+Since in some situations the lock can be shared for readers, we shouldn't
+be calling it a mutex, rename it to rwsem.
+
+Signed-off-by: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Tested-by: Sedat Dilek <sedat.dilek@gmail.com>
+Cc: Rik van Riel <riel@redhat.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

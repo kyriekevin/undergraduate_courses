@@ -1,0 +1,17 @@
+label: reliability debug
+module: message	semaphore	shared memory	other	
+age: 2007-10-19
+title: ipc: unify the syscalls code
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7748dbfaa010b12d5fb9ddf80199534c565c6bce
+lines: -139/+215
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+This patch introduces a change into the sys_msgget(), sys_semget() and
+sys_shmget() routines: they now share a common code, which is better for
+maintainability.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

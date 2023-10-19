@@ -1,0 +1,11 @@
+label: performance access optimization
+module: semaphore	
+age: 2013-03-03
+title: make HAVE_SYSCALL_WRAPPERS unconditional
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=22d1a35da0e247a006c286842a1846acb4ffed4f
+lines: -2/+0
+category: ipc/sem.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

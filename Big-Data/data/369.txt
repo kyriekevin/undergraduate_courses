@@ -1,0 +1,23 @@
+label: reliability corruption defense
+module: compatibility	
+age: 2014-01-27
+title: ipc: fix compat msgrcv with negative msgtyp
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e7ca2552369c1dfe0216c626baf82c3d83ec36bb
+lines: -1/+1
+category: ipc/compat.c
+
+Compat function takes msgtyp argument as u32 and passes it down to
+do_msgrcv which results in casting to long, thus the sign is lost and we
+get a big positive number instead.
+
+Cast the argument to signed type before passing it down.
+
+Signed-off-by: Mateusz Guzik <mguzik@redhat.com>
+Reported-by: Gabriellla Schmidt <gsc@bruker.de>
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Cc: Davidlohr Bueso <davidlohr@hp.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

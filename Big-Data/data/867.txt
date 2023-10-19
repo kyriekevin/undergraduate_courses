@@ -1,0 +1,18 @@
+label: reliability corruption defense
+module: other	
+age: 2005-07-12
+title: [PATCH] xtensa: remove old syscalls
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=813e6783647489a8481d256944b7fd75ff79e035
+lines: -1/+1
+category: ipc/util.h
+
+This patch fixes some minor bugs introduced by the previous patch (remove
+old syscalls).  Both patches remove the obsolete syscalls.  The changes in
+this patch were suggested by Arnd Bergmann.  The vmlinux.lds.S changes are
+required for the latest gcc/binutils.
+
+Signed-off-by: Chris Zankel <chris@zankel.net>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

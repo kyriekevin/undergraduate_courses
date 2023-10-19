@@ -1,0 +1,28 @@
+label: reliability annotation
+module: shared memory	
+age: 2009-01-31
+title: Stop playing silly games with the VM_ACCOUNT flag
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=fc8744adc870a8d4366908221508bb113d8b72ee
+lines: -2/+2
+category: ipc/shm.c
+
+The mmap_region() code would temporarily set the VM_ACCOUNT flag for
+anonymous shared mappings just to inform shmem_zero_setup() that it
+should enable accounting for the resulting shm object.  It would then
+clear the flag after calling ->mmap (for the /dev/zero case) or doing
+shmem_zero_setup() (for the MAP_ANON case).
+
+This just resulted in vma merge issues, but also made for just
+unnecessary confusion.  Use the already-existing VM_NORESERVE flag for
+this instead, and let shmem_{zero|file}_setup() just figure it out from
+that.
+
+This also happens to make it obvious that the new DRI2 GEM layer uses a
+non-reserving backing store for its object allocation - which is quite
+possibly not intentional.  But since I didn't want to change semantics
+in this patch, I left it alone, and just updated the caller to use the
+new flag semantics.
+
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

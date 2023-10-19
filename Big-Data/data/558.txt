@@ -1,0 +1,21 @@
+label: feature
+module: semaphore	
+age: 2011-11-02
+title: ipc/sem.c: handle spurious wakeups
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0b0577f6080c0645b079dcc03fdbaf40d928beb8
+lines: -0/+9
+category: ipc/sem.c
+
+semtimedop() does not handle spurious wakeups, it returns -EINTR to user
+space.  Most other schedule() users would just loop and not return to user
+space.  The patch adds such a loop to semtimedop()
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Reported-by: Peter Zijlstra <a.p.zijlstra@chello.nl>
+Acked-by: Peter Zijlstra <a.p.zijlstra@chello.nl>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Mike Galbraith <efault@gmx.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,17 @@
+label: performance store optimization
+module: semaphore	
+age: 2018-08-02
+title: Merge ra.kernel.org:/pub/scm/linux/kernel/git/davem/net
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=89b1698c93a9dee043154f33d96bca9964e705f1
+lines: -1/+1
+category: ipc/sem.c
+
+The BTF conflicts were simple overlapping changes.
+
+The virtio_net conflict was an overlap of a fix of statistics counter,
+happening alongisde a move over to a bonafide statistics structure
+rather than counting value on the stack.
+
+Signed-off-by: David S. Miller <davem@davemloft.net>
+
+

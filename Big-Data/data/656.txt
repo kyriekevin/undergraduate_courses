@@ -1,0 +1,23 @@
+label: feature
+module: message queue	other	
+age: 2009-04-07
+title: namespaces: mqueue ns: move mqueue_mnt into struct ipc_namespace
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=614b84cf4e4a920d2af32b8f147ea1e3b8c27ea6
+lines: -65/+108
+category: ipc/mqueue.c ipc/msgutil.c ipc/namespace.c ipc/util.c ipc/util.h 
+
+Move mqueue vfsmount plus a few tunables into the ipc_namespace struct.
+The CONFIG_IPC_NS boolean and the ipc_namespace struct will serve both the
+posix message queue namespaces and the SYSV ipc namespaces.
+
+The sysctl code will be fixed separately in patch 3.  After just this
+patch, making a change to posix mqueue tunables always changes the values
+in the initial ipc namespace.
+
+Signed-off-by: Cedric Le Goater <clg@fr.ibm.com>
+Signed-off-by: Serge E. Hallyn <serue@us.ibm.com>
+Cc: Alexey Dobriyan <adobriyan@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

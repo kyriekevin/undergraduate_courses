@@ -1,0 +1,14 @@
+label: performance store optimization
+module: shared memory	
+age: 2018-07-12
+title: alloc_file(): switch to passing O_... flags instead of FMODE_... mode
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c9c554f21490bbc96cc554f80024d27d09670480
+lines: -4/+4
+category: ipc/shm.c
+
+... so that it could set both ->f_flags and ->f_mode, without callers
+having to set ->f_flags manually.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

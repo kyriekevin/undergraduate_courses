@@ -1,0 +1,15 @@
+label: feature
+module: message	
+age: 2018-03-24
+title: msg: Move struct msg_queue into ipc/msg.c
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=34b56df922b10ac2876f268c522951785bf333fd
+lines: -0/+17
+category: ipc/msg.c
+
+All of the users are now in ipc/msg.c so make the definition local to
+that file to make code maintenance easier.  AKA to prevent rebuilding
+the entire kernel when struct msg_queue changes.
+
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

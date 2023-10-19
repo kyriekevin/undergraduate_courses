@@ -1,0 +1,31 @@
+label: performance store optimization
+module: shared memory	
+age: 2008-04-28
+title: mempolicy: fixup Fallback for Default Shmem Policy
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ae4d8c16aa22775f5731677abb8a82f03cec877e
+lines: -2/+1
+category: ipc/shm.c
+
+get_vma_policy() is not handling fallback to task policy correctly when the
+get_policy() vm_op returns NULL.  The NULL overwrites the 'pol' variable that
+was holding the fallback task mempolicy.  So, it was falling back directly to
+system default policy.
+
+Fix get_vma_policy() to use only non-NULL policy returned from the vma
+get_policy op.
+
+shm_get_policy() was falling back to current task's mempolicy if the "backing
+file system" [tmpfs vs hugetlbfs] does not support the get_policy vm_op and
+the vma policy is null.  This is incorrect for show_numa_maps() which is
+likely querying the numa_maps of some task other than current.  Remove this
+fallback.
+
+Signed-off-by: Lee Schermerhorn <lee.schermerhorn@hp.com>
+Cc: Christoph Lameter <clameter@sgi.com>
+Cc: David Rientjes <rientjes@google.com>
+Cc: Mel Gorman <mel@csn.ul.ie>
+Cc: Andi Kleen <ak@suse.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

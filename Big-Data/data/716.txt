@@ -1,0 +1,19 @@
+label: bug semantic generic
+consequence：wrong
+module: message queue	
+age: 2008-05-03
+title: tiny mq_open optimization
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=269f21344b23e552c21c9e2d7ca258479dcd7a0a
+lines: -2/+1
+category: ipc/mqueue.c
+
+A very small cleanup for mq_open.
+
+We do not have to call set_close_on_exit if we create the file
+descriptor right away with the flag set.  We have a function for this
+now.  The resulting code is smaller and a tiny bit faster.
+
+Signed-off-by: Ulrich Drepper <drepper@redhat.com>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,31 @@
+label: feature
+module: message	semaphore	shared memory	other	
+age: 2017-11-17
+title: Merge branch 'work.misc' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ca5b857cb0f42986520abd9dbb0c2508067342b2
+lines: -7/+7
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/syscall.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull misc vfs updates from Al Viro:
+ "Assorted stuff, really no common topic here"
+
+* 'work.misc' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs:
+  vfs: grab the lock instead of blocking in __fd_install during resizing
+  vfs: stop clearing close on exec when closing a fd
+  include/linux/fs.h: fix comment about struct address_space
+  fs: make fiemap work from compat_ioctl
+  coda: fix 'kernel memory exposure attempt' in fsync
+  pstore: remove unneeded unlikely()
+  vfs: remove unneeded unlikely()
+  stubs for mount_bdev() and kill_block_super() in !CONFIG_BLOCK case
+  make vfs_ustat() static
+  do_handle_open() should be static
+  elf_fdpic: fix unused variable warning
+  fold destroy_super() into __put_super()
+  new helper: destroy_unused_super()
+  fix address space warnings in ipc/
+  acct.h: get rid of detritus
+
+

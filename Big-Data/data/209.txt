@@ -1,0 +1,11 @@
+label: performance access optimization
+module: compatibility	shared memory	other	
+age: 2017-07-15
+title: ipc: move compat shmctl to native
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=553f770ef71b27ee053bd241bef0998a15f43467
+lines: -235/+231
+category: ipc/compat.c ipc/shm.c ipc/util.h 
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

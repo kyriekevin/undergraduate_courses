@@ -1,0 +1,19 @@
+label: reliability debug
+module: semaphore	
+age: 2009-01-14
+title: [CVE-2009-0029] System call wrapper special cases
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6673e0c3fbeaed2cd08e2fd4a4aa97382d6fedb0
+lines: -1/+8
+category: ipc/sem.c
+
+System calls with an unsigned long long argument can't be converted with
+the standard wrappers since that would include a cast to long, which in
+turn means that we would lose the upper 32 bit on 32 bit architectures.
+Also semctl can't use the standard wrapper since it has a 'union'
+parameter.
+
+So we handle them as special case and add some extra wrappers instead.
+
+Signed-off-by: Heiko Carstens <heiko.carstens@de.ibm.com>
+
+

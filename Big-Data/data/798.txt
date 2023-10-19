@@ -1,0 +1,18 @@
+label: performance other
+module: message queue	shared memory	other	
+age: 2007-02-12
+title: [PATCH] mark struct file_operations const 7
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9a32144e9d7b4e21341174b1a83b82a82353be86
+lines: -6/+6
+category: ipc/mqueue.c ipc/shm.c ipc/util.c 
+
+Many struct file_operations in the kernel can be "const".  Marking them const
+moves these to the .rodata section, which avoids false sharing with potential
+dirty data.  In addition it'll catch accidental writes at compile time to
+these shared resources.
+
+Signed-off-by: Arjan van de Ven <arjan@linux.intel.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

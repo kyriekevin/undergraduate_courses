@@ -1,0 +1,27 @@
+label: reliability debug
+module: semaphore	
+age: 2007-10-19
+title: IPC: cleanup some code and wrong comments about semundo list managment
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c530c6ac7eb1d4ae1ff6b382d9211be446ee82c6
+lines: -40/+6
+category: ipc/sem.c
+
+Some comments about sem_undo_list seem wrong.
+About the comment above unlock_semundo:
+"... If task2 now exits before task1 releases the lock (by calling
+unlock_semundo()), then task1 will never call spin_unlock(). ..."
+
+This is just wrong, I see no reason for which task1 will not call
+spin_unlock... The rest of this comment is also wrong... Unless I
+miss something (of course).
+
+Finally, (un)lock_semundo functions are useless, so remove them
+for simplification. (this avoids an useless if statement)
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

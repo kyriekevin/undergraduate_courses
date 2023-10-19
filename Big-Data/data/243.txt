@@ -1,0 +1,21 @@
+label: maintenance
+module: other	
+age: 2017-03-02
+title: sched/headers: Prepare to move the task_lock()/unlock() APIs to ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f719ff9bcee2a422647790f12d53d3755f47c727
+lines: -0/+1
+category: ipc/namespace.c
+
+<linux/sched/task.h>
+
+But first update the code that uses these facilities with the
+new header.
+
+Acked-by: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Mike Galbraith <efault@gmx.de>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Ingo Molnar <mingo@kernel.org>
+
+

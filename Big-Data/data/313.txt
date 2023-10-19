@@ -1,0 +1,15 @@
+label: feature
+module: other	
+age: 2015-06-30
+title: ipc/util.c: use kvfree() in ipc_rcu_free()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c859aa83113dcad165d986e66aa21c5b73745f42
+lines: -4/+1
+category: ipc/util.c
+
+Use kvfree() instead of open-coding it.
+
+Signed-off-by: Pekka Enberg <penberg@kernel.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

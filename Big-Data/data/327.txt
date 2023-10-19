@@ -1,0 +1,13 @@
+label: reliability error enhancement
+module: other	
+age: 2014-12-04
+title: new helpers: ns_alloc_inum/ns_free_inum
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6344c433a452b1a05d03a61a6a85d89f793bb7b8
+lines: -3/+3
+category: ipc/namespace.c
+
+take struct ns_common *, for now simply wrappers around proc_{alloc,free}_inum()
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

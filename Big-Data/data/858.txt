@@ -1,0 +1,8 @@
+label: performance access optimization
+module: message queue	
+age: 2005-11-06
+title: Update Michal Wronski contact info
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=65163fd73c65e4c61437c28ac4ef9f3c5ba16a80
+lines: -1/+1
+category: ipc/mqueue.c
+

@@ -1,0 +1,19 @@
+label: feature
+module: semaphore	shared memory	
+age: 2020-08-12
+title: ipc: uninline functions
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=00898e8599a184ae05e2c00903e85dc80d82a43d
+lines: -4/+2
+category: ipc/sem.c ipc/shm.c 
+
+Two functions are only called via function pointers, don't bother
+inlining them.
+
+Signed-off-by: Alexey Dobriyan <adobriyan@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Link: http://lkml.kernel.org/r/20200710200312.GA960353@localhost.localdomain
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

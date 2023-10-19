@@ -1,0 +1,20 @@
+label: feature
+module: message queue	semaphore	other	
+age: 2018-04-20
+title: y2038: ipc: Enable COMPAT_32BIT_TIME
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b0d175781ab275576429fe379ba8e98e1c60f362
+lines: -41/+44
+category: ipc/mqueue.c ipc/sem.c ipc/util.h 
+
+Three ipc syscalls (mq_timedsend, mq_timedreceive and and semtimedop)
+take a timespec argument. After we move 32-bit architectures over to
+useing 64-bit time_t based syscalls, we need seperate entry points for
+the old 32-bit based interfaces.
+
+This changes the #ifdef guards for the existing 32-bit compat syscalls
+to check for CONFIG_COMPAT_32BIT_TIME instead, which will then be
+enabled on all existing 32-bit architectures.
+
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+
+

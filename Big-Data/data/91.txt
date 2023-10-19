@@ -1,0 +1,46 @@
+label: maintenance
+module: message queue	message	semaphore	shared memory	other	
+age: 2018-10-25
+title: Merge branch 'timers-core-for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4dcb9239dad6cee17c538482619a5b659774ee51
+lines: -17/+17
+category: ipc/mqueue.c ipc/msg.c ipc/sem.c ipc/shm.c ipc/syscall.c ipc/util.h 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+
+Pull timekeeping updates from Thomas Gleixner:
+ "The timers and timekeeping departement provides:
+
+   - Another large y2038 update with further preparations for providing
+     the y2038 safe timespecs closer to the syscalls.
+
+   - An overhaul of the SHCMT clocksource driver
+
+   - SPDX license identifier updates
+
+   - Small cleanups and fixes all over the place"
+
+* 'timers-core-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip: (31 commits)
+  tick/sched : Remove redundant cpu_online() check
+  clocksource/drivers/dw_apb: Add reset control
+  clocksource: Remove obsolete CLOCKSOURCE_OF_DECLARE
+  clocksource/drivers: Unify the names to timer-* format
+  clocksource/drivers/sh_cmt: Add R-Car gen3 support
+  dt-bindings: timer: renesas: cmt: document R-Car gen3 support
+  clocksource/drivers/sh_cmt: Properly line-wrap sh_cmt_of_table[] initializer
+  clocksource/drivers/sh_cmt: Fix clocksource width for 32-bit machines
+  clocksource/drivers/sh_cmt: Fixup for 64-bit machines
+  clocksource/drivers/sh_tmu: Convert to SPDX identifiers
+  clocksource/drivers/sh_mtu2: Convert to SPDX identifiers
+  clocksource/drivers/sh_cmt: Convert to SPDX identifiers
+  clocksource/drivers/renesas-ostm: Convert to SPDX identifiers
+  clocksource: Convert to using %pOFn instead of device_node.name
+  tick/broadcast: Remove redundant check
+  RISC-V: Request newstat syscalls
+  y2038: signal: Change rt_sigtimedwait to use __kernel_timespec
+  y2038: socket: Change recvmmsg to use __kernel_timespec
+  y2038: sched: Change sched_rr_get_interval to use __kernel_timespec
+  y2038: utimes: Rework #ifdef guards for compat syscalls
+  ...
+
+

@@ -1,0 +1,13 @@
+label: reliability debug
+module: message queue	
+age: 2019-09-05
+title: new helper: get_tree_keyed()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=533770cc0ae84890624dc129609f3d75855c8982
+lines: -2/+1
+category: ipc/mqueue.c
+
+For vfs_get_keyed_super users.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

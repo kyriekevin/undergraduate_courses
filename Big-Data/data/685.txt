@@ -1,0 +1,16 @@
+label: reliability debug
+module: message queue	
+age: 2009-01-04
+title: sanitize audit_mq_notify()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=20114f71b27cafeb7c7e41d2b0f0b68c3fbb022b
+lines: -7/+7
+category: ipc/mqueue.c
+
+* don't copy_from_user() twice
+* don't bother with allocations
+* don't duplicate parts of audit_dummy_context()
+* make it return void
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

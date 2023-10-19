@@ -1,0 +1,19 @@
+label: bug semantic generic
+consequence：wrong
+module: other	
+age: 2013-04-29
+title: ipc/util.c: use register_hotmemory_notifier()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8f68fa2d1908365cb372b1aebf89d6af4b2b3871
+lines: -7/+8
+category: ipc/util.c
+
+Squishes a statement-with-no-effect warning, removes some ifdefs and
+shrinks .text by one byte!
+
+Note that this code fails to check for blocking_notifier_chain_register()
+failures.
+
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

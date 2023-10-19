@@ -1,0 +1,13 @@
+label: performance access optimization
+module: message queue	
+age: 2009-09-22
+title: const: mark remaining super_operations const
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b87221de6a4934eda856475a0065688d12973a04
+lines: -2/+2
+category: ipc/mqueue.c
+
+Signed-off-by: Alexey Dobriyan <adobriyan@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

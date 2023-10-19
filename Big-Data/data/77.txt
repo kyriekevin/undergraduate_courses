@@ -1,0 +1,19 @@
+label: reliability debug
+module: message queue	
+age: 2019-05-14
+title: ipc/mqueue: remove redundant wq task assignment
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0ecb58210bd9de14df62a614be07428ef10f9469
+lines: -2/+0
+category: ipc/mqueue.c
+
+We already store the current task fo the new waiter before calling
+wq_sleep() in both send and recv paths.  Trivially remove the redundant
+assignment.
+
+Link: http://lkml.kernel.org/r/20190321190216.1719-1-dave@stgolabs.net
+Signed-off-by: Davidlohr Bueso <dbueso@suse.de>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

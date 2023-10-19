@@ -1,0 +1,12 @@
+label: performance access optimization
+module: message queue	shared memory	
+age: 2015-04-15
+title: VFS: assorted weird filesystems: d_inode() annotations
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=75c3cfa855dcedc84e7964269c9b6baf26137959
+lines: -12/+12
+category: ipc/mqueue.c ipc/shm.c 
+
+Signed-off-by: David Howells <dhowells@redhat.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

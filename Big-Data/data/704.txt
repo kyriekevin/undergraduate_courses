@@ -1,0 +1,29 @@
+label: feature
+module: semaphore	
+age: 2008-07-25
+title: ipc/sem.c: rewrite undo list locking
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=380af1b33b3ff92df5cda96329b58f5d1b6b5a53
+lines: -54/+93
+category: ipc/sem.c
+
+The attached patch:
+- reverses the locking order of ulp->lock and sem_lock:
+  Previously, it was first ulp->lock, then inside sem_lock.
+  Now it's the other way around.
+- converts the undo structure to rcu.
+
+Benefits:
+- With the old locking order, IPC_RMID could not kfree the undo structures.
+  The stale entries remained in the linked lists and were released later.
+- The patch fixes a a race in semtimedop(): if both IPC_RMID and a semget() that
+  recreates exactly the same id happen between find_alloc_undo() and sem_lock,
+  then semtimedop() would access already kfree'd memory.
+
+[akpm@linux-foundation.org: coding-style fixes]
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Reviewed-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

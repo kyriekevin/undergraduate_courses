@@ -1,0 +1,27 @@
+label: feature
+module: shared memory	
+age: 2018-10-05
+title: ipc/shm.c: use ERR_CAST() for shm_lock() error return
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=59cf0a9339ca4b0226e9b4329dfb0a5b8b0b9bc2
+lines: -1/+1
+category: ipc/shm.c
+
+This uses ERR_CAST() instead of an open-coded cast, as it is casting
+across structure pointers, which upsets __randomize_layout:
+
+ipc/shm.c: In function `shm_lock':
+ipc/shm.c:209:9: note: randstruct: casting between randomized structure pointer types (ssa): `struct shmid_kernel' and `struct kern_ipc_perm'
+
+  return (void *)ipcp;
+         ^~~~~~~~~~~~
+
+Link: http://lkml.kernel.org/r/20180919180722.GA15073@beast
+Fixes: 82061c57ce93 ("ipc: drop ipc_lock()")
+Signed-off-by: Kees Cook <keescook@chromium.org>
+Cc: Davidlohr Bueso <dbueso@suse.de>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+

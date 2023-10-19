@@ -1,0 +1,45 @@
+label: maintenance
+module: message queue	
+age: 2008-10-20
+title: message queues: increase range limits
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b231cca4381ee15ec99afbfb244fbc0324869927
+lines: -6/+14
+category: ipc/mqueue.c
+
+Increase the range of various posix message queue limits.
+
+Posix gives the message queue user the ability to 'trade off' the maximum
+size of messages with the number of possible messages that can be 'in
+flight'.  Linux currently makes this trade off more restrictive than it
+needs to be.
+
+In particular, the maximum message size today can be made no smaller than
+8192.  This greatly restricts those applications that would like to have
+the ability to post large numbers of very small messages.
+
+So this task lowers the limit that the maximum message size can be set to,
+from 8192 to 128.  It also lowers the limit that the maximum #number of
+messages in flight can be set to, from 10 to 1.
+
+With these changes the message queue user can make better trade offs
+between #messages and message size, in order to get everything to fit
+within the setrlimit(RLIMIT_MSGQUEUE) limit for that particular user.
+
+This patch also applies the values in
+
+	/proc/sys/fs/mqueue/msg_max
+	/proc/sys/fs/mqueue/msgsize_max
+
+as the defaults for the max #messages allowed and the max message size
+allowed, respectively, for those applications that do not supply these.
+Previously, the defaults were hardwired to 10 and 8192, respectively.
+
+[akpm@linux-foundation.org: coding-style fixes]
+Signed-off-by: Joe Korty <joe.korty@ccur.com>
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

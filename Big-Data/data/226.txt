@@ -1,0 +1,20 @@
+label: reliability error enhancement
+module: semaphore	
+age: 2017-07-12
+title: ipc/sem: do not use ipc_rcu_free()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1b4654ef72f61c84704b3c79b50fdeed8747fc56
+lines: -2/+7
+category: ipc/sem.c
+
+Avoid using ipc_rcu_free, since it just re-finds the original structure
+pointer.  For the pre-list-init failure path, there is no RCU needed,
+since it was just allocated.  It can be directly freed.
+
+Link: http://lkml.kernel.org/r/20170525185107.12869-6-manfred@colorfullife.com
+Signed-off-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

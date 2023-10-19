@@ -1,0 +1,18 @@
+label: feature
+module: message queue	
+age: 2005-09-10
+title: [PATCH] merge some from Rusty's trivial patches
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=338cec3253a6d43d02e5e96abc327197565efcc8
+lines: -1/+1
+category: ipc/mqueue.c
+
+This patch contains the most trivial from Rusty's trivial patches:
+- spelling fixes
+- remove duplicate includes
+
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+Cc: Rusty Russell <rusty@rustcorp.com.au>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

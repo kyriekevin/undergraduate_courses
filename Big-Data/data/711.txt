@@ -1,0 +1,15 @@
+label: performance synchronization
+module: message	shared memory	
+age: 2008-06-13
+title: Merge branch 'master' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4ae127d1b6c71f9240dd4245f240e6dd8fc98014
+lines: -17/+14
+category: ipc/msg.c ipc/shm.c 
+
+master.kernel.org:/pub/scm/linux/kernel/git/davem/net-2.6
+
+Conflicts:
+
+	drivers/net/smc911x.c
+
+

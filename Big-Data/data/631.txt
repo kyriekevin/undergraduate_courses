@@ -1,0 +1,14 @@
+label: feature
+module: other	
+age: 2009-11-12
+title: sysctl ipc: Remove dead binary sysctl support code.
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2bc4657c15e4a33d9a192579c7627a397dbcbebc
+lines: -81/+3
+category: ipc/ipc_sysctl.c ipc/mq_sysctl.c 
+
+Now that sys_sysctl is a generic wrapper around /proc/sys  .ctl_name
+and .strategy members of sysctl tables are dead code.  Remove them.
+
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+
+

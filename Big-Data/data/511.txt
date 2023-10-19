@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2012-09-26
+title: switch simple cases of fget_light to fdget
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2903ff019b346ab8d36ebbf54853c3aaf6590608
+lines: -43/+41
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

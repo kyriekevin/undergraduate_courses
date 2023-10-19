@@ -1,0 +1,24 @@
+label: feature
+module: shared memory	
+age: 2009-05-22
+title: integrity: move ima_counts_get
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c9d9ac525a0285a5b5ad9c3f9aa8b7c1753e6121
+lines: -1/+0
+category: ipc/shm.c
+
+Based on discussion on lkml (Andrew Morton and Eric Paris),
+move ima_counts_get down a layer into shmem/hugetlb__file_setup().
+Resolves drm shmem_file_setup() usage case as well.
+
+HD comment:
+  I still think you're doing this at the wrong level, but recognize
+  that you probably won't be persuaded until a few more users of
+  alloc_file() emerge, all wanting your ima_counts_get().
+
+  Resolving GEM's shmem_file_setup() is an improvement, so I'll say
+
+Acked-by: Hugh Dickins <hugh.dickins@tiscali.co.uk>
+Signed-off-by: Mimi Zohar <zohar@us.ibm.com>
+Signed-off-by: James Morris <jmorris@namei.org>
+
+

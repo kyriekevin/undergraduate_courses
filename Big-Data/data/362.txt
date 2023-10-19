@@ -1,0 +1,90 @@
+label: reliability debug
+module: compatibility	
+age: 2014-03-31
+title: Merge branch 'compat' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=190f918660a69d1c56fd05dc8c6cbb8336a8a0af
+lines: -22/+23
+category: ipc/compat.c ipc/compat_mq.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/s390/linux
+
+Pull s390 compat wrapper rework from Heiko Carstens:
+ "S390 compat system call wrapper simplification work.
+
+  The intention of this work is to get rid of all hand written assembly
+  compat system call wrappers on s390, which perform proper sign or zero
+  extension, or pointer conversion of compat system call parameters.
+  Instead all of this should be done with C code eg by using Al's
+  COMPAT_SYSCALL_DEFINEx() macro.
+
+  Therefore all common code and s390 specific compat system calls have
+  been converted to the COMPAT_SYSCALL_DEFINEx() macro.
+
+  In order to generate correct code all compat system calls may only
+  have eg compat_ulong_t parameters, but no unsigned long parameters.
+  Those patches which change parameter types from unsigned long to
+  compat_ulong_t parameters are separate in this series, but shouldn't
+  cause any harm.
+
+  The only compat system calls which intentionally have 64 bit
+  parameters (preadv64 and pwritev64) in support of the x86/32 ABI
+  haven't been changed, but are now only available if an architecture
+  defines __ARCH_WANT_COMPAT_SYS_PREADV64/PWRITEV64.
+
+  System calls which do not have a compat variant but still need proper
+  zero extension on s390, like eg "long sys_brk(unsigned long brk)" will
+  get a proper wrapper function with the new s390 specific
+  COMPAT_SYSCALL_WRAPx() macro:
+
+     COMPAT_SYSCALL_WRAP1(brk, unsigned long, brk);
+
+  which generates the following code (simplified):
+
+     asmlinkage long sys_brk(unsigned long brk);
+     asmlinkage long compat_sys_brk(long brk)
+     {
+         return sys_brk((u32)brk);
+     }
+
+  Given that the C file which contains all the COMPAT_SYSCALL_WRAP lines
+  includes both linux/syscall.h and linux/compat.h, it will generate
+  build errors, if the declaration of sys_brk() doesn't match, or if
+  there exists a non-matching compat_sys_brk() declaration.
+
+  In addition this will intentionally result in a link error if
+  somewhere else a compat_sys_brk() function exists, which probably
+  should have been used instead.  Two more BUILD_BUG_ONs make sure the
+  size and type of each compat syscall parameter can be handled
+  correctly with the s390 specific macros.
+
+  I converted the compat system calls step by step to verify the
+  generated code is correct and matches the previous code.  In fact it
+  did not always match, however that was always a bug in the hand
+  written asm code.
+
+  In result we get less code, less bugs, and much more sanity checking"
+
+* 'compat' of git://git.kernel.org/pub/scm/linux/kernel/git/s390/linux: (44 commits)
+  s390/compat: add copyright statement
+  compat: include linux/unistd.h within linux/compat.h
+  s390/compat: get rid of compat wrapper assembly code
+  s390/compat: build error for large compat syscall args
+  mm/compat: convert to COMPAT_SYSCALL_DEFINE with changing parameter types
+  kexec/compat: convert to COMPAT_SYSCALL_DEFINE with changing parameter types
+  net/compat: convert to COMPAT_SYSCALL_DEFINE with changing parameter types
+  ipc/compat: convert to COMPAT_SYSCALL_DEFINE with changing parameter types
+  fs/compat: convert to COMPAT_SYSCALL_DEFINE with changing parameter types
+  ipc/compat: convert to COMPAT_SYSCALL_DEFINE
+  fs/compat: convert to COMPAT_SYSCALL_DEFINE
+  security/compat: convert to COMPAT_SYSCALL_DEFINE
+  mm/compat: convert to COMPAT_SYSCALL_DEFINE
+  net/compat: convert to COMPAT_SYSCALL_DEFINE
+  kernel/compat: convert to COMPAT_SYSCALL_DEFINE
+  fs/compat: optional preadv64/pwrite64 compat system calls
+  ipc/compat_sys_msgrcv: change msgtyp type from long to compat_long_t
+  s390/compat: partial parameter conversion within syscall wrappers
+  s390/compat: automatic zero, sign and pointer conversion of syscalls
+  s390/compat: add sync_file_range and fallocate compat syscalls
+  ...
+
+

@@ -1,0 +1,18 @@
+label: reliability annotation
+module: shared memory	
+age: 2009-09-27
+title: const: mark struct vm_struct_operations
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f0f37e2f77731b3473fa6bd5ee53255d9a9cdb40
+lines: -2/+2
+category: ipc/shm.c
+
+* mark struct vm_area_struct::vm_ops as const
+* mark vm_ops in AGP code
+
+But leave TTM code alone, something is fishy there with global vm_ops
+being used.
+
+Signed-off-by: Alexey Dobriyan <adobriyan@gmail.com>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

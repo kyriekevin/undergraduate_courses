@@ -1,0 +1,22 @@
+label: reliability corruption defense
+module: message queue	
+age: 2010-10-25
+title: fs: do not assign default i_ino in new_inode
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=85fe4025c616a7c0ed07bc2fc8c5371b07f3888c
+lines: -0/+1
+category: ipc/mqueue.c
+
+Instead of always assigning an increasing inode number in new_inode
+move the call to assign it into those callers that actually need it.
+For now callers that need it is estimated conservatively, that is
+the call is added to all filesystems that do not assign an i_ino
+by themselves.  For a few more filesystems we can avoid assigning
+any inode number given that they aren't user visible, and for others
+it could be done lazily when an inode number is actually needed,
+but that's left for later patches.
+
+Signed-off-by: Christoph Hellwig <hch@lst.de>
+Signed-off-by: Dave Chinner <dchinner@redhat.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

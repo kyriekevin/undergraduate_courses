@@ -1,0 +1,21 @@
+label: bug semantic generic
+consequence：wrong
+module: message queue	shared memory	
+age: 2010-03-12
+title: ipc: use rlimit helpers
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f1eb1332b8f07e937add24c6fd2ac40b8737a2f4
+lines: -3/+2
+category: ipc/mqueue.c ipc/shm.c 
+
+Make sure compiler won't do weird things with limits.  E.g.  fetching them
+twice may return 2 different values after writable limits are implemented.
+
+I.e.  either use rlimit helpers added in
+3e10e716abf3c71bdb5d86b8f507f9e72236c9cd ("resource: add helpers for
+fetching rlimits") or ACCESS_ONCE if not applicable.
+
+Signed-off-by: Jiri Slaby <jslaby@suse.cz>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

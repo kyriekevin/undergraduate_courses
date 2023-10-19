@@ -1,0 +1,51 @@
+label: bug semantic state
+consequence：error
+module: other	message queue	message	semaphore	shared memory	
+age: 2009-02-06
+title: Merge branch 'master' into next
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=cb5629b10d64a8006622ce3a52bc887d91057d69
+lines: -132/+141
+category: ipc/ipc_sysctl.c ipc/mqueue.c ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c 
+
+Conflicts:
+	fs/namei.c
+
+Manually merged per:
+
+diff --cc fs/namei.c
+index 734f2b5,bbc15c2..0000000
+--- a/fs/namei.c
++++ b/fs/namei.c
+@@@ -860,9 -848,8 +849,10 @@@ static int __link_path_walk(const char
+  		nd->flags |= LOOKUP_CONTINUE;
+  		err = exec_permission_lite(inode);
+  		if (err == -EAGAIN)
+- 			err = vfs_permission(nd, MAY_EXEC);
++ 			err = inode_permission(nd->path.dentry->d_inode,
++ 					       MAY_EXEC);
+ +		if (!err)
+ +			err = ima_path_check(&nd->path, MAY_EXEC);
+   		if (err)
+  			break;
+
+@@@ -1525,14 -1506,9 +1509,14 @@@ int may_open(struct path *path, int acc
+  		flag &= ~O_TRUNC;
+  	}
+
+- 	error = vfs_permission(nd, acc_mode);
++ 	error = inode_permission(inode, acc_mode);
+  	if (error)
+  		return error;
+ +
+- 	error = ima_path_check(&nd->path,
+++	error = ima_path_check(path,
+ +			       acc_mode & (MAY_READ | MAY_WRITE | MAY_EXEC));
+ +	if (error)
+ +		return error;
+  	/*
+  	 * An append-only file must be opened in append mode for writing.
+  	 */
+
+Signed-off-by: James Morris <jmorris@namei.org>
+
+

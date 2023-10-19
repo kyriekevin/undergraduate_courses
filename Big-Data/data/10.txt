@@ -1,0 +1,41 @@
+label: performance other
+module: other	
+age: 2021-09-08
+title: Merge branch 'akpm' (patches from Andrew)
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2d338201d5311bcd79d42f66df4cecbcbc5f4f2c
+lines: -12/+4
+category: ipc/util.c
+
+Merge more updates from Andrew Morton:
+ "147 patches, based on 7d2a07b769330c34b4deabeed939325c77a7ec2f.
+
+  Subsystems affected by this patch series: mm (memory-hotplug, rmap,
+  ioremap, highmem, cleanups, secretmem, kfence, damon, and vmscan),
+  alpha, percpu, procfs, misc, core-kernel, MAINTAINERS, lib,
+  checkpatch, epoll, init, nilfs2, coredump, fork, pids, criu, kconfig,
+  selftests, ipc, and scripts"
+
+* emailed patches from Andrew Morton <akpm@linux-foundation.org>: (94 commits)
+  scripts: check_extable: fix typo in user error message
+  mm/workingset: correct kernel-doc notations
+  ipc: replace costly bailout check in sysvipc_find_ipc()
+  selftests/memfd: remove unused variable
+  Kconfig.debug: drop selecting non-existing HARDLOCKUP_DETECTOR_ARCH
+  configs: remove the obsolete CONFIG_INPUT_POLLDEV
+  prctl: allow to setup brk for et_dyn executables
+  pid: cleanup the stale comment mentioning pidmap_init().
+  kernel/fork.c: unexport get_{mm,task}_exe_file
+  coredump: fix memleak in dump_vma_snapshot()
+  fs/coredump.c: log if a core dump is aborted due to changed file permissions
+  nilfs2: use refcount_dec_and_lock() to fix potential UAF
+  nilfs2: fix memory leak in nilfs_sysfs_delete_snapshot_group
+  nilfs2: fix memory leak in nilfs_sysfs_create_snapshot_group
+  nilfs2: fix memory leak in nilfs_sysfs_delete_##name##_group
+  nilfs2: fix memory leak in nilfs_sysfs_create_##name##_group
+  nilfs2: fix NULL pointer in nilfs_##name##_attr_release
+  nilfs2: fix memory leak in nilfs_sysfs_create_device_group
+  trap: cleanup trap_init()
+  init: move usermodehelper_enable() to populate_rootfs()
+  ...
+
+

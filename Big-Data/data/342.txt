@@ -1,0 +1,29 @@
+label: feature
+module: other	
+age: 2014-07-29
+title: namespaces: Use task_lock and not rcu to protect nsproxy
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=728dba3a39c66b3d8ac889ddbe38b5b1c264aec3
+lines: -3/+3
+category: ipc/namespace.c
+
+The synchronous syncrhonize_rcu in switch_task_namespaces makes setns
+a sufficiently expensive system call that people have complained.
+
+Upon inspect nsproxy no longer needs rcu protection for remote reads.
+remote reads are rare.  So optimize for same process reads and write
+by switching using rask_lock instead.
+
+This yields a simpler to understand lock, and a faster setns system call.
+
+In particular this fixes a performance regression observed
+by Rafael David Tinoco <rafael.tinoco@canonical.com>.
+
+This is effectively a revert of Pavel Emelyanov's commit
+cf7b708c8d1d7a27736771bcf4c457b332b0f818 Make access to task's nsproxy lighter
+from 2007.  The race this originialy fixed no longer exists as
+do_notify_parent uses task_active_pid_ns(parent) instead of
+parent->nsproxy.
+
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

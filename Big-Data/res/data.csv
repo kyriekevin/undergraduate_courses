@@ -1,0 +1,874 @@
+maintenance,2022/3/22,fs: allocate inode by using alloc_inode_sb(),-1,1,,message queue,v5.x
+feature,2022/2/4,pc/sem: do not sleep with a spin lock held,-2,2,,semaphore,v5.x
+bug semantic generic,2022/1/22,proc: remove PDE_DATA() completely,-1,1,error,other,v5.x
+performance store optimization,2021/11/20,shm: extend forced shm destroy to support objects from several IPC nses,-46,143,,shared memory,v5.x
+performance store optimization,2021/11/20,pc: WARN if trying to remove ipc object which is absent,-3,3,,other,v5.x
+bug semantic logic,2021/11/9,pc/ipc_sysctl.c: remove fallback for !CONFIG_PROC_SYSCTL,-13,0,wrong,other,v5.x
+maintenance,2021/11/9,pc: check checkpoint_restore_ns_capable() to modify C/R proc files,-6,23,,other,v5.x
+bug concurrency wrongLock,2021/11/9,"mm,hugetlb: remove mlock ulimit for SHM_HUGETLB",-7,1,deadlock,shared memory,v5.x
+reliability annotation,2021/9/14,pc: remove memcg accounting for sops objects in do_semtimedop(),-1,1,,semaphore,v5.x
+performance access optimization,2021/9/9,Merge tag 'for-linus' of git://git.armlinux.org.uk/~rmk/linux-arm,-33,52,,semaphore,v5.x
+performance other,2021/9/8,Merge branch 'akpm' (patches from Andrew),-12,4,,other,v5.x
+performance speed optimization,2021/9/8,pc: replace costly bailout check in sysvipc_find_ipc(),-12,4,,other,v5.x
+reliability corruption defense,2021/9/3,memcg: enable accounting of ipc resources,-6,7,,message semaphore shared memory,v5.x
+reliability corruption defense,2021/9/3,memcg: enable accounting for new namesapces and struct nsproxy,-1,1,,other,v5.x
+bug semantic state,2021/8/20,ARM: 9114/1: oabi-compat: rework sys_semtimedop emulation,-32,52,crash,semaphore,v5.x
+performance store optimization,2021/7/2,Merge branch 'akpm' (patches from Andrew),-21,63,,message semaphore shared memory other,v5.x
+feature,2021/7/1,pc/util.c: use binary search for max_idx,-5,42,,other,v5.x
+feature,2021/7/1,pc/sem.c: use READ_ONCE()/WRITE_ONCE() for use_global_lock,-5,9,,semaphore,v5.x
+feature,2021/7/1,pc: use kmalloc for msg_queue and shmid_kernel,-6,6,,message shared memory,v5.x
+reliability corruption defense,2021/7/1,pc sem: use kvmalloc for sem_undo allocation,-5,6,,semaphore,v5.x
+maintenance,2021/6/28,Merge branch 'for-linus' of ?,-32,34,,message queue shared memory,v5.x
+reliability robust,2021/5/22,"pc/mqueue, msg, sem: avoid relying on a stack reference past its expiry",-6,12,,message queue message semaphore,v5.x
+feature,2021/5/7,pc/sem.c: spelling fix,-1,1,,semaphore,v5.x
+bug semantic generic,2021/5/7,pc/sem.c: mundane typo fixes,-5,5,wrong,semaphore,v5.x
+bug concurrency atomicity,2021/4/30,Reimplement RLIMIT_MEMLOCK on top of ucounts,-13,13,leak,shared memory,v5.x
+bug concurrency atomicity,2021/4/30,Reimplement RLIMIT_MSGQUEUE on top of ucounts,-19,21,leak,message queue,v5.x
+reliability robust,2021/1/24,fs: make helpers idmap mount aware,-2,2,,message queue,v5.x
+reliability robust,2021/1/24,namei: prepare for idmapped mounts,-1,2,,message queue,v5.x
+reliability robust,2021/1/24,namei: make permission helpers idmapped mount aware,-1,1,,message queue,v5.x
+feature,2020/12/15,Merge branch 'akpm' (patches from Andrew),-4,4,,shared memory,v5.x
+feature,2020/12/15,vm_ops: rename .split() callback to .may_split(),-4,4,,shared memory,v5.x
+feature,2020/12/14,Merge tag 'fixes-v5.11' of ?,-3,3,,other,v5.x
+bug memory nullPointer,2020/9/5,pc: adjust proc_ipc_sem_dointvec definition to match prototype,-1,1,hang,other,v5.x
+feature,2020/8/23,reewide: Use fallthrough pseudo-keyword,-4,4,,semaphore shared memory,v5.x
+feature,2020/8/19,pc: Use generic ns_common::count,-3,3,,other,v5.x
+bug semantic generic,2020/8/12,pc/shm.c: remove the superfluous break,-1,0,error,shared memory,v5.x
+feature,2020/8/12,pc: uninline functions,-4,2,,semaphore shared memory,v5.x
+bug errorCode missError,2020/8/7,mm: remove unnecessary wrapper function do_mmap_pgoff(),-1,1,wrong,shared memory,v5.x
+performance synchronization,2020/6/9,mmap locking API: use coccinelle to convert mmap_sem rwsem call sites,-4,4,,shared memory,v5.x
+feature,2020/6/8,pc/namespace.c: use a work queue to free_ipc,-2,22,,other,v5.x
+performance other,2020/6/8,pc/msg: add missing annotation for freeque(),0,2,,message,v5.x
+maintenance,2020/6/3,Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next,-7,7,,other,v5.x
+performance synchronization,2020/6/3,Merge tag 'threads-v5.8' of ?,-4,3,,other,v5.x
+maintenance,2020/5/15,Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net,-14,32,,message queue other,v5.x
+bug memory bufOverflow,2020/5/14,pc/util.c: sysvipc_find_ipc() incorrectly updates position index,-6,6,corruption,other,v5.x
+bug semantic config,2020/5/9,nsproxy: add struct nsset,-4,3,crash,other,v5.x
+bug semantic logic,2020/5/7,pc/mqueue.c: change __do_notify() to bypass check_kill_permission(),-8,26,error,message queue,v5.x
+reliability robust,2020/4/27,sysctl: pass kernel pointers to ->proc_handler,-7,7,,other,v5.x
+bug memory uninitRead,2020/4/10,pc/util.c: sysvipc_find_ipc() should increase position index,-1,1,error,other,v5.x
+performance synchronization,2020/4/7,pc/shm.c: make compat_ksys_shmctl() static,-1,1,,shared memory,v5.x
+performance access optimization,2020/4/7,pc/mqueue.c: fix a brace coding style issue,-3,2,,message queue,v5.x
+bug concurrency wrongLock,2020/4/7,proc: faster open/read/close with "permanent" files,0,1,leak,other,v5.x
+maintenance,2020/2/21,"Revert ""ipc,sem: remove uneeded sem_undo_list lock usage in exit_sem()""",-4,2,,semaphore,v5.x
+maintenance,2020/2/4,proc: convert everything to "struct proc_ops",-7,7,,other,v5.x
+reliability robust,2020/2/4,pc/msg.c: consolidate all xxxctl_down() functions,-9,10,,message,v5.x
+performance store optimization,2020/2/4,pc/sem.c: document and update memory barriers,-25,41,,semaphore,v5.x
+maintenance,2020/2/4,pc/msg.c: update and document memory barriers,-7,36,,message,v5.x
+performance access optimization,2020/2/4,pc/mqueue.c: update/document memory barriers,-14,78,,message queue,v5.x
+reliability annotation,2020/2/4,pc/mqueue.c: remove duplicated code,-13,18,,message queue,v5.x
+performance access optimization,2019/12/9,reewide: Use sizeof_field() macro,-1,1,,other,v5.x
+feature,2019/11/15,y2038: remove CONFIG_64BIT_TIME,-1,1,,other,v5.x
+reliability error enhancement,2019/9/25,pc/sem.c: convert to use built-in RCU list checking,-1,2,,semaphore,v5.x
+performance store optimization,2019/9/25,pc/mqueue: improve exception handling in do_mq_notify(),-12,8,,message queue,v5.x
+performance access optimization,2019/9/25,pc/mqueue.c: delete an unnecessary check before the macro call dev_kfree_skb(),-1,1,,message queue,v5.x
+maintenance,2019/9/18,Merge branch 'work.mount-base' of ?,-2,1,,message queue,v5.x
+performance speed optimization,2019/9/7,pc: fix sparc64 ipc() wrapper,-23,2,,other,v5.x
+reliability debug,2019/9/5,new helper: get_tree_keyed(),-2,1,,message queue,v5.x
+reliability corruption defense,2019/7/19,Merge branch 'work.mount0' of ?,-4,5,,message queue,v5.x
+maintenance,2019/7/18,proc/sysctl: add shared variables for range check,-19,16,,other,v5.x
+feature,2019/7/16,pc/mqueue.c: only perform resource calculation if user valid,-9,10,,message queue,v5.x
+performance access optimization,2019/6/5,reewide: Replace GPLv2 boilerplate/reference with SPDX - rule 441,-10,2,,other,v5.x
+reliability annotation,2019/5/25,mqueue: set ->user_ns before ->get_tree(),-4,5,,message queue,v5.x
+performance access optimization,2019/5/24,reewide: Replace GPLv2 boilerplate/reference with SPDX - rule 52,-5,1,,other,v5.x
+reliability annotation,2019/5/14,pc: do cyclic id allocation for the ipc object.,-1,11,,other,v5.x
+bug semantic generic,2019/5/14,pc: conserve sequence numbers in ipcmni_extend mode,-9,34,error,other,v5.x
+reliability debug,2019/5/14,pc: allow boot time extension of IPCMNI from 32k to 16M,-15,51,,other,v5.x
+feature,2019/5/14,pc/mqueue: optimize msg_get(),-25,35,,message queue,v5.x
+reliability debug,2019/5/14,pc/mqueue: remove redundant wq task assignment,-2,0,,message queue,v5.x
+reliability robust,2019/5/14,pc: prevent lockup on alloc_msg and free_msg,-2,14,,message queue other,v5.x
+maintenance,2019/5/7,Merge git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next,-1,0,,other,v5.x
+performance access optimization,2019/5/1,mqueue: switch to ->free_inode(),-8,2,,message queue,v5.x
+feature,2019/4/7,rhashtable: use bit_spin_locks to protect hash bucket.,-1,0,,other,v5.x
+reliability annotation,2019/3/12,Merge branch 'work.mount' of ?,-23,73,,message queue other,v5.x
+reliability corruption defense,2019/3/7,pc/sem.c: replace kvmalloc/memset with kvzalloc and use struct_size,-5,1,,semaphore,v5.x
+bug errorCode wrongError,2019/3/7,pc: annotate implicit fall through,0,1,error,semaphore,v5.x
+reliability annotation,2019/2/28,pc: Convert mqueue fs to fs_context,-23,73,,message queue other,v4.x
+feature,2019/2/7,y2038: syscalls: rename y2038 compat syscalls,-9,9,,message queue semaphore,v4.x
+performance store optimization,2019/1/25,pc: rename old-style shmctl/semctl/msgctl syscalls,-41,110,,message semaphore shared memory other,v4.x
+feature,2019/1/18,pc: introduce ksys_ipc()/compat_ksys_ipc() for s390,-4,16,,other,v4.x
+reliability debug,2018/10/31,pc: IPCMNI limit check for semmni,-1,31,,other,v4.x
+reliability debug,2018/10/31,pc: IPCMNI limit check for msgmni and shmmni,-2,5,,other,v4.x
+maintenance,2018/10/25,Merge branch 'timers-core-for-linus' of ?,-17,17,,message queue message semaphore shared memory other,v4.x
+bug memory resourceLeak,2018/10/24,Merge branch 'siginfo-linus' of ?,-1,1,corruption,message queue,v4.x
+feature,2018/10/5,pc/shm.c: use ERR_CAST() for shm_lock() error return,-1,1,,shared memory,v4.x
+reliability error enhancement,2018/10/3,signal: Distinguish between kernel_siginfo and siginfo,-1,1,,message queue,v4.x
+performance store optimization,2018/9/4,pc/shm: properly return EIDRM in shm_lock(),0,1,,shared memory,v4.x
+feature,2018/8/27,y2038: globally rename compat_time to old_time32,-17,17,,message queue message semaphore shared memory other,v4.x
+bug semantic generic,2018/8/22,pc/util.c: update return value of ipc_getref from int to bool,-2,2,error,other,v4.x
+feature,2018/8/22,pc/util.c: further variable name cleanups,-26,26,,message semaphore shared memory other,v4.x
+feature,2018/8/22,pc: simplify ipc initialization,-54,30,,message other semaphore shared memory,v4.x
+bug semantic I/OTiming,2018/8/22,pc: get rid of ids->tables_initialized hack,-15,8,hang,other,v4.x
+performance speed optimization,2018/8/22,pc: drop ipc_lock(),-43,23,,shared memory other,v4.x
+feature,2018/8/22,pc/util.c: correct comment in ipc_obtain_object_check,-2,2,,other,v4.x
+feature,2018/8/22,pc: rename ipcctl_pre_down_nolock(),-8,8,,message semaphore shared memory other,v4.x
+feature,2018/8/22,pc/util.c: use ipc_rcu_putref() for failues in ipc_addid(),-4,12,,message semaphore shared memory other,v4.x
+feature,2018/8/22,pc: reorganize initialization of kern_ipc_perm.seq,-43,48,,other,v4.x
+feature,2018/8/22,pc: compute kern_ipc_perm.id under the ipc lock,-15,41,,message semaphore shared memory,v4.x
+maintenance,2018/8/15,Merge git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next,0,4,,message semaphore shared memory other,v4.x
+reliability robust,2018/8/13,Merge branch 'work.open3' of ?,-24,21,,shared memory,v4.x
+reliability annotation,2018/8/5,Merge ra.kernel.org:/pub/scm/linux/kernel/git/davem/net,0,12,,shared memory,v4.x
+performance access optimization,2018/8/2,pc/shm.c add ->pagesize function to shm_vm_ops,0,12,,shared memory,v4.x
+performance store optimization,2018/8/2,Merge ra.kernel.org:/pub/scm/linux/kernel/git/davem/net,-1,1,,semaphore,v4.x
+maintenance,2018/7/26,pc/sem.c: prevent queue.status tearing in semop,-1,1,,semaphore,v4.x
+performance access optimization,2018/7/12,"do_shmat(): grab shp->shm_file earlier, switch to alloc_file_clone()",-21,18,,shared memory,v4.x
+performance store optimization,2018/7/12,alloc_file(): switch to passing O_... flags instead of FMODE_... mode,-4,4,,shared memory,v4.x
+reliability annotation,2018/6/22,rhashtable: split rhashtable.h,0,4,,message semaphore shared memory other,v4.x
+reliability corruption defense,2018/6/15,pc: use new return type vm_fault_t,-1,1,,shared memory,v4.x
+maintenance,2018/6/15,sysvipc/sem: mitigate semnum index against spectre v1,-4,14,,semaphore,v4.x
+reliability corruption defense,2018/6/12,reewide: kvmalloc() -> kvmalloc_array(),-1,1,,semaphore,v4.x
+maintenance,2018/6/4,Merge branch 'timers-2038-for-linus' of ?,-65,99,,message queue message semaphore shared memory other,v4.x
+reliability corruption defense,2018/5/25,pc/shm: fix shmat() nil address after round-down when remapping,-2,10,,shared memory,v4.x
+bug memory bufOverflow,2018/5/25,Revert "ipc/shm: Fix shmat mmap nil-page protection",-7,2,corruption,shared memory,v4.x
+feature,2018/4/20,"y2038: ipc: Redirect ipc(SEMTIMEDOP, ...) to compat_ksys_semtimedop",-3,10,,other,v4.x
+feature,2018/4/20,y2038: ipc: Enable COMPAT_32BIT_TIME,-41,44,,message queue semaphore other,v4.x
+feature,2018/4/20,y2038: ipc: Use __kernel_timespec,-6,6,,message queue semaphore other,v4.x
+reliability debug,2018/4/20,y2038: ipc: Report long times to user space,-9,33,,message semaphore shared memory,v4.x
+reliability corruption defense,2018/4/20,y2038: ipc: Use ktime_get_real_seconds consistently,-6,6,,message semaphore,v4.x
+bug memory nullPointer,2018/4/13,pc/shm: fix use-after-free of shm file via remap_file_pages(),-3,20,crash,shared memory,v4.x
+reliability corruption defense,2018/4/11,pc/shm.c: shm_split(): remove unneeded test for NULL shm_file_data.vm_ops,-1,1,,shared memory,v4.x
+performance store optimization,2018/4/11,pc/msg: introduce msgctl(MSG_STAT_ANY),-5,12,,message,v4.x
+performance store optimization,2018/4/11,pc/sem: introduce semctl(SEM_STAT_ANY),-5,12,,semaphore,v4.x
+performance access optimization,2018/4/11,pc/shm: introduce shmctl(SHM_STAT_ANY),-5,18,,shared memory,v4.x
+feature,2018/4/11,proc: move /proc/sysvipc creation to where it belongs,0,1,,other,v4.x
+feature,2018/4/3,Merge branch 'userns-linus' of ?,-80,152,,message semaphore shared memory other,v4.x
+feature,2018/4/2,Merge branch 'syscalls-next' of ?,-49,172,,message semaphore shared memory other,v4.x
+feature,2018/4/2,pc: add msgsnd syscall/compat_syscall wrappers,-6,22,,message other,v4.x
+feature,2018/4/2,pc: add msgrcv syscall/compat_syscall wrappers,-7,24,,message other,v4.x
+feature,2018/4/2,pc: add msgctl syscall/compat_syscall wrappers,-4,17,,message other,v4.x
+feature,2018/4/2,pc: add shmctl syscall/compat_syscall wrappers,-4,16,,shared memory other,v4.x
+feature,2018/4/2,pc: add shmdt syscall wrapper,-3,9,,shared memory other,v4.x
+feature,2018/4/2,pc: add shmget syscall wrapper,-3,9,,shared memory other,v4.x
+feature,2018/4/2,pc: add msgget syscall wrapper,-3,9,,message other,v4.x
+feature,2018/4/2,pc: add semctl syscall/compat_syscall wrappers,-4,16,,semaphore other,v4.x
+feature,2018/4/2,pc: add semget syscall wrapper,-3,9,,semaphore other,v4.x
+feature,2018/4/2,pc: add semtimedop syscall/compat_syscall wrappers,-12,41,,semaphore other,v4.x
+maintenance,2018/3/28,pc/shm.c: add split function to shm_vm_ops,0,12,,shared memory,v4.x
+reliability corruption defense,2018/3/28,pc/shm: Fix pid freeing.,-2,2,,shared memory,v4.x
+feature,2018/3/27,pc: Directly call the security hook in ipc_ops.associate,-27,3,,message semaphore shared memory,v4.x
+performance access optimization,2018/3/27,"pc/sem: Fix semctl(..., GETPID, ...) between pid namespaces",-10,12,,semaphore,v4.x
+performance synchronization,2018/3/27,"pc/msg: Fix msgctl(..., IPC_STAT, ...) between pid namespaces",-10,13,,message,v4.x
+performance synchronization,2018/3/27,"pc/shm: Fix shmctl(..., IPC_STAT, ...) between pid namespaces.",-10,15,,shared memory,v4.x
+performance other,2018/3/24,Revert "mqueue: switch to on-demand creation of internal mount",-55,19,,message queue,v4.x
+performance synchronization,2018/3/24,pc/util: Helpers for making the sysvipc operations pid namespace aware,0,20,,other,v4.x
+feature,2018/3/24,pc: Move IPCMNI from include/ipc.h into ipc/util.h,0,1,,other,v4.x
+feature,2018/3/24,msg: Move struct msg_queue into ipc/msg.c,0,17,,message,v4.x
+feature,2018/3/24,shm: Move struct shmid_kernel into ipc/shm.c,0,22,,shared memory,v4.x
+feature,2018/3/22,sem: Move struct sem and struct sem_array into ipc/sem.c,0,34,,semaphore,v4.x
+feature,2018/3/22,msg/security: Pass kern_ipc_perm not msg_queue into the msg_queue security hooks,-10,8,,message,v4.x
+feature,2018/3/22,shm/security: Pass kern_ipc_perm not shmid_kernel into the shm security hooks,-10,7,,shared memory,v4.x
+feature,2018/3/22,sem/security: Pass kern_ipc_perm not sem_array into the sem security hooks,-11,8,,semaphore,v4.x
+performance other,2018/2/11,vfs: do bulk POLL* -> EPOLL* replacement,-2,2,,message queue,v4.x
+reliability corruption defense,2018/2/6,pc/mqueue.c: have RT tasks queue in by priority in wq_add(),-1,1,,message queue,v4.x
+performance speed optimization,2018/2/6,pc: fix ipc data structures inconsistency,-12,43,,message semaphore shared memory other,v4.x
+feature,2018/1/30,Merge branch 'work.mqueue' of ?,-130,111,,message queue,v4.x
+reliability robust,2018/1/30,Merge branch 'misc.poll' of ?,-2,2,,message queue,v4.x
+performance other,2018/1/12,signal: Ensure generic siginfos the kernel sends have all bits initialized,0,1,,message queue,v4.x
+feature,2018/1/5,mqueue: switch to on-demand creation of internal mount,-19,55,,message queue,v4.x
+performance access optimization,2018/1/5,dy do_mq_open() up a bit,-6,3,,message queue,v4.x
+performance access optimization,2018/1/5,mqueue: clean prepare_open() up,-18,11,,message queue,v4.x
+performance access optimization,2018/1/5,do_mq_open(): move all work prior to dentry_open() into a helper,-46,31,,message queue,v4.x
+performance access optimization,2018/1/5,mqueue: fold mq_attr_ok() into mqueue_get_inode(),-50,21,,message queue,v4.x
+performance access optimization,2018/1/5,move dentry_open() calls up into do_mq_open(),-24,20,,message queue,v4.x
+performance access optimization,2018/1/5,"mqueue: switch to vfs_mkobj(), quit abusing ->d_fsdata",-8,11,,message queue,v4.x
+performance access optimization,2017/11/27,"pc, kernel, mm: annotate ->poll() instances",-2,2,,message queue,v4.x
+bug semantic generic,2017/11/27,Rename superblock flags (MS_xyz -> SB_xyz),-1,1,wrong,message queue,v4.x
+maintenance,2017/11/17,Merge branch 'akpm' (patches from Andrew),-50,75,,semaphore shared memory other,v4.x
+feature,2017/11/17,sysvipc: make get_maxid O(1) again,-33,31,,other,v4.x
+feature,2017/11/17,sysvipc: properly name ipc_addid() limit parameter,-5,5,,other,v4.x
+reliability debug,2017/11/17,sysvipc: duplicate lock comments wrt ipc_addid(),0,2,,semaphore shared memory,v4.x
+feature,2017/11/17,sysvipc: unteach ids->next_id for !CHECKPOINT_RESTORE,-20,45,,other,v4.x
+feature,2017/11/17,Merge branch 'work.misc' of ?,-7,7,,message semaphore shared memory other,v4.x
+performance access optimization,2017/11/2,License cleanup: add SPDX GPL-2.0 license identifier to files with no license,0,9,,other compatibility message semaphore shared memory,v4.x
+performance access optimization,2017/10/11,fix address space warnings in ipc/,-7,7,,message semaphore shared memory other,v4.x
+feature,2017/9/25,fix a typo in put_compat_shm_info(),-1,1,,shared memory,v4.x
+reliability annotation,2017/9/20,pc/shm: Fix order of parameters when calling copy_compat_shmid_to_user,-1,1,,shared memory,v4.x
+feature,2017/9/14,Merge branch 'work.ipc' of ?,-1120,1011,,compatibility message queue message semaphore shared memory other,v4.x
+bug concurrency order,2017/9/8,pc: optimize semget/shmget/msgget for lots of keys,-50,124,deadlock,message other semaphore shared memory,v4.x
+reliability annotation,2017/9/8,pc/sem: play nicer with large nsops allocations,-2,2,,semaphore,v4.x
+feature,2017/9/8,pc/sem: drop sem_checkid helper,-2,0,,semaphore,v4.x
+feature,2017/9/8,pc: convert kern_ipc_perm.refcount from atomic_t to refcount_t,-3,3,,other,v4.x
+feature,2017/9/8,pc: convert sem_undo_list.refcnt from atomic_t to refcount_t,-4,4,,semaphore,v4.x
+feature,2017/9/8,pc: convert ipc_namespace.count from atomic_t to refcount_t,-3,3,,other,v4.x
+performance speed optimization,2017/9/3,pc: shm: Make shmid_kernel timestamps y2038 safe,-5,5,,shared memory,v4.x
+performance speed optimization,2017/9/3,pc: sem: Make sem_array timestamps y2038 safe,-9,9,,semaphore,v4.x
+performance speed optimization,2017/9/3,pc: msg: Make msg_queue timestamps y2038 safe,-3,3,,message,v4.x
+reliability error enhancement,2017/9/3,pc: mqueue: Replace timespec with timespec64,-14,14,,message queue,v4.x
+reliability error enhancement,2017/9/3,pc: Make sys_semtimedop() y2038 safe,-6,6,,semaphore,v4.x
+performance synchronization,2017/8/21,Merge branch 'for-mingo' of ?,-1,2,,semaphore,v4.x
+performance synchronization,2017/8/17,pc: Replace spin_unlock_wait() with lock/unlock pair,-1,2,,semaphore,v4.x
+reliability annotation,2017/8/2,pc: add missing container_of()s for randstruct,-3,7,,message semaphore shared memory,v4.x
+maintenance,2017/7/15,semtimedop(): move compat to native,-21,33,,compatibility semaphore,v4.x
+performance access optimization,2017/7/15,shmat(2): move compat to native,-16,19,,compatibility shared memory,v4.x
+performance access optimization,2017/7/15,"msgrcv(2), msgsnd(2): move compat to native",-39,43,,compatibility message,v4.x
+performance access optimization,2017/7/15,pc(2): move compat to native,-95,93,,compatibility other,v4.x
+performance access optimization,2017/7/15,pc: make use of compat ipc_perm helpers,-50,8,,message shared memory,v4.x
+performance access optimization,2017/7/15,semctl(): move compat to native,-197,133,,compatibility semaphore other,v4.x
+performance access optimization,2017/7/15,semctl(): separate all layout-dependent copyin/copyout,-98,94,,semaphore,v4.x
+performance access optimization,2017/7/15,msgctl(): move compat to native,-132,133,,compatibility message,v4.x
+performance access optimization,2017/7/15,msgctl(): split the actual work from copyin/copyout,-106,96,,message,v4.x
+performance access optimization,2017/7/15,pc: move compat shmctl to native,-235,231,,compatibility shared memory other,v4.x
+performance access optimization,2017/7/15,shmctl: split the work from copyin/copyout,-175,172,,shared memory,v4.x
+feature,2017/7/12,pc/util.h: update documentation for ipc_getref() and ipc_putref(),0,3,,other,v4.x
+feature,2017/7/12,pc/sem: drop __sem_free(),-7,2,,semaphore,v4.x
+feature,2017/7/12,pc/msg: remove special msg_alloc/free,-20,4,,message,v4.x
+feature,2017/7/12,pc/shm: remove special shm_alloc/free,-20,4,,shared memory,v4.x
+feature,2017/7/12,pc: move atomic_set() to where it is needed,-5,1,,message semaphore shared memory other,v4.x
+feature,2017/7/12,pc/msg.c: avoid ipc_rcu_putref for failed ipc_addid(),-5,5,,message,v4.x
+feature,2017/7/12,pc/shm.c: avoid ipc_rcu_putref for failed ipc_addid(),-6,3,,shared memory,v4.x
+feature,2017/7/12,pc/sem.c: avoid ipc_rcu_putref for failed ipc_addid(),-5,4,,semaphore,v4.x
+performance synchronization,2017/7/12,pc/util: drop ipc_rcu_alloc(),-24,0,,other,v4.x
+feature,2017/7/12,pc/msg: avoid ipc_rcu_alloc(),-4,14,,message,v4.x
+feature,2017/7/12,pc/shm: avoid ipc_rcu_alloc(),-4,14,,shared memory,v4.x
+feature,2017/7/12,pc/sem: avoid ipc_rcu_alloc(),-5,20,,semaphore,v4.x
+performance store optimization,2017/7/12,pc/util: drop ipc_rcu_free(),-8,0,,other,v4.x
+reliability error enhancement,2017/7/12,pc/msg: do not use ipc_rcu_free(),-2,7,,message,v4.x
+reliability error enhancement,2017/7/12,pc/shm: do not use ipc_rcu_free(),-2,7,,shared memory,v4.x
+reliability error enhancement,2017/7/12,pc/sem: do not use ipc_rcu_free(),-2,7,,semaphore,v4.x
+feature,2017/7/12,pc: drop non-RCU allocation,-33,6,,semaphore other,v4.x
+feature,2017/7/12,pc: merge ipc_rcu and kern_ipc_perm,-61,63,,message semaphore shared memory other,v4.x
+feature,2017/7/12,"pc/sem.c: remove sem_base, embed struct sem",-54,34,,semaphore,v4.x
+bug memory danglingPt,2017/7/9,mqueue: fix a use-after-free in sys_mq_notify(),-1,3,leak,message queue,v4.x
+bug memory bufOverflow,2017/7/7,Merge tag 'for-linus-v4.13-1' of ?,-1,1,corruption,shared memory,v4.x
+maintenance,2017/7/5,fs: remove call_fsync helper function,-1,1,,shared memory,v4.x
+feature,2017/7/4,mqueue: move compat syscalls to native ones,-228,262,,other message queue,v4.x
+performance store optimization,2017/5/8,mm: introduce kv[mz]alloc helpers,-6,1,,other,v4.x
+bug semantic generic,2017/5/8,pc/shm: some shmat cleanups,-9,7,wrong,shared memory,v4.x
+bug semantic I/OTiming,2017/5/5,Merge branch 'for-linus' of ?,-2,0,wrong,other,v4.x
+performance speed optimization,2017/4/17,pc: Remove unused declaration of recompute_msgmni,-2,0,,other,v4.x
+bug semantic generic,2017/4/2,kernel-api.rst: fix a series of errors when parsing C files,-5,7,error,other,v4.x
+maintenance,2017/3/3,Merge branch 'WIP.sched-core-for-linus' of ?,-1,7,,message queue message other semaphore,v4.x
+reliability corruption defense,2017/3/2,Merge branch 'for-linus' of ?,-2,2,,shared memory,v4.x
+maintenance,2017/3/2,Merge remote-tracking branch 'ovl/for-viro' into for-linus,-2,2,,shared memory,v4.x
+maintenance,2017/3/2,sched/headers: Move the wake-queue types and interfaces from sched.h into ?,-1,0,,message,v4.x
+maintenance,2017/3/2,sched/headers: Prepare to move the task_lock()/unlock() APIs to ?,0,1,,other,v4.x
+reliability annotation,2017/3/2,sched/headers: Prepare to remove <linux/cred.h> inclusion from <linux/sched.h>,0,1,,other,v4.x
+maintenance,2017/3/2,sched/headers: Prepare for new header dependencies before moving code to ?,0,1,,message queue,v4.x
+maintenance,2017/3/2,sched/headers: Prepare for new header dependencies before moving code to ?,0,1,,message queue,v4.x
+maintenance,2017/3/2,sched/headers: Prepare for new header dependencies before moving code to ?,0,3,,message queue message semaphore,v4.x
+reliability robust,2017/2/27,pc/shm: Fix shmat mmap nil-page protection,-4,9,,shared memory,v4.x
+performance access optimization,2017/2/27,pc/mqueue: add missing sparse annotation,0,1,,message queue,v4.x
+feature,2017/2/27,pc/sem: add hysteresis,-25,61,,semaphore,v4.x
+feature,2017/2/27,pc/sem.c: avoid using spin_unlock_wait(),-22,3,,semaphore,v4.x
+bug memory nullPointer,2017/2/24,userfaultfd: non-cooperative: add event for memory unmaps,-4,4,leak,shared memory,v4.x
+reliability robust,2017/2/24,"mm, fs: reduce fault, page_mkwrite, and pfn_mkwrite to take only vmf",-3,3,,shared memory,v4.x
+performance access optimization,2017/2/20,vfs: use helper for calling f_op->fsync(),-1,1,,shared memory,v4.x
+performance access optimization,2017/2/20,mm: use helper for calling f_op->mmap(),-1,1,,shared memory,v4.x
+feature,2017/1/10,pc/sem.c: fix incorrect sem_lock pairing,-1,1,,semaphore,v4.x
+feature,2016/12/14,pc/sem: avoid idr tree lookup for interrupted semop,-32,5,,semaphore,v4.x
+performance access optimization,2016/12/14,pc/sem: simplify wait-wake loop,-56,52,,semaphore,v4.x
+feature,2016/12/14,pc/sem: use proper list api for pending_list wakeups,-25,13,,semaphore,v4.x
+bug semantic state,2016/12/14,pc/sem: explicitly inline check_restart,-1,1,wrong,semaphore,v4.x
+performance synchronization,2016/12/14,pc/sem: optimize perform_atomic_semop(),-10,102,,semaphore,v4.x
+performance access optimization,2016/12/14,pc/sem: rework task wakeups,-180,86,,semaphore,v4.x
+bug semantic logic,2016/12/14,pc/sem: do not call wake_sem_queue_do() prematurely ... as this call should ?,-7,12,wrong,semaphore,v4.x
+bug memory danglingPt,2016/12/14,pc/shm.c: coding style fixes,-3,10,error,shared memory,v4.x
+feature,2016/12/14,"pc: msg, make msgrcv work with LONG_MIN",-1,4,,message,v4.x
+performance synchronization,2016/11/21,sched/wake_q: Rename WAKE_Q to DEFINE_WAKE_Q,-6,6,,message queue message,v4.x
+maintenance,2016/10/27,pc: account for kmem usage on mqueue and msg,-2,2,,other,v4.x
+reliability error enhancement,2016/10/11,pc/sem.c: add cond_resched in exit_sme,0,2,,semaphore,v4.x
+feature,2016/10/11,pc/msg: avoid waking sender upon full queue,-10,43,,message,v4.x
+reliability debug,2016/10/11,pc/msg: make ss_wakeup() kill arg boolean,-4,4,,message,v4.x
+reliability debug,2016/10/11,pc/msg: batch queue sender wakeups,-10,20,,message,v4.x
+maintenance,2016/10/11,pc/msg: implement lockless pipelined wakeups,-93,40,,message,v4.x
+feature,2016/10/11,pc/sem.c: fix complex_count vs. simple op race,-55,83,,semaphore,v4.x
+reliability robust,2016/10/10,Merge branch 'for-linus' of ?,-9,9,,message queue,v4.x
+reliability robust,2016/9/27,fs: Replace CURRENT_TIME with current_time() for inode timestamps,-9,9,,message queue,v4.x
+performance store optimization,2016/9/22,Merge branch 'nsfs-ioctls' into HEAD,0,6,,other,v4.x
+performance store optimization,2016/9/22,kernel: add a helper to get an owning user namespace for a namespace,0,6,,other,v4.x
+bug errorCode wrongError,2016/9/22,userns: When the per user per user namespace limit is reached return ENOSPC,-1,1,error,other,v4.x
+performance access optimization,2016/8/8,pcns: Add a  limit on the number of ipc namespaces,-11,34,,other,v4.x
+maintenance,2016/8/2,pc: delete "nr_ipc_ns",-4,0,,other,v4.x
+performance store optimization,2016/8/2,"sysv, ipc: fix security-layer leaking",-7,7,,message semaphore,v4.x
+reliability error enhancement,2016/7/29,Merge branch 'for-linus' of ?,-13,12,,message queue other,v4.x
+performance speed optimization,2016/7/26,shmem: make shmem_inode_info::lock irq-safe,-2,2,,shared memory,v4.x
+bug memory bufOverflow,2016/7/26,shmem: get_unmapped_area align huge page,-2,4,corruption,shared memory,v4.x
+reliability robust,2016/6/23,vfs: Generalize filesystem nodev handling.,-1,1,,message queue,v4.x
+bug semantic logic,2016/6/23,pc/mqueue: The mqueue filesystem should never contain executables,0,1,crash,message queue,v4.x
+reliability robust,2016/6/23,"vfs: Pass data, ns, and ns->userns to mount_ns",-11,8,,message queue,v4.x
+maintenance,2016/6/23,pc: Initialize ipc_namespace->user_ns early.,-2,3,,other,v4.x
+reliability debug,2016/6/14,ocking/spinlock: Update spin_unlock_wait() users,-1,0,,semaphore,v4.x
+maintenance,2016/6/14,ocking/barriers: Introduce smp_acquire__after_ctrl_dep(),-12,2,,semaphore,v4.x
+feature,2016/5/23,"pc, shm: make shmem attach/detach wait for mmap_sem killable",-2,7,,shared memory,v4.x
+performance access optimization,2016/4/4,"mm, fs: get rid of PAGE_CACHE_* and page_cache_{get,release} macros",-2,2,,message queue,v4.x
+performance speed optimization,2016/3/22,pc/sem: make semctl setting sempid consistent,-2,11,,semaphore,v4.x
+bug memory doubleFree,2016/2/18,pc/shm: handle removed segments gracefully in shm_mmap(),-10,43,hang,shared memory,v4.x
+reliability error enhancement,2016/1/23,Merge branch 'for-linus' of ?,-4,4,,message queue,v4.x
+reliability annotation,2016/1/22,ree wide: use kvfree() than conditional kfree()/vfree(),-10,5,,semaphore other,v4.x
+feature,2016/1/22,wrappers for ->i_mutex access,-4,4,,message queue,v4.x
+bug semantic generic,2016/1/20,pc/shm.c: is_file_shm_hugepages() can be boolean,-1,1,wrong,shared memory,v4.x
+maintenance,2016/1/14,kmemcg: account certain kmem allocations to memcg,-1,1,,message queue,v4.x
+bug semantic logic,2015/11/6,"pc,msg: drop dst nil validation in copy_msg",-1,0,wrong,other,v4.x
+performance store optimization,2015/9/30,Initialize msg/shm IPC objects before doing ipc_addid(),-17,18,,message shared memory other,v4.x
+reliability corruption defense,2015/9/10,pc: convert invalid scenarios to use WARN_ON,-3,3,,other shared memory,v4.x
+performance synchronization,2015/8/14,pc/sem.c: update/correct memory barriers,-4,14,,semaphore,v4.x
+maintenance,2015/8/14,"pc,sem: remove uneeded sem_undo_list lock usage in exit_sem()",-2,4,,semaphore,v4.x
+reliability corruption defense,2015/8/14,"pc,sem: fix use after free on IPC_RMID after a task using same semaphore ?",-6,17,,semaphore,v4.x
+maintenance,2015/8/7,pc: use private shmem or hugetlbfs inodes for shm segments.,-1,1,,shared memory,v4.x
+maintenance,2015/8/7,pc: modify message queue accounting to not take kernel data structures into ?,-5,0,,message queue,v4.x
+performance synchronization,2015/6/30,"pc,sysv: return -EINVAL upon incorrect id/seqnum",-1,1,,other,v4.x
+performance synchronization,2015/6/30,"pc,sysv: make return -EIDRM when racing with RMID consistent",-5,8,,other,v4.x
+feature,2015/6/30,pc: rename ipc_obtain_object,-9,9,,message semaphore shared memory other,v4.x
+reliability robust,2015/6/30,"pc,msg: provide barrier pairings for lockless receive",-10,38,,message,v4.x
+performance speed optimization,2015/6/30,"pc,shm: move BUG_ON check into shm_lock",-5,5,,shared memory,v4.x
+feature,2015/6/30,pc/util.c: use kvfree() in ipc_rcu_free(),-4,1,,other,v4.x
+performance store optimization,2015/5/8,pc/mqueue: Implement lockless pipelined wakeups,-21,33,,message queue,v4.x
+reliability annotation,2015/4/26,Merge branch 'for-linus' of ?,-12,12,,message queue shared memory,v4.x
+bug errorCode wrongError,2015/4/15,pc: remove use of seq_printf return value,-50,58,error,message semaphore shared memory other,v4.x
+performance access optimization,2015/4/15,VFS: assorted weird filesystems: d_inode() annotations,-12,12,,message queue shared memory,v4.x
+performance access optimization,2015/2/17,"pc,sem: use current->state helpers",-1,1,,semaphore,v3.x
+bug semantic generic,2014/12/16,Merge branch 'for-linus' of ?,-18,19,wrong,other,v3.x
+bug semantic generic,2014/12/13,shmdt: use i_size_read() instead of ->i_size,-2,3,wrong,shared memory,v3.x
+bug memory resourceLeak,2014/12/13,pc/shm.c: fix overly aggressive shmdt() when calls span multiple segments,-5,13,corruption,shared memory,v3.x
+reliability debug,2014/12/13,"pc/msg: increase MSGMNI, remove scaling",-266,19,,other message,v3.x
+performance speed optimization,2014/12/13,pc/sem.c: change memory barrier in sem_lock() to smp_rmb(),-3,10,,semaphore,v3.x
+performance access optimization,2014/12/10,Merge branch 'nsfs' into for-next,-18,19,,other,v3.x
+feature,2014/12/10,Merge branch 'for-linus' of ?,-2,2,,message queue,v3.x
+performance access optimization,2014/12/4,copy address of proc_ns_ops into ns_common,0,4,,other,v3.x
+reliability error enhancement,2014/12/4,new helpers: ns_alloc_inum/ns_free_inum,-3,3,,other,v3.x
+reliability robust,2014/12/4,make proc_ns_operations work with struct ns_common * instead of void *,-9,3,,other,v3.x
+performance access optimization,2014/12/4,switch the rest of proc_ns_operations to working with &...->ns,-6,9,,other,v3.x
+feature,2014/12/4,common object embedded into various struct ....ns,-5,5,,other,v3.x
+feature,2014/12/3,pc/sem.c: fully initialize sem_array before making it visible,-7,8,,semaphore,v3.x
+maintenance,2014/11/19,new helper: audit_file(),-2,2,,message queue,v3.x
+maintenance,2014/10/14,pc: resolve shadow warnings,-46,46,,compatibility,v3.x
+reliability error enhancement,2014/10/14,pc/util.c: use __seq_open_private() instead of seq_open(),-16,4,,other,v3.x
+performance other,2014/10/14,pc/shm: kill the historical/wrong mm->start_stack check,-7,0,,shared memory,v3.x
+reliability annotation,2014/10/14,pc: always handle a new value of auto_msgmni,-2,1,,other,v3.x
+maintenance,2014/10/7,Merge branch 'for-linus' of ?,-3,3,,other,v3.x
+maintenance,2014/9/9,Documentation: Docbook: Fix generated DocBook/kernel-api.xml,-3,3,,other,v3.x
+bug semantic generic,2014/8/9,Merge branch 'for-linus' of ?,-3,3,wrong,other,v3.x
+feature,2014/8/8,shm: allow exit_shm in parallel if only marking orphans,-32,35,,shared memory,v3.x
+performance store optimization,2014/8/8,shm: make exit_shm work proportional to task activity,-11,11,,shared memory,v3.x
+feature,2014/7/29,namespaces: Use task_lock and not rcu to protect nsproxy,-3,3,,other,v3.x
+bug memory resourceLeak,2014/6/6,pc: convert use of typedef ctl_table to struct ctl_table,-13,13,wrong,other,v3.x
+performance store optimization,2014/6/6,pc/sem.c: add a printk_once for semctl(GETNCNT/GETZCNT),0,11,,semaphore,v3.x
+performance access optimization,2014/6/6,"pc/sem.c: make semctl(,,{GETNCNT,GETZCNT}) standard compliant",-21,13,,semaphore,v3.x
+bug memory danglingPt,2014/6/6,pc/sem.c: store which operation blocks in perform_atomic_semop(),0,3,error,semaphore,v3.x
+bug concurrency atomicity,2014/6/6,pc/sem.c: change perform_atomic_semop parameters,-19,19,hang,semaphore,v3.x
+performance other,2014/6/6,pc/sem.c: remove code duplication,-56,51,,semaphore,v3.x
+performance speed optimization,2014/6/6,"pc/sem.c: bugfix for semctl(,,GETZCNT)",0,10,,semaphore,v3.x
+performance synchronization,2014/6/6,"pc,msg: document volatile r_msg",-3,7,,message,v3.x
+performance store optimization,2014/6/6,"pc,msg: move some msgq ns code around",-69,63,,message,v3.x
+performance access optimization,2014/6/6,"pc,msg: use current->state helpers",-2,2,,message,v3.x
+bug memory bufOverflow,2014/6/6,pc/shm.c: check for integer overflow during shmget.,0,3,corruption,shared memory,v3.x
+bug memory bufOverflow,2014/6/6,pc/shm.c: check for overflows of shm_tot,-1,2,leak,shared memory,v3.x
+bug memory bufOverflow,2014/6/6,pc/shm.c: check for ulong overflows in shmat,0,3,corruption,shared memory,v3.x
+maintenance,2014/6/6,"pc, kernel: clear whitespace",-28,27,,message semaphore shared memory other,v3.x
+reliability annotation,2014/6/6,"pc, kernel: use Linux headers",-5,5,,compatibility message semaphore shared memory,v3.x
+feature,2014/6/6,pc: constify ipc_ops,-20,19,,message semaphore shared memory other,v3.x
+reliability debug,2014/4/7,pc: use device_initcall,-3,3,,other message queue,v3.x
+feature,2014/4/7,pc/compat.c: remove sc_semopm macro,-3,0,,compatibility,v3.x
+reliability corruption defense,2014/4/2,Merge branch 'x86-x32-for-linus' of ?,-25,6,,compatibility,v3.x
+reliability debug,2014/3/31,Merge branch 'compat' of ?,-22,23,,compatibility,v3.x
+bug semantic logic,2014/3/16,pc: Fix 2 bugs in msgrcv() MSG_COPY implementation,0,2,error,message,v3.x
+reliability debug,2014/3/6,pc/compat: convert to COMPAT_SYSCALL_DEFINE with changing parameter types,-8,8,,compatibility,v3.x
+reliability debug,2014/3/6,pc/compat: convert to COMPAT_SYSCALL_DEFINE,-12,13,,compatibility,v3.x
+reliability debug,2014/3/6,pc/compat_sys_msgrcv: change msgtyp type from long to compat_long_t,-2,2,,compatibility,v3.x
+maintenance,2014/2/25,"pc,mqueue: remove limits for the amount of system-wide queues",-9,15,,other message queue,v3.x
+feature,2014/2/2,compat: Get rid of (get|put)_compat_time(val|spec),-25,6,,compatibility,v3.x
+reliability corruption defense,2014/1/27,pc: fix compat msgrcv with negative msgtyp,-1,1,,compatibility,v3.x
+reliability corruption defense,2014/1/27,"pc,msg: document barriers",-2,17,,message,v3.x
+feature,2014/1/27,pc: delete seq_max field in struct ipc_ids,-11,3,,other,v3.x
+performance access optimization,2014/1/27,pc: simplify sysvipc_proc_open() return,-5,4,,other,v3.x
+bug semantic state,2014/1/27,pc: remove useless return statement,-4,0,wrong,other,v3.x
+bug semantic generic,2014/1/27,pc: remove braces for single statements,-19,16,wrong,compatibility message queue semaphore other,v3.x
+feature,2014/1/27,pc: standardize code comments,-139,125,,semaphore shared memory other,v3.x
+feature,2014/1/27,pc: whitespace cleanup,-113,113,,compatibility other message queue message semaphore shared memory,v3.x
+feature,2014/1/27,pc: change kern_ipc_perm.deleted type to bool,-5,5,,semaphore other,v3.x
+performance store optimization,2014/1/27,pc: introduce ipc_valid_object() helper to sort out IPC_RMID races,-19,41,,message semaphore shared memory other,v3.x
+bug memory bufOverflow,2014/1/27,pc/sem.c: avoid overflow of semop undo (semadj) value,-11,13,corruption,semaphore,v3.x
+bug errorCode missError,2013/11/21,"pc,shm: correct error return value in shmctl (SHM_UNLOCK)",-3,6,error,shared memory,v3.x
+bug concurrency deadlock,2013/11/21,"pc,shm: fix shm_file deletion races",-5,23,crash,shared memory,v3.x
+reliability robust,2013/11/13,Merge branch 'akpm' (patches from Andrew Morton),-15,13,,other,v3.x
+feature,2013/11/13,Merge branch 'for-linus' of ?,-1,1,,message queue,v3.x
+reliability annotation,2013/11/13,"pc, msg: fix message length check for negative values",-12,12,,other,v3.x
+bug semantic generic,2013/11/13,pc/util.c: remove unnecessary work pending test,-3,1,wrong,other,v3.x
+bug concurrency wrongLock,2013/11/9,ocks: break delegations on unlink,-1,1,hang,message queue,v3.x
+reliability corruption defense,2013/11/3,"pc, msg: forbid negative values for ""msg{max,mnb,mni}""",-8,12,,other,v3.x
+feature,2013/10/16,pc/sem.c: synchronize semop and semctl with IPC_RMID,-13,29,,semaphore,v3.x
+reliability debug,2013/10/16,pc: update locking scheme comments,-6,21,,other,v3.x
+feature,2013/9/30,"pc,msg: prevent race with rmid in msgsnd,msgrcv",0,13,,message,v3.x
+performance speed optimization,2013/9/30,pc/sem.c: update sem_otime for all operations,-13,29,,semaphore,v3.x
+feature,2013/9/30,pc/sem.c: synchronize the proc interface,0,8,,semaphore,v3.x
+feature,2013/9/30,pc/sem.c: optimize sem_lock(),0,8,,semaphore,v3.x
+feature,2013/9/30,pc/sem.c: fix race in sem_lock(),-44,78,,semaphore,v3.x
+feature,2013/9/24,pc: fix race with LSMs,-48,64,,message semaphore shared memory other,v3.x
+feature,2013/9/11,pc: drop ipc_lock_check,-17,0,,other,v3.x
+feature,2013/9/11,"pc, shm: drop shm_lock_check",-11,0,,shared memory,v3.x
+performance store optimization,2013/9/11,pc: drop ipc_lock_by_ptr,-9,6,,other,v3.x
+bug errorCode missError,2013/9/11,"pc, shm: guard against non-existant vma in shmdt(2)",-2,1,error,shared memory,v3.x
+feature,2013/9/11,pc: document general ipc locking scheme,0,8,,other,v3.x
+feature,2013/9/11,"pc,msg: drop msg_unlock",-3,2,,message,v3.x
+feature,2013/9/11,pc: rename ids->rw_mutex,-68,68,,message other semaphore shared memory,v3.x
+feature,2013/9/11,"pc,shm: shorten critical region for shmat",-4,10,,shared memory,v3.x
+feature,2013/9/11,"pc,shm: cleanup do_shmat pasta",-14,12,,shared memory,v3.x
+feature,2013/9/11,"pc,shm: shorten critical region for shmctl",-24,25,,shared memory,v3.x
+feature,2013/9/11,"pc,shm: make shmctl_nolock lockless",-7,12,,shared memory,v3.x
+feature,2013/9/11,"pc,shm: introduce shmctl_nolock",-18,39,,shared memory,v3.x
+feature,2013/9/11,pc: drop ipcctl_pre_down,-23,4,,other,v3.x
+feature,2013/9/11,"pc,shm: shorten critical region in shmctl_down",-4,6,,shared memory,v3.x
+feature,2013/9/11,"pc,shm: introduce lockless functions to obtain the ipc object",0,20,,shared memory,v3.x
+maintenance,2013/9/7,Merge branch 'for-linus' of ?,-1,1,,other,v3.x
+feature,2013/9/3,pc/msg.c: Fix lost wakeup in msgsnd().,-7,5,,message,v3.x
+feature,2013/8/30,userns:  Kill nsown_capable it makes the wrong thing easy,-1,1,,other,v3.x
+bug semantic logic,2013/8/28,IPC: bugfix for msgrcv with msgtyp < 0,-2,3,error,message,v3.x
+performance speed optimization,2013/7/9,"pc/sem.c: rename try_atomic_semop() to perform_atomic_semop(), docu update",-11,21,,semaphore,v3.x
+feature,2013/7/9,pc/sem.c: replace shared sem_otime with per-semaphore value,-6,31,,semaphore,v3.x
+feature,2013/7/9,pc/sem.c: always use only one queue for alter operations,-40,88,,semaphore,v3.x
+feature,2013/7/9,pc/sem: separate wait-for-zero and alter tasks into seperate queues,-60,151,,semaphore,v3.x
+performance speed optimization,2013/7/9,pc/sem.c: cacheline align the semaphore structures,-1,1,,semaphore,v3.x
+feature,2013/7/9,"pc/util.c, ipc_rcu_alloc: cacheline align allocation",-6,6,,other,v3.x
+performance speed optimization,2013/7/9,pc: remove unused functions,-26,0,,message semaphore,v3.x
+feature,2013/7/9,"pc,msg: shorten critical region in msgrcv",-26,32,,message,v3.x
+feature,2013/7/9,"pc,msg: shorten critical region in msgsnd",-13,24,,message,v3.x
+feature,2013/7/9,"pc,msg: make msgctl_nolock lockless",-10,17,,message,v3.x
+feature,2013/7/9,"pc,msg: introduce lockless functions to obtain the ipc object",0,21,,message,v3.x
+feature,2013/7/9,"pc,msg: introduce msgctl_nolock",-15,34,,message,v3.x
+feature,2013/7/9,"pc,msg: shorten critical region in msgctl_down",-5,7,,message,v3.x
+feature,2013/7/9,pc: move locking out of ipcctl_pre_down_nolock,-39,56,,message semaphore shared memory other,v3.x
+performance access optimization,2013/7/9,pc: close open coded spin lock calls,-12,12,,message semaphore shared memory other,v3.x
+feature,2013/7/9,pc: introduce ipc object locking helpers,-5,15,,other,v3.x
+feature,2013/7/9,pc: move rcu lock out of ipc_addid,-7,8,,message shared memory other,v3.x
+performance access optimization,2013/7/9,pc/shmc.c: eliminate ugly 80-col tricks,-2,2,,shared memory,v3.x
+feature,2013/7/9,audit: fix mq_open and mq_unlink to add the MQ root as a hidden parent ?,0,2,,message queue,v3.x
+feature,2013/5/26,pc/sem.c: Fix missing wakeups in do_smart_update_queue(),-5,22,,semaphore,v3.x
+bug memory nullPointer,2013/5/9,shm: fix null pointer deref when userspace specifies invalid hugepage size,-1,7,corruption,shared memory,v3.x
+bug semantic logic,2013/5/9,"pc,sem: fix semctl(..., GETNCNT)",0,7,wrong,semaphore,v3.x
+bug semantic logic,2013/5/9,"pc,sem: fix semctl(..., GETZCNT)",0,7,error,semaphore,v3.x
+bug memory bufOverflow,2013/5/7,hugetlbfs: fix mmap failure in unaligned size request,-1,5,corruption,shared memory,v3.x
+bug semantic logic,2013/5/4,pc: simplify rcu_read_lock() in semctl_nolock(),-2,1,wrong,semaphore,v3.x
+reliability corruption defense,2013/5/4,pc: simplify semtimedop/semctl_main() common error path handling,-27,14,,semaphore,v3.x
+feature,2013/5/4,pc: move sem_obtain_lock() rcu locking into the only caller,-9,7,,semaphore,v3.x
+feature,2013/5/4,pc: fix double sem unlock in semctl error path,-1,1,,semaphore,v3.x
+feature,2013/5/4,pc: move the rcu_read_lock() from sem_lock_and_putref() into callers,-2,3,,semaphore,v3.x
+feature,2013/5/4,pc: sem_putref() does not need the semaphore lock any more,-3,1,,semaphore,v3.x
+feature,2013/5/4,pc: move rcu_read_unlock() out of sem_unlock() and into callers,-2,17,,semaphore,v3.x
+performance speed optimization,2013/5/2,pc: fix GETALL/IPC_RM race for sysv semaphores,-21,8,,semaphore,v3.x
+performance other,2013/5/2,pc_schedule_free() can do vfree() directly now,-87,16,,other,v3.x
+maintenance,2013/5/1,Merge branch 'for-linus' of ?,-3,3,,other,v3.x
+maintenance,2013/5/1,proc: Split the namespace stuff out into linux/proc_ns.h,-2,2,,other,v3.x
+performance access optimization,2013/5/1,pc: sysv shared memory limited to 8TiB,-1,1,,shared memory,v3.x
+reliability annotation,2013/5/1,pc/msg.c: use list_for_each_entry_[safe] for list traversing,-27,8,,message,v3.x
+feature,2013/5/1,"pc,sem: fine grained locking for semtimedop",-125,203,,message semaphore other,v3.x
+feature,2013/5/1,"pc,sem: have only one list in struct sem_queue",-31,34,,semaphore,v3.x
+feature,2013/5/1,"pc,sem: open code and rename sem_lock",-6,23,,semaphore,v3.x
+feature,2013/5/1,"pc,sem: do not hold ipc lock more than necessary",-48,118,,semaphore other,v3.x
+reliability corruption defense,2013/5/1,pc: introduce lockless pre_down ipcctl,-5,29,,other,v3.x
+feature,2013/5/1,pc: introduce obtaining a lockless ipc object,-14,59,,other,v3.x
+feature,2013/5/1,pc: remove bogus lock comment for ipc_checkid,-6,1,,other,v3.x
+performance access optimization,2013/5/1,pc/msgutil.c: use linux/uaccess.h,-2,2,,other,v3.x
+bug semantic generic,2013/5/1,pc: refactor msg list search into separate function,-22,26,wrong,message,v3.x
+performance access optimization,2013/5/1,pc: simplify msg list search,-6,2,,message,v3.x
+bug semantic state,2013/5/1,pc: implement MSG_COPY as a new receive mode,-13,9,wrong,message,v3.x
+performance synchronization,2013/5/1,pc: remove msg handling from queue scan,-10,4,,message,v3.x
+performance access optimization,2013/5/1,pc: set EFAULT as default error in load_msg(),-7,3,,other,v3.x
+performance access optimization,2013/5/1,pc: tighten msg copy loops,-21,11,,other,v3.x
+reliability annotation,2013/5/1,pc: separate msg allocation from userspace copy,-14,38,,other,v3.x
+performance access optimization,2013/5/1,pc: clamp with min(),-22,8,,other,v3.x
+reliability debug,2013/5/1,Merge branch 'for-linus' of ?,-126,177,,compatibility semaphore other,v3.x
+bug semantic generic,2013/4/29,pc/util.c: use register_hotmemory_notifier(),-7,8,wrong,other,v3.x
+bug semantic I/OTiming,2013/4/9,procfs: new helper - PDE_DATA(inode),-1,1,wrong,other,v3.x
+bug memory danglingPt,2013/4/2,pc: set msg back to -EAGAIN if copy wasn't performed,0,1,corruption,message,v3.x
+maintenance,2013/3/28,Merge branch 'for-linus' of ?,-2,10,,message queue,v3.x
+maintenance,2013/3/27,pc: Restrict mounting the mqueue filesystem,-2,10,,message queue,v3.x
+feature,2013/3/22,mqueue: sys_mq_open: do not call mnt_drop_write() if read-only,-1,2,,message queue,v3.x
+bug concurrency order,2013/3/8,pc: don't allocate a copy larger than max,-2,4,corruption,message,v3.x
+performance synchronization,2013/3/8,pc: fix potential oops when src msg > 4k w/ MSG_COPY,-3,0,,other,v3.x
+reliability debug,2013/3/5,get rid of union semop in sys_semctl(2) arguments,-53,88,,compatibility semaphore other,v3.x
+performance access optimization,2013/3/3,get rid of compat_sys_semctl() and friends in case of ARCH_WANT_OLD_COMPAT_IPC,-92,66,,compatibility,v3.x
+performance access optimization,2013/3/3,merge compat sys_ipc instances,0,44,,compatibility,v3.x
+performance access optimization,2013/3/3,make HAVE_SYSCALL_WRAPPERS unconditional,-2,0,,semaphore,v3.x
+performance store optimization,2013/2/27,pc: convert to idr_alloc(),-21,9,,other,v3.x
+reliability error enhancement,2013/2/26,Merge branch 'for-linus' of ?,-13,14,,message queue shared memory,v3.x
+maintenance,2013/2/25,Merge branch 'for-linus' of ?,0,1,,message queue,v3.x
+bug errorCode wrongError,2013/2/23,"mm: make do_mmap_pgoff return populate as a size in bytes, not as a bool",-2,2,error,shared memory,v3.x
+bug memory doubleFree,2013/2/23,mm: introduce mm_populate() for populating new vmas,-5,7,crash,shared memory,v3.x
+bug errorCode wrongError,2013/2/22,"fs: Preserve error code in get_empty_filp(), part 2",-1,2,wrong,shared memory,v3.x
+performance access optimization,2013/2/22,new helper: file_inode(file),-12,12,,message queue shared memory,v3.x
+bug semantic logic,2013/1/27,userns: Allow the unprivileged users to mount mqueue fs,0,1,wrong,message queue,v3.x
+performance access optimization,2013/1/4,pc: add more comments to message copying related code,0,8,,message,v3.x
+reliability corruption defense,2013/1/4,pc: simplify message copying,-16,14,,message other,v3.x
+bug errorCode missError,2013/1/4,pc: convert prepare_copy() from macro to function,-2,9,wrong,message,v3.x
+reliability annotation,2013/1/4,pc: simplify free_copy() call,-6,8,,message,v3.x
+bug semantic state,2013/1/4,selftests: IPC message queue copy feature test,-1,2,hang,compatibility,v3.x
+bug semantic logic,2013/1/4,pc: introduce message queue copy feature,-2,101,error,message other,v3.x
+feature,2013/1/4,pc: message queue receive cleanup,-47,42,,compatibility message,v3.x
+performance synchronization,2013/1/4,pc: add sysctl to specify desired next object id,-4,45,,other,v3.x
+performance other,2013/1/4,pc: remove forced assignment of selected message,-4,1,,message,v3.x
+maintenance,2012/12/18,Merge branch 'for-linus' of ?,-1,2,,other,v3.x
+maintenance,2012/12/17,Merge branch 'for-linus' of ?,-7,27,,other,v3.x
+performance speed optimization,2012/12/14,userns: Require CAP_SYS_ADMIN for most uses of setns.,-1,2,,other,v3.x
+bug memory bufOverflow,2012/12/11,mm: support more pagesizes for MAP_HUGETLB/SHM_HUGETLB,-1,2,corruption,shared memory,v3.x
+maintenance,2012/11/20,proc: Usable inode numbers for the namespace file descriptors.,0,18,,other,v3.x
+maintenance,2012/11/20,userns: Make create_new_namespaces take a user_ns parameter,-6,4,,other,v3.x
+performance store optimization,2012/11/20,userns: Allow unprivileged use of setns.,-1,5,,other,v3.x
+feature,2012/10/12,audit: make audit_inode take struct filename,-2,2,,message queue,v3.x
+feature,2012/10/12,vfs: define struct filename and have getname() return it,-6,7,,message queue,v3.x
+performance other,2012/10/12,audit: set the name_len in audit_inode for parent lookups,-4,4,,message queue,v3.x
+bug semantic generic,2012/10/9,pc/mqueue: remove unnecessary rb_init_node() calls,-3,0,wrong,message queue,v3.x
+bug semantic generic,2012/10/2,Merge branch 'for-linus' of ?,-39,39,error,message queue,v3.x
+maintenance,2012/10/2,Merge branch 'for-linus' of ?,-33,50,,message semaphore shared memory other,v3.x
+performance access optimization,2012/9/26,switch simple cases of fget_light to fdget,-43,41,,message queue,v3.x
+performance access optimization,2012/9/26,switch mqueue syscalls to fget_light(),-12,14,,message queue,v3.x
+maintenance,2012/9/6,userns: Convert ipc to use kuid and kgid where appropriate,-33,50,,message semaphore shared memory other,v3.x
+feature,2012/8/18,"mqueue: lift mnt_want_write() outside ->i_mutex, clean up a bit",-33,28,,message queue,v3.x
+reliability corruption defense,2012/7/30,pc: use Kconfig options for __ARCH_WANT_[COMPAT_]IPC_PARSE_VERSION,-4,4,,compatibility other,v3.x
+reliability corruption defense,2012/7/30,pc: compat: use signed size_t types for msgsnd and msgrcv,-4,4,,compatibility,v3.x
+reliability corruption defense,2012/7/30,pc: allow compat IPC version field parsing if !ARCH_WANT_OLD_COMPAT_IPC,-1,1,,compatibility,v3.x
+reliability corruption defense,2012/7/30,pc: add COMPAT_SHMLBA support,-7,12,,compatibility shared memory other,v3.x
+performance access optimization,2012/7/23,"switch dentry_open() to struct path, make it grab references itself",-70,47,,message queue,v3.x
+feature,2012/7/14,don't pass nameidata * to vfs_create(),-1,1,,message queue,v3.x
+reliability annotation,2012/7/14,don't pass nameidata to ->create(),-1,1,,message queue,v3.x
+bug memory nullPointer,2012/6/7,pc: shm: restore MADV_REMOVE functionality on shared memory segments,0,12,crash,shared memory,v3.x
+reliability error enhancement,2012/6/1,Merge branch 'for-linus' of ?,-1,6,,shared memory,v3.x
+bug semantic generic,2012/6/1,"switch aio and shm to do_mmap_pgoff(), make do_mmap() static",-1,1,wrong,shared memory,v3.x
+performance access optimization,2012/6/1,ake security_mmap_file() outside of ->mmap_sem,0,5,,shared memory,v3.x
+feature,2012/5/31,pc/mqueue: add rbtree node caching support,-23,81,,message queue,v3.x
+bug memory bufOverflow,2012/5/31,pc/mqueue: strengthen checks on mqueue creation,-9,18,wrong,message queue,v3.x
+performance synchronization,2012/5/31,pc/mqueue: correct mq_attr_ok test,-3,8,,message queue,v3.x
+feature,2012/5/31,pc/mqueue: improve performance of send/recv,-43,130,,message queue,v3.x
+bug memory nullPointer,2012/5/31,mqueue: separate mqueue default value from maximum value,-3,24,crash,other message queue,v3.x
+reliability robust,2012/5/31,mqueue: don't use kmalloc with KMALLOC_MAX_SIZE,-2,2,,message queue,v3.x
+maintenance,2012/5/31,pc/mqueue: update maximums for the mqueue subsystem,-2,9,,message queue,v3.x
+bug semantic config,2012/5/31,pc/mqueue: enforce hard limits,-3,5,wrong,message queue,v3.x
+bug semantic logic,2012/5/31,pc/mqueue: switch back to using non-max values on create,-2,3,wrong,message queue,v3.x
+bug memory uninitRead,2012/5/31,pc/mqueue: cleanup definition names and locations,-23,8,wrong,other,v3.x
+bug semantic logic,2012/5/28,Merge tag 'writeback' of git://git.kernel.org/pub/scm/linux/kernel/git/wfg/linux,-1,1,wrong,message queue,v3.x
+performance speed optimization,2012/5/6,vfs: Rename end_writeback() to clear_inode(),-1,1,,message queue,v3.x
+performance speed optimization,2012/5/3,userns: Replace user_ns_map_uid and user_ns_map_gid with from_kuid and from_kgid,-2,1,,message queue,v3.x
+maintenance,2012/4/7,mqueue: Explicitly capture the user namespace to send the notification to.,-1,8,,message queue,v3.x
+bug semantic logic,2012/4/7,userns: Use cred->user_ns instead of cred->user->user_ns,-1,1,hang,other,v3.x
+reliability corruption defense,2012/3/29,Merge git://git.kernel.org/pub/scm/linux/kernel/git/cmetcalf/linux-tile,-6,64,,compatibility,v3.x
+bug semantic generic,2012/3/22,Merge branch 'akpm' (Andrew's patch-bomb),-1,1,error,shared memory,v3.x
+bug semantic config,2012/3/21,hugetlbfs: fix alignment of huge page requests,-1,1,wrong,shared memory,v3.x
+maintenance,2012/3/21,Merge branch 'for-linus' of ?,-17,7,,message queue,v3.x
+performance access optimization,2012/3/20,switch open-coded instances of d_make_root() to new helper,-17,7,,message queue,v3.x
+reliability corruption defense,2012/3/15,[PATCH v3] ipc: provide generic compat versions of IPC syscalls,-6,64,,compatibility,v3.x
+reliability debug,2012/2/14,security: trim security.h,0,2,,other,v3.x
+maintenance,2012/1/23,SHM_UNLOCK: fix Unevictable pages stranded after swap,-1,1,,shared memory,v3.x
+feature,2012/1/23,SHM_UNLOCK: fix long unpreemptible section,-15,22,,shared memory,v3.x
+reliability annotation,2012/1/23,pc/mqueue: simplify reading msgqueue limit,-2,1,,message queue,v3.x
+reliability error enhancement,2012/1/10,user namespace: make signal.c respect user namespaces,-1,6,,message queue,v3.x
+performance access optimization,2012/1/3,switch mq_open() to umode_t,-1,1,,message queue,v3.x
+performance access optimization,2012/1/3,mqueue: propagate umode_t,-1,1,,message queue,v3.x
+bug semantic generic,2012/1/3,switch ->create() to umode_t,-2,2,wrong,message queue,v3.x
+bug semantic generic,2012/1/3,vfs: fix the stupidity with i_dentry in inode destructors,-1,0,wrong,message queue,v3.x
+performance access optimization,2011/12/9,... and the same kind of leak for mqueue,-10,3,,message queue other,v3.x
+feature,2011/11/2,pc/sem.c: remove private structures from public header file,0,46,,semaphore,v3.x
+feature,2011/11/2,pc/sem.c: handle spurious wakeups,0,9,,semaphore,v3.x
+feature,2011/11/2,pc/sem.c: fix return code race with semop vs. semop +semctl(IPC_RMID),-1,0,,semaphore,v3.x
+bug concurrency deadlock,2011/10/31,pc/mqueue.c: fix wrong use of schedule_hrtimeout_range_clock(),-2,2,wrong,message queue,v3.x
+performance synchronization,2011/8/4,Do 'shm_init_ns()' in an early pure_initcall,-1,8,,shared memory,v3.x
+feature,2011/8/3,shm: optimize exit_shm(),0,3,,shared memory,v3.x
+performance speed optimization,2011/8/3,shm: fix wrong tests,-2,2,,shared memory,v3.x
+feature,2011/7/30,shm: optimize locking and ipc_namespace getting,-33,28,,shared memory,v3.x
+reliability annotation,2011/7/30,shm: handle separate PID namespaces case,-7,20,,shared memory,v3.x
+performance store optimization,2011/7/26,pc: introduce shm_rmid_forced sysctl,-4,129,,other shared memory,v3.x
+bug errorCode missError,2011/7/26,pc/mqueue.c: fix mq_open() return value,-5,7,error,message queue,v3.x
+bug memory nullPointer,2011/7/26,pc/mqueue.c: refactor failure handling,-56,57,crash,message queue,v3.x
+maintenance,2011/7/25,pc/sem.c: fix race with concurrent semtimedop() timeouts and IPC_RMID,-2,11,,semaphore,v3.x
+performance store optimization,2011/7/22,Merge branch 'for-linus' of ?,-2,2,,shared memory,v3.x
+bug semantic generic,2011/7/20,fs: push i_mutex and filemap_write_and_wait down into ->fsync() handlers,-2,2,wrong,shared memory,v2.x
+reliability corruption defense,2011/7/20,"pc,rcu: Convert call_rcu(ipc_immediate_free) to kfree_rcu()",-15,1,,other,v2.x
+reliability corruption defense,2011/7/20,"pc,rcu: Convert call_rcu(free_un) to kfree_rcu()",-8,2,,semaphore,v2.x
+reliability robust,2011/5/26,mm: don't access vm_flags as 'int',-1,1,,shared memory,v2.x
+performance access optimization,2011/5/10,ns proc: Add support for the ipc namespace,0,37,,other,v2.x
+performance access optimization,2011/3/31,Fix common misspellings,-4,4,,message semaphore shared memory,v2.x
+bug memory unintRead,2011/3/27,pc: fix util.c kernel-doc warnings,-1,3,wrong,other,v2.x
+maintenance,2011/3/25,pcns: fix use after free in free_ipc_ns(),-1,1,,other,v2.x
+feature,2011/3/23,userns: user namespaces: convert several capable() calls,-29,42,,message other semaphore shared memory,v2.x
+feature,2011/3/23,userns: add a user namespace owner of ipc ns,-2,8,,other,v2.x
+reliability annotation,2011/1/7,fs: icache RCU free inodes,-1,8,,message queue,v2.x
+performance access optimization,2010/10/30,pc: shm: fix information leak to userland,0,1,,shared memory,v2.x
+performance access optimization,2010/10/29,switch get_sb_ns() users,-4,4,,message queue,v2.x
+performance speed optimization,2010/10/27,pc: initialize structure memory to zero for compat functions,0,11,,compatibility,v2.x
+bug semantic config,2010/10/27,pc/shm.c: add RSS and swap size information to /proc/sysvipc/shm,-21,42,wrong,shared memory,v2.x
+reliability corruption defense,2010/10/25,fs: do not assign default i_ino in new_inode,0,1,,message queue,v2.x
+bug semantic generic,2010/10/25,new helper: ihold(),-1,1,wrong,message queue,v2.x
+maintenance,2010/10/22,Merge branch 'llseek' of git://git.kernel.org/pub/scm/linux/kernel/git/arnd/bkl,0,3,,message queue shared memory,v2.x
+feature,2010/10/15,seek: automatically add .llseek fop,0,3,,message queue shared memory,v2.x
+reliability corruption defense,2010/10/1,sys_semctl: fix kernel stack leakage,0,2,,semaphore,v2.x
+reliability annotation,2010/8/9,switch mqueue to ->evict_inode(),-9,7,,message queue,v2.x
+feature,2010/7/20,pc/sem.c: bugfix for semop() not reporting successful operation,-7,39,,semaphore,v2.x
+performance synchronization,2010/6/4,mqueue doesn't need make_bad_inode(),-1,0,,message queue,v2.x
+performance access optimization,2010/5/27,drop unused dentry argument to ->fsync,-7,4,,shared memory,v2.x
+bug semantic generic,2010/5/27,pc/sem.c: use ERR_CAST,-1,1,wrong,semaphore,v2.x
+bug concurrency wrongLock,2010/5/27,pc/sem.c: update description of the implementation,-50,53,hang,semaphore,v2.x
+feature,2010/5/27,pc/sem.c: move wake_up_process out of the spinlock section,-32,91,,semaphore,v2.x
+feature,2010/5/27,pc/sem.c: optimize update_queue() for bulk wakeup calls,-13,97,,semaphore,v2.x
+bug semantic generic,2010/5/25,"kernel-wide: replace USHORT_MAX, SHORT_MAX and SHORT_MIN with USHRT_MAX, ?",-8,8,error,message other,v2.x
+performance store optimization,2010/5/19,Merge branch 'timers-for-linus' of ?,-49,25,,message queue,v2.x
+bug memory doublefree,2010/5/11,mqueue: fix kernel BUG caused by double free() on mq_open(),-1,1,wrong,message queue,v2.x
+reliability annotation,2010/5/10,Merge branch 'linus' into timers/core,-3,2,,compatibility message queue message other,v2.x
+feature,2010/4/6,mqueue: Convert message queue timeout to use hrtimers,-49,25,,message queue,v2.x
+performance synchronization,2010/3/30,nclude cleanup: Update gfp.h and slab.h includes to prepare for breaking ?,-2,1,,compatibility message queue message,v2.x
+reliability debug,2010/3/22,ppc64 sys_ipc breakage in 2.6.34-rc2,-1,1,,other,v2.x
+bug semantic generic,2010/3/12,pc: use rlimit helpers,-3,2,wrong,message queue shared memory,v2.x
+feature,2010/3/12,Add generic sys_ipc wrapper,-1,100,,other,v2.x
+performance access optimization,2010/3/3,mqueue: fix typo "failues" -> "failures",-1,1,,message queue,v2.x
+reliability debug,2010/3/3,mqueue: only set error codes if they are really necessary,-27,50,,message queue,v2.x
+maintenance,2010/3/3,mqueue: simplify do_open() error handling,-6,10,,message queue,v2.x
+maintenance,2010/3/3,mqueue: apply mathematics distributivity on mq_bytes calculation,-4,5,,message queue,v2.x
+maintenance,2010/3/3,mqueue: remove unneeded info->messages initialization,-8,5,,message queue,v2.x
+reliability annotation,2010/3/3,mqueue: fix mq_open() file descriptor leak on user-space processes,-2,1,,message queue,v2.x
+bug memory danglingPt,2010/1/16,nommu: fix SYSV SHM for NOMMU,0,3,hang,shared memory,v2.x
+bug concurrency deadlock,2009/12/16,Merge branch 'master' of ?,-9,5,deadlock,message queue shared memory,v2.x
+feature,2009/12/16,"Untangling ima mess, part 2: deal with counters",-2,0,,message queue,v2.x
+reliability corruption defense,2009/12/16,"Untangling ima mess, part 1: alloc_file()",-2,0,,shared memory,v2.x
+reliability error enhancement,2009/12/16,switch alloc_file() to passing struct path,-5,5,,shared memory,v2.x
+performance store optimization,2009/12/16,pc: remove unreachable code in sem.c,-2,1,,semaphore,v2.x
+feature,2009/12/16,pc/sem.c: optimize single sops when semval is zero,0,11,,semaphore,v2.x
+feature,2009/12/16,pc/sem.c: optimize single semop operations,-11,40,,semaphore,v2.x
+feature,2009/12/16,pc/sem.c: add a per-semaphore pending list,-5,32,,semaphore,v2.x
+bug concurrency,2009/12/16,pc/sem.c: optimize if semops fail,-2,2,deadlock,semaphore,v2.x
+feature,2009/12/16,pc/sem.c: sem preempt improve,-15,23,,semaphore,v2.x
+bug semantic generic,2009/12/16,pc/sem.c: sem use list operations,-44,31,wrong,semaphore,v2.x
+feature,2009/12/16,pc/sem.c: sem optimise undo list search,-6,20,,semaphore,v2.x
+performance speed optimization,2009/12/16,pc ns: fix memory leak (idr),0,3,,message semaphore shared memory,v2.x
+reliability annotation,2009/12/11,file ->get_unmapped_area() shouldn't duplicate work of get_unmapped_area(),-14,17,,shared memory,v2.x
+maintenance,2009/12/9,Merge branch 'for-linus' of ?,-1,1,,message,v2.x
+performance store optimization,2009/12/4,pc: fix unused variable warning,-1,1,,message,v2.x
+feature,2009/11/12,sysctl ipc: Remove dead binary sysctl support code.,-81,3,,other,v2.x
+reliability annotation,2009/9/27,const: mark struct vm_struct_operations,-2,2,,shared memory,v2.x
+bug semantic generic,2009/9/24,sysctl: remove "struct file *" argument of ->proc_handler,-12,12,wrong,other,v2.x
+performance speed optimization,2009/9/23,seq_file: constify seq_operations,-1,1,,other,v2.x
+bug semantic config,2009/9/22,hugetlbfs: allow the creation of files suitable for MAP_PRIVATE on the vfs ?,-1,1,wrong,shared memory,v2.x
+performance access optimization,2009/9/22,const: mark remaining super_operations const,-2,2,,message queue,v2.x
+reliability error enhancement,2009/9/14,fix undefined reference to user_shm_unlock,-1,1,,shared memory,v2.x
+performance other,2009/8/24,mm: fix hugetlb bug due to user_shm_unlock call,-3,5,,shared memory,v2.x
+bug semantic generic,2009/6/29,ntegrity: ima mq_open imbalance msg fix,0,2,wrong,message queue,v2.x
+feature,2009/6/21,pc: unbreak 32-bit shmctl/semctl/msgctl,0,1,,other,v2.x
+feature,2009/6/18,pcns: move free_ipcs() proto,-1,2,,other,v2.x
+performance access optimization,2009/6/18,pcns: make free_ipc_ns() static,-24,24,,other,v2.x
+performance access optimization,2009/6/18,pcns: extract create_ipc_ns(),-7,2,,other,v2.x
+performance synchronization,2009/6/18,pcns: remove useless get/put while CLONE_NEWIPC,-5,1,,other,v2.x
+feature,2009/6/18,pc: use __ARCH_WANT_IPC_PARSE_VERSION in ipc/util.h,-1,1,,other,v2.x
+bug semantic generic,2009/6/11,Merge branch 'for-linus' of ?,-2,1,wrong,shared memory,v2.x
+bug semantic config,2009/6/10,Merge branch 'rcu-for-linus' of ?,-2,2,error,semaphore,v2.x
+performance access optimization,2009/6/11,Merge branch 'next' into for-linus,-2,1,,shared memory,v2.x
+performance store optimization,2009/6/9,shm: fix unused warnings on nommu,-2,5,,shared memory,v2.x
+feature,2009/5/22,ntegrity: move ima_counts_get,-1,0,,shared memory,v2.x
+feature,2009/5/22,ntegrity: path_check update,-2,2,,shared memory,v2.x
+feature,2009/4/15,rculist: use list_entry_rcu in places where it's appropriate,-2,2,,semaphore,v2.x
+performance synchronization,2009/4/13,namespaces: move get_mq() inside #ifdef CONFIG_SYSCTL,-1,1,,other,v2.x
+feature,2009/4/7,namespaces: mqueue namespace: adapt sysctl,-64,118,,other message queue,v2.x
+maintenance,2009/4/7,namespaces: ipc namespaces: implement support for posix msqueues,-43,124,,message queue other,v2.x
+feature,2009/4/7,namespaces: mqueue ns: move mqueue_mnt into struct ipc_namespace,-65,108,,message queue other,v2.x
+bug semantic generic,2009/4/2,Merge branch 'for-linus' of ?,-1,1,wrong,message queue,v2.x
+maintenance,2009/4/2,proc_sysctl: use CONFIG_PROC_SYSCTL around ipc and utsname proc_handlers,-1,1,,other,v2.x
+feature,2009/4/2,pc: make shm_get_stat() more robust,-2,4,,shared memory,v2.x
+maintenance,2009/3/31,New helper - current_umask(),-1,1,,message queue,v2.x
+performance speed optimization,2009/3/26,Merge branch 'bkl-removal' of git://git.lwn.net/linux-2.6,0,2,,message queue,v2.x
+performance access optimization,2009/3/24,Merge branch 'master' into next,-3,5,,shared memory,v2.x
+maintenance,2009/3/16,Use f_lock to protect f_flags,0,2,,message queue,v2.x
+feature,2009/2/10,Do not account for the address space used by hugetlbfs using VM_ACCOUNT,-3,5,,shared memory,v2.x
+bug semantic state,2009/2/6,Merge branch 'master' into next,-132,141,error,other message queue message semaphore shared memory,v2.x
+bug memory resourceLeak,2009/2/6,Integrity: IMA file free imbalance,0,3,wrong,shared memory,v2.x
+maintenance,2009/2/5,shm: fix shmctl(SHM_INFO) lockup with !CONFIG_SHMEM,0,4,,shared memory,v2.x
+reliability annotation,2009/1/31,Stop playing silly games with the VM_ACCOUNT flag,-2,2,,shared memory,v2.x
+performance access optimization,2009/1/14,[CVE-2009-0029] System call wrappers part 26,-11,11,,message queue,v2.x
+performance access optimization,2009/1/14,[CVE-2009-0029] System call wrappers part 25,-11,12,,message queue semaphore shared memory,v2.x
+performance access optimization,2009/1/14,[CVE-2009-0029] System call wrappers part 24,-6,6,,message,v2.x
+reliability debug,2009/1/14,[CVE-2009-0029] System call wrapper special cases,-1,8,,semaphore,v2.x
+reliability debug,2009/1/14,[CVE-2009-0029] Convert all system calls to return a long,-1,1,,message queue,v2.x
+performance store optimization,2009/1/9,Merge git://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-2.6-nommu,0,12,,shared memory,v2.x
+maintenance,2009/1/8,mqueue: fix si_pid value in mqueue do_notify(),-1,2,,message queue,v2.x
+reliability annotation,2009/1/8,NOMMU: Make VMAs per MM as for MMU-mode linux,0,12,,shared memory,v2.x
+performance other,2009/1/6,pc/ipc_sysctl.c: move the definition of ipc_auto_callback(),-23,23,,other,v2.x
+performance access optimization,2009/1/6,pc: do not goto to the next line,-1,0,,semaphore,v2.x
+feature,2009/1/6,pc: clean up ipc/shm.c,-10,5,,shared memory,v2.x
+reliability debug,2009/1/5,Merge branch 'for-linus' of ?,-1,0,,message queue,v2.x
+performance access optimization,2009/1/5,mm: update my address,-1,1,,semaphore,v2.x
+bug memory uninitRead,2009/1/5,zero i_uid/i_gid on inode allocation,-1,0,error,message queue,v2.x
+reliability debug,2009/1/4,sanitize audit_mq_open(),-12,11,,message queue,v2.x
+reliability robust,2009/1/4,sanitize AUDIT_MQ_SENDRECV,-24,30,,message queue,v2.x
+reliability debug,2009/1/4,sanitize audit_mq_notify(),-7,7,,message queue,v2.x
+reliability debug,2009/1/4,sanitize audit_mq_getsetattr(),-5,1,,message queue,v2.x
+reliability robust,2009/1/4,sanitize audit_ipc_set_perm(),-7,2,,other,v2.x
+reliability robust,2009/1/4,sanitize audit_ipc_obj(),-9,4,,shared memory other,v2.x
+performance speed optimization,2008/12/4,Merge branch 'master' into next,-5,9,,other,v2.x
+feature,2008/11/19,sysvipc: fix the ipc structures initialization,-5,9,,other,v2.x
+feature,2008/11/14,CRED: Pass credentials through dentry_open(),-4,7,,message queue,v2.x
+performance speed optimization,2008/11/14,CRED: Wrap current->cred and a few other accessors,-3,3,,message queue shared memory,v2.x
+performance synchronization,2008/11/14,CRED: Separate task security context from task_struct,-3,3,,message queue shared memory,v2.x
+feature,2008/11/14,CRED: Wrap task credential accesses in the SYSV IPC subsystem,-10,19,,message queue shared memory other,v2.x
+performance access optimization,2008/10/21,"[PATCH] introduce fmode_t, do annotations",-1,1,,shared memory,v2.x
+maintenance,2008/10/20,message queues: increase range limits,-6,14,,message queue,v2.x
+reliability debug,2008/10/20,SHM_LOCKED pages are unevictable,0,4,,shared memory,v2.x
+performance access optimization,2008/10/16,pc/sem.c: make free_un() static,-1,1,,semaphore,v2.x
+feature,2008/10/16,sysctl: simplify ->strategy,-5,4,,other,v2.x
+performance store optimization,2008/7/26,"[PATCH] kill nameidata passing to permission(), rename to inode_permission()",-1,1,,message queue,v2.x
+reliability debug,2008/7/26,SL*B: drop kmem cache argument from constructor,-1,1,,message queue,v2.x
+performance other,2008/7/25,pc: do not use a negative value to re-enable msgmni automatic recomputing,-18,74,,other,v2.x
+reliability robust,2008/7/25,pc: use simple_read_from_buffer(),-18,7,,message queue,v2.x
+feature,2008/7/25,pc/sem.c: rewrite undo list locking,-54,93,,semaphore,v2.x
+feature,2008/7/25,pc/sem.c: convert sem_array.sem_pending to struct list_head,-57,35,,semaphore,v2.x
+feature,2008/7/25,pc/sem.c: remove unused entries from struct sem_queue,-2,0,,semaphore,v2.x
+feature,2008/7/25,pc/sem.c: convert undo structures to struct list_head,-74,89,,semaphore,v2.x
+feature,2008/7/25,pc: get rid of ipc_lock_down(),-75,4,,shared memory other,v2.x
+feature,2008/7/25,pc: call idr_find() without locking in ipc_lock(),-9,0,,other,v2.x
+bug semantic generic,2008/7/24,hugetlb: modular state for hugetlb page size,-1,2,wrong,shared memory,v2.x
+performance synchronization,2008/6/13,Merge branch 'master' of ?,-17,14,,message shared memory,v2.x
+feature,2008/6/12,/proc/sysvipc/shm: fix 32-bit truncation of segment sizes,-8,8,,shared memory,v2.x
+performance store optimization,2008/6/10,shm: Remove silly double assignment,-2,0,,shared memory,v2.x
+bug semantic state,2008/6/6,pc: only output msgmni value at boot time,-7,6,wrong,message,v2.x
+performance access optimization,2008/6/5,netlink: Remove nonblock parameter from netlink_attachskb,-1,1,,message queue,v2.x
+bug semantic generic,2008/5/3,ny mq_open optimization,-2,1,wrong,message queue,v2.x
+maintenance,2008/4/29,sysvipc: use non-racy method for proc entries creation,-7,6,,other,v2.x
+maintenance,2008/4/29,pc: sysvsem: implement sys_unshare(CLONE_SYSVSEM),0,1,,semaphore,v2.x
+feature,2008/4/29,pc: add definitions of USHORT_MAX and others,-9,8,,message other,v2.x
+performance store optimization,2008/4/29,IPC: consolidate all xxxctl_down() functions,-119,66,,message semaphore shared memory other,v2.x
+reliability corruption defense,2008/4/29,IPC: introduce ipc_update_perm(),-12,17,,message semaphore shared memory other,v2.x
+reliability robust,2008/4/29,IPC: get rid of the use *_setbuf structure.,-86,46,,message semaphore shared memory,v2.x
+performance other,2008/4/29,IPC/semaphores: remove one unused parameter from semctl_down(),-3,3,,semaphore,v2.x
+feature,2008/4/29,IPC/semaphores: move the rwmutex handling inside semctl_down,-11,13,,semaphore,v2.x
+bug semantic logic,2008/4/29,IPC/message queues: introduce msgctl_down,-73,89,wrong,message,v2.x
+bug semantic generic,2008/4/29,IPC/shared memory: introduce shmctl_down,-88,72,hang,shared memory,v2.x
+feature,2008/4/29,IPC/semaphores: code factorisation,-30,31,,semaphore,v2.x
+performance synchronization,2008/4/29,pc: re-enable msgmni automatic recomputing msgmni if set to negative,-10,44,,other,v2.x
+performance store optimization,2008/4/29,pc: do not recompute msgmni anymore if explicitly set by user,-2,41,,other,v2.x
+performance store optimization,2008/4/29,pc: recompute msgmni on ipc namespace creation/removal,-2,15,,other,v2.x
+performance store optimization,2008/4/29,pc: invoke the ipcns notifier chain as a work item,-1,14,,other,v2.x
+performance store optimization,2008/4/29,pc: recompute msgmni on memory add / remove,-2,120,,other message,v2.x
+performance store optimization,2008/4/29,pc: scale msgmni to the number of ipc namespaces,-3,13,,message other,v2.x
+performance store optimization,2008/4/29,pc: scale msgmni to the amount of lowmem,-1,36,,message,v2.x
+performance store optimization,2008/4/29,IPC: use ipc_buildid() directly from ipc_addid(),-13,2,,message semaphore shared memory other,v2.x
+bug memory danglingPt,2008/4/28,mempolicy: rework mempolicy Reference Counting [yet again],-3,2,leak,shared memory,v2.x
+performance store optimization,2008/4/28,mempolicy: fixup Fallback for Default Shmem Policy,-2,1,,shared memory,v2.x
+feature,2008/4/19,[PATCH] r/o bind mounts: elevate write count for open()s,-2,14,,message queue,v2.x
+reliability debug,2008/4/19,[PATCH] r/o bind mounts: elevate write count for rmdir and unlink.,-1,4,,message queue,v2.x
+bug memory danglingPt,2008/3/10,mempolicy: fix reference counting bugs,-2,3,leak,shared memory,v2.x
+performance other,2008/2/8,Pidns: fix badly converted mqueues pid handling,-1,1,,message queue,v2.x
+feature,2008/2/8,Pidns: make full use of xxx_vnr() calls,-2,1,,message queue,v2.x
+reliability error enhancement,2008/2/8,"IPC: consolidate sem_exit_ns(), msg_exit_ns() and shm_exit_ns()",-66,46,,message other semaphore shared memory,v2.x
+feature,2008/2/8,IPC: make struct ipc_ids static in ipc_namespace,-102,23,,message other semaphore shared memory,v2.x
+bug semantic logic,2008/2/8,IPC/semaphores: consolidate SEM_STAT and IPC_STAT commands,-22,16,wrong,semaphore,v2.x
+performance store optimization,2008/2/8,pc: uninline some code from util.h,-58,57,,other,v2.x
+bug semantic generic,2008/2/8,namespaces: move the IPC namespace under IPC_NS option,-60,87,wrong,other message semaphore shared memory,v2.x
+bug semantic generic,2008/2/6,make ipc/util.c:sysvipc_find_ipc() static,-2,2,wrong,other,v2.x
+feature,2008/2/6,IPC: fix error check in all new xxx_lock() and xxx_exit_ns() functions,-9,45,,message semaphore shared memory,v2.x
+reliability annotation,2007/11/29,pc: lost unlock and fput in mqueue.c on error path,-2,4,,message queue,v2.x
+bug concurrency deadlock,2007/11/7,[NETLINK]: Fix unicast timeouts,-2,4,deadlock,message queue,v2.x
+feature,2007/10/21,[PATCH] pass dentry to audit_inode()/audit_inode_child(),-4,4,,message queue,v2.x
+feature,2007/10/19,IPC: fix error case when idr-cache is empty in ipcget(),-11,18,,message semaphore shared memory other,v2.x
+feature,2007/10/19,virtualization of sysv msg queues is incomplete,-11,10,,message,v2.x
+reliability debug,2007/10/19,IPC: cleanup some code and wrong comments about semundo list managment,-40,6,,semaphore,v2.x
+reliability error enhancement,2007/10/19,pc: remove unneeded parameters,-17,12,,message semaphore shared memory other,v2.x
+feature,2007/10/19,fix idr_find() locking,-70,198,,message semaphore shared memory other,v2.x
+feature,2007/10/19,pc: fix wrong comments,-45,118,,message semaphore shared memory other,v2.x
+feature,2007/10/19,pc: inline ipc_buildid(),-6,5,,other,v2.x
+performance synchronization,2007/10/19,pc: introduce the ipcid_to_idx macro,-2,4,,other,v2.x
+feature,2007/10/19,Storing ipcs into IDRs,-18,46,,message semaphore shared memory other,v2.x
+performance store optimization,2007/10/19,pc: integrate ipc_checkid() into ipc_lock(),-136,152,,message semaphore shared memory other,v2.x
+feature,2007/10/19,pc: remove the ipc_get() routine,-23,13,,shared memory other,v2.x
+reliability debug,2007/10/19,pc: unify the syscalls code,-139,215,,message semaphore shared memory other,v2.x
+performance synchronization,2007/10/19,pc: store ipcs into IDRs,-310,330,,message semaphore shared memory other,v2.x
+performance store optimization,2007/10/19,pid namespaces: changes to show virtual ids to user,-12,15,,message queue message semaphore shared memory,v2.x
+maintenance,2007/10/18,sysctl mqueue: remove the binary sysctl numbers,-10,0,,message queue,v2.x
+reliability corruption defense,2007/10/17,r/o bind mounts: filesystem helpers for custom 'struct file's,-8,5,,shared memory,v2.x
+reliability debug,2007/10/17,pc namespace: remove config ipc ns fix,-4,0,,other,v2.x
+feature,2007/10/17,pc/shm.c: make 2 functions static,-2,3,,shared memory,v2.x
+performance access optimization,2007/10/17,Slab API: remove useless ctor parameter and reorder parameters,-1,1,,message queue,v2.x
+bug semantic generic,2007/10/10,[NET]: cleanup 3rd argument in netlink_sendskb,-3,2,wrong,message queue,v2.x
+reliability debug,2007/7/31,Fix user struct leakage with locked IPC shem segment,-1,1,,shared memory,v2.x
+performance speed optimization,2007/7/31,NOMMU: Fix SYSV IPC SHM,0,2,,shared memory,v2.x
+performance speed optimization,2007/7/20,mm: Remove slab destructors from kmem_cache_create().,-1,1,,message queue,v2.x
+reliability error enhancement,2007/7/19,mm: fault feedback #1,-3,2,,shared memory,v2.x
+reliability robust,2007/7/19,mm: merge populate and nopage into fault (fixes nonlinear),-4,5,,shared memory,v2.x
+maintenance,2007/7/17,arch/i386/* fs/* ipc/*: mark variables with uninitialized_var(),-3,3,,message semaphore,v2.x
+performance access optimization,2007/7/16,remove CONFIG_UTS_NS and CONFIG_IPC_NS,-25,6,,message semaphore shared memory other,v2.x
+reliability corruption defense,2007/7/6,fix logic error in ipc compat semctl(),-1,1,,compatibility,v2.x
+feature,2007/6/16,shm: fix the filename of hugetlb sysv shared memory,-3,3,,shared memory,v2.x
+performance synchronization,2007/6/16,hugetlb: fix get_policy for stacked shared memory files,-1,3,,shared memory,v2.x
+bug semantic generic,2007/6/16,Restore shmid as inode# to fix /proc/pid/maps ABI breakage,0,5,wrong,shared memory,v2.x
+performance other,2007/5/17,Remove SLAB_CTOR_CONSTRUCTOR,-2,1,,message queue,v2.x
+reliability debug,2007/5/11,[PATCH] complete message queue auditing,0,4,,message queue,v2.x
+feature,2007/5/8,header cleaning: don't include smp_lock.h when not used,-2,0,,semaphore other,v2.x
+reliability corruption defense,2007/5/8,Merge sys_clone()/sys_unshare() nsproxy and namespace handling,-43,10,,other,v2.x
+maintenance,2007/5/8,Cap shmmax at INT_MAX in compat shminfo,0,4,,compatibility,v2.x
+performance other,2007/5/7,slab allocators: Remove SLAB_DEBUG_INITIAL flag,-2,1,,message queue,v2.x
+maintenance,2007/3/27,[PATCH] ipcns: fix !CONFIG_IPC_NS behavior,0,7,,other,v2.x
+reliability corruption defense,2007/3/6,[PATCH] mqueue: nested locking annotation,-1,2,,message queue,v2.x
+reliability error enhancement,2007/3/1,[PATCH] Fix get_unmapped_area and fsync for hugetlb shm segments,-6,26,,shared memory,v2.x
+feature,2007/3/1,[PATCH] make ipc/shm.c:shm_nopage() static,-2,2,,shared memory,v2.x
+reliability robust,2007/2/20,[PATCH] shm: make sysv ipc shared memory use stacked files,-85,155,,shared memory,v2.x
+performance speed optimization,2007/2/14,[PATCH] sysctl: remove insert_at_head from register_sysctl,-2,2,,other message queue,v2.x
+performance synchronization,2007/2/14,[PATCH] sysctl: move SYSV IPC sysctls to their own file,0,184,,other,v2.x
+performance other,2007/2/12,[PATCH] mark struct inode_operations const 2,-2,2,,message queue,v2.x
+performance other,2007/2/12,[PATCH] mark struct file_operations const 7,-6,6,,message queue shared memory other,v2.x
+reliability debug,2007/2/12,[PATCH] ipc: save the ipc namespace while reading proc files,-13,45,,other,v2.x
+reliability robust,2007/2/11,[PATCH] Numerous fixes to kernel-doc info in source files.,-11,10,,other,v2.x
+performance synchronization,2007/1/23,[PATCH] correct sys_shmget allocation check,-1,1,,shared memory,v2.x
+maintenance,2006/12/13,[PATCH] getting rid of all casts of k[cmz]alloc() calls,-2,2,,other,v2.x
+performance access optimization,2006/12/8,[PATCH] struct path: convert ipc,-16,16,,message queue shared memory,v2.x
+performance access optimization,2006/12/7,[PATCH] kernel core: replace kmalloc+memset with kzalloc,-2,1,,semaphore,v2.x
+maintenance,2006/12/7,[PATCH] Fix the size limit of compat space msgsize,-27,40,,compatibility message,v2.x
+feature,2006/12/7,[PATCH] slab: remove kmem_cache_t,-2,2,,message queue,v2.x
+maintenance,2006/12/7,[PATCH] slab: remove SLAB_KERNEL,-1,1,,message queue,v2.x
+bug memory resourceLeak,2006/11/22,WorkStruct: Pass the work_struct pointer instead of context data,-1,6,leak,other,v2.x
+reliability corruption defense,2006/11/4,Revert unintentional "volatile" changes in ipc/msg.c,-1,1,,message,v2.x
+bug memory resourceLeak,2006/11/3,[PATCH] Fix ipc entries removal,-1,16,leak,message semaphore shared memory other,v2.x
+reliability corruption defense,2006/10/3,Michal Wronski: update contact info,-1,1,,message queue,v2.x
+maintenance,2006/10/3,fix file specification in comments,-1,1,,other,v2.x
+reliability debug,2006/10/2,[PATCH] ipc: replace kmalloc and memset in get_undo_list with kzalloc,-4,1,,semaphore,v2.x
+performance other,2006/10/2,[PATCH] IPC namespace - shm,-86,168,,shared memory,v2.x
+performance other,2006/10/2,[PATCH] IPC namespace - sem,-71,130,,semaphore,v2.x
+performance other,2006/10/2,[PATCH] IPC namespace - msg,-51,106,,message,v2.x
+reliability corruption defense,2006/10/2,[PATCH] IPC namespace - utils,-13,143,,other,v2.x
+maintenance,2006/10/2,[PATCH] update mq_notify to use a struct pid,-12,15,,message queue,v2.x
+reliability error enhancement,2006/10/1,[PATCH] r/o bind mount prepwork: inc_nlink() helper,-1,1,,message queue,v2.x
+feature,2006/10/1,[PATCH] r/o bind mounts: unlink: monitor i_nlink,-1,1,,message queue,v2.x
+reliability robust,2006/9/27,[PATCH] inode-diet: Eliminate i_blksize from the inode structure,-1,0,,message queue,v2.x
+performance access optimization,2006/9/27,[PATCH] Really ignore kmem_cache_destroy return value,-4,1,,message queue,v2.x
+performance store optimization,2006/7/31,[PATCH] ipc/msg.c: clean up coding style,-184,205,,message,v2.x
+performance access optimization,2006/6/30,Remove obsolete #include <linux/config.h>,-5,0,,compatibility message semaphore shared memory other,v2.x
+maintenance,2006/6/23,[PATCH] vfs: add lock owner argument to flush operation,-1,1,,message queue,v2.x
+bug semantic generic,2006/6/23,[PATCH] remove unused o_flags from do_shmat,-3,0,wrong,shared memory,v2.x
+performance access optimization,2006/6/23,[PATCH] VFS: Permit filesystem to override root dentry on mount,-4,4,,message queue,v2.x
+reliability error enhancement,2006/6/20,[PATCH] Audit of POSIX Message Queue Syscalls v.2,0,22,,message queue,v2.x
+feature,2006/6/20,[PATCH] update of IPC audit record cleanup,-8,11,,message semaphore shared memory,v2.x
+feature,2006/5/1,[PATCH] Rework of IPC auditing,-6,42,,message semaphore shared memory other,v2.x
+bug semantic logic,2006/4/17,[PATCH] IPC: access to unmapped vmalloc area in grow_ary(),-2,1,error,other,v2.x
+reliability debug,2006/4/17,[PATCH] shmat: stop mprotect from giving write permission to a readonly ?,0,2,,shared memory,v2.x
+feature,2006/4/2,BUG_ON() Conversion in ipc/shm.c,-8,7,,shared memory,v2.x
+feature,2006/4/1,BUG_ON() Conversion in ipc/util.c,-4,2,,other,v2.x
+feature,2006/3/28,[PATCH] mqueue comment typo fix,-1,1,,message queue,v2.x
+reliability error enhancement,2006/3/26,[PATCH] one ipc/sem.c->mutex.c converstion too many..,-1,1,,message queue,v2.x
+reliability debug,2006/3/26,Merge git://git.kernel.org/pub/scm/linux/kernel/git/bunk/trivial,-4,2,,semaphore,v2.x
+feature,2006/3/26,"[PATCH] sem2mutex: ipc, id.sem",-56,65,,compatibility message queue message semaphore shared memory other,v2.x
+feature,2006/3/26,BUG_ON() Conversion in ipc/sem.c,-4,2,,semaphore,v2.x
+reliability debug,2006/3/25,Merge branch 'audit.b3' of ?,-7,7,,message semaphore shared memory,v2.x
+feature,2006/3/24,BUG_ON() Conversion in ipc/msg.c,-2,1,,message,v2.x
+maintenance,2006/3/24,[PATCH] shmdt: check address alignment,0,3,,shared memory,v2.x
+performance synchronization,2006/3/22,Remove superfluous NOTIFY_COOKIE_LEN define,-1,0,,message queue,v2.x
+reliability debug,2006/3/20,[PATCH] Capture selinux subject/object context information.,-7,7,,message semaphore shared memory,v2.x
+maintenance,2006/2/10,[PATCH] shmdt cannot detach not-alined shm segment cleanly.,0,1,,shared memory,v2.x
+performance synchronization,2006/2/9,[NETLINK]: Fix a severe bug,-1,2,,message queue,v2.x
+maintenance,2006/1/15,correct email address of Manfred Spraul,-4,4,,message semaphore other,v2.x
+feature,2006/1/14,[PATCH] Fix double decrement of mqueue_mnt->mnt_count in sys_mq_open,-26,33,,message queue,v2.x
+feature,2006/1/11,[PATCH] move capable() to capability.h,0,5,,message queue message semaphore shared memory other,v2.x
+reliability debug,2006/1/9,"[PATCH] mutex subsystem, semaphore to mutex: VFS, ->i_sem",-4,4,,message queue,v2.x
+feature,2006/1/8,[PATCH] ipc: expand shm_flags,-12,10,,shared memory,v2.x
+reliability debug,2006/1/6,[PATCH] NOMMU: Make SYSV IPC SHM use ramfs facilities on NOMMU,-5,13,,shared memory,v2.x
+bug semantic generic,2005/12/24,Fix silly typo ("smb" vs "smp"),-1,1,wrong,semaphore,v2.x
+reliability error enhancement,2005/12/24,[PATCH] add missing memory barriers to ipc/sem.c,0,2,,semaphore,v2.x
+performance access optimization,2005/11/7,Merge master.kernel.org:/pub/scm/linux/kernel/git/bunk/trivial,-1,1,,message queue,v2.x
+feature,2005/11/7,"[PATCH] more kernel-doc cleanups, additions",-4,5,,other,v2.x
+bug memory bufOverflow,2005/11/7,[PATCH] SHM_NORESERVE flags for shmget(),-1,9,wrong,shared memory,v2.x
+performance access optimization,2005/11/6,Update Michal Wronski contact info,-1,1,,message queue,v2.x
+reliability annotation,2005/10/29,[PATCH] hugetlb: remove repeated code,-3,4,,shared memory,v2.x
+reliability corruption defense,2005/9/27,[PATCH] Make POSIX message queue sys_mq_open() honor umask,0,1,,message queue,v2.x
+feature,2005/9/10,[PATCH] merge some from Rusty's trivial patches,-1,1,,message queue,v2.x
+reliability debug,2005/9/7,[PATCH] ipc: convert /proc/sysvipc/* to generic seq_file interface,-163,78,,message semaphore shared memory,v2.x
+reliability debug,2005/9/7,[PATCH] ipc: add generic struct ipc_ids seq_file iteration,0,164,,other,v2.x
+reliability error enhancement,2005/9/7,[PATCH] compat: be more consistent about [ug]id_t,-6,6,,compatibility,v2.x
+maintenance,2005/8/5,[PATCH] Fix semundo lock leakage,-7,3,,semaphore,v2.x
+reliability annotation,2005/8/1,[PATCH] shm: CONFIG_SHMEM=n build fix,-1,1,,shared memory,v2.x
+reliability corruption defense,2005/7/12,[PATCH] xtensa: remove old syscalls,-1,1,,other,v2.x
+maintenance,2005/7/7,[PATCH] put_compat_shminfo() warning fix,0,1,,compatibility,v2.x
+maintenance,2005/6/23,[PATCH] ipcsem: remove superflous decrease variable from sys_semtimedop,-6,3,,semaphore,v2.x
+performance access optimization,2005/5/1,[PATCH] convert that currently tests _NSIG directly to use valid_signal(),-2,2,,message queue,v2.x
+performance access optimization,2005/5/1,[PATCH] consolidate sys_shmat,0,14,,shared memory,v2.x
+feature,2005/5/1,[PATCH] use smp_mb/wmb/rmb where possible,-2,2,,message queue,v2.x
+reliability corruption defense,2005/4/16,Linux-2.6.12-rc2v2.6.12-rc2,0,6045,,,v2.x

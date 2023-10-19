@@ -1,0 +1,18 @@
+label: feature
+module: message queue	
+age: 2016-01-22
+title: wrappers for ->i_mutex access
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=5955102c9984fa081b2d570cfac75c97eecf8f3b
+lines: -4/+4
+category: ipc/mqueue.c
+
+parallel to mutex_{lock,unlock,trylock,is_locked,lock_nested},
+inode_foo(inode) being mutex_foo(&inode->i_mutex).
+
+Please, use those for access to ->i_mutex; over the coming cycle
+->i_mutex will become rwsem, with ->lookup() done with it held
+only shared.
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

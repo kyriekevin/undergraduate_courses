@@ -1,0 +1,12 @@
+label: performance access optimization
+module: shared memory	
+age: 2018-07-12
+title: do_shmat(): grab shp->shm_file earlier, switch to alloc_file_clone()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4f089acc5f76ab1dff17b5f0be7608671a8441dc
+lines: -21/+18
+category: ipc/shm.c
+
+Acked-by: Linus Torvalds <torvalds@linux-foundation.org>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

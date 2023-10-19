@@ -1,0 +1,20 @@
+label: maintenance
+module: other	
+age: 2009-04-02
+title: proc_sysctl: use CONFIG_PROC_SYSCTL around ipc and utsname proc_handlers
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=11dea1900931ac73184b2f5163a13d24a4e572ea
+lines: -1/+1
+category: ipc/ipc_sysctl.c
+
+As pointed out by Cedric Le Goater (in response to Alexey's original
+comment wrt mqns), ipc_sysctl.c and utsname_sysctl.c are using
+CONFIG_PROC_FS, not CONFIG_PROC_SYSCTL, to determine whether to define
+the proc_handlers.  Change that.
+
+Signed-off-by: Serge E. Hallyn <serue@us.ibm.com>
+Cc: Cedric Le Goater <clg@fr.ibm.com>
+Acked-by: Alexey Dobriyan <adobriyan@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

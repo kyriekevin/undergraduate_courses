@@ -1,0 +1,20 @@
+label: feature
+module: shared memory	
+age: 2017-07-12
+title: ipc/shm: remove special shm_alloc/free
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=42e618f77dabc82c697915c193d729e9d16e2a75
+lines: -20/+4
+category: ipc/shm.c
+
+There is nothing special about the shm_alloc/free routines any more, so
+remove them to make code more readable.
+
+[manfred@colorfullife.com: Rediff, to continue to keep rcu for free calls after a successful security_shm_alloc()]
+Link: http://lkml.kernel.org/r/20170525185107.12869-18-manfred@colorfullife.com
+Signed-off-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

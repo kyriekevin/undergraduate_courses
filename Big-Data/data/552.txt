@@ -1,0 +1,8 @@
+label: performance access optimization
+module: message queue	
+age: 2012-01-03
+title: switch mq_open() to umode_t
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=df0a42837b86567a130c44515ab620d23e7f182b
+lines: -1/+1
+category: ipc/mqueue.c
+

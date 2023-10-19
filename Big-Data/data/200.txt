@@ -1,0 +1,13 @@
+label: maintenance
+module: compatibility	semaphore	
+age: 2017-07-15
+title: semtimedop(): move compat to native
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=44ee454670122a959112caaa7aad86d8cacab1ff
+lines: -21/+33
+category: ipc/compat.c ipc/sem.c 
+
+... and finally kill the sodding compat_convert_timespec()
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

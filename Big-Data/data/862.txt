@@ -1,0 +1,17 @@
+label: reliability debug
+module: message	semaphore	shared memory	
+age: 2005-09-07
+title: [PATCH] ipc: convert /proc/sysvipc/* to generic seq_file interface
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=19b4946ca9d1e35d4c641dcebe27378de34f3ddd
+lines: -163/+78
+category: ipc/msg.c ipc/sem.c ipc/shm.c 
+
+Change the /proc/sysvipc/shm|sem|msg files to use the generic seq_file
+implementation for struct ipc_ids.
+
+Signed-off-by: Mike Waychison <mikew@google.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

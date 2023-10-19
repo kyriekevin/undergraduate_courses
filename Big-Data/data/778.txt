@@ -1,0 +1,15 @@
+label: maintenance
+module: message	semaphore	
+age: 2007-07-17
+title: arch/i386/* fs/* ipc/*: mark variables with uninitialized_var()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8e1c091cccd551557d24ce845715e8ceb6c49d36
+lines: -3/+3
+category: ipc/msg.c ipc/sem.c 
+
+Mark variables with uninitialized_var() if such a warning appears,
+and analysis proves that the var is initialized properly on all paths
+it is used.
+
+Signed-off-by: Jeff Garzik <jeff@garzik.org>
+
+

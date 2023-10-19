@@ -1,0 +1,17 @@
+label: performance store optimization
+module: other	
+age: 2012-11-20
+title: userns: Allow unprivileged use of setns.
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=142e1d1d5f088e7a38659daca6e84a730967774a
+lines: -1/+5
+category: ipc/namespace.c
+
+- Push the permission check from the core setns syscall into
+  the setns install methods where the user namespace of the
+  target namespace can be determined, and used in a ns_capable
+  call.
+
+Acked-by: Serge Hallyn <serge.hallyn@canonical.com>
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

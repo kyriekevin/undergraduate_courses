@@ -1,0 +1,32 @@
+label: bug semantic state
+consequence：wrong
+module: message	
+age: 2008-06-06
+title: ipc: only output msgmni value at boot time
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=dfcceb26f89da86ec4ac9583c4515504af8c6c84
+lines: -7/+6
+category: ipc/msg.c
+
+When posting:
+[PATCH 1/8] Scaling msgmni to the amount of lowmem
+(see http://lkml.org/lkml/2008/2/11/171), I have added a KERN_INFO message
+that is output each time msgmni is recomputed.
+
+In http://lkml.org/lkml/2008/4/29/575 Tony Luck complained that this
+message references an ipc namespace address that is useless.
+
+I first thought of using an audit_log instead of a printk, as suggested by
+Serge Hallyn.  But unfortunately, we do not have any other information
+than the namespace address to provide here too.  So I chose to move the
+message and output it only at boot time, removing the reference to the
+namespace.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Acked-by: Tony Luck <tony.luck@intel.com>
+Cc: "Serge E. Hallyn" <serue@us.ibm.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,19 @@
+label: bug semantic generic
+consequence：error
+module: shared memory	
+age: 2020-08-12
+title: ipc/shm.c: remove the superfluous break
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ce14489c8e2d327b56ff3253a3642a6d79b9bca2
+lines: -1/+0
+category: ipc/shm.c
+
+Remove the superfuous break, as there is a 'return' before it.
+
+Signed-off-by: Liao Pingfang <liao.pingfang@zte.com.cn>
+Signed-off-by: Yi Wang <wang.yi59@zte.com.cn>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Reviewed-by: Andrew Morton <akpm@linux-foundation.org>
+Link: http://lkml.kernel.org/r/1594724361-11525-1-git-send-email-wang.yi59@zte.com.cn
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

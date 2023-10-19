@@ -1,0 +1,34 @@
+label: bug semantic generic
+consequence：wrong
+module: shared memory	
+age: 2008-07-24
+title: hugetlb: modular state for hugetlb page size
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a5516438959d90b071ff0a484ce4f3f523dc3152
+lines: -1/+2
+category: ipc/shm.c
+
+The goal of this patchset is to support multiple hugetlb page sizes.  This
+is achieved by introducing a new struct hstate structure, which
+encapsulates the important hugetlb state and constants (eg.  huge page
+size, number of huge pages currently allocated, etc).
+
+The hstate structure is then passed around the code which requires these
+fields, they will do the right thing regardless of the exact hstate they
+are operating on.
+
+This patch adds the hstate structure, with a single global instance of it
+(default_hstate), and does the basic work of converting hugetlb to use the
+hstate.
+
+Future patches will add more hstate structures to allow for different
+hugetlbfs mounts to have different page sizes.
+
+[akpm@linux-foundation.org: coding-style fixes]
+Acked-by: Adam Litke <agl@us.ibm.com>
+Acked-by: Nishanth Aravamudan <nacc@us.ibm.com>
+Signed-off-by: Andi Kleen <ak@suse.de>
+Signed-off-by: Nick Piggin <npiggin@suse.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

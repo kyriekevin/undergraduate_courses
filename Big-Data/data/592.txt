@@ -1,0 +1,32 @@
+label: feature
+module: semaphore	
+age: 2010-07-20
+title: ipc/sem.c: bugfix for semop() not reporting successful operation
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c61284e99191b2284fb74dae6961d4d09e4e59e8
+lines: -7/+39
+category: ipc/sem.c
+
+The last change to improve the scalability moved the actual wake-up out of
+the section that is protected by spin_lock(sma->sem_perm.lock).
+
+This means that IN_WAKEUP can be in queue.status even when the spinlock is
+acquired by the current task.  Thus the same loop that is performed when
+queue.status is read without the spinlock acquired must be performed when
+the spinlock is acquired.
+
+Thanks to kamezawa.hiroyu@jp.fujitsu.com for noticing lack of the memory
+barrier.
+
+Addresses https://bugzilla.kernel.org/show_bug.cgi?id=16255
+
+[akpm@linux-foundation.org: clean up kerneldoc, checkpatch warning and whitespace]
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Reported-by: Luca Tettamanti <kronos.it@gmail.com>
+Tested-by: Luca Tettamanti <kronos.it@gmail.com>
+Reported-by: Christoph Lameter <cl@linux-foundation.org>
+Cc: Maciej Rutecki <maciej.rutecki@gmail.com>
+Cc: KAMEZAWA Hiroyuki <kamezawa.hiroyu@jp.fujitsu.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

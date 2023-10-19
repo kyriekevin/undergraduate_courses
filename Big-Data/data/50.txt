@@ -1,0 +1,14 @@
+label: performance access optimization
+module: message queue	
+age: 2020-04-07
+title: ipc/mqueue.c: fix a brace coding style issue
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=43afe4d3661b04915aa357c5ab0f2a08718af9fd
+lines: -3/+2
+category: ipc/mqueue.c
+
+Signed-off-by: somala swaraj <somalaswaraj@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Link: http://lkml.kernel.org/r/20200301135530.18340-1-somalaswaraj@gmail.com
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

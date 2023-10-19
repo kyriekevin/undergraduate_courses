@@ -1,0 +1,22 @@
+label: reliability corruption defense
+module: other	
+age: 2006-10-02
+title: [PATCH] IPC namespace - utils
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=73ea41302bab5e02c9e86ab15c509494a550f1db
+lines: -13/+143
+category: ipc/util.c ipc/util.h 
+
+This patch adds basic IPC namespace functionality to
+IPC utils:
+- init_ipc_ns
+- copy/clone/unshare/free IPC ns
+- /proc preparations
+
+Signed-off-by: Pavel Emelianov <xemul@openvz.org>
+Signed-off-by: Kirill Korotaev <dev@openvz.org>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: Cedric Le Goater <clg@fr.ibm.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

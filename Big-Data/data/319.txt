@@ -1,0 +1,39 @@
+label: bug semantic generic
+consequence：wrong
+module: other	
+age: 2014-12-16
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=603ba7e41bf5d405aba22294af5d075d8898176d
+lines: -18/+19
+category: ipc/msgutil.c ipc/namespace.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull vfs pile #2 from Al Viro:
+ "Next pile (and there'll be one or two more).
+
+  The large piece in this one is getting rid of /proc/*/ns/* weirdness;
+  among other things, it allows to (finally) make nameidata completely
+  opaque outside of fs/namei.c, making for easier further cleanups in
+  there"
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs:
+  coda_venus_readdir(): use file_inode()
+  fs/namei.c: fold link_path_walk() call into path_init()
+  path_init(): don't bother with LOOKUP_PARENT in argument
+  fs/namei.c: new helper (path_cleanup())
+  path_init(): store the "base" pointer to file in nameidata itself
+  make default ->i_fop have ->open() fail with ENXIO
+  make nameidata completely opaque outside of fs/namei.c
+  kill proc_ns completely
+  take the targets of /proc/*/ns/* symlinks to separate fs
+  bury struct proc_ns in fs/proc
+  copy address of proc_ns_ops into ns_common
+  new helpers: ns_alloc_inum/ns_free_inum
+  make proc_ns_operations work with struct ns_common * instead of void *
+  switch the rest of proc_ns_operations to working with &...->ns
+  netns: switch ->get()/->put()/->install()/->inum() to working with &net->ns
+  make mntns ->get()/->put()/->install()/->inum() work with &mnt_ns->ns
+  common object embedded into various struct ....ns
+
+

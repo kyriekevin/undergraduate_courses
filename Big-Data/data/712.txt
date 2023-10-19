@@ -1,0 +1,28 @@
+label: feature
+module: shared memory	
+age: 2008-06-12
+title: /proc/sysvipc/shm: fix 32-bit truncation of segment sizes
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6c826818ff55eae7702b778b5f8bdf765af3b2af
+lines: -8/+8
+category: ipc/shm.c
+
+sysvipc_shm_proc_show() picks between format strings (based on the
+expected maximum length of a SHM segment) in a way that prevents gcc from
+performing format checks on the seq_printf() parameters.  This hid two
+format errors - shp->shm_segsz and shp->shm_nattach are both unsigned
+long, but were being printed as unsigned int and signed int respectively.
+This leads to 32-bit truncation of SHM segment sizes reported in
+/proc/sysvipc/shm.  (And for nattach, but that's less of a problem for
+most users).
+
+This patch makes the format string directly visible to gcc's format
+specifier checker, and fixes the two broken format specifiers.
+
+Signed-off-by: Paul Menage <menage@google.com>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

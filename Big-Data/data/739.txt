@@ -1,0 +1,20 @@
+label: reliability debug
+module: message queue	
+age: 2008-04-19
+title: [PATCH] r/o bind mounts: elevate write count for rmdir and unlink.
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0622753b800e4cc6cb9319b36b27658c72dd7cdc
+lines: -1/+4
+category: ipc/mqueue.c
+
+Elevate the write count during the vfs_rmdir() and vfs_unlink().
+
+[AV: merged rmdir and unlink parts, added missing pieces in nfsd]
+
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Acked-by: Al Viro <viro@ZenIV.linux.org.uk>
+Signed-off-by: Christoph Hellwig <hch@lst.de>
+Signed-off-by: Dave Hansen <haveblue@us.ibm.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

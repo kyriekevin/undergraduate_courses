@@ -1,0 +1,27 @@
+label: feature
+module: other	
+age: 2008-11-19
+title: sysvipc: fix the ipc structures initialization
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e00b4ff7ebf098b11b11be403921c1cf41d9e321
+lines: -5/+9
+category: ipc/util.c
+
+A problem was found while reviewing the code after Bugzilla bug
+http://bugzilla.kernel.org/show_bug.cgi?id=11796.
+
+In ipc_addid(), the newly allocated ipc structure is inserted into the
+ipcs tree (i.e made visible to readers) without locking it.  This is not
+correct since its initialization continues after it has been inserted in
+the tree.
+
+This patch moves the ipc structure lock initialization + locking before
+the actual insertion.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Reported-by: Clement Calmels <cboulte@gmail.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: <stable@kernel.org>		[2.6.27.x]
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

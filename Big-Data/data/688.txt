@@ -1,0 +1,15 @@
+label: reliability robust
+module: shared memory	other	
+age: 2009-01-04
+title: sanitize audit_ipc_obj()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a33e6751003c5ade603737d828b1519d980ce392
+lines: -9/+4
+category: ipc/shm.c ipc/util.c 
+
+* get rid of allocations
+* make it return void
+* simplify callers
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,24 @@
+label: feature
+module: message queue	
+age: 2008-02-08
+title: Pidns: make full use of xxx_vnr() calls
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6c5f3e7b43300508fe3947ff3cfff0f86043bb57
+lines: -2/+1
+category: ipc/mqueue.c
+
+Some time ago the xxx_vnr() calls (e.g.  pid_vnr or find_task_by_vpid) were
+_all_ converted to operate on the current pid namespace.  After this each call
+like xxx_nr_ns(foo, current->nsproxy->pid_ns) is nothing but a xxx_vnr(foo)
+one.
+
+Switch all the xxx_nr_ns() callers to use the xxx_vnr() calls where
+appropriate.
+
+Signed-off-by: Pavel Emelyanov <xemul@openvz.org>
+Reviewed-by: Oleg Nesterov <oleg@tv-sign.ru>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: Balbir Singh <balbir@in.ibm.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

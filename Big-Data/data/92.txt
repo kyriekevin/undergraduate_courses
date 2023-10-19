@@ -1,0 +1,76 @@
+label: bug memory resourceLeak
+consequence：corruption
+module: message queue	
+age: 2018-10-24
+title: Merge branch 'siginfo-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ba9f6f8954afa5224e3ed60332f7b92242b7ed0f
+lines: -1/+1
+category: ipc/mqueue.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull siginfo updates from Eric Biederman:
+ "I have been slowly sorting out siginfo and this is the culmination of
+  that work.
+
+  The primary result is in several ways the signal infrastructure has
+  been made less error prone. The code has been updated so that manually
+  specifying SEND_SIG_FORCED is never necessary. The conversion to the
+  new siginfo sending functions is now complete, which makes it
+  difficult to send a signal without filling in the proper siginfo
+  fields.
+
+  At the tail end of the patchset comes the optimization of decreasing
+  the size of struct siginfo in the kernel from 128 bytes to about 48
+  bytes on 64bit. The fundamental observation that enables this is by
+  definition none of the known ways to use struct siginfo uses the extra
+  bytes.
+
+  This comes at the cost of a small user space observable difference.
+  For the rare case of siginfo being injected into the kernel only what
+  can be copied into kernel_siginfo is delivered to the destination, the
+  rest of the bytes are set to 0. For cases where the signal and the
+  si_code are known this is safe, because we know those bytes are not
+  used. For cases where the signal and si_code combination is unknown
+  the bits that won't fit into struct kernel_siginfo are tested to
+  verify they are zero, and the send fails if they are not.
+
+  I made an extensive search through userspace code and I could not find
+  anything that would break because of the above change. If it turns out
+  I did break something it will take just the revert of a single change
+  to restore kernel_siginfo to the same size as userspace siginfo.
+
+  Testing did reveal dependencies on preferring the signo passed to
+  sigqueueinfo over si->signo, so bit the bullet and added the
+  complexity necessary to handle that case.
+
+  Testing also revealed bad things can happen if a negative signal
+  number is passed into the system calls. Something no sane application
+  will do but something a malicious program or a fuzzer might do. So I
+  have fixed the code that performs the bounds checks to ensure negative
+  signal numbers are handled"
+
+* 'siginfo-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace: (80 commits)
+  signal: Guard against negative signal numbers in copy_siginfo_from_user32
+  signal: Guard against negative signal numbers in copy_siginfo_from_user
+  signal: In sigqueueinfo prefer sig not si_signo
+  signal: Use a smaller struct siginfo in the kernel
+  signal: Distinguish between kernel_siginfo and siginfo
+  signal: Introduce copy_siginfo_from_user and use it's return value
+  signal: Remove the need for __ARCH_SI_PREABLE_SIZE and SI_PAD_SIZE
+  signal: Fail sigqueueinfo if si_signo != sig
+  signal/sparc: Move EMT_TAGOVF into the generic siginfo.h
+  signal/unicore32: Use force_sig_fault where appropriate
+  signal/unicore32: Generate siginfo in ucs32_notify_die
+  signal/unicore32: Use send_sig_fault where appropriate
+  signal/arc: Use force_sig_fault where appropriate
+  signal/arc: Push siginfo generation into unhandled_exception
+  signal/ia64: Use force_sig_fault where appropriate
+  signal/ia64: Use the force_sig(SIGSEGV,...) in ia64_rt_sigreturn
+  signal/ia64: Use the generic force_sigsegv in setup_frame
+  signal/arm/kvm: Use send_sig_mceerr
+  signal/arm: Use send_sig_fault where appropriate
+  signal/arm: Use force_sig_fault where appropriate
+  ...
+
+

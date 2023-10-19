@@ -1,0 +1,28 @@
+label: feature
+module: semaphore	
+age: 2009-12-16
+title: ipc/sem.c: add a per-semaphore pending list
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b97e820ffffbf49e94ed60c9c26f1a54bccae924
+lines: -5/+32
+category: ipc/sem.c
+
+Based on Nick's findings:
+
+sysv sem has the concept of semaphore arrays that consist out of multiple
+semaphores.  Atomic operations that affect multiple semaphores are
+supported.
+
+The patch is the first step for optimizing simple, single semaphore
+operations: In addition to the global list of all pending operations, a
+2nd, per-semaphore list with the simple operations is added.
+
+Note: this patch does not make sense by itself, the new list is used
+nowhere.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Nick Piggin <npiggin@suse.de>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

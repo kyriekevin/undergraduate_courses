@@ -1,0 +1,17 @@
+label: maintenance
+module: message queue	
+age: 2010-03-03
+title: mqueue: apply mathematics distributivity on mq_bytes calculation
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8834cf796a4320be2d3a70b1e4f9aba732a0f4ee
+lines: -4/+5
+category: ipc/mqueue.c
+
+Code size reduction:
+   text    data     bss     dec     hex filename
+   9941      72      16   10029    272d ipc/mqueue-BEFORE.o
+   9925      72      16   10013    271d ipc/mqueue-AFTER.o
+
+Signed-off-by: André Goddard Rosa <andre.goddard@gmail.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

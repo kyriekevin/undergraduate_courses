@@ -1,0 +1,31 @@
+label: feature
+module: semaphore	
+age: 2010-05-27
+title: ipc/sem.c: move wake_up_process out of the spinlock section
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=0a2b9d4c79671b05956806ede5d054e03ae56280
+lines: -32/+91
+category: ipc/sem.c
+
+The wake-up part of semtimedop() consists out of two steps:
+
+- the right tasks must be identified.
+- they must be woken up.
+
+Right now, both steps run while the array spinlock is held.  This patch
+reorders the code and moves the actual wake_up_process() behind the point
+where the spinlock is dropped.
+
+The code also moves setting sem->sem_otime to one place: It does not make
+sense to set the last modify time multiple times.
+
+[akpm@linux-foundation.org: repair kerneldoc]
+[akpm@linux-foundation.org: fix uninitialised retval]
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Chris Mason <chris.mason@oracle.com>
+Cc: Zach Brown <zach.brown@oracle.com>
+Cc: Jens Axboe <jens.axboe@oracle.com>
+Cc: Nick Piggin <npiggin@suse.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

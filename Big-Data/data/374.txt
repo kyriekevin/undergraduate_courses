@@ -1,0 +1,20 @@
+label: bug semantic generic
+consequence：wrong
+module: compatibility	message queue	semaphore	other	
+age: 2014-01-27
+title: ipc: remove braces for single statements
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3ab08fe20475658bab65118d599d03cd8ca44dd1
+lines: -19/+16
+category: ipc/compat.c ipc/mqueue.c ipc/sem.c ipc/util.c 
+
+Deal with checkpatch messages:
+     WARNING: braces {} are not necessary for single statement blocks
+
+Signed-off-by: Davidlohr Bueso <davidlohr@hp.com>
+Cc: Aswin Chandramouleeswaran <aswin@hp.com>
+Cc: Rik van Riel <riel@redhat.com>
+Acked-by: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

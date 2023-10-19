@@ -1,0 +1,36 @@
+label: reliability annotation
+module: message queue	shared memory	
+age: 2015-04-26
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9ec3a646fe09970f801ab15e0f1694060b9f19af
+lines: -12/+12
+category: ipc/mqueue.c ipc/shm.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull fourth vfs update from Al Viro:
+ "d_inode() annotations from David Howells (sat in for-next since before
+  the beginning of merge window) + four assorted fixes"
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs:
+  RCU pathwalk breakage when running into a symlink overmounting something
+  fix I_DIO_WAKEUP definition
+  direct-io: only inc/dec inode->i_dio_count for file systems
+  fs/9p: fix readdir()
+  VFS: assorted d_backing_inode() annotations
+  VFS: fs/inode.c helpers: d_inode() annotations
+  VFS: fs/cachefiles: d_backing_inode() annotations
+  VFS: fs library helpers: d_inode() annotations
+  VFS: assorted weird filesystems: d_inode() annotations
+  VFS: normal filesystems (and lustre): d_inode() annotations
+  VFS: security/: d_inode() annotations
+  VFS: security/: d_backing_inode() annotations
+  VFS: net/: d_inode() annotations
+  VFS: net/unix: d_backing_inode() annotations
+  VFS: kernel/: d_inode() annotations
+  VFS: audit: d_backing_inode() annotations
+  VFS: Fix up some ->d_inode accesses in the chelsio driver
+  VFS: Cachefiles should perform fs modifications on the top layer only
+  VFS: AF_UNIX sockets should call mknod on the top layer only
+
+

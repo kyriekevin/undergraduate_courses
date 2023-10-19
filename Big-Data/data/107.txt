@@ -1,0 +1,122 @@
+label: maintenance
+module: message	semaphore	shared memory	other	
+age: 2018-08-15
+title: Merge git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9a76aba02a37718242d7cdc294f0a3901928aa57
+lines: -0/+4
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c 
+
+Pull networking updates from David Miller:
+ "Highlights:
+
+   - Gustavo A. R. Silva keeps working on the implicit switch fallthru
+     changes.
+
+   - Support 802.11ax High-Efficiency wireless in cfg80211 et al, From
+     Luca Coelho.
+
+   - Re-enable ASPM in r8169, from Kai-Heng Feng.
+
+   - Add virtual XFRM interfaces, which avoids all of the limitations of
+     existing IPSEC tunnels. From Steffen Klassert.
+
+   - Convert GRO over to use a hash table, so that when we have many
+     flows active we don't traverse a long list during accumluation.
+
+   - Many new self tests for routing, TC, tunnels, etc. Too many
+     contributors to mention them all, but I'm really happy to keep
+     seeing this stuff.
+
+   - Hardware timestamping support for dpaa_eth/fsl-fman from Yangbo Lu.
+
+   - Lots of cleanups and fixes in L2TP code from Guillaume Nault.
+
+   - Add IPSEC offload support to netdevsim, from Shannon Nelson.
+
+   - Add support for slotting with non-uniform distribution to netem
+     packet scheduler, from Yousuk Seung.
+
+   - Add UDP GSO support to mlx5e, from Boris Pismenny.
+
+   - Support offloading of Team LAG in NFP, from John Hurley.
+
+   - Allow to configure TX queue selection based upon RX queue, from
+     Amritha Nambiar.
+
+   - Support ethtool ring size configuration in aquantia, from Anton
+     Mikaev.
+
+   - Support DSCP and flowlabel per-transport in SCTP, from Xin Long.
+
+   - Support list based batching and stack traversal of SKBs, this is
+     very exciting work. From Edward Cree.
+
+   - Busyloop optimizations in vhost_net, from Toshiaki Makita.
+
+   - Introduce the ETF qdisc, which allows time based transmissions. IGB
+     can offload this in hardware. From Vinicius Costa Gomes.
+
+   - Add parameter support to devlink, from Moshe Shemesh.
+
+   - Several multiplication and division optimizations for BPF JIT in
+     nfp driver, from Jiong Wang.
+
+   - Lots of prepatory work to make more of the packet scheduler layer
+     lockless, when possible, from Vlad Buslov.
+
+   - Add ACK filter and NAT awareness to sch_cake packet scheduler, from
+     Toke Høiland-Jørgensen.
+
+   - Support regions and region snapshots in devlink, from Alex Vesker.
+
+   - Allow to attach XDP programs to both HW and SW at the same time on
+     a given device, with initial support in nfp. From Jakub Kicinski.
+
+   - Add TLS RX offload and support in mlx5, from Ilya Lesokhin.
+
+   - Use PHYLIB in r8169 driver, from Heiner Kallweit.
+
+   - All sorts of changes to support Spectrum 2 in mlxsw driver, from
+     Ido Schimmel.
+
+   - PTP support in mv88e6xxx DSA driver, from Andrew Lunn.
+
+   - Make TCP_USER_TIMEOUT socket option more accurate, from Jon
+     Maxwell.
+
+   - Support for templates in packet scheduler classifier, from Jiri
+     Pirko.
+
+   - IPV6 support in RDS, from Ka-Cheong Poon.
+
+   - Native tproxy support in nf_tables, from Máté Eckl.
+
+   - Maintain IP fragment queue in an rbtree, but optimize properly for
+     in-order frags. From Peter Oskolkov.
+
+   - Improvde handling of ACKs on hole repairs, from Yuchung Cheng"
+
+* git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next: (1996 commits)
+  bpf: test: fix spelling mistake "REUSEEPORT" -> "REUSEPORT"
+  hv/netvsc: Fix NULL dereference at single queue mode fallback
+  net: filter: mark expected switch fall-through
+  xen-netfront: fix warn message as irq device name has '/'
+  cxgb4: Add new T5 PCI device ids 0x50af and 0x50b0
+  net: dsa: mv88e6xxx: missing unlock on error path
+  rds: fix building with IPV6=m
+  inet/connection_sock: prefer _THIS_IP_ to current_text_addr
+  net: dsa: mv88e6xxx: bitwise vs logical bug
+  net: sock_diag: Fix spectre v1 gadget in __sock_diag_cmd()
+  ieee802154: hwsim: using right kind of iteration
+  net: hns3: Add vlan filter setting by ethtool command -K
+  net: hns3: Set tx ring' tc info when netdev is up
+  net: hns3: Remove tx ring BD len register in hns3_enet
+  net: hns3: Fix desc num set to default when setting channel
+  net: hns3: Fix for phy link issue when using marvell phy driver
+  net: hns3: Fix for information of phydev lost problem when down/up
+  net: hns3: Fix for command format parsing error in hclge_is_all_function_id_zero
+  net: hns3: Add support for serdes loopback selftest
+  bnxt_en: take coredump_record structure off stack
+  ...
+
+

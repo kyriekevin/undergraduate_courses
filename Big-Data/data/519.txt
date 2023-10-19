@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2012-07-23
+title: switch dentry_open() to struct path, make it grab references itself
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=765927b2d508712d320c8934db963bbe14c3fcec
+lines: -70/+47
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

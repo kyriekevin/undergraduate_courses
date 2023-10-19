@@ -1,0 +1,18 @@
+label: feature
+module: semaphore	
+age: 2009-04-15
+title: rculist: use list_entry_rcu in places where it's appropriate
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=05725f7eb4b8acb147c5fc7b91397b1f6bcab00d
+lines: -2/+2
+category: ipc/sem.c
+
+Use previously introduced list_entry_rcu instead of an open-coded
+list_entry + rcu_dereference combination.
+
+Signed-off-by: Jiri Pirko <jpirko@redhat.com>
+Reviewed-by: Paul E. McKenney <paulmck@linux.vnet.ibm.com>
+Cc: dipankar@in.ibm.com
+LKML-Reference: <20090414181715.GA3634@psychotron.englab.brq.redhat.com>
+Signed-off-by: Ingo Molnar <mingo@elte.hu>
+
+

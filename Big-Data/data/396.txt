@@ -1,0 +1,18 @@
+label: feature
+module: other	
+age: 2013-09-11
+title: ipc: drop ipc_lock_check
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=20b8875abcf2daa1dda5cf70bd6369df5e85d4c1
+lines: -17/+0
+category: ipc/util.c ipc/util.h 
+
+No remaining users, we now use ipc_obtain_object_check().
+
+Signed-off-by: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Cc: Sedat Dilek <sedat.dilek@gmail.com>
+Cc: Rik van Riel <riel@redhat.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

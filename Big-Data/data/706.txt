@@ -1,0 +1,18 @@
+label: feature
+module: semaphore	
+age: 2008-07-25
+title: ipc/sem.c: remove unused entries from struct sem_queue
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2c0c29d414087f3b021059673c20a7088f5f1fff
+lines: -2/+0
+category: ipc/sem.c
+
+sem_queue.sma and sem_queue.id were never used, the attached patch removes
+them.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Reviewed-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

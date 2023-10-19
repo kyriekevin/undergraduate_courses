@@ -1,0 +1,11 @@
+label: performance access optimization
+module: message queue	
+age: 2017-11-27
+title: ipc, kernel, mm: annotate ->poll() instances
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=9dd957485d7d896ec18d8e2f9dd410efe71eca34
+lines: -2/+2
+category: ipc/mqueue.c
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

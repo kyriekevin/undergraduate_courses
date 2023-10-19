@@ -1,0 +1,17 @@
+label: bug semantic generic
+consequence：wrong
+module: other	
+age: 2008-02-06
+title: make ipc/util.c:sysvipc_find_ipc() static
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b524b9adb3f655697fe6df9197b3ed6f14bc1729
+lines: -2/+2
+category: ipc/util.c
+
+sysvipc_find_ipc() can become static.
+
+Signed-off-by: Adrian Bunk <bunk@kernel.org>
+Acked-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,14 @@
+label: feature
+module: other	
+age: 2019-11-15
+title: y2038: remove CONFIG_64BIT_TIME
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=3ca47e958a64b1116a2c35e65dcf467fc53d52de
+lines: -1/+1
+category: ipc/syscall.c
+
+The CONFIG_64BIT_TIME option is defined on all architectures, and can
+be removed for simplicity now.
+
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+
+

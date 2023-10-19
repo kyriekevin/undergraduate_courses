@@ -1,0 +1,18 @@
+label: performance store optimization
+module: message	
+age: 2006-07-31
+title: [PATCH] ipc/msg.c: clean up coding style
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=5a06a363ef48444186f18095ae1b932dddbbfa89
+lines: -184/+205
+category: ipc/msg.c
+
+Clean up ipc/msg.c to conform to Documentation/CodingStyle.  (before it was
+an inconsistent hodepodge of various coding styles)
+
+Verified that the before/after .o's are identical.
+
+Signed-off-by: Ingo Molnar <mingo@elte.hu>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

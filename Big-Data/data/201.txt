@@ -1,0 +1,11 @@
+label: performance access optimization
+module: compatibility	shared memory	
+age: 2017-07-15
+title: shmat(2): move compat to native
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a78ee9ed2f828e1960f366bf7ab204e7f19924c7
+lines: -16/+19
+category: ipc/compat.c ipc/shm.c 
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

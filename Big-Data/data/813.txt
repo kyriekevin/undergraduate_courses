@@ -1,0 +1,21 @@
+label: reliability debug
+module: semaphore	
+age: 2006-10-02
+title: [PATCH] ipc: replace kmalloc and memset in get_undo_list with kzalloc
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=2453a3062d36f39f01302f9f1ad18e7a0c54fe38
+lines: -4/+1
+category: ipc/sem.c
+
+Simplify get_undo_list() by dropping the unnecessary cast, removing the
+size variable, and switching to kzalloc() instead of a kmalloc() followed
+by a memset().
+
+This cleanup was split then modified from Jes Sorenson's Task Notifiers
+patches.
+
+Signed-off-by: Matt Helsley <matthltc@us.ibm.com>
+Cc: Jes Sorensen <jes@sgi.com>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

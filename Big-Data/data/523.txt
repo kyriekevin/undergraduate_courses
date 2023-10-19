@@ -1,0 +1,57 @@
+label: reliability error enhancement
+module: shared memory	
+age: 2012-06-01
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1193755ac6328ad240ba987e6ec41d5e8baf0680
+lines: -1/+6
+category: ipc/shm.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+
+Pull vfs changes from Al Viro.
+ "A lot of misc stuff.  The obvious groups:
+   * Miklos' atomic_open series; kills the damn abuse of
+     ->d_revalidate() by NFS, which was the major stumbling block for
+     all work in that area.
+   * ripping security_file_mmap() and dealing with deadlocks in the
+     area; sanitizing the neighborhood of vm_mmap()/vm_munmap() in
+     general.
+   * ->encode_fh() switched to saner API; insane fake dentry in
+     mm/cleancache.c gone.
+   * assorted annotations in fs (endianness, __user)
+   * parts of Artem's ->s_dirty work (jff2 and reiserfs parts)
+   * ->update_time() work from Josef.
+   * other bits and pieces all over the place.
+
+  Normally it would've been in two or three pull requests, but
+  signal.git stuff had eaten a lot of time during this cycle ;-/"
+
+Fix up trivial conflicts in Documentation/filesystems/vfs.txt (the
+'truncate_range' inode method was removed by the VM changes, the VFS
+update adds an 'update_time()' method), and in fs/btrfs/ulist.[ch] (due
+to sparse fix added twice, with other changes nearby).
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs: (95 commits)
+  nfs: don't open in ->d_revalidate
+  vfs: retry last component if opening stale dentry
+  vfs: nameidata_to_filp(): don't throw away file on error
+  vfs: nameidata_to_filp(): inline __dentry_open()
+  vfs: do_dentry_open(): don't put filp
+  vfs: split __dentry_open()
+  vfs: do_last() common post lookup
+  vfs: do_last(): add audit_inode before open
+  vfs: do_last(): only return EISDIR for O_CREAT
+  vfs: do_last(): check LOOKUP_DIRECTORY
+  vfs: do_last(): make ENOENT exit RCU safe
+  vfs: make follow_link check RCU safe
+  vfs: do_last(): use inode variable
+  vfs: do_last(): inline walk_component()
+  vfs: do_last(): make exit RCU safe
+  vfs: split do_lookup()
+  Btrfs: move over to use ->update_time
+  fs: introduce inode operation ->update_time
+  reiserfs: get rid of resierfs_sync_super
+  reiserfs: mark the superblock as dirty a bit later
+  ...
+
+

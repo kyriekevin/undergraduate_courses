@@ -1,0 +1,19 @@
+label: performance store optimization
+module: shared memory	
+age: 2009-06-09
+title: shm: fix unused warnings on nommu
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=586c7e6a280580fd94b662bf486f9bb31098d14b
+lines: -2/+5
+category: ipc/shm.c
+
+The massive nommu update (8feae131) resulted in these warnings:
+ipc/shm.c: In function `sys_shmdt':
+ipc/shm.c:974: warning: unused variable `size'
+ipc/shm.c:972: warning: unused variable `next'
+
+Signed-off-by: Mike Frysinger <vapier@gentoo.org>
+Cc: David Howells <dhowells@redhat.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

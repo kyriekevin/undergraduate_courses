@@ -1,0 +1,16 @@
+label: feature
+module: message	semaphore	shared memory	
+age: 2018-03-27
+title: ipc: Directly call the security hook in ipc_ops.associate
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=50ab44b1c5d1b13305ce8acb74c8e50e0dcbaedc
+lines: -27/+3
+category: ipc/msg.c ipc/sem.c ipc/shm.c 
+
+After the last round of cleanups the shm, sem, and msg associate
+operations just became trivial wrappers around the appropriate security
+method.  Simplify things further by just calling the security method
+directly.
+
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

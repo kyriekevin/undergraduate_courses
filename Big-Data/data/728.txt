@@ -1,0 +1,25 @@
+label: performance synchronization
+module: other	
+age: 2008-04-29
+title: ipc: re-enable msgmni automatic recomputing msgmni if set to negative
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6546bc4279241e8fa432de1bb63a4f6f791fd669
+lines: -10/+44
+category: ipc/ipc_sysctl.c ipc/ipcns_notifier.c 
+
+The enhancement as asked for by Yasunori: if msgmni is set to a negative
+value, register it back into the ipcns notifier chain.
+
+A new interface has been added to the notification mechanism:
+notifier_chain_cond_register() registers a notifier block only if not already
+registered.  With that new interface we avoid taking care of the states
+changes in procfs.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Yasunori Goto <y-goto@jp.fujitsu.com>
+Cc: Matt Helsley <matthltc@us.ibm.com>
+Cc: Mingming Cao <cmm@us.ibm.com>
+Cc: Pierre Peiffer <pierre.peiffer@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,27 @@
+label: bug concurrency
+consequence：deadlock
+module: semaphore	
+age: 2009-12-16
+title: ipc/sem.c: optimize if semops fail
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b6e90822e77cd476c18410f7003197d466e36ac6
+lines: -2/+2
+category: ipc/sem.c
+
+Reduce the amount of scanning of the list of pending semaphore operations:
+If try_atomic_semop failed, then no changes were applied.  Thus no need to
+restart.
+
+Additionally, this patch correct an incorrect comment: It's possible to
+wait for arbitrary semaphore values (do a dec by <x>, wait-for-zero, inc
+by <x> in one atomic operation)
+
+Both changes are from Nick Piggin, the patch is the result of a different
+split of the individual changes.
+
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Nick Piggin <npiggin@suse.de>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

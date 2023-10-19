@@ -1,0 +1,31 @@
+label: reliability debug
+module: other	
+age: 2010-03-22
+title: ppc64 sys_ipc breakage in 2.6.34-rc2
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=45575f5a426c01ec68cd33d998267ba2f6278fac
+lines: -1/+1
+category: ipc/syscall.c
+
+I chased down a fail on ppc64 on 2.6.34-rc2 where an application that
+uses shared memory was getting a SEGV.
+
+Commit baed7fc9b580bd3fb8252ff1d9b36eaf1f86b670 ("Add generic sys_ipc
+wrapper") changed the second argument from an unsigned long to an int.
+When we call shmget the system call wrappers for sys_ipc will sign
+extend second (ie the size) which truncates it.  It took a while to
+track down because the call succeeds and strace shows the untruncated
+size :)
+
+The patch below changes second from an int to an unsigned long which
+fixes shmget on ppc64 (and I assume s390, sparc64 and mips64).
+
+Signed-off-by: Anton Blanchard <anton@samba.org>
+--
+
+I assume the function prototypes for the other IPC methods would cause us
+to sign or zero extend second where appropriate (avoiding any security
+issues). Come to think of it, the syscall wrappers for each method should do
+that for us as well.
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

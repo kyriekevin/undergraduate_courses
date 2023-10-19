@@ -1,0 +1,19 @@
+label: performance speed optimization
+module: shared memory	
+age: 2015-06-30
+title: ipc,shm: move BUG_ON check into shm_lock
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c5c8975b2eb4eb7604e8ce4f762987f56d2a96a2
+lines: -5/+5
+category: ipc/shm.c
+
+Upon every shm_lock call, we BUG_ON if an error was returned, indicating
+racing either in idr or in shm_destroy.  Move this logic into the locking.
+
+[akpm@linux-foundation.org: simplify code]
+Signed-off-by: Davidlohr Bueso <dbueso@suse.de>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,15 @@
+label: reliability annotation
+module: shared memory	
+age: 2009-12-11
+title: file ->get_unmapped_area() shouldn't duplicate work of get_unmapped_area()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c4caa778157dbbf04116f0ac2111e389b5cd7a29
+lines: -14/+17
+category: ipc/shm.c
+
+... we should call mm ->get_unmapped_area() instead and let our caller
+do the final checks.
+
+Acked-by: David S. Miller <davem@davemloft.net>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

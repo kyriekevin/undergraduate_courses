@@ -1,0 +1,17 @@
+label: reliability debug
+module: compatibility	
+age: 2014-03-06
+title: ipc/compat_sys_msgrcv: change msgtyp type from long to compat_long_t
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=291fdb0bcebd5e8db6af767c1fdc522167dad73d
+lines: -2/+2
+category: ipc/compat.c
+
+Change the type of compat_sys_msgrcv's msgtyp parameter from long
+to compat_long_t, since compat user space passes only a 32 bit signed
+value.
+Let the compat wrapper do proper sign extension to 64 bit of this
+parameter.
+
+Signed-off-by: Heiko Carstens <heiko.carstens@de.ibm.com>
+
+

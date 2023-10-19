@@ -1,0 +1,19 @@
+label: feature
+module: semaphore	other	
+age: 2007-05-08
+title: header cleaning: don't include smp_lock.h when not used
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e63340ae6b6205fef26b40a75673d1c9c0c8bb90
+lines: -2/+0
+category: ipc/sem.c ipc/util.c 
+
+Remove includes of <linux/smp_lock.h> where it is not used/needed.
+Suggested by Al Viro.
+
+Builds cleanly on x86_64, i386, alpha, ia64, powerpc, sparc,
+sparc64, and arm (all 59 defconfigs).
+
+Signed-off-by: Randy Dunlap <randy.dunlap@oracle.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

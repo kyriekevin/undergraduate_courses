@@ -1,0 +1,36 @@
+label: bug semantic generic
+consequence：error
+module: shared memory	
+age: 2012-03-22
+title: Merge branch 'akpm' (Andrew's patch-bomb)
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=95211279c5ad00a317c98221d7e4365e02f20836
+lines: -1/+1
+category: ipc/shm.c
+
+Merge first batch of patches from Andrew Morton:
+ "A few misc things and all the MM queue"
+
+* emailed from Andrew Morton <akpm@linux-foundation.org>: (92 commits)
+  memcg: avoid THP split in task migration
+  thp: add HPAGE_PMD_* definitions for !CONFIG_TRANSPARENT_HUGEPAGE
+  memcg: clean up existing move charge code
+  mm/memcontrol.c: remove unnecessary 'break' in mem_cgroup_read()
+  mm/memcontrol.c: remove redundant BUG_ON() in mem_cgroup_usage_unregister_event()
+  mm/memcontrol.c: s/stealed/stolen/
+  memcg: fix performance of mem_cgroup_begin_update_page_stat()
+  memcg: remove PCG_FILE_MAPPED
+  memcg: use new logic for page stat accounting
+  memcg: remove PCG_MOVE_LOCK flag from page_cgroup
+  memcg: simplify move_account() check
+  memcg: remove EXPORT_SYMBOL(mem_cgroup_update_page_stat)
+  memcg: kill dead prev_priority stubs
+  memcg: remove PCG_CACHE page_cgroup flag
+  memcg: let css_get_next() rely upon rcu_read_lock()
+  cgroup: revert ss_id_lock to spinlock
+  idr: make idr_get_next() good for rcu_read_lock()
+  memcg: remove unnecessary thp check in page stat accounting
+  memcg: remove redundant returns
+  memcg: enum lru_list lru
+  ...
+
+

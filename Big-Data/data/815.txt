@@ -1,0 +1,16 @@
+label: performance other
+module: semaphore	
+age: 2006-10-02
+title: [PATCH] IPC namespace - sem
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=e38935341a3105471848220b5750e1ea8722d197
+lines: -71/+130
+category: ipc/sem.c
+
+IPC namespace support for IPC sem code.
+
+Signed-off-by: Pavel Emelianiov <xemul@openvz.org>
+Signed-off-by: Kirill Korotaev <dev@openvz.org>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

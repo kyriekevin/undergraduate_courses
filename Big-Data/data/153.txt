@@ -1,0 +1,15 @@
+label: feature
+module: other	
+age: 2018-03-24
+title: ipc: Move IPCMNI from include/ipc.h into ipc/util.h
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f83a396d06d499029fe6d32e326605a2b5ca4eff
+lines: -0/+1
+category: ipc/util.h
+
+The definition IPCMNI is only used in ipc/util.h and ipc/util.c.  So
+there is no reason to keep it in a header file that the whole kernel
+can see.  Move it into util.h to simplify future maintenance.
+
+Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+
+

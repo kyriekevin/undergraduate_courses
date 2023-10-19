@@ -1,0 +1,14 @@
+label: feature
+module: shared memory	
+age: 2017-09-25
+title: fix a typo in put_compat_shm_info()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b776e4b1a990045a7c70798f1f353c3160c26594
+lines: -1/+1
+category: ipc/shm.c
+
+"uip" misspelled as "up"; unfortunately, the latter happens to be
+a function and gcc is happy to convert it to void *...
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

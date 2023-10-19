@@ -1,0 +1,21 @@
+label: bug semantic state
+consequence：wrong
+module: message	
+age: 2013-05-01
+title: ipc: implement MSG_COPY as a new receive mode
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=8ac6ed5857c8d583e0dc2ab2165966ab143930ad
+lines: -13/+9
+category: ipc/msg.c
+
+Teach the helper routines about MSG_COPY so that msgtyp is preserved as
+the message number to copy.
+
+The security functions affected by this change were audited and no
+additional changes are necessary.
+
+Signed-off-by: Peter Hurley <peter@hurleysoftware.com>
+Acked-by: Stanislav Kinsbursky <skinsbursky@parallels.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,24 @@
+label: bug semantic logic
+consequence：wrong
+module: semaphore	
+age: 2008-02-08
+title: IPC/semaphores: consolidate SEM_STAT and IPC_STAT commands
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4b9fcb0ec60584d639ad105c42b75a3447071e47
+lines: -22/+16
+category: ipc/sem.c
+
+These commands (SEM_STAT and IPC_STAT) are rather doing the same things
+(only the meaning of the id given as input and the return value differ).
+However, for the semaphores, they are handled in two different places (two
+different functions).
+
+This patch consolidates this for clarification by handling these both
+commands in the same place in semctl_nolock().  It also removes one unused
+parameter for this function.
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

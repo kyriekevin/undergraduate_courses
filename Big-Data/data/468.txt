@@ -1,0 +1,38 @@
+label: reliability debug
+module: compatibility	semaphore	other	
+age: 2013-05-01
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=08d76760832993050ad8c25e63b56773ef2ca303
+lines: -126/+177
+category: ipc/compat.c ipc/sem.c ipc/syscall.c 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/viro/signal
+
+Pull compat cleanup from Al Viro:
+ "Mostly about syscall wrappers this time; there will be another pile
+  with patches in the same general area from various people, but I'd
+  rather push those after both that and vfs.git pile are in."
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/signal:
+  syscalls.h: slightly reduce the jungles of macros
+  get rid of union semop in sys_semctl(2) arguments
+  make do_mremap() static
+  sparc: no need to sign-extend in sync_file_range() wrapper
+  ppc compat wrappers for add_key(2) and request_key(2) are pointless
+  x86: trim sys_ia32.h
+  x86: sys32_kill and sys32_mprotect are pointless
+  get rid of compat_sys_semctl() and friends in case of ARCH_WANT_OLD_COMPAT_IPC
+  merge compat sys_ipc instances
+  consolidate compat lookup_dcookie()
+  convert vmsplice to COMPAT_SYSCALL_DEFINE
+  switch getrusage() to COMPAT_SYSCALL_DEFINE
+  switch epoll_pwait to COMPAT_SYSCALL_DEFINE
+  convert sendfile{,64} to COMPAT_SYSCALL_DEFINE
+  switch signalfd{,4}() to COMPAT_SYSCALL_DEFINE
+  make SYSCALL_DEFINE<n>-generated wrappers do asmlinkage_protect
+  make HAVE_SYSCALL_WRAPPERS unconditional
+  consolidate cond_syscall and SYSCALL_ALIAS declarations
+  teach SYSCALL_DEFINE<n> how to deal with long long/unsigned long long
+  get rid of duplicate logics in __SC_....[1-6] definitions
+
+

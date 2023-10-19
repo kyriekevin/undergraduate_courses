@@ -1,0 +1,13 @@
+label: reliability annotation
+module: compatibility	message queue	message	other	
+age: 2010-05-10
+title: Merge branch 'linus' into timers/core
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=dbb6be6d5e974c42bbecd183effaa0df69e1dd8b
+lines: -3/+2
+category: ipc/compat.c ipc/mqueue.c ipc/msg.c ipc/syscall.c 
+
+Reason: Further posix_cpu_timer patches depend on mainline changes
+
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+
+

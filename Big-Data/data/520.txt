@@ -1,0 +1,13 @@
+label: feature
+module: message queue	
+age: 2012-07-14
+title: don't pass nameidata * to vfs_create()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=312b63fba9e88a0dcf800834b8ede8716bcc1e17
+lines: -1/+1
+category: ipc/mqueue.c
+
+all we want is a boolean flag, same as the method gets now
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

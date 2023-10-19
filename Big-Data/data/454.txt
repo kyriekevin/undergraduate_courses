@@ -1,0 +1,28 @@
+label: feature
+module: semaphore	
+age: 2013-05-01
+title: ipc,sem: open code and rename sem_lock
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=c460b662d5cae467f1c341c59b02a5c5e68fed0b
+lines: -6/+23
+category: ipc/sem.c
+
+Rename sem_lock() to sem_obtain_lock(), so we can introduce a sem_lock()
+later that only locks the sem_array and does nothing else.
+
+Open code the locking from ipc_lock() in sem_obtain_lock() so we can
+introduce finer grained locking for the sem_array in the next patch.
+
+[akpm@linux-foundation.org: propagate the ipc_obtain_object() errno out of sem_obtain_lock()]
+Signed-off-by: Rik van Riel <riel@redhat.com>
+Acked-by: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Cc: Chegu Vinod <chegu_vinod@hp.com>
+Cc: Emmanuel Benisty <benisty.e@gmail.com>
+Cc: Jason Low <jason.low2@hp.com>
+Cc: Michel Lespinasse <walken@google.com>
+Cc: Peter Hurley <peter@hurleysoftware.com>
+Cc: Stanislav Kinsbursky <skinsbursky@parallels.com>
+Tested-by: Sedat Dilek <sedat.dilek@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

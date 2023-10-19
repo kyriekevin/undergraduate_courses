@@ -1,0 +1,16 @@
+label: feature
+module: message	semaphore	shared memory	other	
+age: 2007-10-19
+title: ipc: fix wrong comments
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f4566f04854d78acfc74b9acb029744acde9d033
+lines: -45/+118
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+This patch fixes the wrong / obsolete comments in the ipc code.  Also adds
+a missing lock around ipc_get_maxid() in shm_get_stat().
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,19 @@
+label: feature
+module: semaphore	
+age: 2008-07-25
+title: ipc/sem.c: convert sem_array.sem_pending to struct list_head
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a1193f8ec091cd8fd309cc2982abe4499f6f2b4d
+lines: -57/+35
+category: ipc/sem.c
+
+sem_array.sem_pending is a double linked list, the attached patch converts
+it to struct list_head.
+
+[akpm@linux-foundation.org: coding-style fixes]
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Reviewed-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Cc: Pierre Peiffer <peifferp@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

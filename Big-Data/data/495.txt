@@ -1,0 +1,23 @@
+label: feature
+module: compatibility	message	
+age: 2013-01-04
+title: ipc: message queue receive cleanup
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=f9dd87f4738c7555aca2cdf8cb2b2326cafb0cad
+lines: -47/+42
+category: ipc/compat.c ipc/msg.c 
+
+Move all message related manipulation into one function msg_fill().
+Actually, two functions because of the compat one.
+
+[akpm@linux-foundation.org: checkpatch fixes]
+Signed-off-by: Stanislav Kinsbursky <skinsbursky@parallels.com>
+Cc: Serge Hallyn <serge.hallyn@canonical.com>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: Pavel Emelyanov <xemul@parallels.com>
+Cc: Al Viro <viro@zeniv.linux.org.uk>
+Cc: KOSAKI Motohiro <kosaki.motohiro@jp.fujitsu.com>
+Cc: Michael Kerrisk <mtk.manpages@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

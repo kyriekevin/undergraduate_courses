@@ -1,0 +1,17 @@
+label: maintenance
+module: message queue	
+age: 2010-03-03
+title: mqueue: simplify do_open() error handling
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=04db0dde0ee1c29110642dff57fba9e438eb805c
+lines: -6/+10
+category: ipc/mqueue.c
+
+It reduces code size:
+text    data     bss     dec     hex filename
+9925      72      16   10013    271d ipc/mqueue-BEFORE.o
+9885      72      16    9973    26f5 ipc/mqueue-AFTER.o
+
+Signed-off-by: André Goddard Rosa <andre.goddard@gmail.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

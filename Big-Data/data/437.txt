@@ -1,0 +1,25 @@
+label: bug semantic logic
+consequence：error
+module: semaphore	
+age: 2013-05-09
+title: ipc,sem: fix semctl(..., GETZCNT)
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ebc2e5e6a408a0e6ed63c0ba98c2c8a232c6b4f4
+lines: -0/+7
+category: ipc/sem.c
+
+The semctl GETZCNT returns the number of semops waiting for the
+specified semaphore to become zero.  After commit 9f1bc2c9022c
+("ipc,sem: have only one list in struct sem_queue"), the semops waiting
+on just one semaphore are waiting on that semaphore's list.
+
+In order to return the correct count, we have to walk that list too, in
+addition to the sem_array's list for complex operations.
+
+This bug broke dbench; it works again with this patch applied.
+
+Signed-off-by: Rik van Riel <riel@redhat.com>
+Reported-by: Kent Overstreet <koverstreet@google.com>
+Tested-by: Kent Overstreet <koverstreet@google.com>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

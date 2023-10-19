@@ -1,0 +1,15 @@
+label: maintenance
+module: message	semaphore	shared memory	other	
+age: 2014-06-06
+title: ipc, kernel: clear whitespace
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=46c0a8ca3e841b14a1d981e2116eaf2d1c7f2235
+lines: -28/+27
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+trailing whitespace
+
+Signed-off-by: Paul McQuade <paulmcquad@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

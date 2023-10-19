@@ -1,0 +1,17 @@
+label: reliability debug
+module: message queue	
+age: 2007-05-11
+title: [PATCH] complete message queue auditing
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=4fc03b9beb2314f3adb9e72b7935a80c577954d1
+lines: -0/+4
+category: ipc/mqueue.c
+
+Handle the edge cases for POSIX message queue auditing. Collect inode
+info when opening an existing mq, and for send/receive operations. Remove
+audit_inode_update() as it has really evolved into the equivalent of
+audit_inode().
+
+Signed-off-by: Amy Griffis <amy.griffis@hp.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

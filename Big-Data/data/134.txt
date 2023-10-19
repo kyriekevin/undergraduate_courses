@@ -1,0 +1,62 @@
+label: feature
+module: message	semaphore	shared memory	other	
+age: 2018-04-02
+title: Merge branch 'syscalls-next' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=642e7fd23353e22290e3d51719fcb658dc252342
+lines: -49/+172
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/syscall.c ipc/util.h 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/brodo/linux
+
+Pull removal of in-kernel calls to syscalls from Dominik Brodowski:
+ "System calls are interaction points between userspace and the kernel.
+  Therefore, system call functions such as sys_xyzzy() or
+  compat_sys_xyzzy() should only be called from userspace via the
+  syscall table, but not from elsewhere in the kernel.
+
+  At least on 64-bit x86, it will likely be a hard requirement from
+  v4.17 onwards to not call system call functions in the kernel: It is
+  better to use use a different calling convention for system calls
+  there, where struct pt_regs is decoded on-the-fly in a syscall wrapper
+  which then hands processing over to the actual syscall function. This
+  means that only those parameters which are actually needed for a
+  specific syscall are passed on during syscall entry, instead of
+  filling in six CPU registers with random user space content all the
+  time (which may cause serious trouble down the call chain). Those
+  x86-specific patches will be pushed through the x86 tree in the near
+  future.
+
+  Moreover, rules on how data may be accessed may differ between kernel
+  data and user data. This is another reason why calling sys_xyzzy() is
+  generally a bad idea, and -- at most -- acceptable in arch-specific
+  code.
+
+  This patchset removes all in-kernel calls to syscall functions in the
+  kernel with the exception of arch/. On top of this, it cleans up the
+  three places where many syscalls are referenced or prototyped, namely
+  kernel/sys_ni.c, include/linux/syscalls.h and include/linux/compat.h"
+
+* 'syscalls-next' of git://git.kernel.org/pub/scm/linux/kernel/git/brodo/linux: (109 commits)
+  bpf: whitelist all syscalls for error injection
+  kernel/sys_ni: remove {sys_,sys_compat} from cond_syscall definitions
+  kernel/sys_ni: sort cond_syscall() entries
+  syscalls/x86: auto-create compat_sys_*() prototypes
+  syscalls: sort syscall prototypes in include/linux/compat.h
+  net: remove compat_sys_*() prototypes from net/compat.h
+  syscalls: sort syscall prototypes in include/linux/syscalls.h
+  kexec: move sys_kexec_load() prototype to syscalls.h
+  x86/sigreturn: use SYSCALL_DEFINE0
+  x86: fix sys_sigreturn() return type to be long, not unsigned long
+  x86/ioport: add ksys_ioperm() helper; remove in-kernel calls to sys_ioperm()
+  mm: add ksys_readahead() helper; remove in-kernel calls to sys_readahead()
+  mm: add ksys_mmap_pgoff() helper; remove in-kernel calls to sys_mmap_pgoff()
+  mm: add ksys_fadvise64_64() helper; remove in-kernel call to sys_fadvise64_64()
+  fs: add ksys_fallocate() wrapper; remove in-kernel calls to sys_fallocate()
+  fs: add ksys_p{read,write}64() helpers; remove in-kernel calls to syscalls
+  fs: add ksys_truncate() wrapper; remove in-kernel calls to sys_truncate()
+  fs: add ksys_sync_file_range helper(); remove in-kernel calls to syscall
+  kernel: add ksys_setsid() helper; remove in-kernel call to sys_setsid()
+  kernel: add ksys_unshare() helper; remove in-kernel calls to sys_unshare()
+  ...
+
+

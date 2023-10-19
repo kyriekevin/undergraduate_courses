@@ -1,0 +1,22 @@
+label: bug semantic logic
+consequence：wrong
+module: message queue	
+age: 2013-01-27
+title: userns: Allow the unprivileged users to mount mqueue fs
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=bc1b69ed22a704fb1cc83d75b2eb46508a06c820
+lines: -0/+1
+category: ipc/mqueue.c
+
+This patch allow the unprivileged user to mount mqueuefs in
+user ns.
+
+If two userns share the same ipcns,the files in mqueue fs
+should be seen in both these two userns.
+
+If the userns has its own ipcns,it has its own mqueue fs too.
+ipcns has already done this job well.
+
+Signed-off-by: Gao feng <gaofeng@cn.fujitsu.com>
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+
+

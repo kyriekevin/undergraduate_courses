@@ -1,0 +1,18 @@
+label: performance store optimization
+module: other	
+age: 2017-07-12
+title: ipc/util: drop ipc_rcu_free()
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=5ccc8fb54f1c083f1dc7e073150ec18d43457872
+lines: -8/+0
+category: ipc/util.c ipc/util.h 
+
+There are no more callers of ipc_rcu_free(), so remove it.
+
+Link: http://lkml.kernel.org/r/20170525185107.12869-9-manfred@colorfullife.com
+Signed-off-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

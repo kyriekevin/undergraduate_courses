@@ -1,0 +1,12 @@
+label: bug semantic generic
+consequence：wrong
+module: semaphore	
+age: 2005-12-24
+title: Fix silly typo ("smb" vs "smp")
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1224b375ed7982128602a3fa1da53eeeac1750b4
+lines: -1/+1
+category: ipc/sem.c
+
+Introduced by commit 6003a93e7bf6c02f33c02976ff364785d4273295
+
+

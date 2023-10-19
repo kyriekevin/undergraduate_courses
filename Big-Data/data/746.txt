@@ -1,0 +1,43 @@
+label: performance store optimization
+module: other	
+age: 2008-02-08
+title: ipc: uninline some code from util.h
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=b2d75cddc83a349ef5633f609b9734b6b957f90f
+lines: -58/+57
+category: ipc/util.c ipc/util.h 
+
+ipc_lock_check_down(), ipc_lock_check() and ipcget() seem too large to be
+inline.  Besides, they give no optimization being inline as they perform
+calls inside in any case.
+
+Moving them into ipc/util.c saves 500 bytes of vmlinux and shortens IPC
+internal API.
+
+$ ./scripts/bloat-o-meter vmlinux-orig vmlinux
+add/remove: 3/2 grow/shrink: 0/10 up/down: 490/-989 (-499)
+function                                     old     new   delta
+ipcget                                         -     392    +392
+ipc_lock_check_down                            -      49     +49
+ipc_lock_check                                 -      49     +49
+sys_semget                                   119     105     -14
+sys_shmget                                   108      86     -22
+sys_msgget                                   100      78     -22
+do_msgsnd                                    665     631     -34
+do_msgrcv                                    680     644     -36
+do_shmat                                     771     733     -38
+sys_msgctl                                  1302    1229     -73
+ipcget_new                                    80       -     -80
+sys_semtimedop                              1534    1452     -82
+sys_semctl                                  2034    1922    -112
+sys_shmctl                                  1919    1765    -154
+ipcget_public                                322       -    -322
+
+The ipcget() growth is the result of gcc inlining of currently static
+ipcget_new/_public.
+
+Signed-off-by: Pavel Emelyanov <xemul@openvz.org>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

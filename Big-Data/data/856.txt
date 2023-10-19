@@ -1,0 +1,18 @@
+label: feature
+module: other	
+age: 2005-11-07
+title: [PATCH] more kernel-doc cleanups, additions
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=1e5d533142c1c178a31d4cc81837eb078f9269bc
+lines: -4/+5
+category: ipc/util.c
+
+Various core kernel-doc cleanups:
+- add missing function parameters in ipc, irq/manage, kernel/sys,
+  kernel/sysctl, and mm/slab;
+- move description to just above function for kernel_restart()
+
+Signed-off-by: Randy Dunlap <rdunlap@xenotime.net>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

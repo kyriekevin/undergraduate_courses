@@ -1,0 +1,20 @@
+label: performance store optimization
+module: other	
+age: 2013-09-11
+title: ipc: drop ipc_lock_by_ptr
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=32a2750010981216fb788c5190fb0e646abfab30
+lines: -9/+6
+category: ipc/namespace.c ipc/util.c ipc/util.h 
+
+After previous cleanups and optimizations, this function is no longer
+heavily used and we don't have a good reason to keep it.  Update the few
+remaining callers and get rid of it.
+
+Signed-off-by: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Cc: Sedat Dilek <sedat.dilek@gmail.com>
+Cc: Rik van Riel <riel@redhat.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

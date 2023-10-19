@@ -1,0 +1,22 @@
+label: performance synchronization
+module: other	
+age: 2007-02-14
+title: [PATCH] sysctl: move SYSV IPC sysctls to their own file
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a5494dcd8b92dce64317f2f7dd0d62747c54980b
+lines: -0/+184
+category: ipc/Makefile 
+
+This is just a simple cleanup to keep kernel/sysctl.c from getting to crowded
+with special cases, and by keeping all of the ipc logic to together it makes
+the code a little more readable.
+
+[gcoady.lk@gmail.com: build fix]
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+Cc: Serge E. Hallyn <serue@us.ibm.com>
+Cc: Herbert Poetzl <herbert@13thfloor.at>
+Cc: Kirill Korotaev <dev@sw.ru>
+Signed-off-by: Grant Coady <gcoady.lk@gmail.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,29 @@
+label: performance synchronization
+module: message queue	
+age: 2006-02-09
+title: [NETLINK]: Fix a severe bug
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=a70ea994a0d83fd0151a070be72b87d014ef0a7e
+lines: -1/+2
+category: ipc/mqueue.c
+
+netlink overrun was broken while improvement of netlink.
+Destination socket is used in the place where it was meant to be source socket,
+so that now overrun is never sent to user netlink sockets, when it should be,
+and it even can be set on kernel socket, which results in complete deadlock
+of rtnetlink.
+
+Suggested fix is to restore status quo passing source socket as additional
+argument to netlink_attachskb().
+
+A little explanation: overrun is set on a socket, when it failed
+to receive some message and sender of this messages does not or even
+have no way to handle this error. This happens in two cases:
+1. when kernel sends something. Kernel never retransmits and cannot
+   wait for buffer space.
+2. when user sends a broadcast and the message was not delivered
+   to some recipients.
+
+Signed-off-by: Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>
+Signed-off-by: David S. Miller <davem@davemloft.net>
+
+

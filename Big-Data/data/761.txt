@@ -1,0 +1,21 @@
+label: feature
+module: message	semaphore	shared memory	other	
+age: 2007-10-19
+title: Storing ipcs into IDRs
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=03f02c7657f7948ab980280c54c9366f962b1474
+lines: -18/+46
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.h 
+
+This patch converts casts of struct kern_ipc_perm to
+   . struct msg_queue
+   . struct sem_array
+   . struct shmid_kernel
+into the equivalent container_of() macro. It improves code maintenance
+because the code need not change if kern_ipc_perm is no longer at the
+beginning of the containing struct.
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

@@ -1,0 +1,17 @@
+label: maintenance
+module: message queue	other	
+age: 2020-05-15
+title: Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=da07f52d3caf6c24c6dbffb5500f379d819e04bd
+lines: -14/+32
+category: ipc/mqueue.c ipc/util.c 
+
+Move the bpf verifier trace check into the new switch statement in
+HEAD.
+
+Resolve the overlapping changes in hinic, where bug fixes overlap
+the addition of VF support.
+
+Signed-off-by: David S. Miller <davem@davemloft.net>
+
+

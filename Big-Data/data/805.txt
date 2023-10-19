@@ -1,0 +1,30 @@
+label: maintenance
+module: compatibility	message	
+age: 2006-12-07
+title: [PATCH] Fix the size limit of compat space msgsize
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=651971cb7242e8f6d7ebd153e69bd271cb731223
+lines: -27/+40
+category: ipc/compat.c ipc/msg.c 
+
+Currently we allocate 64k space on the user stack and use it the msgbuf for
+sys_{msgrcv,msgsnd} for compat and the results are later copied in user [
+by copy_in_user].  This patch introduces helper routines for
+sys_{msgrcv,msgsnd} as below:
+
+do_msgsnd() : Accepts the mtype and user space ptr to the buffer along with
+the msqid and msgflg.
+
+do_msgrcv() : Accepts a kernel space ptr to mtype and a userspace ptr to
+the buffer.  The mtype has to be copied back the user space msgbuf by the
+caller.
+
+These changes avoid the need to allocate the msgsize on the userspace (
+thus removing the size limt ) and the overhead of an extra copy_in_user().
+
+Signed-off-by: Suzuki K P <suzuki@in.ibm.com>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: "David S. Miller" <davem@davemloft.net>
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

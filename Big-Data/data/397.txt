@@ -1,0 +1,19 @@
+label: feature
+module: shared memory	
+age: 2013-09-11
+title: ipc, shm: drop shm_lock_check
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7a25dd9e042b2b94202a67e5551112f4ac87285a
+lines: -11/+0
+category: ipc/shm.c
+
+This function was replaced by a the lockless shm_obtain_object_check(),
+and no longer has any users.
+
+Signed-off-by: Davidlohr Bueso <davidlohr.bueso@hp.com>
+Cc: Sedat Dilek <sedat.dilek@gmail.com>
+Cc: Rik van Riel <riel@redhat.com>
+Cc: Manfred Spraul <manfred@colorfullife.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

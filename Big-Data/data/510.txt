@@ -1,0 +1,78 @@
+label: maintenance
+module: message	semaphore	shared memory	other	
+age: 2012-10-02
+title: Merge branch 'for-linus' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=437589a74b6a590d175f86cf9f7b2efcee7765e7
+lines: -33/+50
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+
+Pull user namespace changes from Eric Biederman:
+ "This is a mostly modest set of changes to enable basic user namespace
+  support.  This allows the code to code to compile with user namespaces
+  enabled and removes the assumption there is only the initial user
+  namespace.  Everything is converted except for the most complex of the
+  filesystems: autofs4, 9p, afs, ceph, cifs, coda, fuse, gfs2, ncpfs,
+  nfs, ocfs2 and xfs as those patches need a bit more review.
+
+  The strategy is to push kuid_t and kgid_t values are far down into
+  subsystems and filesystems as reasonable.  Leaving the make_kuid and
+  from_kuid operations to happen at the edge of userspace, as the values
+  come off the disk, and as the values come in from the network.
+  Letting compile type incompatible compile errors (present when user
+  namespaces are enabled) guide me to find the issues.
+
+  The most tricky areas have been the places where we had an implicit
+  union of uid and gid values and were storing them in an unsigned int.
+  Those places were converted into explicit unions.  I made certain to
+  handle those places with simple trivial patches.
+
+  Out of that work I discovered we have generic interfaces for storing
+  quota by projid.  I had never heard of the project identifiers before.
+  Adding full user namespace support for project identifiers accounts
+  for most of the code size growth in my git tree.
+
+  Ultimately there will be work to relax privlige checks from
+  "capable(FOO)" to "ns_capable(user_ns, FOO)" where it is safe allowing
+  root in a user names to do those things that today we only forbid to
+  non-root users because it will confuse suid root applications.
+
+  While I was pushing kuid_t and kgid_t changes deep into the audit code
+  I made a few other cleanups.  I capitalized on the fact we process
+  netlink messages in the context of the message sender.  I removed
+  usage of NETLINK_CRED, and started directly using current->tty.
+
+  Some of these patches have also made it into maintainer trees, with no
+  problems from identical code from different trees showing up in
+  linux-next.
+
+  After reading through all of this code I feel like I might be able to
+  win a game of kernel trivial pursuit."
+
+Fix up some fairly trivial conflicts in netfilter uid/git logging code.
+
+* 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace: (107 commits)
+  userns: Convert the ufs filesystem to use kuid/kgid where appropriate
+  userns: Convert the udf filesystem to use kuid/kgid where appropriate
+  userns: Convert ubifs to use kuid/kgid
+  userns: Convert squashfs to use kuid/kgid where appropriate
+  userns: Convert reiserfs to use kuid and kgid where appropriate
+  userns: Convert jfs to use kuid/kgid where appropriate
+  userns: Convert jffs2 to use kuid and kgid where appropriate
+  userns: Convert hpfs to use kuid and kgid where appropriate
+  userns: Convert btrfs to use kuid/kgid where appropriate
+  userns: Convert bfs to use kuid/kgid where appropriate
+  userns: Convert affs to use kuid/kgid wherwe appropriate
+  userns: On alpha modify linux_to_osf_stat to use convert from kuids and kgids
+  userns: On ia64 deal with current_uid and current_gid being kuid and kgid
+  userns: On ppc convert current_uid from a kuid before printing.
+  userns: Convert s390 getting uid and gid system calls to use kuid and kgid
+  userns: Convert s390 hypfs to use kuid and kgid where appropriate
+  userns: Convert binder ipc to use kuids
+  userns: Teach security_path_chown to take kuids and kgids
+  userns: Add user namespace support to IMA
+  userns: Convert EVM to deal with kuids and kgids in it's hmac computation
+  ...
+
+

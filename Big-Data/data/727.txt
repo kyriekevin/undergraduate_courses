@@ -1,0 +1,18 @@
+label: feature
+module: semaphore	
+age: 2008-04-29
+title: IPC/semaphores: code factorisation
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6ff3797218ef41c248c83184101ce1aedc227333
+lines: -30/+31
+category: ipc/sem.c
+
+Trivial patch which adds some small locking functions and makes use of them to
+factorize some part of the code and to make it cleaner.
+
+Signed-off-by: Pierre Peiffer <pierre.peiffer@bull.net>
+Acked-by: Serge Hallyn <serue@us.ibm.com>
+Cc: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

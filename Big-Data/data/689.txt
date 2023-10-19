@@ -1,0 +1,17 @@
+label: performance speed optimization
+module: other	
+age: 2008-12-04
+title: Merge branch 'master' into next
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ec98ce480ada787f2cfbd696980ff3564415505b
+lines: -5/+9
+category: ipc/util.c
+
+Conflicts:
+	fs/nfsd/nfs4recover.c
+
+Manually fixed above to use new creds API functions, e.g.
+nfs4_save_creds().
+
+Signed-off-by: James Morris <jmorris@namei.org>
+
+

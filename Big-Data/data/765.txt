@@ -1,0 +1,24 @@
+label: performance synchronization
+module: message	semaphore	shared memory	other	
+age: 2007-10-19
+title: ipc: store ipcs into IDRs
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=7ca7e564e049d8b350ec9d958ff25eaa24226352
+lines: -310/+330
+category: ipc/msg.c ipc/sem.c ipc/shm.c ipc/util.c ipc/util.h 
+
+This patch introduces ipcs storage into IDRs. The main changes are:
+  . This ipc_ids structure is changed: the entries array is changed into a
+    root idr structure.
+  . The grow_ary() routine is removed: it is not needed anymore when adding
+    an ipc structure, since we are now using the IDR facility.
+  . The ipc_rmid() routine interface is changed:
+       . there is no need for this routine to return the pointer passed in as
+         argument: it is now declared as a void
+       . since the id is now part of the kern_ipc_perm structure, no need to
+         have it as an argument to the routine
+
+Signed-off-by: Nadia Derbey <Nadia.Derbey@bull.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

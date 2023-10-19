@@ -1,0 +1,14 @@
+label: performance access optimization
+module: message	
+age: 2013-05-01
+title: ipc: simplify msg list search
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=d076ac9112797884c0be35f4c93c1517aa352c0c
+lines: -6/+2
+category: ipc/msg.c
+
+Signed-off-by: Peter Hurley <peter@hurleysoftware.com>
+Acked-by: Stanislav Kinsbursky <skinsbursky@parallels.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

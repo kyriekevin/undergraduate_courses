@@ -1,0 +1,27 @@
+label: bug memory danglingPt
+consequence：hang
+module: shared memory	
+age: 2010-01-16
+title: nommu: fix SYSV SHM for NOMMU
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=ed5e5894b234ce4793d78078c026915b853e0678
+lines: -0/+3
+category: ipc/shm.c
+
+Commit c4caa778157dbbf04116f0ac2111e389b5cd7a29 ("file
+->get_unmapped_area() shouldn't duplicate work of get_unmapped_area()")
+broke SYSV SHM for NOMMU by taking away the pointer to
+shm_get_unmapped_area() from shm_file_operations.
+
+Put it back conditionally on CONFIG_MMU=n.
+
+file->f_ops->get_unmapped_area() is used to find out the base address for a
+mapping of a mappable chardev device or mappable memory-based file (such as a
+ramfs file).  It needs to be called prior to file->f_ops->mmap() being called.
+
+Signed-off-by: David Howells <dhowells@redhat.com>
+Acked-by: Al Viro <viro@zeniv.linux.org.uk>
+Cc: Greg Ungerer <gerg@snapgear.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+

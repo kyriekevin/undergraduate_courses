@@ -1,0 +1,17 @@
+label: reliability annotation
+module: shared memory	
+age: 2005-08-01
+title: [PATCH] shm: CONFIG_SHMEM=n build fix
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=6ade43fbbcc3c12f0ddba112351d14d6c82ae476
+lines: -1/+1
+category: ipc/shm.c
+
+Fix bug found by Grant Coady <lkml@dodo.com.au>'s autobuild setup.
+
+shmem_set_policy() and shmem_get_policy() are macros if !CONFIG_SHMEM, so this
+doesn't work.
+
+Signed-off-by: Andrew Morton <akpm@osdl.org>
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+

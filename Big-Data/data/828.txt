@@ -1,0 +1,27 @@
+label: reliability error enhancement
+module: message queue	
+age: 2006-06-20
+title: [PATCH] Audit of POSIX Message Queue Syscalls v.2
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=20ca73bc792be9625af184cbec36e1372611d1c3
+lines: -0/+22
+category: ipc/mqueue.c
+
+This patch adds audit support to POSIX message queues.  It applies cleanly to
+the lspp.b15 branch of Al Viro's git tree.  There are new auxiliary data
+structures, and collection and emission routines in kernel/auditsc.c.  New hooks
+in ipc/mqueue.c collect arguments from the syscalls.
+
+I tested the patch by building the examples from the POSIX MQ library tarball.
+Build them -lrt, not against the old MQ library in the tarball.  Here's the URL:
+http://www.geocities.com/wronski12/posix_ipc/libmqueue-4.41.tar.gz
+Do auditctl -a exit,always -S for mq_open, mq_timedsend, mq_timedreceive,
+mq_notify, mq_getsetattr.  mq_unlink has no new hooks.  Please see the
+corresponding userspace patch to get correct output from auditd for the new
+record types.
+
+[fixes folded]
+
+Signed-off-by: George Wilson <ltcgcw@us.ibm.com>
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+
+

@@ -1,0 +1,23 @@
+label: performance synchronization
+module: semaphore	
+age: 2017-08-21
+title: Merge branch 'for-mingo' of ↵
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=94edf6f3c20c9c8ee301bde04150a91bab4bf32c
+lines: -1/+2
+category: ipc/sem.c
+
+git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/linux-rcu into core/rcu
+
+Pull RCU updates from Paul E. McKenney:
+
+ - Removal of spin_unlock_wait()
+ - SRCU updates
+ - Torture-test updates
+ - Documentation updates
+ - Miscellaneous fixes
+ - CPU-hotplug fixes
+ - Miscellaneous non-RCU fixes
+
+Signed-off-by: Ingo Molnar <mingo@kernel.org>
+
+

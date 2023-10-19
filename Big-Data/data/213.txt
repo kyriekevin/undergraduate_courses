@@ -1,0 +1,20 @@
+label: feature
+module: message	
+age: 2017-07-12
+title: ipc/msg: remove special msg_alloc/free
+link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/ipc?id=fb259c310f79d295c2da2934ff2282e1b7c30529
+lines: -20/+4
+category: ipc/msg.c
+
+There is nothing special about the msg_alloc/free routines any more, so
+remove them to make code more readable.
+
+[manfred@colorfullife.com: Rediff to keep rcu protection for security_msg_queue_alloc()]
+Link: http://lkml.kernel.org/r/20170525185107.12869-19-manfred@colorfullife.com
+Signed-off-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Manfred Spraul <manfred@colorfullife.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+
